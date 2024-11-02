@@ -8,6 +8,17 @@ public static class GlobalEvents
 {
     //public static event EventHandler OnDestroingRock;
     public static event EventHandler OnNotLookingOnInteractable;
+    public static event EventHandler OnChangingTime;
+
+    public class OnChangingTimeArgs : EventArgs
+    {
+        public int minutes;
+
+        public OnChangingTimeArgs(int minutes_)
+        {
+            minutes = minutes_;
+        }
+    }
 
     //public static void FireOnDestroingRock(object sender)
     //{
@@ -17,5 +28,10 @@ public static class GlobalEvents
     public static void FireOnNotLookingOnInteractable(object sender)
     {
         OnNotLookingOnInteractable?.Invoke(sender, EventArgs.Empty);
+    }
+
+    public static void FireOnChangingTime(object sender, OnChangingTimeArgs args)
+    {
+        OnChangingTime?.Invoke(sender, args);
     }
 }
