@@ -51,7 +51,7 @@ public class InteractableTargetsDetector : MonoBehaviour
         ray_direction = detector_raycast_direction.position - detector_raycast_origin.position;
 
         RaycastHit[] all_hits = Physics.RaycastAll(ray_origin, ray_direction, LOOK_FOR_INTERACTABLES_MAX_DISTANCE);
-
+        Debug.Log("Jestem tu");
         foreach (RaycastHit hit in all_hits)
         {
             if (hit.collider != null && hit.collider.TryGetComponent<IInteractable>(out IInteractable interactable))

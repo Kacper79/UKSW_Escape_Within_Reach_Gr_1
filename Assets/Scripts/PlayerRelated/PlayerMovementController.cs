@@ -50,7 +50,7 @@ public class PlayerMovementController : MonoBehaviour
         climbable_layer = LayerMask.GetMask("Climbable");
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (can_move)
         {
@@ -71,6 +71,9 @@ public class PlayerMovementController : MonoBehaviour
         player_input.MovementPlayerInput.Sprint.canceled += SprintCanceled;
         player_input.MovementPlayerInput.Crouch.started += CrouchStarted;
         player_input.MovementPlayerInput.Crouch.canceled += CrouchCanceled;
+
+        GlobalEvents.OnReadingPage += OnReadingPage;
+        GlobalEvents.OnStoppingReadingPage += OnStoppingReadingPage;
     }
 
     private void OnDisable()
@@ -84,6 +87,19 @@ public class PlayerMovementController : MonoBehaviour
         player_input.MovementPlayerInput.Sprint.canceled -= SprintCanceled;
         player_input.MovementPlayerInput.Crouch.started -= CrouchStarted;
         player_input.MovementPlayerInput.Crouch.canceled -= CrouchCanceled;
+
+        GlobalEvents.OnReadingPage -= OnReadingPage;
+        GlobalEvents.OnStoppingReadingPage -= OnStoppingReadingPage;
+    }
+
+    private void OnStoppingReadingPage(object sender, EventArgs e)
+    {
+        can_move = true;
+    }
+
+    private void OnReadingPage(object sender, EventArgs e)
+    {
+        can_move = false;
     }
 
     private void CrouchStarted(InputAction.CallbackContext context)
@@ -100,7 +116,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void JumpPerformed(InputAction.CallbackContext context)// TODO: changing directions midair
     {
-        if(player_character_controller.isGrounded)
+        if(player_character_controller.isGrounded)// TODO: if pressed space during reading a page player auto jumped
         {
             y_velocity = jump_force;
         }
@@ -138,7 +154,7 @@ public class PlayerMovementController : MonoBehaviour
         {
             climb_dir = Vector3.up;
             climb_dir.z = 1f;
-            climb_dir *= climb_speed * Time.fixedDeltaTime;
+            climb_dir *= climb_speed * Time.deltaTime;
             climb_dir = player_go.transform.TransformDirection(climb_dir);
             player_character_controller.Move(climb_dir);
 
@@ -171,7 +187,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         move_dir_normalized = player_input.MovementPlayerInput.Move.ReadValue<Vector2>();
         move_dir = new(move_dir_normalized.x, 0.0f, move_dir_normalized.y);
-        move_dir = move_speed * Time.fixedDeltaTime * move_dir;
+        move_dir = move_speed * Time.deltaTime * move_dir;
         
         if (player_character_controller.isGrounded)
         {
@@ -188,7 +204,7 @@ public class PlayerMovementController : MonoBehaviour
         player_character_controller.Move(move_dir);
     }
 
-    private void HandleCameraRotation()
+    private void HandleCameraRotation()// TOFO: Interaction detector should move up and down as well
     {
         camera_rotation = player_input.MovementPlayerInput.LookAround.ReadValue<Vector2>();
         
@@ -213,7 +229,7 @@ public class PlayerMovementController : MonoBehaviour
         }
         else 
         { 
-            y_velocity += Time.fixedDeltaTime * Time.fixedDeltaTime * gravity;
+            y_velocity += Time.deltaTime * Time.deltaTime * gravity;
             player_character_controller.Move(new(0.0f, y_velocity, 0.0f));
         }
     }

@@ -6,9 +6,11 @@ using UnityEngine.EventSystems;
 
 public static class GlobalEvents
 {
-    //public static event EventHandler OnDestroingRock;
+    public static event EventHandler OnDestroingRock;
     public static event EventHandler OnNotLookingOnInteractable;
     public static event EventHandler OnChangingTime;
+    public static event EventHandler OnReadingPage;
+    public static event EventHandler OnStoppingReadingPage;
 
     public class OnChangingTimeArgs : EventArgs
     {
@@ -20,10 +22,10 @@ public static class GlobalEvents
         }
     }
 
-    //public static void FireOnDestroingRock(object sender)
-    //{
-    //    OnDestroingRock?.Invoke(sender, EventArgs.Empty);
-    //}
+    public static void FireOnDestroingRock(object sender)
+    {
+        OnDestroingRock?.Invoke(sender, EventArgs.Empty);
+    }
 
     public static void FireOnNotLookingOnInteractable(object sender)
     {
@@ -33,5 +35,15 @@ public static class GlobalEvents
     public static void FireOnChangingTime(object sender, OnChangingTimeArgs args)
     {
         OnChangingTime?.Invoke(sender, args);
+    }
+
+    public static void FireOnReadingPage(object sender)
+    {
+        OnReadingPage?.Invoke(sender, EventArgs.Empty);
+    }
+
+    public static void FireOnStoppingReadingPage(object sender)
+    {
+        OnStoppingReadingPage?.Invoke(sender, EventArgs.Empty);
     }
 }
