@@ -141,7 +141,7 @@ public class PlayerAttackingController : MonoBehaviour
         return true;//Stamina or sth in the future
     }
 
-    private IEnumerator Dash(Vector3 move_dir)// TODO: camera is not recording arm properly, the arm changes position(prob cuz dash is too fast)
+    private IEnumerator Dash(Vector3 move_dir)
     {
         Vector3 start_position = player_go.transform.position;
         Vector3 target_position = start_position + move_dir;

@@ -7,4 +7,6 @@ public interface IInteractable
     public void Interact();
 
     public string GetInteractionTooltip();
+
+    public void AdditionalStuffWhenLookingAtInteractable();
 }

@@ -27,6 +27,11 @@ public class Doors : MonoBehaviour, IInteractable
         }
     }
 
+    void IInteractable.AdditionalStuffWhenLookingAtInteractable()
+    {
+        return;
+    }
+
     private bool CanInteract()
     {
         if(is_already_unlocked)

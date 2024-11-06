@@ -28,5 +28,10 @@ public class FoundPage : MonoBehaviour, IInteractable
 
         GlobalEvents.FireOnReadingPage(this);
     }
+
+    void IInteractable.AdditionalStuffWhenLookingAtInteractable()
+    {
+        return;
+    }
 }
     

@@ -116,7 +116,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void JumpPerformed(InputAction.CallbackContext context)// TODO: changing directions midair
     {
-        if(player_character_controller.isGrounded)// TODO: if pressed space during reading a page player auto jumped
+        if(player_character_controller.isGrounded && can_move)
         {
             y_velocity = jump_force;
         }
