@@ -18,7 +18,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.burst": {
-      "version": "1.8.16",
+      "version": "1.8.18",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -28,7 +28,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.cinemachine": {
-      "version": "2.10.0",
+      "version": "2.10.1",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -59,7 +59,7 @@
         "com.unity.sequences": "2.0.1",
         "com.unity.formats.fbx": "4.2.1",
         "com.unity.formats.alembic": "2.3.2",
-        "com.unity.cinemachine": "2.10.0",
+        "com.unity.cinemachine": "2.10.1",
         "com.unity.recorder": "4.0.3"
       }
     },

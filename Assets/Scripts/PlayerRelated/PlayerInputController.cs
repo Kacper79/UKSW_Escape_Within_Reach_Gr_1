@@ -10,8 +10,8 @@ public class PlayerInputController : MonoBehaviour
     {
         player_input = new();
 
-        //GetComponentInChildren<PlayerInteractionController>().SetPlayerInput(player_input);
+        GetComponentInChildren<PlayerInteractionController>().SetPlayerInput(player_input);
         GetComponentInChildren<PlayerMovementController>().SetPlayerInput(player_input);
-        //GetComponentInChildren<PlayerAttackingController>().SetPlayerInput(player_input);
+        GetComponentInChildren<PlayerAttackingController>().SetPlayerInput(player_input);
     }
 }
