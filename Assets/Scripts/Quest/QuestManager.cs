@@ -9,12 +9,15 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private List<Quest> defaultQuestList;
     private List<Quest> activeQuests = new();
 
-    private void Awake()
+    void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
+
+    void Start()
+    {
+        DefaultInitializeQuests();
     }
 
     public void DefaultInitializeQuests()
@@ -27,7 +30,7 @@ public class QuestManager : MonoBehaviour
         if (!activeQuests.Contains(quest))
         {
             activeQuests.Add(quest);
-            quest.OnQuestCompleted += HandleQuestCompleted;
+            //quest.OnQuestCompleted += HandleQuestCompleted;
         }
     }
 
@@ -35,12 +38,12 @@ public class QuestManager : MonoBehaviour
     {
         if (activeQuests.Contains(quest))
         {
-            quest.OnQuestCompleted -= HandleQuestCompleted;
+            //quest.OnQuestCompleted -= HandleQuestCompleted;
             activeQuests.Remove(quest);
         }
     }
 
-    private void HandleQuestCompleted(Quest quest)
+    public void HandleQuestCompleted(Quest quest)
     {
         Debug.Log($"Quest Completed: {quest.Description}");
         // Further actions upon quest completion (e.g., reward player)
@@ -53,6 +56,11 @@ public class QuestManager : MonoBehaviour
     public bool IsQuestCompleted(int questId)
     {
         var quest = activeQuests.Find(q => q.Id == questId);
-        return quest != null && quest.IsCompleted;
+        return quest.IsCompleted;
+    }
+
+    public Quest GetCurrentActiveQuest(int questId)
+    {
+        return activeQuests.Find(q => q.Id == questId);
     }
 }

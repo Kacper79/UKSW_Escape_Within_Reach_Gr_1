@@ -20,6 +20,7 @@ public class SaveManager : MonoBehaviour
         }
     }
 
+    //Actually saves the SaveData struct to file
     public void SaveGame(SaveData data)
     {
         string json = JsonUtility.ToJson(data, true);
@@ -27,6 +28,7 @@ public class SaveManager : MonoBehaviour
         Debug.Log($"Game saved to {saveFilePath}");
     }
 
+    //Creates SaveData struct with the data from the scene
     public SaveData GatherObjectsForSave()
     {
         SaveData saveData = new();
@@ -38,6 +40,7 @@ public class SaveManager : MonoBehaviour
         return saveData;
     }
 
+    //Fills the important objects on the scene with the data from SaveData struct
     public void GatherObjectsForLoad(SaveData saveData)
     {
         GameObject playerGO = GameObject.FindWithTag("Player");
@@ -45,6 +48,7 @@ public class SaveManager : MonoBehaviour
         playerGO.transform.rotation = saveData.playerRotation;
     }
 
+    //Loads SaveData structure from a file
     public SaveData LoadGame()
     {
         if (File.Exists(saveFilePath))
@@ -61,6 +65,7 @@ public class SaveManager : MonoBehaviour
         }
     }
 
+    //Deletes save file for the future UI
     public void DeleteSave()
     {
         if (File.Exists(saveFilePath))
