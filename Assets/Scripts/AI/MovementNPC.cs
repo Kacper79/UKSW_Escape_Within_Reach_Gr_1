@@ -12,14 +12,19 @@ public class MovementNPC : MonoBehaviour
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        npcAnimator = GetComponent<Animator>();
 
+        npcAnimator.SetBool("isWalking", false);
+        npcAnimator.SetBool("isCrouching", false);
+        npcAnimator.SetBool("isRunning", false);
         ChangeToNextPoint();
+        npcAnimator.SetBool("isWalking", true);
     }
 
     void Update()
     {
         navMeshAgent.destination = currentWalkToPosition;
-        if (navMeshAgent.velocity.magnitude == 0.0f && Vector3.Distance(transform.position, currentWalkToPosition) < distanceAtRestEpsilon && !pathReachedLock) //transform.position == currentWalkToPosition
+        if (navMeshAgent.velocity.magnitude < 0.1f && Vector3.Distance(transform.position, currentWalkToPosition) < distanceAtRestEpsilon && !pathReachedLock) //transform.position == currentWalkToPosition
         {
             pathReachedLock = true;
             Debug.Log($"Path completed, Dist: {Vector3.Distance(transform.position, currentWalkToPosition)}");
@@ -31,8 +36,10 @@ public class MovementNPC : MonoBehaviour
     public IEnumerator WaitForTime()
     {
         Debug.Log($"Waiting for {currentStayTime} seconds");
+        npcAnimator.SetBool("isWalking",false);
         yield return new WaitForSecondsRealtime(currentStayTime);
         Debug.Log("Stopped Waiting");
+        npcAnimator.SetBool("isWalking", true);
         ChangeToNextPoint();
         pathReachedLock = false;
     }
@@ -58,6 +65,7 @@ public class MovementNPC : MonoBehaviour
 
     private int currentNavPoint = 0;
     public List<NavigationWaypoint> navPoints;
+    private Animator npcAnimator;
 
 }
 
