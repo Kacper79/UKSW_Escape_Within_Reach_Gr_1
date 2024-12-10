@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GettingPunchedController : MonoBehaviour, IAttackable
+public class EnemyPunchedController : MonoBehaviour, IAttackable
 {
     private const float MAX_HIT_EULER_DEGREE_WITH_GUARD_UP = 45.0f;
 
@@ -36,6 +36,7 @@ public class GettingPunchedController : MonoBehaviour, IAttackable
     void IAttackable.Die()
     {
         Debug.Log("enemy died");
+        Destroy(this.gameObject);
     }
 
     private void CheckIfDead()
@@ -48,7 +49,7 @@ public class GettingPunchedController : MonoBehaviour, IAttackable
     
     private bool CanGetDamaged(Vector3 damage_dealer_position)
     {
-        return ((IAttackable)this).GetIsGuardUp() ||
-               (Vector3.Angle(transform.forward, transform.position - damage_dealer_position) < MAX_HIT_EULER_DEGREE_WITH_GUARD_UP);
+        return true;//((IAttackable)this).GetIsGuardUp() &&
+               //(Vector3.Angle(transform.forward, transform.position - damage_dealer_position) < MAX_HIT_EULER_DEGREE_WITH_GUARD_UP);
     }
 }
