@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PunchableTargetsDetector : MonoBehaviour
 {
-    private const float LOOK_FOR_PUNCHABLE_ENEMIES_MAX_DISTANCE = 3.0f;//has to be lass than z value in detector_raycast_direction.position
+    private const float LOOK_FOR_PUNCHABLE_ENEMIES_MAX_DISTANCE = 5.0f;//has to be lass than z value in detector_raycast_direction.position
 
     [SerializeField] private Transform detector_raycast_origin;
     [SerializeField] private Transform detector_raycast_direction;

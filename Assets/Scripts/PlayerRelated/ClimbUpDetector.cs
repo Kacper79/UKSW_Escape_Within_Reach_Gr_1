@@ -9,6 +9,9 @@ public class ClimbUpDetector : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        player_movement_controller.TryClimbingUp();
+        if (other.gameObject.layer == LayerMask.GetMask("Climbable"))
+        {
+            player_movement_controller.TryClimbingUp();
+        }
     }
 }

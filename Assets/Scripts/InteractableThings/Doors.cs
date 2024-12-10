@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Doors : MonoBehaviour, IInteractable
 {
+    private const float OPEN_AND_CLOSE_DOOR_TIME = 0.25f;
+
     private string interaction_tooltip_message_opened = "Press [E] to open doors";
     private string interaction_tooltip_message_closed = "Press [E] to close doors";
 
     private bool is_opened = false;
     private bool is_already_unlocked = false;
+    private bool is_during_opening_animation = false;
 
     private float euler_degree_for_opening_doors;
 
@@ -22,7 +25,7 @@ public class Doors : MonoBehaviour, IInteractable
         if(CanInteract())
         {
             euler_degree_for_opening_doors = is_opened ? 0.0f : 90.0f;
-            transform.eulerAngles = new(transform.eulerAngles.x, euler_degree_for_opening_doors, transform.eulerAngles.z);//consume key or not if you have to, logic later
+            StartCoroutine(OpenOrCloseDoors(euler_degree_for_opening_doors));
             is_opened = !is_opened;
         }
     }
@@ -32,9 +35,38 @@ public class Doors : MonoBehaviour, IInteractable
         return;
     }
 
+    private IEnumerator OpenOrCloseDoors(float target_degree)
+    {
+        is_during_opening_animation = true;
+
+        float elapsed_time = 0f;
+        float start_degree = transform.localEulerAngles.y;
+
+        if (start_degree > 180f)
+        {
+            start_degree -= 360f;
+        }
+
+        while (elapsed_time < OPEN_AND_CLOSE_DOOR_TIME)
+        {
+            elapsed_time += Time.deltaTime; // Zwiêksz czas o czas miêdzy klatkami
+
+            float currentDegree = Mathf.Lerp(start_degree, target_degree, elapsed_time / OPEN_AND_CLOSE_DOOR_TIME);
+
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, currentDegree, transform.localEulerAngles.z
+            );
+
+            yield return null;
+        }
+
+        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, target_degree, transform.localEulerAngles.z);
+
+        is_during_opening_animation = false;
+    }
+
     private bool CanInteract()
     {
-        if(is_already_unlocked)
+        if(is_already_unlocked && !is_during_opening_animation)
         {
             return true;
         }
