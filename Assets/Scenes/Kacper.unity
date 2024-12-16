@@ -1852,6 +1852,8 @@ GameObject:
   - component: {fileID: 1232845323}
   - component: {fileID: 1232845322}
   - component: {fileID: 1232845324}
+  - component: {fileID: 1232845326}
+  - component: {fileID: 1232845325}
   m_Layer: 0
   m_Name: GlobalGO
   m_TagString: Untagged
@@ -1917,6 +1919,30 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1232845325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232845321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8327c7ddee64d84f817e57df7de3149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1232845326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232845321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c9ae384e24427c4fb372c42bf617178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1264084515
 GameObject:
   m_ObjectHideFlags: 0

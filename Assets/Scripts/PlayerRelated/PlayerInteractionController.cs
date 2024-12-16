@@ -12,14 +12,19 @@ public class PlayerInteractionController : MonoBehaviour
 
     private bool can_interact = true;
 
+    private void Update()
+    {
+        if(interactable_targets_detector == null)
+        {
+            Debug.Log("O chuj z tym nullem chodzi?");
+        }
+    }
+
     private void OnEnable()
     {
         player_input.InteractPlayerInput.Enable();
 
         player_input.InteractPlayerInput.Interact.performed += InteractPerformed;
-
-        GlobalEvents.OnReadingPage += OnReadingPage;
-        GlobalEvents.OnStoppingReadingPage += OnStoppingReadingPage;
     }
 
     private void OnDisable()
@@ -27,25 +32,13 @@ public class PlayerInteractionController : MonoBehaviour
         player_input.InteractPlayerInput.Disable();
 
         player_input.InteractPlayerInput.Interact.performed -= InteractPerformed;
-
-        GlobalEvents.OnReadingPage -= OnReadingPage;
-        GlobalEvents.OnStoppingReadingPage -= OnStoppingReadingPage;
-    }
-
-    private void OnStoppingReadingPage(object sender, EventArgs e)
-    {
-        can_interact = true;
-    }
-
-    private void OnReadingPage(object sender, EventArgs e)
-    {
-        can_interact = false;
     }
 
     private void InteractPerformed(InputAction.CallbackContext context)
     {
         if(can_interact)
         {
+            //if (interactable_targets_detector == null) Debug.Log("Null");
             interactable_targets_detector.TryInteracting();
         }   
     }

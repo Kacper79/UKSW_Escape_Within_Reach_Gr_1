@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee51363ce2771ed419f20611b721b794, type: 3}
+  m_Name: Bardzo_podoba_mi_sie_kilof
+  m_EditorClassIdentifier: 
+  main_character_text: "Bardzo podoba mi si\u0119 kilof,"
+  main_character_audio: {fileID: 8300000, guid: 1edc977c99e31274fa8a7a1746527771,
+    type: 3}
+  eventual_npc_response_time_delay: 0
+  responses:
+  - response: "Dobra, ale przegrana b\u0119dzie ci\u0119 kosztowa\u0107 500 sztuk
+      z\u0142ota."
+    response_audio_clip: {fileID: 8300000, guid: 25f1ff4c28391aa4db00448036863850,
+      type: 3}
+    eventual_response_time_delay: 0
+  - response: Gramy do 3 wygranych.
+    response_audio_clip: {fileID: 8300000, guid: e1d19407f881f6247b01f22ac720405c,
+      type: 3}
+    eventual_response_time_delay: 0
+  invoked_events_list: 
+  options:
+  - {fileID: 11400000, guid: 8bad6b094dbccf84a81a42d7382fb3de, type: 2}
+  - {fileID: 11400000, guid: 5f77aa02c2140f64189f03d1470c95a5, type: 2}
+  id_of_dialogue_option_to_go_back_to: 
+  is_available: 1
+  id: 18798bc42c614ff49c606dd3b4bd4418

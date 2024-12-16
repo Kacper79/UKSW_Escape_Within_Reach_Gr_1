@@ -71,9 +71,6 @@ public class PlayerMovementController : MonoBehaviour
         player_input.MovementPlayerInput.Sprint.canceled += SprintCanceled;
         player_input.MovementPlayerInput.Crouch.started += CrouchStarted;
         player_input.MovementPlayerInput.Crouch.canceled += CrouchCanceled;
-
-        GlobalEvents.OnReadingPage += OnReadingPage;
-        GlobalEvents.OnStoppingReadingPage += OnStoppingReadingPage;
     }
 
     private void OnDisable()
@@ -87,19 +84,6 @@ public class PlayerMovementController : MonoBehaviour
         player_input.MovementPlayerInput.Sprint.canceled -= SprintCanceled;
         player_input.MovementPlayerInput.Crouch.started -= CrouchStarted;
         player_input.MovementPlayerInput.Crouch.canceled -= CrouchCanceled;
-
-        GlobalEvents.OnReadingPage -= OnReadingPage;
-        GlobalEvents.OnStoppingReadingPage -= OnStoppingReadingPage;
-    }
-
-    private void OnStoppingReadingPage(object sender, EventArgs e)
-    {
-        can_move = true;
-    }
-
-    private void OnReadingPage(object sender, EventArgs e)
-    {
-        can_move = false;
     }
 
     private void CrouchStarted(InputAction.CallbackContext context)
@@ -204,7 +188,7 @@ public class PlayerMovementController : MonoBehaviour
         player_character_controller.Move(move_dir);
     }
 
-    private void HandleCameraRotation()// TOFO: Interaction detector should move up and down as well
+    private void HandleCameraRotation()// TODO: Interaction detector should move up and down as well
     {
         camera_rotation = player_input.MovementPlayerInput.LookAround.ReadValue<Vector2>();
         

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -19,11 +20,33 @@ public class InteractableTargetsDetector : MonoBehaviour
     private void OnEnable()
     {
         InvokeRepeating(nameof(LookForInteractableToShowUITooltip), TIME_IN_SECONDS_AFTER_LOOKING_FOR_INTERACTABLES_START, LOOKING_FOR_INTERACTABLES_REPEAT_RATE_IN_SECONDS);
+
+        GlobalEvents.OnReadingPage += StopLookingForInteractable;
+        GlobalEvents.OnStoppingReadingPage += StartLookingForInteractable;
+
+        GlobalEvents.OnStartingDialogue += StopLookingForInteractable;
+        GlobalEvents.OnEndingDialogue += StartLookingForInteractable;
     }
 
     private void OnDisable()
     {
         CancelInvoke(nameof(LookForInteractableToShowUITooltip));
+
+        GlobalEvents.OnReadingPage -= StopLookingForInteractable;
+        GlobalEvents.OnStoppingReadingPage -= StartLookingForInteractable;
+
+        GlobalEvents.OnStartingDialogue -= StopLookingForInteractable;
+        GlobalEvents.OnEndingDialogue -= StartLookingForInteractable;
+    }
+
+    private void StopLookingForInteractable(object sender, EventArgs e)
+    {
+        CancelInvoke(nameof(LookForInteractableToShowUITooltip));
+    }
+
+    private void StartLookingForInteractable(object sender, EventArgs e)
+    {
+        InvokeRepeating(nameof(LookForInteractableToShowUITooltip), TIME_IN_SECONDS_AFTER_LOOKING_FOR_INTERACTABLES_START, LOOKING_FOR_INTERACTABLES_REPEAT_RATE_IN_SECONDS);
     }
 
     private void LookForInteractableToShowUITooltip()

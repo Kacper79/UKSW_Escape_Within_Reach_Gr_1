@@ -13,17 +13,40 @@ public class InteractTooltipUI : MonoBehaviour
         DisableUI();
 
         GlobalEvents.OnNotLookingOnInteractable += OnNotLookingForAnythingInteractable;
+
+        GlobalEvents.OnReadingPage += DisableSelf;
+        GlobalEvents.OnStoppingReadingPage += EnableSelf;
+
+        GlobalEvents.OnStartingDialogue += DisableSelf;
+        GlobalEvents.OnEndingDialogue += EnableSelf;
     }
 
     private void OnDisable()
     {
         GlobalEvents.OnNotLookingOnInteractable -= OnNotLookingForAnythingInteractable;
+
+        GlobalEvents.OnReadingPage -= DisableSelf;
+        GlobalEvents.OnStoppingReadingPage -= EnableSelf;
+
+        GlobalEvents.OnStartingDialogue -= DisableSelf;
+        GlobalEvents.OnEndingDialogue -= EnableSelf;
+    }
+
+    private void EnableSelf(object sender, System.EventArgs e)
+    {
+        EnableUI();
+    }
+
+    private void DisableSelf(object sender, System.EventArgs e)
+    {
+        DisableUI();
     }
 
     private void OnNotLookingForAnythingInteractable(object sender, System.EventArgs e)
     {
         DisableUI();
     }
+
 
     private void EnableUI()
     {

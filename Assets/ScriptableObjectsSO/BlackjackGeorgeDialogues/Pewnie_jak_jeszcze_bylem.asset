@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee51363ce2771ed419f20611b721b794, type: 3}
+  m_Name: Pewnie_jak_jeszcze_bylem
+  m_EditorClassIdentifier: 
+  main_character_text: "Pewnie, jak jeszcze by\u0142em na wolno\u015Bci grywa\u0142em
+    w niego w kasynach,"
+  main_character_audio: {fileID: 8300000, guid: c916c01f720743342899d1c8b0d05141,
+    type: 3}
+  eventual_npc_response_time_delay: 0
+  responses:
+  - response: PFF!
+    response_audio_clip: {fileID: 8300000, guid: 96df167d12753c14dbc53eea11e8ac25,
+      type: 3}
+    eventual_response_time_delay: 0
+  - response: No to siadaj, zobaczymy czy jest taki mocny
+    response_audio_clip: {fileID: 8300000, guid: 575a3a8f63ed739408d2b9fc11ccb2ad,
+      type: 3}
+    eventual_response_time_delay: 0
+  - response: Nie gram dla zabawy.
+    response_audio_clip: {fileID: 8300000, guid: 25b662ed24bfba445ab3a818d0f354fe,
+      type: 3}
+    eventual_response_time_delay: 0
+  - response: O co gramy?
+    response_audio_clip: {fileID: 8300000, guid: 64b3b59cc5e6a174b9c9bfb0e9202789,
+      type: 3}
+    eventual_response_time_delay: 0
+  invoked_events_list: 
+  options:
+  - {fileID: 11400000, guid: 7948414a8673608498ae5484d1f636e3, type: 2}
+  - {fileID: 11400000, guid: fc42ed3290066d54a955b1d79c5d52e1, type: 2}
+  - {fileID: 11400000, guid: 5f77aa02c2140f64189f03d1470c95a5, type: 2}
+  id_of_dialogue_option_to_go_back_to: 
+  is_available: 1
+  id: 4ac5135765cd4c32b1a0e7270c2145dc

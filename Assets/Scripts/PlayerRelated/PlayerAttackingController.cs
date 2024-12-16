@@ -85,7 +85,7 @@ public class PlayerAttackingController : MonoBehaviour
             can_punch = false;
             time_since_punched = 0.0f;
             //player_animation_controller.AnimateLightPunch();
-            Debug.Log("Light punch!");
+            //Debug.Log("Light punch!");
             StartCoroutine(TryHittingSomeone(LIGHT_PUNCH_DAMAGE, LIGHT_PUNCH_CAST_TIME));
         }
     }

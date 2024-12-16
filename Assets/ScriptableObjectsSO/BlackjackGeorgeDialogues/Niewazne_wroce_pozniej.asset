@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee51363ce2771ed419f20611b721b794, type: 3}
+  m_Name: Niewazne_wroce_pozniej
+  m_EditorClassIdentifier: 
+  main_character_text: Niewazne, wroce pozniej
+  main_character_audio: {fileID: 8300000, guid: 616daa3a300788549ad4a89f23ad2b34,
+    type: 3}
+  eventual_npc_response_time_delay: 0
+  responses:
+  - response: No to spadaj!
+    response_audio_clip: {fileID: 8300000, guid: 09220f0040b695246bf7d6a86c7551c7,
+      type: 3}
+    eventual_response_time_delay: 0
+  invoked_events_list: 00000000
+  options: []
+  id_of_dialogue_option_to_go_back_to: 
+  is_available: 1
+  id: 8db3b25b553e45d09dbda363ffe411a1

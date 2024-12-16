@@ -6,7 +6,7 @@ public class TimeController : MonoBehaviour
 {
     private const int DAY_START_TIME = 8 * 60;
     private const int DAY_END_TIME = 20 * 60;
-    private const float FREQUENCY_OF_TIME_FLOW_IN_SECONDS = 0.01f;//how often do you ann 1 minute to the time display
+    private const float FREQUENCY_OF_TIME_FLOW_IN_SECONDS = 0.01f;//how often do you add 1 minute to the time display
 
     private int time_in_minutes;
     private float time_passed_since_last_added_minute = 0;
