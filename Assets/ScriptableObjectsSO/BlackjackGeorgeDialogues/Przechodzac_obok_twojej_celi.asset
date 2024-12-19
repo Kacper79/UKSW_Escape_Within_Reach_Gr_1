@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee51363ce2771ed419f20611b721b794, type: 3}
+  m_Name: Przechodzac_obok_twojej_celi
+  m_EditorClassIdentifier: 
+  main_character_text: "Przechodz\u0105c obok Twojej celi widzia\u0142em, \u017Ce
+    grasz w jakie\u015B karty. O co tu chodzi?"
+  main_character_audio: {fileID: 8300000, guid: aedf51f01b44d7449995931da896adbd,
+    type: 3}
+  eventual_npc_response_time_delay: 0
+  responses:
+  - response: a tak
+    response_audio_clip: {fileID: 8300000, guid: 275187c34592baa4e8086830a514c028,
+      type: 3}
+    eventual_response_time_delay: 0
+  - response: 'Od lat jest mistrzem blackjacka. '
+    response_audio_clip: {fileID: 8300000, guid: 9bad3916a5132444cb62ddcd4e238193,
+      type: 3}
+    eventual_response_time_delay: 0
+  - response: "Wiesz w og\xF3le co to za gra, pokurczu?"
+    response_audio_clip: {fileID: 8300000, guid: 732be6eec52c4e84ea8ae62ce59cb1a5,
+      type: 3}
+    eventual_response_time_delay: 0
+  invoked_events_list: 
+  options:
+  - {fileID: 11400000, guid: c5beb43e3312c3042bdf0091f4a1d2d5, type: 2}
+  - {fileID: 11400000, guid: 891a595f212852e4f9698f7bea0aa06f, type: 2}
+  - {fileID: 11400000, guid: 5f77aa02c2140f64189f03d1470c95a5, type: 2}
+  id_of_dialogue_option_to_go_back_to: 
+  is_available: 1
+  id: 7635f256271f492f94d0bb9470f6dccc
