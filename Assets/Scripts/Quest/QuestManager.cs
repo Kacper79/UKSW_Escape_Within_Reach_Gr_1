@@ -43,11 +43,19 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    public void HandleQuestCompleted(Quest quest)
+    public void SampleCallback()
     {
-        Debug.Log($"Quest Completed: {quest.Description}");
-        // Further actions upon quest completion (e.g., reward player)
-        RemoveQuest(quest);
+        Debug.Log("Yay, the quest is completed");
+    }
+
+    public void MarkQuestCompleted(int questID)
+    {
+        Quest? quest = GetActiveQuests.Find(questp => questp.Id == questID);
+        if (quest == null) return;
+
+        Debug.Log($"Quest Completed: {quest?.Description}");
+        quest?.CompleteQuest();
+        RemoveQuest((Quest)quest);
     }
 
     public List<Quest> GetActiveQuests { get => activeQuests; private set => activeQuests = value; }

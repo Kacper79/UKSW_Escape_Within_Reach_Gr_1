@@ -1902,15 +1902,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultQuestList:
   - Id: 0
-    Description: 
+    Description: Sample Quest
     IsCompleted: 0
     OnQuestCompleted:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1232845324}
           m_TargetAssemblyTypeName: QuestManager, Assembly-CSharp
-          m_MethodName: HandleQuestCompleted
-          m_Mode: 0
+          m_MethodName: SampleCallback
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

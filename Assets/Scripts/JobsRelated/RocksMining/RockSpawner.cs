@@ -24,6 +24,7 @@ public class RockSpawner : MonoBehaviour
     private void OnPlayerDestroyingRock(object sender, System.EventArgs e)
     {
         Invoke(nameof(SpawnRock), 1.0f);
+        QuestManager.Instance.MarkQuestCompleted(0);
     }
 
     private void SpawnRock()
