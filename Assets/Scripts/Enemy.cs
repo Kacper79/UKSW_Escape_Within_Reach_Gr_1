@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private int hp = 100;
+    private const int MAX_HP = 100;
+
+    [SerializeField] private EnemyHealthBar health_bar;
+
+    private int current_hp = MAX_HP;
     private bool is_block_up = false;
 
     private void Start()
     {
-        InvokeRepeating("ChangeBlockValue", 1.0f, 1.0f);
+        InvokeRepeating(nameof(ChangeBlockValue), 1.0f, 1.0f);
     }
 
     private void ChangeBlockValue()
@@ -19,8 +23,9 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        hp -= amount;
-        Debug.Log("Ugh, got hit, my hp is " + hp);
+        current_hp -= amount;
+
+        health_bar.ChangeBarValue(MAX_HP, current_hp);
     }
 
     public bool GetBlockUp()
@@ -30,6 +35,6 @@ public class Enemy : MonoBehaviour
 
     public int GetHp()
     {
-        return hp;
+        return current_hp;
     }
 }
