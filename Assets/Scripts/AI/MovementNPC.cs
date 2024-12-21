@@ -23,11 +23,15 @@ public class MovementNPC : MonoBehaviour
 
     void Update()
     {
-        navMeshAgent.destination = currentWalkToPosition;
+        if (pathReachedLock) return;
+
+        if (patrolOverride) navMeshAgent.destination = currentOverrideTransform.position;
+        else navMeshAgent.destination = currentWalkToPosition;
+
         if (navMeshAgent.velocity.magnitude < 0.1f && Vector3.Distance(transform.position, currentWalkToPosition) < distanceAtRestEpsilon && !pathReachedLock) //transform.position == currentWalkToPosition
         {
             pathReachedLock = true;
-            Debug.Log($"Path completed, Dist: {Vector3.Distance(transform.position, currentWalkToPosition)}");
+            //Debug.Log($"Path completed, Dist: {Vector3.Distance(transform.position, currentWalkToPosition)}");
             currentReachCallback?.Invoke();
             StartCoroutine(WaitForTime());
         }
@@ -35,12 +39,12 @@ public class MovementNPC : MonoBehaviour
 
     public IEnumerator WaitForTime()
     {
-        Debug.Log($"Waiting for {currentStayTime} seconds");
+        //Debug.Log($"Waiting for {currentStayTime} seconds");
         npcAnimator.SetBool("isWalking",false);
         yield return new WaitForSecondsRealtime(currentStayTime);
-        Debug.Log("Stopped Waiting");
         npcAnimator.SetBool("isWalking", true);
         ChangeToNextPoint();
+        patrolOverride = false;
         pathReachedLock = false;
     }
 
@@ -56,11 +60,27 @@ public class MovementNPC : MonoBehaviour
         currentNavPoint = (currentNavPoint + 1) % navPoints.Count;
     }
 
+    public void OverrideNextPoint(Transform dstPoint, float waitTime)
+    {
+        if (pathReachedLock) return;
+        patrolOverride = true;
+        currentOverrideTransform = dstPoint;
+        currentStayTime = waitTime;
+    }
+
+    public void FlushOverride()
+    {
+        pathReachedLock = true;
+        StartCoroutine(WaitForTime());
+    }
+
     private Vector3 currentWalkToPosition;
     private float currentStayTime;
+    private Transform currentOverrideTransform;
+    private bool patrolOverride;
     private UnityEvent? currentReachCallback;
     private bool pathReachedLock = false;
-    private float distanceAtRestEpsilon = 1.0f;
+    private float distanceAtRestEpsilon = 1.5f;
     private NavMeshAgent navMeshAgent;
 
     private int currentNavPoint = 0;

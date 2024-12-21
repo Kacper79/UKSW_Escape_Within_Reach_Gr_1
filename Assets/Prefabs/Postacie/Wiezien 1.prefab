@@ -16,7 +16,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 31b894fbf138c6343bf79246a8f677ec,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.395
+      value: -0.003
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31b894fbf138c6343bf79246a8f677ec,
         type: 3}
@@ -26,7 +26,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 31b894fbf138c6343bf79246a8f677ec,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31b894fbf138c6343bf79246a8f677ec,
         type: 3}
@@ -36,7 +36,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 31b894fbf138c6343bf79246a8f677ec,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31b894fbf138c6343bf79246a8f677ec,
         type: 3}
@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 31b894fbf138c6343bf79246a8f677ec,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31b894fbf138c6343bf79246a8f677ec,
         type: 3}
@@ -67,6 +67,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wiezien 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 31b894fbf138c6343bf79246a8f677ec,
+        type: 3}
+      propertyPath: m_TagString
+      value: Prisoner
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 31b894fbf138c6343bf79246a8f677ec,
         type: 3}
@@ -139,6 +144,18 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5427299358816021169}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 31b894fbf138c6343bf79246a8f677ec,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7157158974150133834}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 31b894fbf138c6343bf79246a8f677ec,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7938628920148816158}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 31b894fbf138c6343bf79246a8f677ec,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5478368988924995523}
   m_SourcePrefab: {fileID: 100100000, guid: 31b894fbf138c6343bf79246a8f677ec, type: 3}
 --- !u!1 &5492959124857912850 stripped
 GameObject:
@@ -162,7 +179,7 @@ CapsuleCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -178,8 +195,8 @@ NavMeshAgent:
   m_GameObject: {fileID: 5492959124857912850}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
+  m_Radius: 0.49
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -187,8 +204,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
+  m_Height: 2.5
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &5427299358816021169
@@ -214,3 +231,48 @@ MonoBehaviour:
     onPointReachedCallback:
       m_PersistentCalls:
         m_Calls: []
+--- !u!114 &7157158974150133834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5492959124857912850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 490c665ff606e3e44bccac5ef64e7c1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7938628920148816158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5492959124857912850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe3bc5cf2a2495540a97b01bd2c89037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy_controller: {fileID: 7157158974150133834}
+--- !u!114 &5478368988924995523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5492959124857912850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb65007f0cc6104c834235f157093bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cellTransform: {fileID: 0}
+  infirmaryTransform: {fileID: 0}
+  solitaryTransform: {fileID: 0}
+  walksInRestrictedZone: 0
+  restrictedZoneName: 
+  wantToLeaveZone: 0
+  isBeingEscorted: 0
+  guardsChasing: []
