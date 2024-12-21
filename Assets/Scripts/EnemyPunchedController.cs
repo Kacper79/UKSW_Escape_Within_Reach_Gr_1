@@ -10,9 +10,14 @@ public class EnemyPunchedController : MonoBehaviour, IAttackable
 
     void IAttackable.Punched(int amount, Vector3 damage_dealer_position)
     {
-        if (CanGetDamaged(damage_dealer_position))
+        if (!DidBlockPunch(damage_dealer_position))
         {
+            Debug.Log("Damaged");
             ((IAttackable)this).TakeDamage(amount);
+        }
+        else
+        {
+            Debug.Log("Blovcked");
         }
 
         CheckIfDead();
@@ -35,8 +40,7 @@ public class EnemyPunchedController : MonoBehaviour, IAttackable
 
     void IAttackable.Die()
     {
-        Debug.Log("enemy died");
-        Destroy(this.gameObject);
+        Destroy(this.transform.parent.gameObject);
     }
 
     private void CheckIfDead()
@@ -47,9 +51,9 @@ public class EnemyPunchedController : MonoBehaviour, IAttackable
         }
     }
     
-    private bool CanGetDamaged(Vector3 damage_dealer_position)
+    private bool DidBlockPunch(Vector3 damage_dealer_position)
     {
-        return true;//((IAttackable)this).GetIsGuardUp() &&
-               //(Vector3.Angle(transform.forward, transform.position - damage_dealer_position) < MAX_HIT_EULER_DEGREE_WITH_GUARD_UP);
+        return ((IAttackable)this).GetIsGuardUp() &&
+               (Mathf.Abs(180.0f - (Vector3.Angle(transform.forward, transform.position - damage_dealer_position))) < MAX_HIT_EULER_DEGREE_WITH_GUARD_UP);
     }
 }
