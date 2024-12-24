@@ -18,19 +18,45 @@ public static class GlobalEvents
     public static event EventHandler<OnLookingForDialogueListWithGivenIDEventArgs> OnLookingForDialogueListWithGivenID;
     public static event EventHandler<CallbackForOnLookingForDialogueListWithGivenIDEventArgs> CallbackForOnLookingForDialogueListWithGivenID;
 
+    public static event EventHandler OnBeatingEnemyInATournament;
+
     #region dialogue_related_events
     private static Dictionary<DialogueNodeSO.DialogueEvent, EventHandler> dialogue_event_dict;
+
+    public static event EventHandler OnStartingFightTournament
+    {
+        add { AddToDictionary(DialogueNodeSO.DialogueEvent.StartFightingTournament, value); }
+        remove { RemoveFromDictionary(DialogueNodeSO.DialogueEvent.StartFightingTournament, value); }
+    }
 
     public static void FireCertainDialogueEvent(object sender, DialogueNodeSO.DialogueEvent dialogue_event)
     {
         dialogue_event_dict[dialogue_event]?.Invoke(sender, EventArgs.Empty);
     }
-    #endregion
 
     static GlobalEvents()
     {
         dialogue_event_dict = new();
     }
+
+    private static void AddToDictionary(DialogueNodeSO.DialogueEvent dialogueEvent, EventHandler handler)
+    {
+        if (!dialogue_event_dict.ContainsKey(dialogueEvent))
+        {
+            dialogue_event_dict[dialogueEvent] = null;
+        }
+
+        dialogue_event_dict[dialogueEvent] += handler;
+    }
+
+    private static void RemoveFromDictionary(DialogueNodeSO.DialogueEvent dialogueEvent, EventHandler handler)
+    {
+        if (dialogue_event_dict.ContainsKey(dialogueEvent))
+        {
+            dialogue_event_dict[dialogueEvent] -= handler;
+        }
+    }
+    #endregion
 
     public class CallbackForOnLookingForDialogueListWithGivenIDEventArgs : EventArgs
     {
@@ -120,5 +146,10 @@ public static class GlobalEvents
     public static void FireCallbackForOnLookingForDialogueListWithGivenID(object sender, CallbackForOnLookingForDialogueListWithGivenIDEventArgs args)
     {
         CallbackForOnLookingForDialogueListWithGivenID?.Invoke(sender, args);
+    }
+
+    public static void FireOnBeatingEnemyInATournament(object sender)
+    {
+        OnBeatingEnemyInATournament?.Invoke(sender, EventArgs.Empty);
     }
 }

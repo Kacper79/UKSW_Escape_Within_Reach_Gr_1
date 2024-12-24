@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private const int MAX_HP = 100;
+    private const int MAX_HP = 25;
 
     [SerializeField] private EnemyHealthBar health_bar;
 

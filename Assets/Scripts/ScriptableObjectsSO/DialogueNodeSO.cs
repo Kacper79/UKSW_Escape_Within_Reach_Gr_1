@@ -63,6 +63,7 @@ public class DialogueNodeSO : ScriptableObject
     public enum DialogueEvent//Invoked events, in DialogueManager you can Invoke GlobalEvents by using it
     {
         EndDialogue,//Throw it in if you want to end dialogue
-        GoBackToCertainDialogueOption//Throw it in if you want to go back to certain options
+        GoBackToCertainDialogueOption,//Throw it in if you want to go back to certain options
+        StartFightingTournament
     }
 }
