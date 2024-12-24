@@ -50,10 +50,11 @@ public class FightManager : MonoBehaviour
 
     private void StartTournament(object sender, System.EventArgs e)
     {
-        Debug.Log("siema");
-        TeleportPlayerToRing();
+        GlobalEvents.FireOnStartingTransition(this, new(0.3f));
+
+        Invoke(nameof(TeleportPlayerToRing), 0.3f);
         ring_collider.SetActive(true);
-        Invoke(nameof(SpawnEnemy), 2.0f);
+        SpawnEnemy();
     }
 
     private void EndTournament()

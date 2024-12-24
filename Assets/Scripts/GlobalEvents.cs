@@ -20,6 +20,9 @@ public static class GlobalEvents
 
     public static event EventHandler OnBeatingEnemyInATournament;
 
+    public static event EventHandler<OnStartingTransitionEventArgs> OnStartingTransition;
+    public static event EventHandler OnEndingTransition;
+
     #region dialogue_related_events
     private static Dictionary<DialogueNodeSO.DialogueEvent, EventHandler> dialogue_event_dict;
 
@@ -57,6 +60,16 @@ public static class GlobalEvents
         }
     }
     #endregion
+
+    public class OnStartingTransitionEventArgs : EventArgs
+    {
+        public float time_after_the_transition_ends;
+
+        public OnStartingTransitionEventArgs(float time_after_the_transition_ends)
+        {
+            this.time_after_the_transition_ends = time_after_the_transition_ends;
+        }
+    }
 
     public class CallbackForOnLookingForDialogueListWithGivenIDEventArgs : EventArgs
     {
@@ -151,5 +164,15 @@ public static class GlobalEvents
     public static void FireOnBeatingEnemyInATournament(object sender)
     {
         OnBeatingEnemyInATournament?.Invoke(sender, EventArgs.Empty);
+    }
+
+    public static void FireOnStartingTransition(object sender, OnStartingTransitionEventArgs args)
+    {
+        OnStartingTransition?.Invoke(sender, args);
+    }
+
+    public static void FireOnEndingTransition(object sender)
+    {
+        OnEndingTransition?.Invoke(sender, EventArgs.Empty);
     }
 }
