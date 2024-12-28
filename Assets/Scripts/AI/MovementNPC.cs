@@ -19,6 +19,12 @@ public class MovementNPC : MonoBehaviour
         npcAnimator.SetBool("isRunning", false);
         ChangeToNextPoint();
         npcAnimator.SetBool("isWalking", true);
+
+        if (navPoints.Count == 0)
+        {
+            pathReachedLock = true;
+            npcAnimator.SetBool("isWalking", false);
+        }
     }
 
     void Update()

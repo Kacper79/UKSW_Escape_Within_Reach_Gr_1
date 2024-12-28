@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
@@ -53,9 +54,9 @@ public class DialogueManager : MonoBehaviour
         GlobalEvents.FireOnStartingDialogue(this);
 
         current_npc_name = npc_name;
-        current_dialogue_root = dialogue_root;
+        current_dialogue_root = ScriptableObject.Instantiate(dialogue_root);
 
-        current_dialogue_list.Clear();
+        current_dialogue_list = new();
         current_dialogue_list.Add(dialogue_root);
 
         dialogue_options_ui.DisplayOptions(current_dialogue_list);
@@ -125,10 +126,14 @@ public class DialogueManager : MonoBehaviour
             {
                 Cursor.lockState = CursorLockMode.Locked;
 
+                current_dialogue_root = null;
+                current_dialogue_list = null;
+
                 GlobalEvents.FireOnEndingDialogue(this);
             }
             else
             {
+                Debug.Log("Fire eventu? " + each_event);
                 GlobalEvents.FireCertainDialogueEvent(this, each_event);
             }
         }
