@@ -268,6 +268,122 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "FunctionalPlayerInput",
+            "id": "80acbbc3-5dbd-4ee9-bd93-08cd7ea89d4d",
+            "actions": [
+                {
+                    "name": "OpenInventory",
+                    "type": "Button",
+                    "id": "56e93159-7e06-44a6-a637-4408db92644b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "OpenQuestLog",
+                    "type": "Button",
+                    "id": "f64a2695-f043-42de-9a4d-76c22c15e5b4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "OpenAchievements",
+                    "type": "Button",
+                    "id": "abfeb2de-a6aa-4b61-b25d-444511fe2cf2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "e98f70ed-120e-494b-a1fe-64cbb10db2ac",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "71f2dfc1-e9d6-4fed-b62f-9e7e36969705",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4633ad8d-7a70-4f11-88b8-9043101506ca",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenQuestLog",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a1184c3f-329e-44e0-af6d-f18d92211644",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenAchievements",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cf376fa5-067c-480c-b99b-685dd8185006",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "InPlayerAssetsUIPlayerInput",
+            "id": "239fd66e-f5c9-4952-ba0c-c77c79c45fa2",
+            "actions": [
+                {
+                    "name": "CloseWindow",
+                    "type": "Button",
+                    "id": "911b5180-e67f-4eae-b776-bc53bc6c1424",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "338655fd-b60c-4f84-bfe8-8edd61adb82a",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CloseWindow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

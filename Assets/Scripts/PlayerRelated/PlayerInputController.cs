@@ -13,6 +13,8 @@ public class PlayerInputController : MonoBehaviour
         GetComponentInChildren<PlayerInteractionController>().SetPlayerInput(player_input);
         GetComponentInChildren<PlayerMovementController>().SetPlayerInput(player_input);
         GetComponentInChildren<PlayerAttackingController>().SetPlayerInput(player_input);
+        GetComponentInChildren<FunctionalPlayerInputController>().SetPlayerInput(player_input);
+        GetComponentInChildren<InPlayerAssetsUIPlayerInputController>().SetPlayerInput(player_input);
     }
 
     private void OnEnable()

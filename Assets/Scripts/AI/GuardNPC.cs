@@ -44,11 +44,12 @@ namespace Assets.Scripts.AI
                 chasedPrisoner = other.gameObject;
                 transform.parent.gameObject.GetComponent<MovementNPC>().OverrideNextPoint(other.gameObject.transform, 1.0f);
                 dsc.guardsChasing.Add(this);
+
             }
         }
 
         private float lostFocusTime = 4.0f;
-        private float chaseEpsilon = 1.5f;
+        private float chaseEpsilon = 2.0f;
         private bool isGuardInChase = false;
         private GameObject chasedPrisoner;
     }
