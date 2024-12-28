@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using UnityEngine.Sequences.Timeline;
 
@@ -26,6 +27,15 @@ public class DialogueNodeSO : ScriptableObject
     public DialogueNodeSO()
     {
         GlobalEvents.OnLookingForDialogueListWithGivenID += TryReturningOptions;
+        GlobalEvents.OnMakingGivenDialogueOptionAvailableOrUnavailable += ChangeISAvailableValue;
+    }
+
+    private void ChangeISAvailableValue(object sender, GlobalEvents.OnMakingGivenDialogueOptionAvailableOrUnavailableEventArgs args)
+    {
+        if(id == args.dialogue_id)
+        {
+            is_available = args.new_bool_value;
+        }
     }
 
     [ContextMenu("Generate IDs for this and every child object")]

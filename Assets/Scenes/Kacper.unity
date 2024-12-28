@@ -2478,6 +2478,7 @@ GameObject:
   - component: {fileID: 1232845324}
   - component: {fileID: 1232845326}
   - component: {fileID: 1232845325}
+  - component: {fileID: 1232845327}
   m_Layer: 0
   m_Name: GlobalGO
   m_TagString: Untagged
@@ -2531,6 +2532,150 @@ MonoBehaviour:
     OnQuestCompleted:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 1232845327}
+          m_TargetAssemblyTypeName: QuestEventProcManager, Assembly-CSharp
+          m_MethodName: OnFightTournamentWin
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - Id: 1
+    Description: Zbierz 1500 golda
+    IsCompleted: 0
+    OnQuestCompleted:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: 
+          m_MethodName: 
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - Id: 0
+    Description: Pobij wroga
+    IsCompleted: 0
+    OnQuestCompleted:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: 
+          m_MethodName: 
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - Id: 0
+    Description: Wygraj turniej walk u grubego
+    IsCompleted: 0
+    OnQuestCompleted:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: 
+          m_MethodName: 
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - Id: 0
+    Description: Wygraj turniej walk u grubego
+    IsCompleted: 0
+    OnQuestCompleted:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: 
+          m_MethodName: 
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - Id: 0
+    Description: Wygraj turniej walk u grubego
+    IsCompleted: 0
+    OnQuestCompleted:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: 
+          m_MethodName: 
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - Id: 0
+    Description: Wygraj turniej walk u grubego
+    IsCompleted: 0
+    OnQuestCompleted:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: 
+          m_MethodName: 
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - Id: 0
+    Description: Wygraj turniej walk u grubego
+    IsCompleted: 0
+    OnQuestCompleted:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: 
+          m_MethodName: 
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - Id: 0
+    Description: Wygraj turniej walk u grubego
+    IsCompleted: 0
+    OnQuestCompleted:
+      m_PersistentCalls:
+        m_Calls:
         - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: 
@@ -2565,6 +2710,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c9ae384e24427c4fb372c42bf617178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1232845327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232845321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f614bbd67d31ad04b991ad9b84cf6297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1253625171
@@ -3314,7 +3471,7 @@ PrefabInstance:
     - target: {fileID: 5147959156884710568, guid: f78717661ff20014082f184f3a9be453,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.73
+      value: 1.15
       objectReference: {fileID: 0}
     - target: {fileID: 5147959156884710568, guid: f78717661ff20014082f184f3a9be453,
         type: 3}

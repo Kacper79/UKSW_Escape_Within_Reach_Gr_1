@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class FightManager : MonoBehaviour
 {
-    private const int NUMBER_OF_ENEMY_TO_DEFEAT_TO_WIN_TOURNAMENT = 3;
+    private const int NUMBER_OF_ENEMY_TO_DEFEAT_TO_WIN_TOURNAMENT = 1;
+    private const float Y_VALUE_OF_PLAYER_ROTATION_AFETR_ENDING_THE_FIGHT = 170.0f;
 
     [SerializeField] private GameObject ring_collider;
     [SerializeField] private GameObject enemy_prefab;
@@ -14,6 +15,8 @@ public class FightManager : MonoBehaviour
     private int defeated_enemy_in_tournament_so_far = 0;
 
     private GameObject player_go;
+
+    private Vector3 player_position_before_entering_the_fight;
 
     private void Awake()
     {
@@ -52,6 +55,8 @@ public class FightManager : MonoBehaviour
     {
         GlobalEvents.FireOnStartingTransition(this, new(0.3f));
 
+        player_position_before_entering_the_fight = player_go.transform.position;
+
         Invoke(nameof(TeleportPlayerToRing), 0.3f);
         ring_collider.SetActive(true);
         SpawnEnemy();
@@ -61,11 +66,21 @@ public class FightManager : MonoBehaviour
     {
         ring_collider.SetActive(false);
         QuestManager.Instance.MarkQuestCompleted(0);
+
+        GlobalEvents.FireOnStartingTransition(this, new(0.5f));
+
+        Invoke(nameof(TeleportPlayerToPostinionBeforeStartingAFight), 0.3f);
     }
 
     private void TeleportPlayerToRing()
     {
         player_go.transform.position = place_to_tp_player_to_when_starting_tournament.position;
+    }
+
+    private void TeleportPlayerToPostinionBeforeStartingAFight()
+    {
+        player_go.transform.position = player_position_before_entering_the_fight;
+        player_go.transform.localRotation = Quaternion.Euler(0.0f, Y_VALUE_OF_PLAYER_ROTATION_AFETR_ENDING_THE_FIGHT, 0.0f);
     }
 
     private void SpawnEnemy()

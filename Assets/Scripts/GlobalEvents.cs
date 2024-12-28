@@ -17,11 +17,14 @@ public static class GlobalEvents
     public static event EventHandler<OnChoosingCertainDialogueOptionEventArgs> OnChoosingCertainDialogueOption;
     public static event EventHandler<OnLookingForDialogueListWithGivenIDEventArgs> OnLookingForDialogueListWithGivenID;
     public static event EventHandler<CallbackForOnLookingForDialogueListWithGivenIDEventArgs> CallbackForOnLookingForDialogueListWithGivenID;
+    public static event EventHandler<OnMakingGivenDialogueOptionAvailableOrUnavailableEventArgs> OnMakingGivenDialogueOptionAvailableOrUnavailable;
 
     public static event EventHandler OnBeatingEnemyInATournament;
 
     public static event EventHandler<OnStartingTransitionEventArgs> OnStartingTransition;
     public static event EventHandler OnEndingTransition;
+
+    public static event EventHandler OnFinishingTournament;
 
     #region dialogue_related_events
     private static Dictionary<DialogueNodeSO.DialogueEvent, EventHandler> dialogue_event_dict;
@@ -60,6 +63,18 @@ public static class GlobalEvents
         }
     }
     #endregion
+
+    public class OnMakingGivenDialogueOptionAvailableOrUnavailableEventArgs : EventArgs
+    {
+        public string dialogue_id;
+        public bool new_bool_value;
+
+        public OnMakingGivenDialogueOptionAvailableOrUnavailableEventArgs(string dialogue_id, bool new_bool_value)
+        {
+            this.dialogue_id = dialogue_id;
+            this.new_bool_value = new_bool_value;
+        }
+    }
 
     public class OnStartingTransitionEventArgs : EventArgs
     {
@@ -174,5 +189,15 @@ public static class GlobalEvents
     public static void FireOnEndingTransition(object sender)
     {
         OnEndingTransition?.Invoke(sender, EventArgs.Empty);
+    }
+
+    public static void FireOnFinishingTournament(object sender)
+    {
+        OnFinishingTournament?.Invoke(sender, EventArgs.Empty);
+    }
+
+    public static void FireOnMakingGivenDialogueOptionAvailableOrUnavailable(object sender, OnMakingGivenDialogueOptionAvailableOrUnavailableEventArgs args)
+    {
+        OnMakingGivenDialogueOptionAvailableOrUnavailable?.Invoke(sender, args);
     }
 }
