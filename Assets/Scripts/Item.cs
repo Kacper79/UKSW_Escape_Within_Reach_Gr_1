@@ -23,7 +23,6 @@ public class Item : MonoBehaviour, IInteractable
     {
         GlobalEvents.OnPickUpItemEventArgs args = new(this);
         GlobalEvents.FireOnPickUpItem(this, args);
-        Debug.Log("Event fired");
     }
 
     public string GetItemDescription()

@@ -54,10 +54,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f410dd05c0652f46b001870b2d430ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  back_to_game_button: {fileID: 0}
-  save_game_button: {fileID: 0}
-  settings_button: {fileID: 0}
-  back_to_main_menu_button: {fileID: 0}
+  back_to_game_button: {fileID: 5967255333246124103}
+  save_game_button: {fileID: 2270088983652132818}
+  settings_button: {fileID: 6930071091836619642}
+  back_to_main_menu_button: {fileID: 269568050735457364}
   settings_UI: {fileID: 0}
 --- !u!1 &5706044188557017924
 GameObject:
@@ -325,30 +325,15 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8068436261502854175}
     m_Modifications:
-    - target: {fileID: 3158686839007092795, guid: 29759cf7e0048764fa8c904f84980333,
-        type: 3}
-      propertyPath: m_text
-      value: "WR\xD3\u0106 DO GRY"
-      objectReference: {fileID: 0}
-    - target: {fileID: 3158686839007092795, guid: 29759cf7e0048764fa8c904f84980333,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 28
-      objectReference: {fileID: 0}
-    - target: {fileID: 3158686839007092795, guid: 29759cf7e0048764fa8c904f84980333,
-        type: 3}
-      propertyPath: m_fontStyle
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3158686839007092795, guid: 29759cf7e0048764fa8c904f84980333,
-        type: 3}
-      propertyPath: m_fontSizeBase
-      value: 28
-      objectReference: {fileID: 0}
     - target: {fileID: 815764803715713281, guid: 6e136c1986a7d7f44ba4139b55fd301f,
         type: 3}
       propertyPath: m_Name
-      value: PauseMenuButton
+      value: BackToGameButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158686839007092795, guid: 6e136c1986a7d7f44ba4139b55fd301f,
+        type: 3}
+      propertyPath: m_text
+      value: "WR\xD3\u0106 DO GRY"
       objectReference: {fileID: 0}
     - target: {fileID: 3764843846547676282, guid: 6e136c1986a7d7f44ba4139b55fd301f,
         type: 3}
@@ -450,29 +435,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6e136c1986a7d7f44ba4139b55fd301f, type: 3}
---- !u!224 &3163023136677513814 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3764843846547676282, guid: 6e136c1986a7d7f44ba4139b55fd301f,
-    type: 3}
-  m_PrefabInstance: {fileID: 2295209910399096364}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &3258711311799524625
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 8068436261502854175}
-    m_Modifications:
     - target: {fileID: 3158686839007092795, guid: 29759cf7e0048764fa8c904f84980333,
         type: 3}
       propertyPath: m_text
-      value: USTAWIENIA
+      value: "WR\xD3\u0106 DO GRY"
       objectReference: {fileID: 0}
     - target: {fileID: 3158686839007092795, guid: 29759cf7e0048764fa8c904f84980333,
         type: 3}
@@ -489,10 +455,46 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 28
       objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6e136c1986a7d7f44ba4139b55fd301f, type: 3}
+--- !u!224 &3163023136677513814 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3764843846547676282, guid: 6e136c1986a7d7f44ba4139b55fd301f,
+    type: 3}
+  m_PrefabInstance: {fileID: 2295209910399096364}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5967255333246124103 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5554568215482046059, guid: 6e136c1986a7d7f44ba4139b55fd301f,
+    type: 3}
+  m_PrefabInstance: {fileID: 2295209910399096364}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &3258711311799524625
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8068436261502854175}
+    m_Modifications:
     - target: {fileID: 815764803715713281, guid: 6e136c1986a7d7f44ba4139b55fd301f,
         type: 3}
       propertyPath: m_Name
-      value: PauseMenuButton (2)
+      value: SettingsButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158686839007092795, guid: 6e136c1986a7d7f44ba4139b55fd301f,
+        type: 3}
+      propertyPath: m_text
+      value: USTAWIENIA
       objectReference: {fileID: 0}
     - target: {fileID: 3764843846547676282, guid: 6e136c1986a7d7f44ba4139b55fd301f,
         type: 3}
@@ -594,29 +596,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6e136c1986a7d7f44ba4139b55fd301f, type: 3}
---- !u!224 &1803178334407983467 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3764843846547676282, guid: 6e136c1986a7d7f44ba4139b55fd301f,
-    type: 3}
-  m_PrefabInstance: {fileID: 3258711311799524625}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &5667913077842653759
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 8068436261502854175}
-    m_Modifications:
     - target: {fileID: 3158686839007092795, guid: 29759cf7e0048764fa8c904f84980333,
         type: 3}
       propertyPath: m_text
-      value: MAIN MENU
+      value: USTAWIENIA
       objectReference: {fileID: 0}
     - target: {fileID: 3158686839007092795, guid: 29759cf7e0048764fa8c904f84980333,
         type: 3}
@@ -633,10 +616,46 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 28
       objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6e136c1986a7d7f44ba4139b55fd301f, type: 3}
+--- !u!224 &1803178334407983467 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3764843846547676282, guid: 6e136c1986a7d7f44ba4139b55fd301f,
+    type: 3}
+  m_PrefabInstance: {fileID: 3258711311799524625}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6930071091836619642 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5554568215482046059, guid: 6e136c1986a7d7f44ba4139b55fd301f,
+    type: 3}
+  m_PrefabInstance: {fileID: 3258711311799524625}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &5667913077842653759
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8068436261502854175}
+    m_Modifications:
     - target: {fileID: 815764803715713281, guid: 6e136c1986a7d7f44ba4139b55fd301f,
         type: 3}
       propertyPath: m_Name
-      value: PauseMenuButton (3)
+      value: BackToMenuButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158686839007092795, guid: 6e136c1986a7d7f44ba4139b55fd301f,
+        type: 3}
+      propertyPath: m_text
+      value: "WYJD\u0179 Z GRY"
       objectReference: {fileID: 0}
     - target: {fileID: 3764843846547676282, guid: 6e136c1986a7d7f44ba4139b55fd301f,
         type: 3}
@@ -738,29 +757,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6e136c1986a7d7f44ba4139b55fd301f, type: 3}
---- !u!224 &8833548307164835397 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3764843846547676282, guid: 6e136c1986a7d7f44ba4139b55fd301f,
-    type: 3}
-  m_PrefabInstance: {fileID: 5667913077842653759}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &5950719364707086777
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 8068436261502854175}
-    m_Modifications:
     - target: {fileID: 3158686839007092795, guid: 29759cf7e0048764fa8c904f84980333,
         type: 3}
       propertyPath: m_text
-      value: "ZAPISZ GR\u0118"
+      value: MAIN MENU
       objectReference: {fileID: 0}
     - target: {fileID: 3158686839007092795, guid: 29759cf7e0048764fa8c904f84980333,
         type: 3}
@@ -777,10 +777,46 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 28
       objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6e136c1986a7d7f44ba4139b55fd301f, type: 3}
+--- !u!114 &269568050735457364 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5554568215482046059, guid: 6e136c1986a7d7f44ba4139b55fd301f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5667913077842653759}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!224 &8833548307164835397 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3764843846547676282, guid: 6e136c1986a7d7f44ba4139b55fd301f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5667913077842653759}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5950719364707086777
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8068436261502854175}
+    m_Modifications:
     - target: {fileID: 815764803715713281, guid: 6e136c1986a7d7f44ba4139b55fd301f,
         type: 3}
       propertyPath: m_Name
-      value: PauseMenuButton (1)
+      value: SaveGameButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158686839007092795, guid: 6e136c1986a7d7f44ba4139b55fd301f,
+        type: 3}
+      propertyPath: m_text
+      value: "ZAPISZ GR\u0118"
       objectReference: {fileID: 0}
     - target: {fileID: 3764843846547676282, guid: 6e136c1986a7d7f44ba4139b55fd301f,
         type: 3}
@@ -882,11 +918,43 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3158686839007092795, guid: 29759cf7e0048764fa8c904f84980333,
+        type: 3}
+      propertyPath: m_text
+      value: "ZAPISZ GR\u0118"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158686839007092795, guid: 29759cf7e0048764fa8c904f84980333,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158686839007092795, guid: 29759cf7e0048764fa8c904f84980333,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158686839007092795, guid: 29759cf7e0048764fa8c904f84980333,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 28
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e136c1986a7d7f44ba4139b55fd301f, type: 3}
+--- !u!114 &2270088983652132818 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5554568215482046059, guid: 6e136c1986a7d7f44ba4139b55fd301f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5950719364707086777}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7397824517012024771 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3764843846547676282, guid: 6e136c1986a7d7f44ba4139b55fd301f,
