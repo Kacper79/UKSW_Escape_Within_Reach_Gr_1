@@ -3596,6 +3596,11 @@ PrefabInstance:
       propertyPath: quest_description_display
       value: 
       objectReference: {fileID: 2145814679805237562}
+    - target: {fileID: 1307382136526992424, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
+        type: 3}
+      propertyPath: quest_description_display
+      value: 
+      objectReference: {fileID: 2145814679805237562}
     - target: {fileID: 1992668954498591626, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
         type: 3}
       propertyPath: m_text
@@ -3896,6 +3901,11 @@ PrefabInstance:
       propertyPath: quest_description_display
       value: 
       objectReference: {fileID: 2145814679805237562}
+    - target: {fileID: 1307382136526992424, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
+        type: 3}
+      propertyPath: quest_description_display
+      value: 
+      objectReference: {fileID: 2145814679805237562}
     - target: {fileID: 1992668954498591626, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
         type: 3}
       propertyPath: m_text
@@ -4045,6 +4055,11 @@ PrefabInstance:
         prawdy o nielegalnych eksperymentach na ludziach."
       objectReference: {fileID: 0}
     - target: {fileID: 398890546621006662, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
+        type: 3}
+      propertyPath: quest_description_display
+      value: 
+      objectReference: {fileID: 2145814679805237562}
+    - target: {fileID: 1307382136526992424, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
         type: 3}
       propertyPath: quest_description_display
       value: 
@@ -4345,6 +4360,11 @@ PrefabInstance:
         zagro\u017Cenia."
       objectReference: {fileID: 0}
     - target: {fileID: 398890546621006662, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
+        type: 3}
+      propertyPath: quest_description_display
+      value: 
+      objectReference: {fileID: 2145814679805237562}
+    - target: {fileID: 1307382136526992424, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
         type: 3}
       propertyPath: quest_description_display
       value: 
@@ -4799,6 +4819,11 @@ PrefabInstance:
       propertyPath: quest_description_display
       value: 
       objectReference: {fileID: 2145814679805237562}
+    - target: {fileID: 1307382136526992424, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
+        type: 3}
+      propertyPath: quest_description_display
+      value: 
+      objectReference: {fileID: 2145814679805237562}
     - target: {fileID: 1992668954498591626, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
         type: 3}
       propertyPath: m_text
@@ -5249,6 +5274,11 @@ PrefabInstance:
       propertyPath: quest_description_display
       value: 
       objectReference: {fileID: 2145814679805237562}
+    - target: {fileID: 1307382136526992424, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
+        type: 3}
+      propertyPath: quest_description_display
+      value: 
+      objectReference: {fileID: 2145814679805237562}
     - target: {fileID: 1992668954498591626, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
         type: 3}
       propertyPath: m_text
@@ -5548,6 +5578,11 @@ PrefabInstance:
       propertyPath: quest_description_display
       value: 
       objectReference: {fileID: 2145814679805237562}
+    - target: {fileID: 1307382136526992424, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
+        type: 3}
+      propertyPath: quest_description_display
+      value: 
+      objectReference: {fileID: 2145814679805237562}
     - target: {fileID: 1992668954498591626, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
         type: 3}
       propertyPath: m_text
@@ -5692,6 +5727,11 @@ PrefabInstance:
         go\u015Bci jest zamachowiec."
       objectReference: {fileID: 0}
     - target: {fileID: 398890546621006662, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
+        type: 3}
+      propertyPath: quest_description_display
+      value: 
+      objectReference: {fileID: 2145814679805237562}
+    - target: {fileID: 1307382136526992424, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
         type: 3}
       propertyPath: quest_description_display
       value: 
