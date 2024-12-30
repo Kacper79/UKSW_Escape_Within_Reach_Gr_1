@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FightManager : MonoBehaviour
 {
-    private const int NUMBER_OF_ENEMY_TO_DEFEAT_TO_WIN_TOURNAMENT = 1;
+    private const int NUMBER_OF_ENEMY_TO_DEFEAT_TO_WIN_TOURNAMENT = 3;
     private const float Y_VALUE_OF_PLAYER_ROTATION_AFETR_ENDING_THE_FIGHT = 170.0f;
 
     [SerializeField] private GameObject ring_collider;
@@ -54,9 +54,9 @@ public class FightManager : MonoBehaviour
     private void StartTournament(object sender, System.EventArgs e)
     {
         GlobalEvents.FireOnStartingTransition(this, new(0.3f));
-
+        
         player_position_before_entering_the_fight = player_go.transform.position;
-
+        
         Invoke(nameof(TeleportPlayerToRing), 0.3f);
         ring_collider.SetActive(true);
         SpawnEnemy();
