@@ -74,7 +74,7 @@ public class FightManager : MonoBehaviour
 
     private void TeleportPlayerToRing()
     {
-        player_go.transform.position = place_to_tp_player_to_when_starting_tournament.position;
+        player_go.transform.position = place_to_tp_player_to_when_starting_tournament.TransformPoint(place_to_tp_player_to_when_starting_tournament.position);
     }
 
     private void TeleportPlayerToPostinionBeforeStartingAFight()

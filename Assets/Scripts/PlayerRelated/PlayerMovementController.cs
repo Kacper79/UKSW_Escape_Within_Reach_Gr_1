@@ -76,6 +76,10 @@ public class PlayerMovementController : MonoBehaviour
 
         GlobalEvents.OnAnyUIOpen += UnlockCursor;
         GlobalEvents.OnAnyUIClose += LockCursor;
+
+        GlobalEvents.OnStartingBlackJackGameForMoney += SetcameraRotationOnStartingBlackjackGame;
+        GlobalEvents.OnStartingBlackJackGameForPickaxe += SetcameraRotationOnStartingBlackjackGame;
+        GlobalEvents.OnEndingBlackjackGame += SetCanMoveToTrue;
     }    
 
     private void OnDisable()
@@ -95,6 +99,20 @@ public class PlayerMovementController : MonoBehaviour
 
         GlobalEvents.OnAnyUIOpen -= UnlockCursor;
         GlobalEvents.OnAnyUIClose -= LockCursor;
+
+        GlobalEvents.OnStartingBlackJackGameForMoney -= SetcameraRotationOnStartingBlackjackGame;
+        GlobalEvents.OnStartingBlackJackGameForPickaxe -= SetcameraRotationOnStartingBlackjackGame;
+        GlobalEvents.OnEndingBlackjackGame -= SetCanMoveToTrue;
+    }
+
+    private void SetCanMoveToTrue(object sender, EventArgs e)
+    {
+        can_move = true;
+    }
+    private void SetcameraRotationOnStartingBlackjackGame(object sender, EventArgs e)
+    {
+        can_move = false;
+        camera_holder_go.transform.rotation = Quaternion.Euler(60f, 0f, 0f);
     }
 
     private void DisableMovementPlayerInput(object sender, EventArgs e)

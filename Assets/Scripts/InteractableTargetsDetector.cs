@@ -26,6 +26,11 @@ public class InteractableTargetsDetector : MonoBehaviour
 
         GlobalEvents.OnStartingDialogue += StopLookingForInteractable;
         GlobalEvents.OnEndingDialogue += StartLookingForInteractable;
+
+        GlobalEvents.OnStartingBlackJackGameForMoney += StopLookingForInteractable;
+        GlobalEvents.OnStartingBlackJackGameForPickaxe += StopLookingForInteractable;
+
+        GlobalEvents.OnEndingBlackjackGame += StartLookingForInteractable;
     }
 
     private void OnDisable()
@@ -37,6 +42,11 @@ public class InteractableTargetsDetector : MonoBehaviour
 
         GlobalEvents.OnStartingDialogue -= StopLookingForInteractable;
         GlobalEvents.OnEndingDialogue -= StartLookingForInteractable;
+
+        GlobalEvents.OnStartingBlackJackGameForMoney -= StopLookingForInteractable;
+        GlobalEvents.OnStartingBlackJackGameForPickaxe -= StopLookingForInteractable;
+
+        GlobalEvents.OnEndingBlackjackGame -= StartLookingForInteractable;
     }
 
     private void StopLookingForInteractable(object sender, EventArgs e)

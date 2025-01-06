@@ -17,7 +17,7 @@ MonoBehaviour:
     type: 3}
   eventual_npc_response_time_delay: 0
   responses: []
-  invoked_events_list: 00000000
+  invoked_events_list: 0000000004000000
   options: []
   id_of_dialogue_option_to_go_back_to: 
   is_available: 1

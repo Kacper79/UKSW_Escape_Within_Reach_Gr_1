@@ -19,6 +19,11 @@ public class InteractTooltipUI : MonoBehaviour
 
         GlobalEvents.OnStartingDialogue += DisableSelf;
         GlobalEvents.OnEndingDialogue += EnableSelf;
+
+        GlobalEvents.OnStartingBlackJackGameForMoney += DisableSelf;
+        GlobalEvents.OnStartingBlackJackGameForPickaxe += DisableSelf;
+
+        GlobalEvents.OnEndingBlackjackGame += EnableSelf;
     }
 
     private void OnDisable()
@@ -30,6 +35,11 @@ public class InteractTooltipUI : MonoBehaviour
 
         GlobalEvents.OnStartingDialogue -= DisableSelf;
         GlobalEvents.OnEndingDialogue -= EnableSelf;
+
+        GlobalEvents.OnStartingBlackJackGameForMoney -= DisableSelf;
+        GlobalEvents.OnStartingBlackJackGameForPickaxe -= DisableSelf;
+
+        GlobalEvents.OnEndingBlackjackGame -= EnableSelf;
     }
 
     private void EnableSelf(object sender, System.EventArgs e)

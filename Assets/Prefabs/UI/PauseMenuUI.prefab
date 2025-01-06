@@ -655,7 +655,7 @@ PrefabInstance:
     - target: {fileID: 3158686839007092795, guid: 6e136c1986a7d7f44ba4139b55fd301f,
         type: 3}
       propertyPath: m_text
-      value: "WYJD\u0179 Z GRY"
+      value: "WR\xD3\u0106 DO MENU"
       objectReference: {fileID: 0}
     - target: {fileID: 3764843846547676282, guid: 6e136c1986a7d7f44ba4139b55fd301f,
         type: 3}
