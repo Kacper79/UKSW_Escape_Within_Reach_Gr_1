@@ -52,7 +52,7 @@ namespace Assets.Scripts.PlayerRelated
         }
 
         private int currentHP = MaxHP;
-        public const int MaxHP = 25;
+        public const int MaxHP = 100;
         private const float MAX_HIT_EULER_DEGREE_WITH_GUARD_UP = 45.0f;
 
         [SerializeField] private PlayerAttackingController playerAttackingController;
