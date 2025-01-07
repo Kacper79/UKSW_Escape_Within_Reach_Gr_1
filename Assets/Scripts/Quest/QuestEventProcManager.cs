@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class QuestEventProcManager : MonoBehaviour
 {
+    private const string PICKAXE_ITEM_NAME = "Kilof";
+
     public void OnFightTournamentWin()
     {
         GlobalEvents.FireOnFinishingTournament(this);
@@ -12,7 +14,7 @@ public class QuestEventProcManager : MonoBehaviour
 
     public void OnWinningPickaxeInABlakjackGame()
     {
-        GlobalEvents.FireOnWinningPickaxeInABlackjackGame(this, new("Kilof"));
+        GlobalEvents.FireOnWinningPickaxeInABlackjackGame(this, new(PICKAXE_ITEM_NAME));
         GlobalEvents.FireOnMakingGivenDialogueOptionAvailableOrUnavailable(this, new("18798bc42c614ff49c606dd3b4bd4418", false));
     }
 }

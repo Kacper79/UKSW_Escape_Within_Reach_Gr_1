@@ -26,7 +26,7 @@ public class Item : MonoBehaviour, IInteractable
 
     private void OnDisable()
     {
-        
+        GlobalEvents.OnWinningPickaxeInABlackjackGame -= MakeItemInteractable;
     }
 
     private void MakeItemInteractable(object sender, GlobalEvents.OnMakingGivenItemInteractableEventArgs e)
@@ -49,7 +49,10 @@ public class Item : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        PickUpItem();
+        if(is_interactable)
+        {
+            PickUpItem();
+        }
     }
 
     public void DestroyItem()
