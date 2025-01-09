@@ -18,18 +18,28 @@ public class InventoryManager : MonoBehaviour
     {
         GlobalEvents.OnPickUpItem += PickUpItem;
         GlobalEvents.OnInventoryOpen += OnInventoryOpenCallBack;
+
+        GlobalEvents.OnLosingOrWinningMoneyInABlackjackGame += ChangeGoldAmount;
     }    
 
     private void OnDisable()
     {
         GlobalEvents.OnPickUpItem -= PickUpItem;
         GlobalEvents.OnInventoryOpen -= OnInventoryOpenCallBack;
+
+        GlobalEvents.OnLosingOrWinningMoneyInABlackjackGame -= ChangeGoldAmount;
     }
 
     private void OnInventoryOpenCallBack(object sender, System.EventArgs e)
     {
-        GlobalEvents.OnInventoryOpenCallBackEventArgs args = new(plot_picked_up_items, other_picked_up_items, item_amount);
+        GlobalEvents.OnInventoryOpenCallBackEventArgs args = new(plot_picked_up_items, other_picked_up_items, item_amount, gold_amount);
         GlobalEvents.FireOnInventoryOpenCallBack(this, args);
+    }
+
+    private void ChangeGoldAmount(object sender, GlobalEvents.OnLosingOrWinningMoneyInABlackjackGameEventArgs args)
+    {
+        AddGold(args.value);
+        Debug.Log(gold_amount);
     }
 
     private void AddGold(int value)

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using UnityEngine.Sequences.Timeline;
 
@@ -74,6 +73,8 @@ public class DialogueNodeSO : ScriptableObject
     {
         EndDialogue,//Throw it in if you want to end dialogue
         GoBackToCertainDialogueOption,//Throw it in if you want to go back to certain options
-        StartFightingTournament
+        StartFightingTournament,
+        StartBlackJackGameForMoney,
+        StartBlackJackGameForPickaxe
     }
 }

@@ -14,11 +14,28 @@ public class Item : MonoBehaviour, IInteractable
 
     [SerializeField] private bool is_plot;
 
+    [SerializeField] private bool is_interactable = true;
+
     private void OnEnable()
     {
         this.gameObject.GetComponent<MeshFilter>().mesh = model;
+
+        GlobalEvents.OnWinningPickaxeInABlackjackGame += MakeItemInteractable;
     }
 
+
+    private void OnDisable()
+    {
+        GlobalEvents.OnWinningPickaxeInABlackjackGame -= MakeItemInteractable;
+    }
+
+    private void MakeItemInteractable(object sender, GlobalEvents.OnMakingGivenItemInteractableEventArgs e)
+    {
+        if(item_name == e.name)
+        {
+            this.is_interactable = true;
+        }
+    }
     private void PickUpItem()
     {
         GlobalEvents.OnPickUpItemEventArgs args = new(this);
@@ -32,7 +49,10 @@ public class Item : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        PickUpItem();
+        if(is_interactable)
+        {
+            PickUpItem();
+        }
     }
 
     public void DestroyItem()
@@ -62,5 +82,9 @@ public class Item : MonoBehaviour, IInteractable
     public void AdditionalStuffWhenLookingAtInteractable()
     {
         //Nothing to do for generic item
+    }
+    public void SetIsInteractable(bool b)
+    {
+        is_interactable = b;
     }
 }

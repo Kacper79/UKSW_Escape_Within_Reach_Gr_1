@@ -25,6 +25,10 @@ public static class GlobalEvents
     public static event EventHandler OnEndingTransition;
 
     public static event EventHandler OnFinishingTournament;
+    public static event EventHandler<OnMakingGivenItemInteractableEventArgs> OnWinningPickaxeInABlackjackGame;
+
+    public static event EventHandler<OnLosingOrWinningMoneyInABlackjackGameEventArgs> OnLosingOrWinningMoneyInABlackjackGame;
+    public static event EventHandler OnEndingBlackjackGame;
 
     public static event EventHandler OnAnyUIOpen;
     public static event EventHandler OnAnyUIClose;
@@ -41,6 +45,18 @@ public static class GlobalEvents
     {
         add { AddToDictionary(DialogueNodeSO.DialogueEvent.StartFightingTournament, value); }
         remove { RemoveFromDictionary(DialogueNodeSO.DialogueEvent.StartFightingTournament, value); }
+    }
+
+    public static event EventHandler OnStartingBlackJackGameForPickaxe
+    {
+        add { AddToDictionary(DialogueNodeSO.DialogueEvent.StartBlackJackGameForPickaxe, value); }
+        remove { RemoveFromDictionary(DialogueNodeSO.DialogueEvent.StartBlackJackGameForPickaxe, value); }
+    }
+
+    public static event EventHandler OnStartingBlackJackGameForMoney
+    {
+        add { AddToDictionary(DialogueNodeSO.DialogueEvent.StartBlackJackGameForMoney, value); }
+        remove { RemoveFromDictionary(DialogueNodeSO.DialogueEvent.StartBlackJackGameForMoney, value); }
     }
 
     public static void FireCertainDialogueEvent(object sender, DialogueNodeSO.DialogueEvent dialogue_event)
@@ -71,6 +87,25 @@ public static class GlobalEvents
         }
     }
     #endregion
+
+    public class OnLosingOrWinningMoneyInABlackjackGameEventArgs : EventArgs
+    {
+        public int value;
+
+        public OnLosingOrWinningMoneyInABlackjackGameEventArgs(int v)
+        {
+            value = v;
+        }
+    }
+    public class OnMakingGivenItemInteractableEventArgs : EventArgs
+    {
+        public string name;
+
+        public OnMakingGivenItemInteractableEventArgs(string item_name)
+        {
+            this.name = item_name;
+        }
+    }
 
     public class OnMakingGivenDialogueOptionAvailableOrUnavailableEventArgs : EventArgs
     {
@@ -132,6 +167,11 @@ public static class GlobalEvents
         {
             minutes = minutes_;
         }
+    }
+
+    public static void FireOnEndingBlackjackGame(object sender)
+    {
+        OnEndingBlackjackGame?.Invoke(sender, EventArgs.Empty);
     }
 
     public static void FireOnDestroingRock(object sender)
@@ -204,6 +244,11 @@ public static class GlobalEvents
         OnFinishingTournament?.Invoke(sender, EventArgs.Empty);
     }
 
+    public static void FireOnWinningPickaxeInABlackjackGame(object sender, OnMakingGivenItemInteractableEventArgs args)
+    {
+        OnWinningPickaxeInABlackjackGame?.Invoke(sender, args);
+    }
+
     public static void FireOnMakingGivenDialogueOptionAvailableOrUnavailable(object sender, OnMakingGivenDialogueOptionAvailableOrUnavailableEventArgs args)
     {
         OnMakingGivenDialogueOptionAvailableOrUnavailable?.Invoke(sender, args);
@@ -226,11 +271,12 @@ public static class GlobalEvents
         public Dictionary<string, int> item_amount;
         public int gold_amount;
 
-        public OnInventoryOpenCallBackEventArgs(List<Item> item_, List<Item> other_items_list_, Dictionary<string, int> item_amount_)
+        public OnInventoryOpenCallBackEventArgs(List<Item> item_, List<Item> other_items_list_, Dictionary<string, int> item_amount_, int gold_amount_)
         {
             plot_items_list = item_;
             other_items_list = other_items_list_;
             item_amount = item_amount_;
+            gold_amount = gold_amount_;
         }
     }
 
@@ -267,5 +313,10 @@ public static class GlobalEvents
     public static void FireOnInventoryOpenCallBack(object sender, OnInventoryOpenCallBackEventArgs args)
     {
         OnInventoryOpenCallBack?.Invoke(sender, args);
+    }
+
+    public static void FireOnLosingMoneyInABlackjackGame(object sender, OnLosingOrWinningMoneyInABlackjackGameEventArgs args)
+    {
+        OnLosingOrWinningMoneyInABlackjackGame?.Invoke(sender, args);
     }
 }

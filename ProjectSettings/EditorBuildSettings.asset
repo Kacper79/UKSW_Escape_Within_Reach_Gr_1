@@ -10,11 +10,11 @@ EditorBuildSettings:
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/Scenes/Janek.unity
-    guid: 4523a483adf665f49920dff8e55aa6c0
-  - enabled: 1
+    guid: b67d9c1a89757e4478814d2a0653bde5
+  - enabled: 0
     path: Assets/Scenes/MainMenuScene.unity
     guid: 3b4ace6e264b943419870f3fa20e3826
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LoadingScene.unity
     guid: e228e6f76a61c354abdaee73fb1df622
   m_configObjects: {}
