@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewDialoguesForEachCharacterSO", menuName = "Scriptable Objects/Dialogues")]
@@ -70,6 +71,8 @@ public class DialogueNodeSO : ScriptableObject
     {
         EndDialogue,//Throw it in if you want to end dialogue
         GoBackToCertainDialogueOption,//Throw it in if you want to go back to certain options
-        StartFightingTournament
+        StartFightingTournament,
+        StartBlackJackGameForMoney,
+        StartBlackJackGameForPickaxe
     }
 }

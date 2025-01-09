@@ -3604,7 +3604,7 @@ PrefabInstance:
     - target: {fileID: 1992668954498591626, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
         type: 3}
       propertyPath: m_text
-      value: "Za\u017Cyj kokain\u0119"
+      value: PH
       objectReference: {fileID: 0}
     - target: {fileID: 2883499815323455220, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
         type: 3}
@@ -4067,7 +4067,7 @@ PrefabInstance:
     - target: {fileID: 1992668954498591626, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
         type: 3}
       propertyPath: m_text
-      value: "Powie\u015B si\u0119"
+      value: PH
       objectReference: {fileID: 0}
     - target: {fileID: 2883499815323455220, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
         type: 3}
@@ -4372,7 +4372,7 @@ PrefabInstance:
     - target: {fileID: 1992668954498591626, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
         type: 3}
       propertyPath: m_text
-      value: "Zesraj si\u0119 na \u015Brodku u Zembro"
+      value: PH
       objectReference: {fileID: 0}
     - target: {fileID: 2883499815323455220, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
         type: 3}
@@ -4827,7 +4827,7 @@ PrefabInstance:
     - target: {fileID: 1992668954498591626, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
         type: 3}
       propertyPath: m_text
-      value: "We\u017A kwas"
+      value: PH
       objectReference: {fileID: 0}
     - target: {fileID: 2883499815323455220, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
         type: 3}
@@ -5282,7 +5282,7 @@ PrefabInstance:
     - target: {fileID: 1992668954498591626, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
         type: 3}
       propertyPath: m_text
-      value: "Pobij wroga wi\u0119\u017Ania"
+      value: PH
       objectReference: {fileID: 0}
     - target: {fileID: 2883499815323455220, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
         type: 3}
@@ -5586,7 +5586,7 @@ PrefabInstance:
     - target: {fileID: 1992668954498591626, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
         type: 3}
       propertyPath: m_text
-      value: "We\u017A Betablokery"
+      value: PH
       objectReference: {fileID: 0}
     - target: {fileID: 2883499815323455220, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
         type: 3}
@@ -5739,7 +5739,7 @@ PrefabInstance:
     - target: {fileID: 1992668954498591626, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
         type: 3}
       propertyPath: m_text
-      value: "Zr\xF3b Kup\u0119"
+      value: PH
       objectReference: {fileID: 0}
     - target: {fileID: 2883499815323455220, guid: 41d1b09831cb7b24d8d2aecbde21fd68,
         type: 3}

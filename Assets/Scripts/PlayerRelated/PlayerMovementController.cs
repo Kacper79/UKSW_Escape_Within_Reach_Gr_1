@@ -13,6 +13,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private GameObject camera_holder_go;
     //[SerializeField] private GameObject right_arm_go;
     [SerializeField] private GameObject player_go;
+    [SerializeField] private GameObject interactable_targets_detector;
 
     [SerializeField] private List<Transform> did_climb_raycast_transforms;
     [Header("Movement related variables")]
@@ -76,6 +77,10 @@ public class PlayerMovementController : MonoBehaviour
 
         GlobalEvents.OnAnyUIOpen += UnlockCursor;
         GlobalEvents.OnAnyUIClose += LockCursor;
+
+        GlobalEvents.OnStartingBlackJackGameForMoney += SetcameraRotationOnStartingBlackjackGame;
+        GlobalEvents.OnStartingBlackJackGameForPickaxe += SetcameraRotationOnStartingBlackjackGame;
+        GlobalEvents.OnEndingBlackjackGame += SetCanMoveToTrue;
     }    
 
     private void OnDisable()
@@ -95,6 +100,20 @@ public class PlayerMovementController : MonoBehaviour
 
         GlobalEvents.OnAnyUIOpen -= UnlockCursor;
         GlobalEvents.OnAnyUIClose -= LockCursor;
+
+        GlobalEvents.OnStartingBlackJackGameForMoney -= SetcameraRotationOnStartingBlackjackGame;
+        GlobalEvents.OnStartingBlackJackGameForPickaxe -= SetcameraRotationOnStartingBlackjackGame;
+        GlobalEvents.OnEndingBlackjackGame -= SetCanMoveToTrue;
+    }
+
+    private void SetCanMoveToTrue(object sender, EventArgs e)
+    {
+        can_move = true;
+    }
+    private void SetcameraRotationOnStartingBlackjackGame(object sender, EventArgs e)
+    {
+        can_move = false;
+        camera_holder_go.transform.rotation = Quaternion.Euler(60f, 0f, 0f);
     }
 
     private void DisableMovementPlayerInput(object sender, EventArgs e)
@@ -230,8 +249,9 @@ public class PlayerMovementController : MonoBehaviour
         camera_x_rotation = Mathf.Clamp(camera_x_rotation, MIN_X_CAMERA_ROTATION, MAX_X_CAMERA_ROTATION);
 
         camera_holder_go.transform.localRotation = Quaternion.Euler(camera_x_rotation, 0f, 0f);
+        interactable_targets_detector.transform.localRotation = Quaternion.Euler(camera_x_rotation, 0f, 0f);
         //right_arm_go.transform.localRotation = Quaternion.Euler(camera_x_rotation, 0f, 0f);//prototype arm to see punches
-        
+
         player_go.transform.Rotate(Vector3.up * mouse_x);
     }
 

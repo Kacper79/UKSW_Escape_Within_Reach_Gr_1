@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Interfaces;
+using Assets.Scripts.Interfaces;
 using System.Collections;
 using UnityEngine;
 

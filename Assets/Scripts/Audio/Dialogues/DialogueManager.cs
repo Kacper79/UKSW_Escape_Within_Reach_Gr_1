@@ -133,7 +133,6 @@ public class DialogueManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("Fire eventu? " + each_event);
                 GlobalEvents.FireCertainDialogueEvent(this, each_event);
             }
         }
