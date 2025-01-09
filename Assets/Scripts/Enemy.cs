@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
         InvokeRepeating(nameof(ChangeBlockValue), 1.0f, 1.0f);
     }
 
-    private void ChangeBlockValue()
+    public void ChangeBlockValue()
     {
         is_block_up = !is_block_up;
     }

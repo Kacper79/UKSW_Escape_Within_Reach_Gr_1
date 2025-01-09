@@ -1,3 +1,4 @@
+using Assets.Scripts.AI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -41,7 +42,8 @@ public class EnemyPunchedController : MonoBehaviour, IAttackable
     void IAttackable.Die()
     {
         GlobalEvents.FireOnBeatingEnemyInATournament(this);
-
+        Debug.Log("Dies");
+        GetComponent<FightNPC>().EndFight();
         Destroy(this.transform.parent.gameObject);
     }
 
