@@ -1,14 +1,20 @@
+using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInputController : MonoBehaviour
 {
-    private PlayerInput player_input;
+    [SerializeField] private PlayerInput player_input;
 
     private void Awake()
     {
-        player_input = new();
+        if(GameObject.Find("RebindGO") == null)
+        {
+            GameObject reb = new("RebindGO");
+            reb.AddComponent<RebindManager>();
+        }
+        player_input = GameObject.Find("RebindGO").GetComponent<RebindManager>().player_input;
         
         GetComponentInChildren<PlayerInteractionController>().SetPlayerInput(player_input);
         GetComponentInChildren<PlayerMovementController>().SetPlayerInput(player_input);

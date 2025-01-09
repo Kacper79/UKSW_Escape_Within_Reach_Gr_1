@@ -27,7 +27,7 @@ public class PlayerAttackingController : MonoBehaviour
 
     private PlayerInput player_input;
 
-    private bool is_blocking = false;
+    public bool is_blocking = false;
     private bool can_punch = true;
     private bool can_dash = true;
 
