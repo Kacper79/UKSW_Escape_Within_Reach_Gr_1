@@ -1,11 +1,12 @@
+using Assets.Scripts.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimeController : MonoBehaviour
+public class TimeController : MonoBehaviour, ISaveable
 {
     private const int DAY_START_TIME = 8 * 60;
-    private const int DAY_END_TIME = 20 * 60;
+    private const int DAY_END_TIME = 22 * 60;
     private const float FREQUENCY_OF_TIME_FLOW_IN_SECONDS = 0.01f;//how often do you add 1 minute to the time display
 
     private int time_in_minutes;
@@ -20,6 +21,7 @@ public class TimeController : MonoBehaviour
 
     private void Start()
     {
+        SaveManager.Instance.saveablesGO.Add(this);
         on_changing_time_args = new GlobalEvents.OnChangingTimeArgs(time_in_minutes);
         GlobalEvents.FireOnChangingTime(this, on_changing_time_args);
     }
@@ -53,5 +55,15 @@ public class TimeController : MonoBehaviour
     private void ResetDayTime()
     {
         time_in_minutes = DAY_START_TIME;
+    }
+
+    public void Save(ref SaveData saveData)
+    {
+        saveData.timeInMinutes = time_in_minutes;
+    }
+
+    public void Load(SaveData saveData)
+    {
+        time_in_minutes = saveData.timeInMinutes;
     }
 }

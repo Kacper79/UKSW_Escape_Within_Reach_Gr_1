@@ -19,6 +19,8 @@ public class FunctionalPlayerInputController : MonoBehaviour
         player_input.FunctionalPlayerInput.OpenAchievements.performed += OpenAchievementsPerformed;
         player_input.FunctionalPlayerInput.OpenQuestLog.performed += OpenQuestLogPerformed;
         player_input.FunctionalPlayerInput.Pause.performed += PausePerformed;
+        player_input.FunctionalPlayerInput.ThrowCoin.started += ThrowCoin;
+        player_input.FunctionalPlayerInput.UseCigaretts.started += UseCigartetts;
 
         GlobalEvents.OnAnyUIOpen += DisableFunctionalPlayerInput;
         GlobalEvents.OnAnyUIClose += EnableFunctionalPlayerInput;
@@ -33,6 +35,8 @@ public class FunctionalPlayerInputController : MonoBehaviour
         player_input.FunctionalPlayerInput.OpenAchievements.performed -= OpenAchievementsPerformed;
         player_input.FunctionalPlayerInput.OpenQuestLog.performed -= OpenQuestLogPerformed;
         player_input.FunctionalPlayerInput.Pause.performed -= PausePerformed;
+        player_input.FunctionalPlayerInput.ThrowCoin.started -= ThrowCoin;
+        player_input.FunctionalPlayerInput.UseCigaretts.started -= UseCigartetts;
 
         GlobalEvents.OnAnyUIOpen -= DisableFunctionalPlayerInput;
         GlobalEvents.OnAnyUIClose -= EnableFunctionalPlayerInput;
@@ -74,5 +78,15 @@ public class FunctionalPlayerInputController : MonoBehaviour
     public void SetPlayerInput(PlayerInput input)
     {
         player_input = input;
+    }
+
+    public void ThrowCoin(InputAction.CallbackContext ctx)
+    {
+        GlobalEvents.FireOnThrowingCoin(this);
+    }
+
+    public void UseCigartetts(InputAction.CallbackContext ctx)
+    {
+        GlobalEvents.FireOnUseCigs(this);
     }
 }

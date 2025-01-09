@@ -1,12 +1,14 @@
+using Assets.Scripts.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryManager : MonoBehaviour
+public class InventoryManager : MonoBehaviour, ISaveable
 {
     private const int MAX_OTHER_ITEMS = 4;
     private const int MAX_PLOT_ITEMS = 4;
 
+    [SerializeField] private List<Item> allPosibleObjects;
     private List<Item> plot_picked_up_items = new List<Item>();
     private List<Item> other_picked_up_items = new List<Item>();
 
@@ -24,6 +26,11 @@ public class InventoryManager : MonoBehaviour
     {
         GlobalEvents.OnPickUpItem -= PickUpItem;
         GlobalEvents.OnInventoryOpen -= OnInventoryOpenCallBack;
+    }
+
+    void Start()
+    {
+        SaveManager.Instance.saveablesGO.Add(this);
     }
 
     private void OnInventoryOpenCallBack(object sender, System.EventArgs e)
@@ -87,11 +94,12 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    private void RemoveUsedItem(Item item_to_use) //funkcja do uzywania itemków takich jak szlugi wytrychy itp, usuwa jeden itemek z eq
+    public bool RemoveUsedItem(Item item_to_use) //funkcja do uzywania itemków takich jak szlugi wytrychy itp, usuwa jeden itemek z eq
     {
         if(item_amount[item_to_use.GetItemName()] == 0)
         {
             Debug.Log("No item to use.");
+            return false;
         }
         else if (item_amount[item_to_use.GetItemName()] == 1)
         {
@@ -110,5 +118,45 @@ public class InventoryManager : MonoBehaviour
         {
             item_amount[item_to_use.GetItemName()]--;
         }
+        return true;
+    }
+
+    public void Save(ref SaveData saveData)
+    {
+        saveData.inventoryGoldAmount = gold_amount;
+        saveData.inventoryItemAmount = new(item_amount);
+        saveData.inventoryOtherItems = new();
+        foreach (Item item in other_picked_up_items)
+        {
+            int itemID = allPosibleObjects.FindIndex(posItem => posItem == item);
+            if (itemID != -1) saveData.inventoryOtherItems.Add(itemID);
+        }
+        //saveData.inventoryOtherItems = other_picked_up_items;
+        saveData.inventoryPlotItems = new();
+        foreach (Item item in plot_picked_up_items)
+        {
+            int itemID = allPosibleObjects.FindIndex(posItem => posItem == item);
+            if (itemID != -1) saveData.inventoryPlotItems.Add(itemID);
+        }
+        //saveData.inventoryPlotItems = plot_picked_up_items;
+    }
+
+    public void Load(SaveData saveData)
+    {
+        gold_amount = saveData.inventoryGoldAmount;
+        item_amount = saveData.inventoryItemAmount;
+        foreach (int itemID in saveData.inventoryOtherItems)
+        {
+            Item item = allPosibleObjects[itemID];
+            if (itemID >= 0 && itemID < allPosibleObjects.Count) other_picked_up_items.Add(item);
+        }
+        foreach (int itemID in saveData.inventoryPlotItems)
+        {
+            Item item = allPosibleObjects[itemID];
+            if (itemID >= 0 && itemID < allPosibleObjects.Count) plot_picked_up_items.Add(item);
+        }
+
+        //other_picked_up_items = saveData.inventoryOtherItems;
+        //plot_picked_up_items = saveData.inventoryPlotItems;
     }
 }

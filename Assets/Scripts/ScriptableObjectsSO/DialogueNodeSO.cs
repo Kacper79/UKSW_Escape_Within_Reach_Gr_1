@@ -1,9 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
-using UnityEngine.Sequences.Timeline;
 
 [CreateAssetMenu(fileName = "NewDialoguesForEachCharacterSO", menuName = "Scriptable Objects/Dialogues")]
 public class DialogueNodeSO : ScriptableObject

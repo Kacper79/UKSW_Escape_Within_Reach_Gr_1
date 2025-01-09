@@ -330,6 +330,24 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ThrowCoin"",
+                    ""type"": ""Button"",
+                    ""id"": ""a9d4ce11-51ac-4a61-9195-b3c3db8bbb45"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseCigaretts"",
+                    ""type"": ""Button"",
+                    ""id"": ""0c6d56b8-f7d0-436d-9c62-121b5abb0bd8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -374,6 +392,28 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d918b2f5-412f-40ef-a9bc-cc0ddca72001"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ThrowCoin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cb031502-c9dd-423b-92f5-de7b57cd7c75"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseCigaretts"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -432,6 +472,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_FunctionalPlayerInput_OpenQuestLog = m_FunctionalPlayerInput.FindAction("OpenQuestLog", throwIfNotFound: true);
         m_FunctionalPlayerInput_OpenAchievements = m_FunctionalPlayerInput.FindAction("OpenAchievements", throwIfNotFound: true);
         m_FunctionalPlayerInput_Pause = m_FunctionalPlayerInput.FindAction("Pause", throwIfNotFound: true);
+        m_FunctionalPlayerInput_ThrowCoin = m_FunctionalPlayerInput.FindAction("ThrowCoin", throwIfNotFound: true);
+        m_FunctionalPlayerInput_UseCigaretts = m_FunctionalPlayerInput.FindAction("UseCigaretts", throwIfNotFound: true);
         // InPlayerAssetsUIPlayerInput
         m_InPlayerAssetsUIPlayerInput = asset.FindActionMap("InPlayerAssetsUIPlayerInput", throwIfNotFound: true);
         m_InPlayerAssetsUIPlayerInput_CloseWindow = m_InPlayerAssetsUIPlayerInput.FindAction("CloseWindow", throwIfNotFound: true);
@@ -694,6 +736,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_FunctionalPlayerInput_OpenQuestLog;
     private readonly InputAction m_FunctionalPlayerInput_OpenAchievements;
     private readonly InputAction m_FunctionalPlayerInput_Pause;
+    private readonly InputAction m_FunctionalPlayerInput_ThrowCoin;
+    private readonly InputAction m_FunctionalPlayerInput_UseCigaretts;
     public struct FunctionalPlayerInputActions
     {
         private @PlayerInput m_Wrapper;
@@ -702,6 +746,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @OpenQuestLog => m_Wrapper.m_FunctionalPlayerInput_OpenQuestLog;
         public InputAction @OpenAchievements => m_Wrapper.m_FunctionalPlayerInput_OpenAchievements;
         public InputAction @Pause => m_Wrapper.m_FunctionalPlayerInput_Pause;
+        public InputAction @ThrowCoin => m_Wrapper.m_FunctionalPlayerInput_ThrowCoin;
+        public InputAction @UseCigaretts => m_Wrapper.m_FunctionalPlayerInput_UseCigaretts;
         public InputActionMap Get() { return m_Wrapper.m_FunctionalPlayerInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -723,6 +769,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @ThrowCoin.started += instance.OnThrowCoin;
+            @ThrowCoin.performed += instance.OnThrowCoin;
+            @ThrowCoin.canceled += instance.OnThrowCoin;
+            @UseCigaretts.started += instance.OnUseCigaretts;
+            @UseCigaretts.performed += instance.OnUseCigaretts;
+            @UseCigaretts.canceled += instance.OnUseCigaretts;
         }
 
         private void UnregisterCallbacks(IFunctionalPlayerInputActions instance)
@@ -739,6 +791,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @ThrowCoin.started -= instance.OnThrowCoin;
+            @ThrowCoin.performed -= instance.OnThrowCoin;
+            @ThrowCoin.canceled -= instance.OnThrowCoin;
+            @UseCigaretts.started -= instance.OnUseCigaretts;
+            @UseCigaretts.performed -= instance.OnUseCigaretts;
+            @UseCigaretts.canceled -= instance.OnUseCigaretts;
         }
 
         public void RemoveCallbacks(IFunctionalPlayerInputActions instance)
@@ -827,6 +885,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnOpenQuestLog(InputAction.CallbackContext context);
         void OnOpenAchievements(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnThrowCoin(InputAction.CallbackContext context);
+        void OnUseCigaretts(InputAction.CallbackContext context);
     }
     public interface IInPlayerAssetsUIPlayerInputActions
     {

@@ -26,12 +26,15 @@ public class MainMenuUI : MonoBehaviour
     private void OnStartGameButtonClick()
     {
         SceneController.LoadScene(SceneController.GAME_SCENE);
+        PlayerPrefs.SetInt("ContinueSave", 0);
     }
 
     private void OnLoadGameButtonClick()
     {
-        //TODO
+        SceneController.LoadScene(SceneController.GAME_SCENE);
+        PlayerPrefs.SetInt("ContinueSave", 1);
     }
+
     private void OnSettingsButtonClick()
     {
         settings_UI.gameObject.SetActive(true);

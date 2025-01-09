@@ -8,7 +8,7 @@ public static class GlobalEvents
 {
     public static event EventHandler OnDestroingRock;
     public static event EventHandler OnNotLookingOnInteractable;
-    public static event EventHandler OnChangingTime;
+    public static event EventHandler<OnChangingTimeArgs> OnChangingTime;
     public static event EventHandler OnReadingPage;
     public static event EventHandler OnStoppingReadingPage;
 
@@ -33,6 +33,8 @@ public static class GlobalEvents
     public static event EventHandler<OnPickUpItemEventArgs> OnPickUpItem;
     public static event EventHandler OnInventoryOpen;
     public static event EventHandler<OnInventoryOpenCallBackEventArgs> OnInventoryOpenCallBack;
+    public static event EventHandler OnThrowCoin;
+    public static event EventHandler OnUseCigs;
 
     #region dialogue_related_events
     private static Dictionary<DialogueNodeSO.DialogueEvent, EventHandler> dialogue_event_dict;
@@ -267,5 +269,15 @@ public static class GlobalEvents
     public static void FireOnInventoryOpenCallBack(object sender, OnInventoryOpenCallBackEventArgs args)
     {
         OnInventoryOpenCallBack?.Invoke(sender, args);
+    }
+
+    public static void FireOnThrowingCoin(object sender)
+    {
+        OnThrowCoin?.Invoke(sender, EventArgs.Empty);
+    }
+
+    public static void FireOnUseCigs(object sender)
+    {
+        OnUseCigs?.Invoke(sender, EventArgs.Empty);
     }
 }

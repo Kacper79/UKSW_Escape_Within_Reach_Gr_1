@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.PlayerRelated;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -18,6 +19,10 @@ namespace Assets.Scripts.AI
             {
                 Debug.Log("Cell is being guarded");
                 isCellOwnerGuarding = true;
+                if (other.gameObject.CompareTag("Player"))
+                {
+                    other.gameObject.GetComponent<PlayerStress>().isResidingInCell = true;
+                }
             }
         }
 
@@ -38,6 +43,10 @@ namespace Assets.Scripts.AI
             } else
             {
                 isCellOwnerGuarding = false;
+                if (other.gameObject.CompareTag("Player"))
+                {
+                    other.gameObject.GetComponent<PlayerStress>().isResidingInCell = false;
+                }
                 offenderGO = null;
             }
         }
