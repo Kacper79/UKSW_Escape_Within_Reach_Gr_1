@@ -7,7 +7,7 @@ using UnityEngine;
 public class SimulateCoin : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         coinRigidbody = GetComponent<Rigidbody>();
         coinRigidbody.useGravity = false;
@@ -17,14 +17,13 @@ public class SimulateCoin : MonoBehaviour
     {
         isFlying = true;
         coinRigidbody.useGravity = true;
-        throwAngle = 0.8f;
+        throwAngle = 0.3f;
     }
 
     void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.name.Contains("Podloga")) 
         {
-            hasLanded = true;
             isFlying = false;
             Debug.Log("The coin has landed");
             Collider[] nearbyNPCs = Physics.OverlapSphere(transform.position, 5.0f);
@@ -39,20 +38,20 @@ public class SimulateCoin : MonoBehaviour
                     }
                 }
             }
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.F8))
+        /*if (Input.GetKey(KeyCode.F8))
         {
             StartCoinThrow();
-        }
+        }*/
         if (isFlying)
         {
-            coinRigidbody.AddForce(transform.forward*0.3f, ForceMode.VelocityChange);
+            coinRigidbody.AddForce(transform.forward*throwAngle, ForceMode.VelocityChange);
             //throwAngle -= Time.deltaTime;
         }
     }
@@ -61,5 +60,4 @@ public class SimulateCoin : MonoBehaviour
     float throwAngle;
     float coinPickupTime = 2.0f;
     bool isFlying = false;
-    bool hasLanded = false;
 }

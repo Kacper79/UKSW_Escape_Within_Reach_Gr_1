@@ -16,7 +16,7 @@ namespace Assets.Scripts.AI
             if (isInFightingArena)
             {
                 TryToMove();
-                StartCoroutine(TryToFight());
+                if(!startLock) StartCoroutine(TryToFight());
             }
         }
 
@@ -42,23 +42,27 @@ namespace Assets.Scripts.AI
 
         public IEnumerator TryToFight()
         {
+            startLock = true;
             float randTime = UnityEngine.Random.Range(reactionTimeWindowBegin, reactionTimeWindowEnd);
             System.Random randomAct = new();
-            int randomAction = randomAct.Next(Enum.GetNames(typeof(ActionType)).Length);
+            int randomAction = randomAct.Next(4);
             switch (randomAction)
             {
                 case 0: //GUARD
+                case 1:
                     selfEnemy.ChangeBlockValue();
                     break;
-                case 1: //LIGHT
+                case 2: //LIGHT
                     TryHittingSomeone(lightPunchDamage);
                     break;
-                case 2: //HEAVY
+                case 3: //HEAVY
                     TryHittingSomeone(heavyPunchDamage);
                     break;
             }
+            Debug.Log("Trying to fight: " + randomAction + " for " + randTime + " seconds.");
             yield return new WaitForSecondsRealtime(randTime);
             if(randomAction == 0) selfEnemy.ChangeBlockValue();
+            startLock = false;
         }
 
         private void TryHittingSomeone(int damage)
@@ -82,6 +86,7 @@ namespace Assets.Scripts.AI
         }
 
         private bool isInFightingArena;
+        private bool startLock = false;
         //public EnemyPunchedController epcRef;
         private Enemy selfEnemy;
         private Transform enemyTrans;
@@ -89,8 +94,8 @@ namespace Assets.Scripts.AI
 
         public const float reactionTimeWindowBegin = 0.75f;
         public const float reactionTimeWindowEnd = 2.0f;
-        public int lightPunchDamage = 7;
-        public int heavyPunchDamage = 14;
+        public int lightPunchDamage = 3;
+        public int heavyPunchDamage = 7;
         public const float enemyMoveSpeedCoeff = 0.9f;
         public const float enemyMoveMinDistance = 2.0f;
 
