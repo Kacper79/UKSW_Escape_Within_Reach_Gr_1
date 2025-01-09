@@ -42,6 +42,7 @@ public class EnemyPunchedController : MonoBehaviour, IAttackable
     void IAttackable.Die()
     {
         GlobalEvents.FireOnBeatingEnemyInATournament(this);
+        Debug.Log("Dies");
         GetComponent<FightNPC>().EndFight();
         Destroy(this.transform.parent.gameObject);
     }
