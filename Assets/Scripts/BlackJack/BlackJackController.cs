@@ -26,6 +26,8 @@ public class BlackJackController : MonoBehaviour
     private int player_wins = 0;
     private int player_loses = 0;
 
+    private int bid_money = 0;
+
     private int current_player_points = 0;
     private int current_opponent_points = 0;
 
@@ -36,11 +38,15 @@ public class BlackJackController : MonoBehaviour
     private bool has_player_overdrown = false;
     private bool is_hidden_card_drown = false;
     private bool is_quest_game;
+    private bool is_round_drew;
 
     private Vector3 card_spawn_position;
 
     private const float CARD_SPAWN_Y = 1.19f;
     private const float DROWN_CARDS_OFFSET_X = 0.1f;
+    private const bool PLAYER_WON_ROUND = true;
+    private const bool PLAYER_LOST_ROUND = false;
+
 
     private void Awake()
     {
@@ -88,24 +94,27 @@ public class BlackJackController : MonoBehaviour
     private void StartBlackJackGameForPickaxe(object sender, EventArgs e)
     {
         is_quest_game = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        GlobalEvents.FireOnTimeStop(this);
 
         GlobalEvents.FireOnStartingTransition(this, new(0.3f));
         Invoke(nameof(TeleportPlayerToTable), 0.3f);
-        StartCoroutine(BlackJackGame());
+        StartGame();
     }
 
     private void StartBlackJackGameForMoney(object sender, EventArgs e)
     {
         is_quest_game = false;
+        Cursor.lockState = CursorLockMode.None;
+
+        GlobalEvents.FireOnTimeStop(this);
 
         GlobalEvents.FireOnStartingTransition(this, new(0.3f));
         Invoke(nameof(TeleportPlayerToTable), 0.3f);
-        StartCoroutine(BlackJackGame());
     }
     IEnumerator BlackJackGame()
     {
-        Cursor.lockState = CursorLockMode.None;
-
         while (!(player_wins == 3 || player_loses == 3))
         {
             StartNewRound();
@@ -124,27 +133,32 @@ public class BlackJackController : MonoBehaviour
                         is_hidden_card_shown = true;
                         current_opponent_points = CountHandPoints(opponents_cards);
                     }
-                    yield return new WaitForSeconds(1.5f);
+                    yield return new WaitForSeconds(1f);
                     can_press_buttons = false;
                     ComputersTurn();
+                    current_opponent_points = CountHandPoints(opponents_cards);
                 }
 
                 yield return null;
             }
 
-            yield return new WaitForSeconds(3f);
-
             DetermineTheWinnerOfTheRound();
+
+            yield return new WaitForSeconds(2.5f);
+
+            black_jack_ui.HideRoundWinner();
+
             ResetAfterRound();
         }
         GlobalEvents.FireOnEndingBlackjackGame(this);
+        GlobalEvents.FireOnTimeStart(this);
         if (player_wins == 3 && is_quest_game)
         {
             QuestManager.Instance.MarkQuestCompleted(1);
         }
         else if(player_wins == 3 && is_quest_game == false)
         {
-            GlobalEvents.FireOnLosingMoneyInABlackjackGame(this, new(300));
+            GlobalEvents.FireOnLosingMoneyInABlackjackGame(this, new(bid_money));
         }
         else if (is_quest_game == true)
         {
@@ -152,7 +166,7 @@ public class BlackJackController : MonoBehaviour
         }
         else
         {
-            GlobalEvents.FireOnLosingMoneyInABlackjackGame(this, new(-300));
+            GlobalEvents.FireOnLosingMoneyInABlackjackGame(this, new(-bid_money));
         }
         ResetGame();
         Cursor.lockState = CursorLockMode.Locked;
@@ -240,26 +254,27 @@ public class BlackJackController : MonoBehaviour
         if(has_player_overdrown)
         {
             player_loses++;
+            black_jack_ui.ShowRoundWinner(PLAYER_LOST_ROUND);
         }
         else if(CountHandPoints(opponents_cards) > 21)
         {
             player_wins++;
+            black_jack_ui.ShowRoundWinner(PLAYER_WON_ROUND);
         }
         else if(CountHandPoints(players_cards) > CountHandPoints(opponents_cards))
         {
             player_wins++;
+            black_jack_ui.ShowRoundWinner(PLAYER_WON_ROUND);
         }
         else if(CountHandPoints(players_cards) < CountHandPoints(opponents_cards))
         {
             player_loses++;
+            black_jack_ui.ShowRoundWinner(PLAYER_LOST_ROUND);
         }
         else
         {
-            Debug.Log("Runda remisowa");
+            is_round_drew = true;
         }
-        Debug.Log(player_loses);
-        Debug.Log(player_wins);
-        Debug.Log("Koniec rundy");
     }
 
     private void ComputersTurn()
@@ -322,6 +337,7 @@ public class BlackJackController : MonoBehaviour
         is_players_turn = true;
         is_hidden_card_drown = false;
         can_press_buttons = true;
+        is_round_drew = false;
 
         current_opponent_points = 0;
         current_player_points = 0;
@@ -358,6 +374,11 @@ public class BlackJackController : MonoBehaviour
     {
         player_wins = 0;
         player_loses = 0;
+    }
+
+    public void StartGame()
+    {
+        StartCoroutine(BlackJackGame());
     }
     private void TeleportPlayerToTable()
     {
@@ -396,5 +417,20 @@ public class BlackJackController : MonoBehaviour
     public int GetCurrentComputerPoints()
     {
         return current_opponent_points;
+    }
+
+    public void SetBidMoney(int value)
+    {
+        bid_money = value;
+    }
+
+    public bool GetIsROundDrew()
+    {
+        return is_round_drew;
+    }
+
+    public bool GetIsQuest()
+    {
+        return is_quest_game;
     }
 }
