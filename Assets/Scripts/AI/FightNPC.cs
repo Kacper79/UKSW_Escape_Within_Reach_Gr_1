@@ -38,6 +38,7 @@ namespace Assets.Scripts.AI
         public void EndFight()
         {
             isInFightingArena = false;
+            Destroy(this.transform.parent.gameObject);
         }
 
         public IEnumerator TryToFight()

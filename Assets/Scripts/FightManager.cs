@@ -1,4 +1,5 @@
 using Assets.Scripts.AI;
+using Assets.Scripts.PlayerRelated;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -56,6 +57,8 @@ public class FightManager : MonoBehaviour
     public void StartTournament(object sender, System.EventArgs e)
     {
         GlobalEvents.FireOnStartingTransition(this, new(0.3f));
+
+        FindAnyObjectByType<PlayerAttackAbsorber>().SetIsInFightTournament(true);
         
         player_position_before_entering_the_fight = player_go.transform.position;
         
@@ -64,14 +67,25 @@ public class FightManager : MonoBehaviour
         SpawnEnemy();
     }
 
+    public void PlayerDiedInTournament()
+    {
+        ring_collider.SetActive(false);
+
+        GlobalEvents.FireOnStartingTransition(this, new(0.5f));
+        enemy_go.GetComponentInChildren<FightNPC>().EndFight();
+
+        FindAnyObjectByType<PlayerAttackAbsorber>().SetIsInFightTournament(false);
+    }
+
     public void EndTournament()
     {
         ring_collider.SetActive(false);
         QuestManager.Instance.MarkQuestCompleted(0);
 
         GlobalEvents.FireOnStartingTransition(this, new(0.5f));
-        enemy_go.GetComponentInChildren<FightNPC>().EndFight();
         Invoke(nameof(TeleportPlayerToPostinionBeforeStartingAFight), 0.3f);
+
+        FindAnyObjectByType<PlayerAttackAbsorber>().SetIsInFightTournament(false);
     }
 
     private void TeleportPlayerToRing()
