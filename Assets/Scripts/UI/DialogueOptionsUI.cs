@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DialogueOptionsUI : MonoBehaviour
 {
-    private const string PICKAXE_DIALOGUE_ID = "18798bc42c614ff49c606dd3b4bd4418";
+    private const string AGREEMENT_TO_PLAY_FOR_PICKAXE_DIALOGUE_ID = "d241bd3f97c2428e9ed357f48edebb04";
     private const int GOLD_REQUIRED_TO_PLAY_FOR_PICKAXE = 500;
 
     [SerializeField] private DialogueOption option_1;
@@ -63,8 +63,9 @@ public class DialogueOptionsUI : MonoBehaviour
         {
             if(dialogue_option.is_available)
             {
-                if(dialogue_option.id == PICKAXE_DIALOGUE_ID && FindObjectOfType<InventoryManager>().GetGoldAmount() < GOLD_REQUIRED_TO_PLAY_FOR_PICKAXE)
+                if(dialogue_option.id == AGREEMENT_TO_PLAY_FOR_PICKAXE_DIALOGUE_ID && FindObjectOfType<InventoryManager>().GetGoldAmount() < GOLD_REQUIRED_TO_PLAY_FOR_PICKAXE)
                 {
+                    Debug.Log("Jestem tu");
                     continue;
                 }
 
@@ -83,6 +84,12 @@ public class DialogueOptionsUI : MonoBehaviour
         {
             if(dialogue_option.is_available)
             {
+                if (dialogue_option.id == AGREEMENT_TO_PLAY_FOR_PICKAXE_DIALOGUE_ID && FindObjectOfType<InventoryManager>().GetGoldAmount() < GOLD_REQUIRED_TO_PLAY_FOR_PICKAXE)
+                {
+                    Debug.Log("Jestem tu w liczeniu");
+                    continue;
+                }
+
                 i++;
             }
         }
