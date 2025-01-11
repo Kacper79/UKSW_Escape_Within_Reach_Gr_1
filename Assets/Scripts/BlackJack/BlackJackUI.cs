@@ -16,7 +16,7 @@ public class BlackJackUI : MonoBehaviour
 
     [Header("Scripts")]
     [SerializeField] private BlackJackController black_jack_controller;
-    private InventoryManager inventory_manager;
+    [SerializeField] private InventoryManager inventory_manager;
 
     [Header("PointsUI")]
     [SerializeField] private TextMeshProUGUI player_wins;
@@ -41,8 +41,6 @@ public class BlackJackUI : MonoBehaviour
 
     private void Start()
     {
-        inventory_manager = GetComponentInChildren<InventoryManager>();
-
         if (black_jack_controller.GetIsQuest())
         {
             bid_menu.SetActive(false);
