@@ -1212,13 +1212,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8738436348684546606, guid: 627d56eff12dc6746b8952f0e1c95c6e,
         type: 3}
+      propertyPath: quest_id
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8738436348684546606, guid: 627d56eff12dc6746b8952f0e1c95c6e,
+        type: 3}
       propertyPath: item_name
-      value: ItemWieznia
+      value: Dynamit
       objectReference: {fileID: 0}
     - target: {fileID: -8738436348684546606, guid: 627d56eff12dc6746b8952f0e1c95c6e,
         type: 3}
       propertyPath: item_description
-      value: ItemWieznia
+      value: Dynamicik
       objectReference: {fileID: 0}
     - target: {fileID: 2455722665956678146, guid: 627d56eff12dc6746b8952f0e1c95c6e,
         type: 3}
