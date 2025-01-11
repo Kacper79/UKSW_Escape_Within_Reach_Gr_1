@@ -169,4 +169,9 @@ public class InventoryManager : MonoBehaviour, ISaveable
         //other_picked_up_items = saveData.inventoryOtherItems;
         //plot_picked_up_items = saveData.inventoryPlotItems;
     }
+
+    public int GetGoldAmount()
+    {
+        return gold_amount;
+    }
 }

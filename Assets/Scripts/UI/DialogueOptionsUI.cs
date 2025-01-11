@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class DialogueOptionsUI : MonoBehaviour
 {
+    private const string PICKAXE_DIALOGUE_ID = "18798bc42c614ff49c606dd3b4bd4418";
+    private const int GOLD_REQUIRED_TO_PLAY_FOR_PICKAXE = 500;
+
     [SerializeField] private DialogueOption option_1;
     [SerializeField] private DialogueOption option_2;
     [SerializeField] private DialogueOption option_3;
@@ -60,6 +63,11 @@ public class DialogueOptionsUI : MonoBehaviour
         {
             if(dialogue_option.is_available)
             {
+                if(dialogue_option.id == PICKAXE_DIALOGUE_ID && FindObjectOfType<InventoryManager>().GetGoldAmount() < GOLD_REQUIRED_TO_PLAY_FOR_PICKAXE)
+                {
+                    continue;
+                }
+
                 options_dict[i].SetInfo(dialogue_option.id, i + 1, dialogue_option.main_character_text);
 
                 i++;
