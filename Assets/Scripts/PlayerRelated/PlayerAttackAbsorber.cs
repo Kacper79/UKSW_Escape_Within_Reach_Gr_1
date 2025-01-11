@@ -13,7 +13,7 @@ namespace Assets.Scripts.PlayerRelated
 
         public void Die()
         {
-            if(fightManager != null) fightManager.EndTournament();
+            if(is_in_fight_tournament) fightManager.PlayerDiedInTournament();
             GetComponent<DeathScript>().TeleportToInfirmary();
         }
 
@@ -74,6 +74,13 @@ namespace Assets.Scripts.PlayerRelated
             currentHP = saveData.playerCurrentHP;
             MaxHP = saveData.playerMaxHP;
         }
+
+        public void SetIsInFightTournament(bool b)
+        {
+            is_in_fight_tournament = b;
+        }
+
+        private bool is_in_fight_tournament = false;
 
         private int currentHP = DefaultMaxHO;
         public int MaxHP = DefaultMaxHO;
