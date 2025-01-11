@@ -12,7 +12,7 @@ public class InventoryManager : MonoBehaviour, ISaveable
     private List<Item> plot_picked_up_items = new List<Item>();
     private List<Item> other_picked_up_items = new List<Item>();
 
-    private int gold_amount = 0;
+    private int gold_amount = 5000;
 
     public Dictionary<string, int> item_amount = new();
 
