@@ -11,18 +11,15 @@ public class FoundPageUI : MonoBehaviour
 
     private int times_interaction_button_was_pressed = 0;//it registered E press from Interaction and instantly destroyed the page, so had to implement some system, hopefully this will do
 
+    private void Start()
+    {
+        GlobalEvents.FireOnAnyUIOpen(this);
+    }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.Escape))
         {
-            if (times_interaction_button_was_pressed == 1)
-            {
-                CleanUpBeforeAndDestroy();
-            }
-            else
-            {
-                times_interaction_button_was_pressed++;
-            }
+            CleanUpBeforeAndDestroy();
         }
     }
 
@@ -35,6 +32,7 @@ public class FoundPageUI : MonoBehaviour
     private void CleanUpBeforeAndDestroy()
     {
         GlobalEvents.FireOnStoppingReadingPage(this);
+        GlobalEvents.FireOnAnyUIClose(this);
 
         Destroy(this.gameObject);
     }

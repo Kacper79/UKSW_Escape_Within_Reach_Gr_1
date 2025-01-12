@@ -50,6 +50,7 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(DialogueNodeSO dialogue_root, string npc_name)
     {
         Cursor.lockState = CursorLockMode.None;
+        GlobalEvents.FireOnTimeStop(this);
 
         GlobalEvents.FireOnStartingDialogue(this);
 
@@ -130,6 +131,7 @@ public class DialogueManager : MonoBehaviour
                 current_dialogue_list = null;
 
                 GlobalEvents.FireOnEndingDialogue(this);
+                GlobalEvents.FireOnTimeStart(this);
             }
             else
             {

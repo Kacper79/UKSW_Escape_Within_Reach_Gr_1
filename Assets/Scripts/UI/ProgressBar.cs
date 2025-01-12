@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MiningProgressBar : MonoBehaviour
+public class ProgressBar : MonoBehaviour
 {
     [SerializeField] private Image background_bar;
     [SerializeField] private Image progress_bar;
