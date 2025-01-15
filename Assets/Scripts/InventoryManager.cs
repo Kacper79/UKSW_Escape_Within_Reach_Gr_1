@@ -18,6 +18,8 @@ public class InventoryManager : MonoBehaviour, ISaveable
 
     private void OnEnable()
     {
+        gold_amount = 1000;
+
         GlobalEvents.OnPickUpItem += PickUpItem;
         GlobalEvents.OnInventoryOpen += OnInventoryOpenCallBack;
 
@@ -104,7 +106,7 @@ public class InventoryManager : MonoBehaviour, ISaveable
         }
     }
 
-    public bool RemoveUsedItem(Item item_to_use) //funkcja do uzywania itemków takich jak szlugi wytrychy itp, usuwa jeden itemek z eq
+    public bool RemoveUsedItem(Item item_to_use) //funkcja do uzywania itemkÃ³w takich jak szlugi wytrychy itp, usuwa jeden itemek z eq
     {
         if(item_amount[item_to_use.GetItemName()] == 0)
         {

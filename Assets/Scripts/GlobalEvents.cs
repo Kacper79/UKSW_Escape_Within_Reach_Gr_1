@@ -39,6 +39,9 @@ public static class GlobalEvents
     public static event EventHandler<OnInventoryOpenCallBackEventArgs> OnInventoryOpenCallBack;
     public static event EventHandler OnThrowCoin;
     public static event EventHandler OnUseCigs;
+    public static event EventHandler OnTimeStop;
+    public static event EventHandler OnTimeStart;
+
 
     #region dialogue_related_events
     private static Dictionary<DialogueNodeSO.DialogueEvent, EventHandler> dialogue_event_dict;
@@ -169,6 +172,16 @@ public static class GlobalEvents
         {
             minutes = minutes_;
         }
+    }
+
+    public static void FireOnTimeStop(object sender)
+    {
+        OnTimeStop?.Invoke(sender, EventArgs.Empty);
+    }
+
+    public static void FireOnTimeStart(object sender)
+    {
+        OnTimeStart?.Invoke(sender, EventArgs.Empty);
     }
 
     public static void FireOnEndingBlackjackGame(object sender)

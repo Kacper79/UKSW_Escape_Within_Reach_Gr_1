@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MiningProgressUI : MonoBehaviour
 {
-    [SerializeField] private MiningProgressBar mining_progress_bar;
+    [SerializeField] private ProgressBar mining_progress_bar;
 
     private void Start()
     {
