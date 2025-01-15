@@ -360,7 +360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f142327591f2a9340aeee73c976f994b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue_root: {fileID: 11400000, guid: b5930b6cf291b164d95f666d0a313cad, type: 2}
+  dialogue_root: {fileID: 11400000, guid: 7948414a8673608498ae5484d1f636e3, type: 2}
   npc_name: Dziad
 --- !u!4 &1829322353973056254 stripped
 Transform:
