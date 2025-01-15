@@ -3,7 +3,22 @@ guid: d2a3ab3fb691ffb4ba9e13ba1eccb215
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: chrom
+    second: {fileID: 2100000, guid: 3c7f5175f9c13b14c936bfa5bec14d87, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plastik
+    second: {fileID: 2100000, guid: fceeb540037ff5a4ab3f3b9b03d7bb42, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: szklo
+    second: {fileID: 2100000, guid: 888ead916555d9c4e9cdebe64845ef96, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
