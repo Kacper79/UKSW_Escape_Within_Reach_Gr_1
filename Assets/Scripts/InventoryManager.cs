@@ -12,7 +12,7 @@ public class InventoryManager : MonoBehaviour, ISaveable
     private List<Item> plot_picked_up_items = new List<Item>();
     private List<Item> other_picked_up_items = new List<Item>();
 
-    private int gold_amount;
+    private int gold_amount = 5000;
 
     public Dictionary<string, int> item_amount = new();
 
@@ -106,7 +106,7 @@ public class InventoryManager : MonoBehaviour, ISaveable
         }
     }
 
-    public bool RemoveUsedItem(Item item_to_use) //funkcja do uzywania itemków takich jak szlugi wytrychy itp, usuwa jeden itemek z eq
+    public bool RemoveUsedItem(Item item_to_use) //funkcja do uzywania itemkÃ³w takich jak szlugi wytrychy itp, usuwa jeden itemek z eq
     {
         if(item_amount[item_to_use.GetItemName()] == 0)
         {

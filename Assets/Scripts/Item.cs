@@ -14,6 +14,9 @@ public class Item : MonoBehaviour, IInteractable
     [SerializeField] private Sprite icon;
     [SerializeField] private Mesh model;
 
+    [Header("What quest does this item finish")]
+    [SerializeField] private int quest_id;
+
     [SerializeField] private bool is_plot;
 
     [SerializeField] private bool is_interactable = true;
@@ -54,6 +57,11 @@ public class Item : MonoBehaviour, IInteractable
         if(is_interactable)
         {
             PickUpItem();
+
+            if(is_plot)
+            {
+                QuestManager.Instance.MarkQuestCompleted(quest_id);
+            }
         }
     }
 
