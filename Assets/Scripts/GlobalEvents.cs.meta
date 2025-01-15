@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 04c5430d702a7d9469de398b93689ba4
+=======
+guid: 438113843d2d1b54c9851737fb26f0fd
+>>>>>>> b01fd55 (Dodanie podstawowych UI, podstawowe ustawienia, ekwipunek i podstawowe dzialanie przedmiotow)
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

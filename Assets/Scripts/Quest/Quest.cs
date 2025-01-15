@@ -8,7 +8,7 @@ public struct Quest
     public string Description;
     public bool IsCompleted;
 
-    public UnityEvent<Quest> OnQuestCompleted;
+    public UnityEvent<Quest>? OnQuestCompleted;
 
     /*public Quest(int id, string description)
     {
@@ -30,7 +30,7 @@ public struct Quest
         if (IsCompleted) return;
 
         IsCompleted = true;
-        OnQuestCompleted.Invoke(this);  // Notify observers
+        OnQuestCompleted?.Invoke(this);  // Notify observers
         //if (additionalCallback) QuestManager.Instance.RemoveQuest(this);
     }
 }

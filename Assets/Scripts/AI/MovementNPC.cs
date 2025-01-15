@@ -19,16 +19,24 @@ public class MovementNPC : MonoBehaviour
         npcAnimator.SetBool("isRunning", false);
         ChangeToNextPoint();
         npcAnimator.SetBool("isWalking", true);
+
+        if (navPoints.Count == 0)
+        {
+            pathReachedLock = true;
+            npcAnimator.SetBool("isWalking", false);
+        }
     }
 
     void Update()
     {
         if (pathReachedLock) return;
 
-        if (patrolOverride) navMeshAgent.destination = currentOverrideTransform.position;
+        if (patrolOverride && !isOverrideVector) navMeshAgent.destination = currentOverrideTransform.position;
         else navMeshAgent.destination = currentWalkToPosition;
 
-        if (navMeshAgent.velocity.magnitude < 0.1f && Vector3.Distance(transform.position, currentWalkToPosition) < distanceAtRestEpsilon && !pathReachedLock) //transform.position == currentWalkToPosition
+        float dist = Vector3.Distance(transform.position, currentWalkToPosition);
+        //Debug.Log("Dist: " + dist);
+        if (navMeshAgent.velocity.magnitude < 0.1f && dist < distanceAtRestEpsilon && !pathReachedLock) //transform.position == currentWalkToPosition
         {
             pathReachedLock = true;
             //Debug.Log($"Path completed, Dist: {Vector3.Distance(transform.position, currentWalkToPosition)}");
@@ -46,6 +54,7 @@ public class MovementNPC : MonoBehaviour
         ChangeToNextPoint();
         patrolOverride = false;
         pathReachedLock = false;
+        isOverrideVector = false;
     }
 
     public void ChangeToNextPoint()
@@ -68,16 +77,27 @@ public class MovementNPC : MonoBehaviour
         currentStayTime = waitTime;
     }
 
+    public void OverrideNextPoint(Vector3 dstPoint, float waitTime)
+    {
+        if (pathReachedLock) return;
+        patrolOverride = true;
+        currentWalkToPosition = dstPoint;
+        currentStayTime = waitTime;
+        isOverrideVector = true;
+    }
+
     public void FlushOverride()
     {
         pathReachedLock = true;
+        isOverrideVector = false;
         StartCoroutine(WaitForTime());
     }
 
     private Vector3 currentWalkToPosition;
     private float currentStayTime;
     private Transform currentOverrideTransform;
-    private bool patrolOverride;
+    public bool patrolOverride;
+    private bool isOverrideVector = false;
     private UnityEvent? currentReachCallback;
     private bool pathReachedLock = false;
     private float distanceAtRestEpsilon = 1.5f;

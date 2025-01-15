@@ -13,13 +13,13 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private GameObject camera_holder_go;
     //[SerializeField] private GameObject right_arm_go;
     [SerializeField] private GameObject player_go;
+    [SerializeField] private GameObject interactable_targets_detector;
 
     [SerializeField] private List<Transform> did_climb_raycast_transforms;
     [Header("Movement related variables")]
     [SerializeField] private float move_speed;
     [SerializeField] private float sprint_speed_multiplier;
     [SerializeField] private float crouch_speed_multiplier;
-    [SerializeField] private float mouse_sensitivity;
     [SerializeField] private float gravity;
     [SerializeField] private float jump_force;
     [SerializeField] private float climb_speed;
@@ -71,19 +71,69 @@ public class PlayerMovementController : MonoBehaviour
         player_input.MovementPlayerInput.Sprint.canceled += SprintCanceled;
         player_input.MovementPlayerInput.Crouch.started += CrouchStarted;
         player_input.MovementPlayerInput.Crouch.canceled += CrouchCanceled;
-    }
+
+        GlobalEvents.OnAnyUIOpen += DisableMovementPlayerInput;
+        GlobalEvents.OnAnyUIClose += EnableMovementPlayerInput;
+
+        GlobalEvents.OnAnyUIOpen += UnlockCursor;
+        GlobalEvents.OnAnyUIClose += LockCursor;
+
+        GlobalEvents.OnStartingBlackJackGameForMoney += SetcameraRotationOnStartingBlackjackGame;
+        GlobalEvents.OnStartingBlackJackGameForPickaxe += SetcameraRotationOnStartingBlackjackGame;
+        GlobalEvents.OnEndingBlackjackGame += SetCanMoveToTrue;
+    }    
 
     private void OnDisable()
     {
         Cursor.lockState = CursorLockMode.None;
 
-        player_input.MovementPlayerInput.Disable();
+        player_input.MovementPlayerInput.Disable();        
 
         player_input.MovementPlayerInput.Jump.performed -= JumpPerformed;
         player_input.MovementPlayerInput.Sprint.started -= SprintStarted;
         player_input.MovementPlayerInput.Sprint.canceled -= SprintCanceled;
         player_input.MovementPlayerInput.Crouch.started -= CrouchStarted;
         player_input.MovementPlayerInput.Crouch.canceled -= CrouchCanceled;
+
+        GlobalEvents.OnAnyUIOpen -= DisableMovementPlayerInput;
+        GlobalEvents.OnAnyUIClose -= EnableMovementPlayerInput;
+
+        GlobalEvents.OnAnyUIOpen -= UnlockCursor;
+        GlobalEvents.OnAnyUIClose -= LockCursor;
+
+        GlobalEvents.OnStartingBlackJackGameForMoney -= SetcameraRotationOnStartingBlackjackGame;
+        GlobalEvents.OnStartingBlackJackGameForPickaxe -= SetcameraRotationOnStartingBlackjackGame;
+        GlobalEvents.OnEndingBlackjackGame -= SetCanMoveToTrue;
+    }
+
+    private void SetCanMoveToTrue(object sender, EventArgs e)
+    {
+        can_move = true;
+    }
+    private void SetcameraRotationOnStartingBlackjackGame(object sender, EventArgs e)
+    {
+        can_move = false;
+        camera_holder_go.transform.rotation = Quaternion.Euler(60f, 0f, 0f);
+    }
+
+    private void DisableMovementPlayerInput(object sender, EventArgs e)
+    {
+        player_input.MovementPlayerInput.Disable();
+    }
+
+    private void EnableMovementPlayerInput(object sender, EventArgs e)
+    {
+        player_input.MovementPlayerInput.Enable();
+    }
+    
+    private void LockCursor(object sender, EventArgs e)
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void UnlockCursor(object sender, EventArgs e)
+    {
+        Cursor.lockState = CursorLockMode.None;
     }
 
     private void CrouchStarted(InputAction.CallbackContext context)
@@ -192,15 +242,16 @@ public class PlayerMovementController : MonoBehaviour
     {
         camera_rotation = player_input.MovementPlayerInput.LookAround.ReadValue<Vector2>();
         
-        mouse_x = camera_rotation.x * mouse_sensitivity * Time.deltaTime;
-        mouse_y = camera_rotation.y * mouse_sensitivity * Time.deltaTime;
+        mouse_x = camera_rotation.x * Settings.GetSensitivity() * Time.deltaTime;
+        mouse_y = camera_rotation.y * Settings.GetSensitivity() * Time.deltaTime;
 
         camera_x_rotation -= mouse_y;
         camera_x_rotation = Mathf.Clamp(camera_x_rotation, MIN_X_CAMERA_ROTATION, MAX_X_CAMERA_ROTATION);
 
         camera_holder_go.transform.localRotation = Quaternion.Euler(camera_x_rotation, 0f, 0f);
+        interactable_targets_detector.transform.localRotation = Quaternion.Euler(camera_x_rotation, 0f, 0f);
         //right_arm_go.transform.localRotation = Quaternion.Euler(camera_x_rotation, 0f, 0f);//prototype arm to see punches
-        
+
         player_go.transform.Rotate(Vector3.up * mouse_x);
     }
 
@@ -222,4 +273,5 @@ public class PlayerMovementController : MonoBehaviour
     {
         player_input = input;
     }
+        
 }

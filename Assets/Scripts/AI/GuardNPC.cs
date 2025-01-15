@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.PlayerRelated;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.AI
@@ -18,6 +19,13 @@ namespace Assets.Scripts.AI
                 dsc.TeleportToCell();
                 //if (transform.parent.gameObject.TryGetComponent(out MovementNPC mnc)) mnc.FlushOverride();
                 isGuardInChase = false;
+                canApplyStress = false;
+                stressLock = false;
+            }
+            else if (isGuardInChase && canApplyStress && !stressLock)
+            {
+                Debug.Log("Gaining stress in chase");
+                StartCoroutine(GainStressInChase());
             }
         }
 
@@ -30,6 +38,8 @@ namespace Assets.Scripts.AI
                 Debug.Log("Lost chase focus");
                 if (transform.parent.gameObject.TryGetComponent(out MovementNPC mnc)) mnc.FlushOverride();
                 isGuardInChase = false;
+                canApplyStress = false;
+                stressLock = false;
             }
         }
 
@@ -44,12 +54,33 @@ namespace Assets.Scripts.AI
                 chasedPrisoner = other.gameObject;
                 transform.parent.gameObject.GetComponent<MovementNPC>().OverrideNextPoint(other.gameObject.transform, 1.0f);
                 dsc.guardsChasing.Add(this);
+
+                if (chasedPrisoner.CompareTag("Player"))
+                {
+                    canApplyStress = true;
+                    pstress = chasedPrisoner.GetComponentInChildren<PlayerStress>();
+                }
+
             }
         }
 
+        private IEnumerator GainStressInChase()
+        {
+            stressLock = true;
+            pstress.AddStress(chaseStressLevelRise);
+            yield return new WaitForSecondsRealtime(stressGainInterval);
+            stressLock = false;
+        }
+
         private float lostFocusTime = 4.0f;
-        private float chaseEpsilon = 1.5f;
+        private float chaseEpsilon = 2.0f;
         private bool isGuardInChase = false;
         private GameObject chasedPrisoner;
+
+        private float chaseStressLevelRise = 0.2f;
+        private float stressGainInterval = 1.0f;
+        private bool canApplyStress = false;
+        private bool stressLock = false;
+        private PlayerStress pstress;
     }
 }

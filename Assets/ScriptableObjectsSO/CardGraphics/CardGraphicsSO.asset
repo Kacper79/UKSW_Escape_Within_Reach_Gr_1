@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 519bb23c011f7934a97b4ce6880a7cd2, type: 3}
+  m_Name: CardGraphicsSO
+  m_EditorClassIdentifier: 
+  czarne_figury:
+  - {fileID: 21300000, guid: 8cf195d91ece21c4faf114261e713289, type: 3}
+  - {fileID: 21300000, guid: d60915cbca7f37248964daed054138ce, type: 3}
+  - {fileID: 21300000, guid: dd99ecda7a54d6c409bb995e0ba43472, type: 3}
+  - {fileID: 21300000, guid: bf5f9280f579e184aab585ec7fe7c769, type: 3}
+  - {fileID: 21300000, guid: cbe714d34dd0d4048beb29282bac4225, type: 3}
+  - {fileID: 21300000, guid: 8a7466f92d2f78747862916c25427715, type: 3}
+  - {fileID: 21300000, guid: adf0acd7b8022a84fa3cfce8245416a5, type: 3}
+  - {fileID: 21300000, guid: fb4526ba46e2d2a41ab3654c9642f545, type: 3}
+  - {fileID: 21300000, guid: f64fcd9af92a4d647b340fef83cd8925, type: 3}
+  - {fileID: 21300000, guid: 55c8b52f32b5b5b418267a768d47cf0e, type: 3}
+  - {fileID: 21300000, guid: 585a429968d3a8344aa89595498aa330, type: 3}
+  - {fileID: 21300000, guid: b384dd4bc9fe02244ae4571296818e0c, type: 3}
+  - {fileID: 21300000, guid: 6aee1a168ae36f642b34e326757e0131, type: 3}
+  czerwone_figury:
+  - {fileID: 21300000, guid: a4e04368313ae0b42994c3b7686297da, type: 3}
+  - {fileID: 21300000, guid: a1c6e98af37c557409b1c80f301c9d9f, type: 3}
+  - {fileID: 21300000, guid: c44babf8d32f52b46a461f151f7fa0f0, type: 3}
+  - {fileID: 21300000, guid: 71a25816205064046972861f5c139086, type: 3}
+  - {fileID: 21300000, guid: 956efb6c752fc9e4d8f96f0118f76767, type: 3}
+  - {fileID: 21300000, guid: b2f289ad2f520164cb6e033432134006, type: 3}
+  - {fileID: 21300000, guid: 825c1590420b75c4a861709d46d55d0b, type: 3}
+  - {fileID: 21300000, guid: ce1ff1f2c22b77f48a82b399d9e61b32, type: 3}
+  - {fileID: 21300000, guid: 5a027f938cd154741b2b70c713e0d158, type: 3}
+  - {fileID: 21300000, guid: 7d7a3a308057a3249a92ea73095d55a2, type: 3}
+  - {fileID: 21300000, guid: cc96252b696c9764690f8886d2ae80f2, type: 3}
+  - {fileID: 21300000, guid: 93512a8db2603b3458949ffd01c67550, type: 3}
+  - {fileID: 21300000, guid: daf02e4402b82fb4c904a3190e620945, type: 3}
+  kolory:
+  - {fileID: 21300000, guid: 113c45d57ba7bb94da4bbdd56d6328f9, type: 3}
+  - {fileID: 21300000, guid: 447c95331952af94490e893e0dd44b02, type: 3}
+  - {fileID: 21300000, guid: c9cbb024a023e504db5963fac20b1b09, type: 3}
+  - {fileID: 21300000, guid: a8ada1cd0d50b4d419e9d93fb3f39ea1, type: 3}

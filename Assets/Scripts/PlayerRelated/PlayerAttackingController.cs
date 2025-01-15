@@ -9,7 +9,7 @@ using UnityEngine.InputSystem.Interactions;
 
 public class PlayerAttackingController : MonoBehaviour
 {
-    private const float MIN_TIME_BETWEEN_PUNCHES = 0.25f;
+    private const float MIN_TIME_BETWEEN_PUNCHES = 0.4f;
     private const float LIGHT_PUNCH_CAST_TIME = 0.166f;
     private const float STRONG_PUNCH_CAST_TIME = 0.166f;
     private const int LIGHT_PUNCH_DAMAGE = 7;
@@ -27,7 +27,7 @@ public class PlayerAttackingController : MonoBehaviour
 
     private PlayerInput player_input;
 
-    private bool is_blocking = false;
+    public bool is_blocking = false;
     private bool can_punch = true;
     private bool can_dash = true;
 

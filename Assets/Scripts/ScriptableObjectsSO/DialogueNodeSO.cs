@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Sequences.Timeline;
 
 [CreateAssetMenu(fileName = "NewDialoguesForEachCharacterSO", menuName = "Scriptable Objects/Dialogues")]
 public class DialogueNodeSO : ScriptableObject
@@ -26,6 +24,15 @@ public class DialogueNodeSO : ScriptableObject
     public DialogueNodeSO()
     {
         GlobalEvents.OnLookingForDialogueListWithGivenID += TryReturningOptions;
+        GlobalEvents.OnMakingGivenDialogueOptionAvailableOrUnavailable += ChangeISAvailableValue;
+    }
+
+    private void ChangeISAvailableValue(object sender, GlobalEvents.OnMakingGivenDialogueOptionAvailableOrUnavailableEventArgs args)
+    {
+        if(id == args.dialogue_id)
+        {
+            is_available = args.new_bool_value;
+        }
     }
 
     [ContextMenu("Generate IDs for this and every child object")]
@@ -63,6 +70,9 @@ public class DialogueNodeSO : ScriptableObject
     public enum DialogueEvent//Invoked events, in DialogueManager you can Invoke GlobalEvents by using it
     {
         EndDialogue,//Throw it in if you want to end dialogue
-        GoBackToCertainDialogueOption//Throw it in if you want to go back to certain options
+        GoBackToCertainDialogueOption,//Throw it in if you want to go back to certain options
+        StartFightingTournament,
+        StartBlackJackGameForMoney,
+        StartBlackJackGameForPickaxe
     }
 }
