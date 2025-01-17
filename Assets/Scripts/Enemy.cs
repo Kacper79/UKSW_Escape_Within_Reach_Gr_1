@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
     {
         current_hp -= amount;
 
-        health_bar.ChangeBarValue(MAX_HP, current_hp);
+        if(health_bar != null) health_bar.ChangeBarValue(MAX_HP, current_hp);
     }
 
     public bool GetBlockUp()

@@ -13,11 +13,12 @@ public class SimulateCoin : MonoBehaviour
         coinRigidbody.useGravity = false;
     }
 
-    public void StartCoinThrow()
+    public void StartCoinThrow(float throwAngle)
     {
         isFlying = true;
         coinRigidbody.useGravity = true;
-        throwAngle = 0.3f;
+        this.throwAngle = throwAngle;
+        Debug.Break();
     }
 
     void OnTriggerEnter(Collider other)
@@ -25,6 +26,7 @@ public class SimulateCoin : MonoBehaviour
         if(other.gameObject.name.Contains("Podloga")) 
         {
             isFlying = false;
+            coinRigidbody.isKinematic = true;
             Debug.Log("The coin has landed");
             Collider[] nearbyNPCs = Physics.OverlapSphere(transform.position, 5.0f);
             if(nearbyNPCs.Length > 0)
@@ -52,6 +54,7 @@ public class SimulateCoin : MonoBehaviour
         if (isFlying)
         {
             coinRigidbody.AddForce(transform.forward*throwAngle, ForceMode.VelocityChange);
+            //coinRigidbody.AddForce(-Vector3.up * 0.23f, ForceMode.VelocityChange);
             //throwAngle -= Time.deltaTime;
         }
     }
