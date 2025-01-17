@@ -34,7 +34,7 @@ public class InGameUI : MonoBehaviour
 
     private void Update()
     {
-        stress_progress_bar.SetProgressBarValues(player_go.GetComponent<PlayerStress>().stressLevel, player_go.GetComponent<PlayerStress>().maxStressLevel);
+        stress_progress_bar.SetProgressBarValues(player_go.GetComponent<PlayerStress>().CurrentStressLevel, player_go.GetComponent<PlayerStress>().maxStressLevel);
         hp_bar.SetProgressBarValues(player_go.GetComponent<PlayerAttackAbsorber>().GetHp(), player_go.GetComponent<PlayerAttackAbsorber>().MaxHP);
         gold_display.text = player_go.GetComponent<InventoryManager>().GetGoldAmount().ToString();
         DisplayCurrentHp();

@@ -133,6 +133,10 @@ public class InventoryManager : MonoBehaviour, ISaveable
         return true;
     }
 
+    /// <summary>
+    /// This function is being used to save all the inventory contents to the save file
+    /// </summary>
+    /// <param name="saveData">Mutable save data struct to save data to</param>
     public void Save(ref SaveData saveData)
     {
         saveData.inventoryGoldAmount = gold_amount;
@@ -153,6 +157,10 @@ public class InventoryManager : MonoBehaviour, ISaveable
         //saveData.inventoryPlotItems = plot_picked_up_items;
     }
 
+    /// <summary>
+    /// This function is being used to load all the inventory contents from the save file
+    /// </summary>
+    /// <param name="saveData">Save data struct to load data from</param>
     public void Load(SaveData saveData)
     {
         gold_amount = saveData.inventoryGoldAmount;

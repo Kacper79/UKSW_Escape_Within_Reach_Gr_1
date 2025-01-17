@@ -330,11 +330,19 @@ public static class GlobalEvents
         OnInventoryOpenCallBack?.Invoke(sender, args);
     }
 
+    /// <summary>
+    /// This is a callback function used to signal to other scripts that the player has been throwing coins
+    /// </summary>
+    /// <param name="sender">class calling this method</param>
     public static void FireOnThrowingCoin(object sender)
     {
         OnThrowCoin?.Invoke(sender, EventArgs.Empty);
     }
 
+    /// <summary>
+    /// This is a callback function used to signal to other scripts that the player has been smoking cigarettes
+    /// </summary>
+    /// <param name="sender">class calling this method</param>
     public static void FireOnUseCigs(object sender)
     {
         OnUseCigs?.Invoke(sender, EventArgs.Empty);

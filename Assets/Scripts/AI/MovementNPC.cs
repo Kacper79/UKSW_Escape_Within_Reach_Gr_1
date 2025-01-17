@@ -6,6 +6,9 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
+/// <summary>
+/// A script handing the moving the NPC along the path (between patrol points) 
+/// </summary>
 [RequireComponent(typeof(NavMeshAgent))]
 public class MovementNPC : MonoBehaviour
 {
@@ -45,6 +48,10 @@ public class MovementNPC : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This coroutine is being called whenever the NPC arrives successfully at each path's patrol point
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator WaitForTime()
     {
         //Debug.Log($"Waiting for {currentStayTime} seconds");
@@ -57,6 +64,9 @@ public class MovementNPC : MonoBehaviour
         isOverrideVector = false;
     }
 
+    /// <summary>
+    /// Handles changing the next patrol point
+    /// </summary>
     public void ChangeToNextPoint()
     {
         if (currentNavPoint >= navPoints.Count) return;     //No more points to travel
@@ -69,6 +79,12 @@ public class MovementNPC : MonoBehaviour
         currentNavPoint = (currentNavPoint + 1) % navPoints.Count;
     }
 
+    /// <summary>
+    /// Overrides the patrol path to a given position.
+    /// Used in redirecting NPCs when the player throw coins to distract them
+    /// </summary>
+    /// <param name="dstPoint">transform of the overriden point</param>
+    /// <param name="waitTime">how long to wait at arrived override point</param>
     public void OverrideNextPoint(Transform dstPoint, float waitTime)
     {
         if (pathReachedLock) return;
@@ -76,7 +92,12 @@ public class MovementNPC : MonoBehaviour
         currentOverrideTransform = dstPoint;
         currentStayTime = waitTime;
     }
-
+    /// <summary>
+    /// Overrides the patrol path to a given position.
+    /// Used in redirecting NPCs when the player throw coins to distract them
+    /// </summary>
+    /// <param name="dstPoint">positon of the overriden point</param>
+    /// <param name="waitTime">how long to wait at arrived override point</param>
     public void OverrideNextPoint(Vector3 dstPoint, float waitTime)
     {
         if (pathReachedLock) return;
@@ -86,6 +107,9 @@ public class MovementNPC : MonoBehaviour
         isOverrideVector = true;
     }
 
+    /// <summary>
+    /// Flushing the patrol path's override when NPC successfully arrived at override point
+    /// </summary>
     public void FlushOverride()
     {
         pathReachedLock = true;
@@ -96,19 +120,40 @@ public class MovementNPC : MonoBehaviour
     private Vector3 currentWalkToPosition;
     private float currentStayTime;
     private Transform currentOverrideTransform;
-    public bool patrolOverride;
     private bool isOverrideVector = false;
     private UnityEvent? currentReachCallback;
     private bool pathReachedLock = false;
+    /// <summary>
+    /// Is the patrol path has been overrided
+    /// </summary>
+    public bool patrolOverride;
+    /// <summary>
+    /// Describes how much does the position of the guard differes from the patrol point.
+    /// </summary>
     private float distanceAtRestEpsilon = 1.5f;
+    /// <summary>
+    /// Reference to a component used to do pathfinding for the NPC
+    /// </summary>
     private NavMeshAgent navMeshAgent;
 
+    /// <summary>
+    /// Currently chosen navigation point from patrol path
+    /// </summary>
     private int currentNavPoint = 0;
+    /// <summary>
+    /// Edit this list to add navigation points to patrol path
+    /// </summary>
     public List<NavigationWaypoint> navPoints;
+    /// <summary>
+    /// Reference used to change NPC's animation
+    /// </summary>
     private Animator npcAnimator;
 
 }
 
+/// <summary>
+/// Stores the destinatio and wait time on the patrol point and (optionally) a callback
+/// </summary>
 [Serializable]
 public struct NavigationWaypoint
 {

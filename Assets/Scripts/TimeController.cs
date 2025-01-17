@@ -74,11 +74,19 @@ public class TimeController : MonoBehaviour, ISaveable
         time_in_minutes = DAY_START_TIME;
     }
 
+    /// <summary>
+    /// This function is being used to save date's time to a file
+    /// </summary>
+    /// <param name="saveData">Mutable save data struct</param>
     public void Save(ref SaveData saveData)
     {
         saveData.timeInMinutes = time_in_minutes;
     }
 
+    /// <summary>
+    /// This function is being used to load date's time from a file
+    /// </summary>
+    /// <param name="saveData">Save data struct</param>
     public void Load(SaveData saveData)
     {
         time_in_minutes = saveData.timeInMinutes;

@@ -3,9 +3,11 @@ using UnityEngine;
 
 namespace Assets.Scripts.PlayerRelated
 {
+    /// <summary>
+    /// This is a script used to throw coins i.e spawn coin in the air that are being thrown by the player in exchange for the coins in the inventory
+    /// </summary>
     public class PlayerCoinThrower : MonoBehaviour
     {
-
         void Start()
         {
             inventoryManager = transform.parent.GetComponentInChildren<InventoryManager>();
@@ -21,6 +23,11 @@ namespace Assets.Scripts.PlayerRelated
             GlobalEvents.OnThrowCoin -= OnCoinThrown;
         }
 
+        /// <summary>
+        /// Callback function that is called whenever the player tries to throw a coin
+        /// </summary>
+        /// <param name="sender">class calling this callback</param>
+        /// <param name="e">event arguments (none)</param>
         private void OnCoinThrown(object sender, System.EventArgs e)
         {
             if (inventoryManager.RemoveUsedItem(coinItemPrefab))

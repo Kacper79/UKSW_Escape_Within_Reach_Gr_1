@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using Unity.AI.Navigation;
 using UnityEngine;
 
+/// <summary>
+/// This class is used to simulate coin throwing physics.
+/// </summary>
 [RequireComponent(typeof(Rigidbody))]
 public class SimulateCoin : MonoBehaviour
 {
-    // Start is called before the first frame update
     void OnEnable()
     {
         coinRigidbody = GetComponent<Rigidbody>();
         coinRigidbody.useGravity = false;
     }
 
+    /// <summary>
+    /// Use this function to start calculating coin throwing physics
+    /// </summary>
+    /// <param name="throwAngle"></param>
     public void StartCoinThrow(float throwAngle)
     {
         isFlying = true;
@@ -44,18 +50,13 @@ public class SimulateCoin : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        /*if (Input.GetKey(KeyCode.F8))
-        {
-            StartCoinThrow();
-        }*/
         if (isFlying)
         {
             coinRigidbody.AddForce(transform.forward*throwAngle, ForceMode.VelocityChange);
             //coinRigidbody.AddForce(-Vector3.up * 0.23f, ForceMode.VelocityChange);
-            //throwAngle -= Time.deltaTime;
+            //if(throwAngle - 0.01f <= 0) throwAngle -= 0.01f;
         }
     }
 
