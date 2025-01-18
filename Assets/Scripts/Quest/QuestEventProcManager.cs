@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Klasa odpalaj¹ca ró¿ne eventy po skoñczonych danych questach
+/// </summary>
 public class QuestEventProcManager : MonoBehaviour
 {
     private const string PICKAXE_ITEM_NAME = "Kilof";
