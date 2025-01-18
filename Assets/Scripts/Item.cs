@@ -21,10 +21,13 @@ public class Item : MonoBehaviour, IInteractable
 
     [SerializeField] private bool is_interactable = true;
 
+    void Start()
+    {
+        gameObject.GetComponent<MeshFilter>().mesh = model;
+    }
+
     private void OnEnable()
     {
-        this.gameObject.GetComponent<MeshFilter>().mesh = model;
-
         GlobalEvents.OnWinningPickaxeInABlackjackGame += MakeItemInteractable;
     }
 

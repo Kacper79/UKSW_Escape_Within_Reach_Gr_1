@@ -133,6 +133,10 @@ public class DialogueManager : MonoBehaviour
                 GlobalEvents.FireOnEndingDialogue(this);
                 GlobalEvents.FireOnTimeStart(this);
             }
+            else if(each_event == DialogueNodeSO.DialogueEvent.MakePayoff)
+            {
+                GlobalEvents.FireOnPayoff(this, new(option.payoffAmount, current_npc_name));
+            }
             else
             {
                 GlobalEvents.FireCertainDialogueEvent(this, each_event);

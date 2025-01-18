@@ -148,6 +148,10 @@ public class MovementNPC : MonoBehaviour
     /// Reference used to change NPC's animation
     /// </summary>
     private Animator npcAnimator;
+    /// <summary>
+    /// Is able to be distraced by i.e coin
+    /// </summary>
+    public bool isDistractable;
 
 }
 

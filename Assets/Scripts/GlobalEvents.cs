@@ -18,6 +18,7 @@ public static class GlobalEvents
     public static event EventHandler<OnLookingForDialogueListWithGivenIDEventArgs> OnLookingForDialogueListWithGivenID;
     public static event EventHandler<CallbackForOnLookingForDialogueListWithGivenIDEventArgs> CallbackForOnLookingForDialogueListWithGivenID;
     public static event EventHandler<OnMakingGivenDialogueOptionAvailableOrUnavailableEventArgs> OnMakingGivenDialogueOptionAvailableOrUnavailable;
+    public static event EventHandler<OnPayoffEventArgs> OnPayoff;
 
     public static event EventHandler OnBeatingEnemyInATournament;
 
@@ -164,6 +165,18 @@ public static class GlobalEvents
         }
     }
 
+    public class OnPayoffEventArgs : EventArgs
+    {
+        public int payment_amount;
+        public string receiving_npc_name;
+
+        public OnPayoffEventArgs(int payment_amount, string receiving_npc_name)
+        {
+            this.payment_amount = payment_amount;
+            this.receiving_npc_name = receiving_npc_name;
+        }
+    }
+
     public class OnChangingTimeArgs : EventArgs
     {
         public int minutes;
@@ -267,6 +280,11 @@ public static class GlobalEvents
     public static void FireOnMakingGivenDialogueOptionAvailableOrUnavailable(object sender, OnMakingGivenDialogueOptionAvailableOrUnavailableEventArgs args)
     {
         OnMakingGivenDialogueOptionAvailableOrUnavailable?.Invoke(sender, args);
+    }
+
+    public static void FireOnPayoff(object sender, OnPayoffEventArgs args)
+    {
+        OnPayoff?.Invoke(sender, args);
     }
 
     public class OnPickUpItemEventArgs : EventArgs

@@ -1,20 +1,24 @@
 using Assets.Scripts.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour, ISaveable
 {
     private const int MAX_OTHER_ITEMS = 4;
     private const int MAX_PLOT_ITEMS = 4;
+    private const int BREAKING_ROCK_GAIN = 500;
 
     [SerializeField] private List<Item> allPosibleObjects;
     private List<Item> plot_picked_up_items = new List<Item>();
     private List<Item> other_picked_up_items = new List<Item>();
 
-    private int gold_amount = 5000;
+    [SerializeField] private int gold_amount = 5000;
 
     public Dictionary<string, int> item_amount = new();
+    [SerializeField] private List<DialogueNodeSO> possiblePayoffDialogues;
+    private List<DialogueNodeSO> payoffsToCheck = new();
 
     private void OnEnable()
     {
@@ -22,7 +26,8 @@ public class InventoryManager : MonoBehaviour, ISaveable
 
         GlobalEvents.OnPickUpItem += PickUpItem;
         GlobalEvents.OnInventoryOpen += OnInventoryOpenCallBack;
-
+        GlobalEvents.OnPayoff += OnPayoffCallback;
+        GlobalEvents.OnDestroingRock += OnRockDestroyedCallback;
         GlobalEvents.OnLosingOrWinningMoneyInABlackjackGame += ChangeGoldAmount;
     }    
 
@@ -30,13 +35,16 @@ public class InventoryManager : MonoBehaviour, ISaveable
     {
         GlobalEvents.OnPickUpItem -= PickUpItem;
         GlobalEvents.OnInventoryOpen -= OnInventoryOpenCallBack;
-
+        GlobalEvents.OnDestroingRock -= OnRockDestroyedCallback;
+        GlobalEvents.OnPayoff -= OnPayoffCallback;
         GlobalEvents.OnLosingOrWinningMoneyInABlackjackGame -= ChangeGoldAmount;
     }
 
     void Start()
     {
         SaveManager.Instance.saveablesGO.Add(this);
+        payoffsToCheck = possiblePayoffDialogues;
+        CheckIfPayoffAvailable();
     }
 
     private void OnInventoryOpenCallBack(object sender, System.EventArgs e)
@@ -45,21 +53,64 @@ public class InventoryManager : MonoBehaviour, ISaveable
         GlobalEvents.FireOnInventoryOpenCallBack(this, args);
     }
 
+    private void OnRockDestroyedCallback(object sender, System.EventArgs e)
+    {
+        AddGold(BREAKING_ROCK_GAIN);
+    }
+
     private void ChangeGoldAmount(object sender, GlobalEvents.OnLosingOrWinningMoneyInABlackjackGameEventArgs args)
     {
         AddGold(args.value);
         Debug.Log(gold_amount);
     }
 
+    private void OnPayoffCallback(object sender, GlobalEvents.OnPayoffEventArgs args)
+    {
+        if(gold_amount - args.payment_amount >= 0)
+        {
+            SpendGold(args.payment_amount);
+        } else
+        {
+            Debug.Log("You don't have enough money for a payoff");
+        }
+    }
+
     private void AddGold(int value)
     {
         gold_amount += value;
+        CheckIfPayoffAvailable();
     }
 
     private void SpendGold(int value)
     {
-        gold_amount -= value;
+        if(gold_amount - value >= 0) gold_amount -= value;
     }
+
+    private void CheckIfPayoffAvailable()
+    {
+        //Disable payoffs if the player cannot now afford them
+        foreach(DialogueNodeSO dialogue in possiblePayoffDialogues)
+        {
+            if (!payoffsToCheck.Contains(dialogue))
+            {
+                if(dialogue.payoffAmount > 0 && gold_amount < dialogue.payoffAmount && dialogue.is_available)
+                {
+                    GlobalEvents.FireOnMakingGivenDialogueOptionAvailableOrUnavailable(this, new(dialogue.id, false));
+                }
+            } 
+        }
+
+        //Check for some new payoff dialogue option available
+        foreach(DialogueNodeSO dialogue in payoffsToCheck.Reverse<DialogueNodeSO>())
+        {
+            if (gold_amount >= dialogue.payoffAmount && dialogue.payoffAmount > 0)
+            {
+                GlobalEvents.FireOnMakingGivenDialogueOptionAvailableOrUnavailable(this, new(dialogue.id, true));
+                payoffsToCheck.Remove(dialogue);
+            }
+        }
+    }
+
     private void PickUpItem(object sender, GlobalEvents.OnPickUpItemEventArgs e)
     {
         if(!e.item.GetIsPlot())

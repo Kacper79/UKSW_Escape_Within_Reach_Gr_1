@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 /// <summary>
 /// This class is used to simulate coin throwing physics.
@@ -24,7 +25,7 @@ public class SimulateCoin : MonoBehaviour
         isFlying = true;
         coinRigidbody.useGravity = true;
         this.throwAngle = throwAngle;
-        Debug.Break();
+        //Debug.Break();
     }
 
     void OnTriggerEnter(Collider other)
@@ -34,12 +35,12 @@ public class SimulateCoin : MonoBehaviour
             isFlying = false;
             coinRigidbody.isKinematic = true;
             Debug.Log("The coin has landed");
-            Collider[] nearbyNPCs = Physics.OverlapSphere(transform.position, 5.0f);
+            Collider[] nearbyNPCs = Physics.OverlapSphere(transform.position, detectRadius);
             if(nearbyNPCs.Length > 0)
             {
                 for(int i = 0; i < nearbyNPCs.Length; i++)
                 {
-                    if (nearbyNPCs[i].gameObject.CompareTag("Guard") && nearbyNPCs[i].gameObject.TryGetComponent(out MovementNPC mnc) && !mnc.patrolOverride)
+                    if (nearbyNPCs[i].gameObject.TryGetComponent(out MovementNPC mnc) && !mnc.patrolOverride && mnc.isDistractable)
                     {
                         mnc.OverrideNextPoint(transform.position, coinPickupTime);
                         break;
@@ -60,8 +61,14 @@ public class SimulateCoin : MonoBehaviour
         }
     }
 
+    /*void OnDrawGizmos()
+    {
+        if(isFlying) Gizmos.DrawWireSphere(transform.position, detectRadius);
+    }*/
+
     Rigidbody coinRigidbody;
     float throwAngle;
     float coinPickupTime = 2.0f;
+    float detectRadius = 5.0f;
     bool isFlying = false;
 }

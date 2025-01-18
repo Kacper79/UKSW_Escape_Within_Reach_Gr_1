@@ -20,6 +20,7 @@ public class DialogueNodeSO : ScriptableObject
     public bool is_available = true;//Can this dialogue be shown
 
     public string id = "";//Id of a dialogue
+    public int payoffAmount; //cost of the payoff if this dialogue is a payoff
 
     public DialogueNodeSO()
     {
@@ -73,6 +74,7 @@ public class DialogueNodeSO : ScriptableObject
         GoBackToCertainDialogueOption,//Throw it in if you want to go back to certain options
         StartFightingTournament,
         StartBlackJackGameForMoney,
-        StartBlackJackGameForPickaxe
+        StartBlackJackGameForPickaxe,
+        MakePayoff
     }
 }
