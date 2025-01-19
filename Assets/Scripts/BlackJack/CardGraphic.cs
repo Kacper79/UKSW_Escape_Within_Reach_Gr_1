@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Zarz¹dza grafik¹ karty, w tym jej awersem, rewersem i ikonami.
+/// </summary>
 public class CardGraphic : MonoBehaviour
 {
     [Header("Grafika Kart")]
@@ -18,6 +21,11 @@ public class CardGraphic : MonoBehaviour
     [SerializeField] private GameObject obverse;
     [SerializeField] private GameObject reverse;
 
+    /// <summary>
+    /// Inicjalizuje grafikê karty na podstawie podanej figury i koloru.
+    /// </summary>
+    /// <param name="figura">Numer figury karty.</param>
+    /// <param name="kolor">Numer koloru karty.</param>
     public void InitializeGraphic(int figura, int kolor)
     {
         kolor_gora.sprite = grafika_kart_SO.kolory[kolor];
@@ -37,17 +45,27 @@ public class CardGraphic : MonoBehaviour
         ShowReverse();
     }
 
+    /// <summary>
+    /// Wyœwietla awers karty.
+    /// </summary>
     public void ShowObverse()
     {
         obverse.SetActive(true);
         reverse.SetActive(false);
     }
 
+    /// <summary>
+    /// Ukrywa grafikê karty.
+    /// </summary>
     public void TurnOffgraphic()
     {
         obverse.SetActive(false);
         reverse.SetActive(false);
     }
+
+    /// <summary>
+    /// Wyœwietla rewers karty.
+    /// </summary>
     public void ShowReverse()
     {
         reverse.SetActive(true);
