@@ -3,54 +3,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]  // Atrybut wskazuj¹cy, ¿e klasa mo¿e byæ zapisywana w inspektorze Unity
+[Serializable]  // Atrybut wskazujï¿½cy, ï¿½e klasa moï¿½e byï¿½ zapisywana w inspektorze Unity
 public class Item : MonoBehaviour, IInteractable
 {
     /// <summary>
-    /// Sekcja zawieraj¹ca dane tekstowe.
+    /// Sekcja zawierajï¿½ca dane tekstowe.
     /// </summary>
     [Header("Strings")]
     [SerializeField] private string item_name;  // Nazwa przedmiotu
     [SerializeField] private string item_description;  // Opis przedmiotu
 
     /// <summary>
-    /// Sekcja zawieraj¹ca dane graficzne.
+    /// Sekcja zawierajï¿½ca dane graficzne.
     /// </summary>
     [Header("Graphics")]
     [SerializeField] private Sprite icon;  // Ikona przedmiotu
     [SerializeField] private Mesh model;  // Model przedmiotu
 
     /// <summary>
-    /// Sekcja zwi¹zana z questami.
+    /// Sekcja zwiï¿½zana z questami.
     /// </summary>
     [Header("What quest does this item finish")]
-    [SerializeField] private int quest_id;  // Identyfikator questu, który ten przedmiot koñczy
+    [SerializeField] private int quest_id;  // Identyfikator questu, ktï¿½ry ten przedmiot koï¿½czy
 
     /// <summary>
-    /// Flaga, która okreœla, czy przedmiot jest fabularny.
+    /// Flaga, ktï¿½ra okreï¿½la, czy przedmiot jest fabularny.
     /// </summary>
     [SerializeField] private bool is_plot;
 
     /// <summary>
-    /// Flaga, która okreœla, czy przedmiot jest interaktywny.
+    /// Flaga, ktï¿½ra okreï¿½la, czy przedmiot jest interaktywny.
     /// </summary>
     [SerializeField] private bool is_interactable = true;
 
 
     /// <summary>
-    /// Metoda wywo³ywana po w³¹czeniu obiektu.
+    /// Metoda wywoï¿½ywana po wï¿½ï¿½czeniu obiektu.
     /// </summary>
     private void OnEnable()
     {
-        // Ustawienie modelu przedmiotu w przypadku, gdy ma byæ on wyœwietlany
+        // Ustawienie modelu przedmiotu w przypadku, gdy ma byï¿½ on wyï¿½wietlany
         this.gameObject.GetComponent<MeshFilter>().mesh = model;
 
-        // Subskrypcja zdarzenia - po wygranej ³opacie w blackjacku przedmiot staje siê interaktywny
+        // Subskrypcja zdarzenia - po wygranej ï¿½opacie w blackjacku przedmiot staje siï¿½ interaktywny
         GlobalEvents.OnWinningPickaxeInABlackjackGame += MakeItemInteractable;
     }
 
     /// <summary>
-    /// Metoda wywo³ywana po wy³¹czeniu obiektu.
+    /// Metoda wywoï¿½ywana po wyï¿½ï¿½czeniu obiektu.
     /// </summary>
     private void OnDisable()
     {
@@ -59,11 +59,11 @@ public class Item : MonoBehaviour, IInteractable
     }
 
     /// <summary>
-    /// Zdarzenie, które sprawia, ¿e przedmiot staje siê interaktywny po wygranej ³opacie.
+    /// Zdarzenie, ktï¿½re sprawia, ï¿½e przedmiot staje siï¿½ interaktywny po wygranej ï¿½opacie.
     /// </summary>
     private void MakeItemInteractable(object sender, GlobalEvents.OnMakingGivenItemInteractableEventArgs e)
     {
-        // Sprawdzamy, czy przedmiot ma tê sam¹ nazwê co ten, który powinien staæ siê interaktywny
+        // Sprawdzamy, czy przedmiot ma tï¿½ samï¿½ nazwï¿½ co ten, ktï¿½ry powinien staï¿½ siï¿½ interaktywny
         if (item_name == e.name)
         {
             this.is_interactable = true;  // Zmieniamy stan przedmiotu na interaktywny
@@ -75,7 +75,7 @@ public class Item : MonoBehaviour, IInteractable
     /// </summary>
     private void PickUpItem()
     {
-        // Wywo³anie zdarzenia informuj¹cego o podniesieniu przedmiotu
+        // Wywoï¿½anie zdarzenia informujï¿½cego o podniesieniu przedmiotu
         GlobalEvents.OnPickUpItemEventArgs args = new(this);
         GlobalEvents.FireOnPickUpItem(this, args);
     }
@@ -93,15 +93,15 @@ public class Item : MonoBehaviour, IInteractable
     /// </summary>
     public void Interact()
     {
-        // Je¿eli przedmiot jest interaktywny, mo¿emy go podnieœæ
+        // Jeï¿½eli przedmiot jest interaktywny, moï¿½emy go podnieï¿½ï¿½
         if (is_interactable)
         {
             PickUpItem();  // Podnosi przedmiot
 
-            // Jeœli przedmiot jest fabularny, oznaczamy quest za ukoñczony
+            // Jeï¿½li przedmiot jest fabularny, oznaczamy quest za ukoï¿½czony
             if (is_plot)
             {
-                QuestManager.Instance.MarkQuestCompleted(quest_id);  // Zakoñczenie questa
+                QuestManager.Instance.MarkQuestCompleted(quest_id);  // Zakoï¿½czenie questa
             }
         }
     }
@@ -115,7 +115,7 @@ public class Item : MonoBehaviour, IInteractable
     }
 
     /// <summary>
-    /// Zwraca nazwê przedmiotu.
+    /// Zwraca nazwï¿½ przedmiotu.
     /// </summary>
     public string GetItemName()
     {
@@ -123,7 +123,7 @@ public class Item : MonoBehaviour, IInteractable
     }
 
     /// <summary>
-    /// Zwraca ikonê przedmiotu.
+    /// Zwraca ikonï¿½ przedmiotu.
     /// </summary>
     public Sprite GetIcon()
     {
@@ -139,26 +139,26 @@ public class Item : MonoBehaviour, IInteractable
     }
 
     /// <summary>
-    /// Zwraca tekst, który ma siê pojawiæ w podpowiedzi interakcji z przedmiotem.
+    /// Zwraca tekst, ktï¿½ry ma siï¿½ pojawiï¿½ w podpowiedzi interakcji z przedmiotem.
     /// </summary>
     public string GetInteractionTooltip()
     {
-        return $"Press [E] to pickup item {item_name}";  // Tekst wyœwietlany przy interakcji
+        return $"Press [E] to pickup item {item_name}";  // Tekst wyï¿½wietlany przy interakcji
     }
 
     /// <summary>
-    /// Metoda, któr¹ mo¿na nadpisaæ, aby dodaæ dodatkowe dzia³ania, gdy gracz patrzy na przedmiot (np. podœwietlenie).
+    /// Metoda, ktï¿½rï¿½ moï¿½na nadpisaï¿½, aby dodaï¿½ dodatkowe dziaï¿½ania, gdy gracz patrzy na przedmiot (np. podï¿½wietlenie).
     /// </summary>
     public void AdditionalStuffWhenLookingAtInteractable()
     {
-        // Nic nie robimy dla zwyk³ego przedmiotu
+        // Nic nie robimy dla zwykï¿½ego przedmiotu
     }
 
     /// <summary>
-    /// Ustawia stan interaktywnoœci przedmiotu.
+    /// Ustawia stan interaktywnoï¿½ci przedmiotu.
     /// </summary>
     public void SetIsInteractable(bool b)
     {
-        is_interactable = b;  // Zmienia stan interaktywnoœci przedmiotu
+        is_interactable = b;  // Zmienia stan interaktywnoï¿½ci przedmiotu
     }
 }

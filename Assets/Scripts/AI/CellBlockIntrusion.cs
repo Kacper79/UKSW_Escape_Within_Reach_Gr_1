@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace Assets.Scripts.AI
 {
+    /// <summary>
+    /// This script is being used to kill player that enters unannounced/uninvited in another player cell
+    /// </summary>
     public class CellBlockIntrusion : MonoBehaviour
     {
 

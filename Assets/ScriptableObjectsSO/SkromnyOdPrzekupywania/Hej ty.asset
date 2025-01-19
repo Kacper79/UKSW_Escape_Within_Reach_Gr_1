@@ -10,21 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee51363ce2771ed419f20611b721b794, type: 3}
-  m_Name: Chce_walczyc_w_turnieju
+  m_Name: Hej ty
   m_EditorClassIdentifier: 
-  main_character_text: Chce walczyc w  turnieju
+  main_character_text: Hej ty, moglbys mi pomoc
   main_character_audio: {fileID: 8300000, guid: d37d0385ff9cef14f8fb59d4fa0e177c,
     type: 3}
-  eventual_npc_response_time_delay: 0
+  eventual_npc_response_time_delay: 0.5
   responses:
-  - response: Ok!
+  - response: Jasne, ale potrzebuje dodatkowej motywacji
     response_audio_clip: {fileID: 8300000, guid: d37d0385ff9cef14f8fb59d4fa0e177c,
       type: 3}
-    eventual_response_time_delay: 0
-  invoked_events_list: 0200000000000000
-  options: []
+    eventual_response_time_delay: 0.5
+  invoked_events_list: 
+  options:
+  - {fileID: 11400000, guid: 0d9cd639d01f2984c8a1cfb4a8c35140, type: 2}
+  - {fileID: 11400000, guid: 824257e2070841c48a3a43e8080e97f7, type: 2}
   id_of_dialogue_option_to_go_back_to: 
   is_available: 1
-  id: b100648026c8423084914450f3f01768
+  id: 31dc312ed821419e86bd180318543bb6
   payoffAmount: 0
-  questNumber: 0

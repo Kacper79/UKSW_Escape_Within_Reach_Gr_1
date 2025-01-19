@@ -4,9 +4,11 @@ using UnityEngine;
 
 namespace Assets.Scripts.AI
 {
+    /// <summary>
+    /// This script handles the guard chasing the prisoner that broke the prison rules
+    /// </summary>
     public class GuardNPC : MonoBehaviour
     {
-
         void Update()
         {
             if (isGuardInChase && Vector3.Distance(chasedPrisoner.transform.position, transform.parent.transform.position) < chaseEpsilon)
@@ -29,6 +31,10 @@ namespace Assets.Scripts.AI
             }
         }
 
+        /// <summary>
+        /// Call this coroutine to lose the guard's focus and stop chasing
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator LoseChaseFocus()
         {
             yield return new WaitForSecondsRealtime(lostFocusTime);
@@ -64,6 +70,10 @@ namespace Assets.Scripts.AI
             }
         }
 
+        /// <summary>
+        /// This coroutine is being used to add player's stress in certain time interval
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator GainStressInChase()
         {
             stressLock = true;
@@ -72,13 +82,33 @@ namespace Assets.Scripts.AI
             stressLock = false;
         }
 
-        private float lostFocusTime = 4.0f;
-        private float chaseEpsilon = 2.0f;
+        /// <summary>
+        /// How long to wait when checking whether the guard left chase
+        /// </summary>
+        public float lostFocusTime = 4.0f;
+        /// <summary>
+        /// Used to check how much close is the guard related to the player's position
+        /// </summary>
+        public float chaseEpsilon = 2.0f;
+        /// <summary>
+        /// Is the guard currently in chase
+        /// </summary>
         private bool isGuardInChase = false;
+        /// <summary>
+        /// GameObject reference to prisoner in chase
+        /// </summary>
         private GameObject chasedPrisoner;
-
-        private float chaseStressLevelRise = 0.2f;
-        private float stressGainInterval = 1.0f;
+        /// <summary>
+        /// How much does the player stress rise when in chase
+        /// </summary>
+        public float chaseStressLevelRise = 0.2f;
+        /// <summary>
+        /// The interval after which the stress is increased in player during chase
+        /// </summary>
+        public float stressGainInterval = 1.0f;
+        /// <summary>
+        /// Can the guard even apply stress
+        /// </summary>
         private bool canApplyStress = false;
         private bool stressLock = false;
         private PlayerStress pstress;

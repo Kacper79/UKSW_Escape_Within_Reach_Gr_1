@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Assets.Scripts.AI
 {
+    /// <summary>
+    /// This script handles detecting whether the prisoner enters or leaves the restriced area
+    /// </summary>
     public class RestrictedZone : MonoBehaviour
     {
         void OnTriggerEnter(Collider other)
@@ -31,6 +34,11 @@ namespace Assets.Scripts.AI
             }
         }
 
+        /// <summary>
+        /// This coroutine handles leaving the restricted zone by the prisoner
+        /// </summary>
+        /// <param name="dsc"></param>
+        /// <returns></returns>
         public IEnumerator TryLeaveRestrictedState(DeathScript dsc)
         {
             yield return new WaitForSecondsRealtime(1.0f);

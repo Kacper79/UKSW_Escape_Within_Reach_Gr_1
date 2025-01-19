@@ -47,6 +47,15 @@ public class AudioManager : MonoBehaviour
         audio_source.loop = false;
 
         Destroy(audio_source.gameObject, clip.length);
+
+        //Mute music for the duration of the clip
+        if (current_music_gameobject != null && current_music_gameobject.GetComponent<AudioSource>().isPlaying)
+        {
+            var asc = current_music_gameobject.GetComponent<AudioSource>();
+            StartCoroutine(TurnOnMusic(clip.length + 0.2f, asc.clip));
+            asc.Stop();
+        }
+
         audio_source.Play();
     }
 
@@ -66,5 +75,17 @@ public class AudioManager : MonoBehaviour
         audio_source.loop = true;
 
         audio_source.Play();
+    }
+
+    /// <summary>
+    /// This coroutine is responsible for turning back the music on after the current audio is played
+    /// </summary>
+    /// <param name="time">Duration of the current audio to wait for </param>
+    /// <param name="music">Passing the current clip with music</param>
+    /// <returns></returns>
+    public IEnumerator TurnOnMusic(float time, AudioClip music)
+    {
+        yield return new WaitForSecondsRealtime(time);
+        PlayMusic(music);
     }
 }

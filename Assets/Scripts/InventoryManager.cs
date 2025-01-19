@@ -1,6 +1,8 @@
+using Assets.Scripts;
 using Assets.Scripts.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour, ISaveable
@@ -14,6 +16,7 @@ public class InventoryManager : MonoBehaviour, ISaveable
     /// Maksymalna liczba przedmiotów fabularnych, które mogą znajdować się w ekwipunku.
     /// </summary>
     private const int MAX_PLOT_ITEMS = 4;
+    private const int BREAKING_ROCK_GAIN = 500;
 
     /// <summary>
     /// Lista wszystkich dostępnych przedmiotów, które mogą być podniesione przez gracza.
@@ -33,13 +36,15 @@ public class InventoryManager : MonoBehaviour, ISaveable
     /// <summary>
     /// Początkowa ilość złota, którą posiada gracz.
     /// </summary>
-    private int gold_amount = 5000;
+    [SerializeField] private int gold_amount = 5000;
 
     /// <summary>
     /// Słownik przechowujący ilość poszczególnych przedmiotów w ekwipunku gracza.
     /// Kluczem jest nazwa przedmiotu, a wartością jego ilość.
     /// </summary>
     public Dictionary<string, int> item_amount = new();
+    [SerializeField] private List<DialogueNodeSO> possiblePayoffDialogues;
+    private List<DialogueNodeSO> payoffsToCheck = new();
 
 
     /// <summary>
@@ -52,6 +57,8 @@ public class InventoryManager : MonoBehaviour, ISaveable
         // Subskrypcja na różne zdarzenia globalne
         GlobalEvents.OnPickUpItem += PickUpItem;
         GlobalEvents.OnInventoryOpen += OnInventoryOpenCallBack;
+        GlobalEvents.OnPayoff += OnPayoffCallback;
+        GlobalEvents.OnDestroingRock += OnRockDestroyedCallback;
         GlobalEvents.OnLosingOrWinningMoneyInABlackjackGame += ChangeGoldAmount;
     }
 
@@ -62,6 +69,8 @@ public class InventoryManager : MonoBehaviour, ISaveable
     {
         GlobalEvents.OnPickUpItem -= PickUpItem;
         GlobalEvents.OnInventoryOpen -= OnInventoryOpenCallBack;
+        GlobalEvents.OnDestroingRock -= OnRockDestroyedCallback;
+        GlobalEvents.OnPayoff -= OnPayoffCallback;
         GlobalEvents.OnLosingOrWinningMoneyInABlackjackGame -= ChangeGoldAmount;
     }
 
@@ -71,6 +80,8 @@ public class InventoryManager : MonoBehaviour, ISaveable
     void Start()
     {
         SaveManager.Instance.saveablesGO.Add(this);
+        payoffsToCheck = new(possiblePayoffDialogues);
+        CheckIfPayoffAvailable();
     }
 
     /// <summary>
@@ -83,6 +94,11 @@ public class InventoryManager : MonoBehaviour, ISaveable
         GlobalEvents.FireOnInventoryOpenCallBack(this, args);
     }
 
+    private void OnRockDestroyedCallback(object sender, System.EventArgs e)
+    {
+        AddGold(BREAKING_ROCK_GAIN);
+    }
+
     /// <summary>
     /// Zmienia ilość złota po wygranej lub przegranej w blackjacku.
     /// </summary>
@@ -92,12 +108,24 @@ public class InventoryManager : MonoBehaviour, ISaveable
         Debug.Log(gold_amount);  // Wyświetla nową ilość złota w logach
     }
 
+    private void OnPayoffCallback(object sender, GlobalEvents.OnPayoffEventArgs args)
+    {
+        if(gold_amount - args.payment_amount >= 0)
+        {
+            SpendGold(args.payment_amount);
+        } else
+        {
+            Debug.Log("You don't have enough money for a payoff");
+        }
+    }
+
     /// <summary>
     /// Dodaje złoto do aktualnej ilości.
     /// </summary>
     private void AddGold(int value)
     {
         gold_amount += value;
+        CheckIfPayoffAvailable();
     }
 
     /// <summary>
@@ -105,7 +133,36 @@ public class InventoryManager : MonoBehaviour, ISaveable
     /// </summary>
     private void SpendGold(int value)
     {
-        gold_amount -= value;
+        if(gold_amount - value >= 0) gold_amount -= value;
+        CheckIfPayoffAvailable();
+    }
+
+    private void CheckIfPayoffAvailable()
+    {
+        //Disable payoffs if the player cannot now afford them
+        foreach(DialogueNodeSO dialogue in possiblePayoffDialogues)
+        {
+            if (!payoffsToCheck.Contains(dialogue))
+            {
+                if(dialogue.payoffAmount > 0 && gold_amount < dialogue.payoffAmount && dialogue.is_available)
+                {
+                    GlobalEvents.FireOnMakingGivenDialogueOptionAvailableOrUnavailable(this, new(dialogue.id, false));
+                }
+            } 
+        }
+
+        //Check for some new payoff dialogue option available
+        foreach(DialogueNodeSO dialogue in payoffsToCheck.Reverse<DialogueNodeSO>())
+        {
+            if (gold_amount >= dialogue.payoffAmount && dialogue.payoffAmount > 0)
+            {
+                if(dialogue.questNumber == 0 || (dialogue.questNumber != 0 && !QuestManager.Instance.IsQuestCompleted(dialogue.questNumber)))
+                {
+                    GlobalEvents.FireOnMakingGivenDialogueOptionAvailableOrUnavailable(this, new(dialogue.id, true));
+                    payoffsToCheck.Remove(dialogue);
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -193,8 +250,9 @@ public class InventoryManager : MonoBehaviour, ISaveable
     }
 
     /// <summary>
-    /// Zapisuje dane o ekwipunku do systemu zapisywania.
+    /// This function is being used to save all the inventory contents to the save file
     /// </summary>
+    /// <param name="saveData">Mutable save data struct to save data to</param>
     public void Save(ref SaveData saveData)
     {
         // Zapisuje ilość złota, ilość przedmiotów oraz listy przedmiotów w ekwipunku
@@ -212,11 +270,16 @@ public class InventoryManager : MonoBehaviour, ISaveable
             int itemID = allPosibleObjects.FindIndex(posItem => posItem == item);
             if (itemID != -1) saveData.inventoryPlotItems.Add(itemID);
         }
+        //saveData.inventoryPlotItems = plot_picked_up_items;
+
+        GameAnalytics.Instance.ModifyStat("moneyCounter", gold_amount);
+        GameAnalytics.Instance.ModifyStat("plotItemsCount", plot_picked_up_items.Count);
     }
 
     /// <summary>
-    /// Ładuje dane o ekwipunku z systemu zapisywania.
+    /// This function is being used to load all the inventory contents from the save file
     /// </summary>
+    /// <param name="saveData">Save data struct to load data from</param>
     public void Load(SaveData saveData)
     {
         gold_amount = saveData.inventoryGoldAmount;

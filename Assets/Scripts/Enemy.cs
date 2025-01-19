@@ -3,32 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Klasa odpowiedzialna za zarz¹dzanie statystykami wroga, w tym jego zdrowiem i blokowaniem obra¿eñ.
+/// Klasa odpowiedzialna za zarzï¿½dzanie statystykami wroga, w tym jego zdrowiem i blokowaniem obraï¿½eï¿½.
 /// </summary>
 public class Enemy : MonoBehaviour
 {
     /// <summary>
-    /// Maksymalna iloœæ zdrowia wroga.
+    /// Maksymalna iloï¿½ï¿½ zdrowia wroga.
     /// </summary>
     private const int MAX_HP = 25;
 
     /// <summary>
-    /// Pasek zdrowia, który jest u¿ywany do wizualizacji stanu zdrowia wroga.
+    /// Pasek zdrowia, ktï¿½ry jest uï¿½ywany do wizualizacji stanu zdrowia wroga.
     /// </summary>
     [SerializeField] private EnemyHealthBar health_bar;
 
     /// <summary>
-    /// Aktualna iloœæ zdrowia wroga.
+    /// Aktualna iloï¿½ï¿½ zdrowia wroga.
     /// </summary>
     private int current_hp = MAX_HP;
 
     /// <summary>
-    /// Flaga informuj¹ca, czy wróg ma aktywowan¹ blokadê.
+    /// Flaga informujï¿½ca, czy wrï¿½g ma aktywowanï¿½ blokadï¿½.
     /// </summary>
     private bool is_block_up = false;
 
     /// <summary>
-    /// Inicjalizuje wroga, uruchamiaj¹c powtarzaj¹c¹ siê zmianê wartoœci blokady.
+    /// Inicjalizuje wroga, uruchamiajï¿½c powtarzajï¿½cï¿½ siï¿½ zmianï¿½ wartoï¿½ci blokady.
     /// </summary>
     private void Start()
     {
@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
     }
 
     /// <summary>
-    /// Zmienia stan blokady wroga (blokada aktywuje siê i deaktywuje cyklicznie).
+    /// Zmienia stan blokady wroga (blokada aktywuje siï¿½ i deaktywuje cyklicznie).
     /// </summary>
     public void ChangeBlockValue()
     {
@@ -44,30 +44,29 @@ public class Enemy : MonoBehaviour
     }
 
     /// <summary>
-    /// Zmniejsza zdrowie wroga o okreœlon¹ iloœæ obra¿eñ.
+    /// Zmniejsza zdrowie wroga o okreï¿½lonï¿½ iloï¿½ï¿½ obraï¿½eï¿½.
     /// </summary>
-    /// <param name="amount">Iloœæ obra¿eñ, które wróg otrzymuje.</param>
+    /// <param name="amount">Iloï¿½ï¿½ obraï¿½eï¿½, ktï¿½re wrï¿½g otrzymuje.</param>
     public void TakeDamage(int amount)
     {
         current_hp -= amount;
 
-        // Aktualizuje pasek zdrowia wroga na podstawie jego obecnego zdrowia
-        health_bar.ChangeBarValue(MAX_HP, current_hp);
+        if(health_bar != null) health_bar.ChangeBarValue(MAX_HP, current_hp);
     }
 
     /// <summary>
-    /// Zwraca informacjê, czy wróg ma aktywowan¹ blokadê.
+    /// Zwraca informacjï¿½, czy wrï¿½g ma aktywowanï¿½ blokadï¿½.
     /// </summary>
-    /// <returns>True, jeœli blokada jest aktywna, w przeciwnym razie false.</returns>
+    /// <returns>True, jeï¿½li blokada jest aktywna, w przeciwnym razie false.</returns>
     public bool GetBlockUp()
     {
         return is_block_up;
     }
 
     /// <summary>
-    /// Zwraca aktualn¹ iloœæ zdrowia wroga.
+    /// Zwraca aktualnï¿½ iloï¿½ï¿½ zdrowia wroga.
     /// </summary>
-    /// <returns>Aktualna iloœæ zdrowia wroga.</returns>
+    /// <returns>Aktualna iloï¿½ï¿½ zdrowia wroga.</returns>
     public int GetHp()
     {
         return current_hp;

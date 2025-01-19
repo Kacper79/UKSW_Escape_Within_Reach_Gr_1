@@ -7,6 +7,9 @@ using UnityEngine.InputSystem.Utilities;
 
 namespace Assets.Scripts
 {
+    /// <summary>
+    /// This class is being used to rebind player's input
+    /// </summary>
     public class RebindManager : MonoBehaviour
     {
         void Awake()
@@ -36,7 +39,11 @@ namespace Assets.Scripts
             }
         }
 
-        public void ListenAndRebindControl(string actionName, Action onRebindComplete)
+        /// <summary>
+        /// Rebinds given action to the new key binding supplied by listening to most recently pressed key
+        /// </summary>
+        /// <param name="actionName">the path containing the action map and the action name that is being rebinded </param>
+        public void ListenAndRebindControl(string actionName)
         {
             InputAction changedAction = player_input.FindAction(actionName);
             if (changedAction == null)
@@ -49,10 +56,15 @@ namespace Assets.Scripts
                 Debug.Log($"Changing input action {actionName} to {newBinding} using listening");
                 changedAction.ApplyBindingOverride(0, newBinding);
 
-                onRebindComplete?.Invoke();
+                //onRebindComplete?.Invoke();
             });
         }
 
+        /// <summary>
+        /// Simply rebinds a action to a new freshly-supplied key
+        /// </summary>
+        /// <param name="actionName">the path containing the action map and the action name that is being rebinded</param>
+        /// <param name="newBinding">the path containing the device type and device key name</param>
         public void RebindButton(string actionName, string newBinding)
         {
             InputAction changedAction = player_input.FindAction(actionName);
@@ -65,19 +77,34 @@ namespace Assets.Scripts
             Debug.Log($"Input action '{actionName}' was rebound to {newBinding}");
         }
 
+        /// <summary>
+        /// Saves the file containing all of the rebindings
+        /// </summary>
         public void SaveBindingsOverride()
         {
             string bindingsJson = player_input.SaveBindingOverridesAsJson();
             File.WriteAllText(saveFilePath, bindingsJson);
         }
 
+        /// <summary>
+        /// Flushes the rebinding cache i.e cancells all of the rebindings
+        /// </summary>
         public void ResetBindingsOverride()
         {
             player_input.RemoveAllBindingOverrides();
         }
 
+        /// <summary>
+        /// string containing a system path to a place where all rebinded key's data will be saved
+        /// </summary>
         private string saveFilePath;
+        /// <summary>
+        /// PlayerInput class containing the mapping of all registered key presses to responding event callbacks
+        /// </summary>
         public PlayerInput player_input;
+        /// <summary>
+        /// Singleton's public access point
+        /// </summary>
         public static RebindManager Instance { get; private set; }
     }
 }

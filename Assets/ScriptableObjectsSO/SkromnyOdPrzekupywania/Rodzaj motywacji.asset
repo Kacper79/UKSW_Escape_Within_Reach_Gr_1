@@ -10,21 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee51363ce2771ed419f20611b721b794, type: 3}
-  m_Name: Chce_walczyc_w_turnieju
+  m_Name: Rodzaj motywacji
   m_EditorClassIdentifier: 
-  main_character_text: Chce walczyc w  turnieju
+  main_character_text: A jaki ma to byc rodzaj motywacji
   main_character_audio: {fileID: 8300000, guid: d37d0385ff9cef14f8fb59d4fa0e177c,
     type: 3}
   eventual_npc_response_time_delay: 0
   responses:
-  - response: Ok!
+  - response: "Ja jestem skromn\u0105 osob\u0105 wiec tylko 2000$"
     response_audio_clip: {fileID: 8300000, guid: d37d0385ff9cef14f8fb59d4fa0e177c,
       type: 3}
     eventual_response_time_delay: 0
-  invoked_events_list: 0200000000000000
-  options: []
+  invoked_events_list: 
+  options:
+  - {fileID: 11400000, guid: 63e20b0d32d3cd04386ce8b49853fc10, type: 2}
+  - {fileID: 11400000, guid: 824257e2070841c48a3a43e8080e97f7, type: 2}
   id_of_dialogue_option_to_go_back_to: 
   is_available: 1
-  id: b100648026c8423084914450f3f01768
+  id: 87b6ad168a8f40438839e8b97878b966
   payoffAmount: 0
-  questNumber: 0

@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Serializable struct containing all of the neccessary game's state data used to save the game
+/// </summary>
 [Serializable]
 public class SaveData
 {
@@ -26,7 +29,11 @@ public class SaveData
     public int timeInMinutes;
 }
 
-// SerializableDictionary for JSON serialization
+/// <summary>
+/// Dictionary class used for JSON serialization
+/// </summary>
+/// <typeparam name="TKey">Key Type</typeparam>
+/// <typeparam name="TValue">Value Type</typeparam>
 [Serializable]
 public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, ISerializationCallbackReceiver
 {

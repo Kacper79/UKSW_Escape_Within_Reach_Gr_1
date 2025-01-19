@@ -199,6 +199,14 @@ public class DialogueManager : MonoBehaviour
                 GlobalEvents.FireOnEndingDialogue(this);
                 GlobalEvents.FireOnTimeStart(this);
             }
+            else if(each_event == DialogueNodeSO.DialogueEvent.MakePayoff)
+            {
+                GlobalEvents.FireOnPayoff(this, new(option.payoffAmount, current_npc_name));
+            }
+            else if(each_event == DialogueNodeSO.DialogueEvent.CompleteQuest)
+            {
+                if(option.questNumber != 0) QuestManager.Instance.MarkQuestCompleted(option.questNumber);
+            }
             else
             {
                 GlobalEvents.FireCertainDialogueEvent(this, each_event);

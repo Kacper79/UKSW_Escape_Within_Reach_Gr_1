@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
+    path: Assets/Scenes/MainMenuScene.unity
+    guid: 3b4ace6e264b943419870f3fa20e3826
+  - enabled: 1
     path: Assets/Scenes/LoadingScene.unity
     guid: e228e6f76a61c354abdaee73fb1df622
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Kacper.unity
     guid: 4f2f42d6d2e41ff42af86c5c5832804d
   - enabled: 0
@@ -17,7 +20,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Kacper2.unity
     guid: af32526bfd44e6c439f2dd1a6100dabf
-  - enabled: 0
-    path: Assets/Scenes/MainMenuScene.unity
-    guid: 3b4ace6e264b943419870f3fa20e3826
   m_configObjects: {}

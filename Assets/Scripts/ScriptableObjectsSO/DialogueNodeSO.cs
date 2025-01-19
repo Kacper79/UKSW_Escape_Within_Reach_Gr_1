@@ -4,47 +4,47 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewDialoguesForEachCharacterSO", menuName = "Scriptable Objects/Dialogues")]
 /// <summary>
-/// Klasa reprezentuj¹ca dane dialogowe dla ka¿dego bohatera, zawieraj¹ca tekst, odpowiedzi NPC i inne ustawienia.
+/// Klasa reprezentujï¿½ca dane dialogowe dla kaï¿½dego bohatera, zawierajï¿½ca tekst, odpowiedzi NPC i inne ustawienia.
 /// </summary>
 public class DialogueNodeSO : ScriptableObject
 {
     /// <summary>
-    /// Tekst g³ównego bohatera.
+    /// Tekst gï¿½ï¿½wnego bohatera.
     /// </summary>
     public string main_character_text = "";
 
     /// <summary>
-    /// Audio dla tekstu g³ównego bohatera.
+    /// Audio dla tekstu gï¿½ï¿½wnego bohatera.
     /// </summary>
     public AudioClip main_character_audio;
 
     /// <summary>
-    /// Czas opóŸnienia odpowiedzi NPC po wypowiedzi g³ównego bohatera.
+    /// Czas opï¿½nienia odpowiedzi NPC po wypowiedzi gï¿½ï¿½wnego bohatera.
     /// </summary>
     public float eventual_npc_response_time_delay = 0.0f;
 
     /// <summary>
-    /// Lista odpowiedzi NPC, poniewa¿ NPC mo¿e mówiæ w kilku linijkach.
+    /// Lista odpowiedzi NPC, poniewaï¿½ NPC moï¿½e mï¿½wiï¿½ w kilku linijkach.
     /// </summary>
     public List<NpcResponses> responses;
 
     /// <summary>
-    /// Lista wydarzeñ wywo³ywanych podczas dialogu.
+    /// Lista wydarzeï¿½ wywoï¿½ywanych podczas dialogu.
     /// </summary>
     public List<DialogueEvent> invoked_events_list = new();
 
     /// <summary>
-    /// Mo¿liwe nastêpne opcje dialogowe.
+    /// Moï¿½liwe nastï¿½pne opcje dialogowe.
     /// </summary>
     public List<DialogueNodeSO> options = new();
 
     /// <summary>
-    /// Identyfikator opcji dialogowej, do której mo¿na wróciæ po wybraniu tej opcji.
+    /// Identyfikator opcji dialogowej, do ktï¿½rej moï¿½na wrï¿½ciï¿½ po wybraniu tej opcji.
     /// </summary>
     public string id_of_dialogue_option_to_go_back_to;
 
     /// <summary>
-    /// Flaga okreœlaj¹ca, czy ten dialog jest dostêpny.
+    /// Flaga okreï¿½lajï¿½ca, czy ten dialog jest dostï¿½pny.
     /// </summary>
     public bool is_available = true;
 
@@ -53,6 +53,9 @@ public class DialogueNodeSO : ScriptableObject
     /// </summary>
     public string id = "";
 
+    public int payoffAmount; //cost of the payoff if this dialogue is a payoff
+    public int questNumber; //number of the completed quest if this dialogue completes quest
+
     public DialogueNodeSO()
     {
         GlobalEvents.OnLookingForDialogueListWithGivenID += TryReturningOptions;
@@ -60,10 +63,10 @@ public class DialogueNodeSO : ScriptableObject
     }
 
     /// <summary>
-    /// Zmienia wartoœæ dostêpnoœci dialogu w zale¿noœci od argumentów.
+    /// Zmienia wartoï¿½ï¿½ dostï¿½pnoï¿½ci dialogu w zaleï¿½noï¿½ci od argumentï¿½w.
     /// </summary>
-    /// <param name="sender">Obiekt wywo³uj¹cy zdarzenie.</param>
-    /// <param name="args">Argumenty zawieraj¹ce nowe ustawienie dostêpnoœci.</param>
+    /// <param name="sender">Obiekt wywoï¿½ujï¿½cy zdarzenie.</param>
+    /// <param name="args">Argumenty zawierajï¿½ce nowe ustawienie dostï¿½pnoï¿½ci.</param>
     private void ChangeISAvailableValue(object sender, GlobalEvents.OnMakingGivenDialogueOptionAvailableOrUnavailableEventArgs args)
     {
         if (id == args.dialogue_id)
@@ -90,10 +93,10 @@ public class DialogueNodeSO : ScriptableObject
     }
 
     /// <summary>
-    /// Próbuj zwróciæ dostêpne opcje dialogowe dla danego ID.
+    /// Prï¿½buj zwrï¿½ciï¿½ dostï¿½pne opcje dialogowe dla danego ID.
     /// </summary>
-    /// <param name="sender">Obiekt wywo³uj¹cy zdarzenie.</param>
-    /// <param name="e">Argumenty zawieraj¹ce poszukiwane ID.</param>
+    /// <param name="sender">Obiekt wywoï¿½ujï¿½cy zdarzenie.</param>
+    /// <param name="e">Argumenty zawierajï¿½ce poszukiwane ID.</param>
     private void TryReturningOptions(object sender, GlobalEvents.OnLookingForDialogueListWithGivenIDEventArgs e)
     {
         if (id == e.given_id)
@@ -105,7 +108,7 @@ public class DialogueNodeSO : ScriptableObject
 
     [System.Serializable]
     /// <summary>
-    /// Klasa reprezentuj¹ca odpowiedzi NPC, z opóŸnieniem czasowym.
+    /// Klasa reprezentujï¿½ca odpowiedzi NPC, z opï¿½nieniem czasowym.
     /// </summary>
     public class NpcResponses
     {
@@ -120,14 +123,14 @@ public class DialogueNodeSO : ScriptableObject
         public AudioClip response_audio_clip;
 
         /// <summary>
-        /// Czas opóŸnienia odpowiedzi NPC.
+        /// Czas opï¿½nienia odpowiedzi NPC.
         /// </summary>
         public float eventual_response_time_delay = 0.0f;
     }
 
     [System.Serializable]
     /// <summary>
-    /// Enums dla ró¿nych zdarzeñ wywo³ywanych podczas dialogu.
+    /// Enums dla rï¿½nych zdarzeï¿½ wywoï¿½ywanych podczas dialogu.
     /// </summary>
     public enum DialogueEvent
     {
@@ -135,6 +138,8 @@ public class DialogueNodeSO : ScriptableObject
         GoBackToCertainDialogueOption,
         StartFightingTournament,
         StartBlackJackGameForMoney,
-        StartBlackJackGameForPickaxe
+        StartBlackJackGameForPickaxe,
+        CompleteQuest,
+        MakePayoff
     }
 }
