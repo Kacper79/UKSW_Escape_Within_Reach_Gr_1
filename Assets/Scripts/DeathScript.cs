@@ -16,6 +16,7 @@ namespace Assets.Scripts
         {
             transform.localPosition = cellTransform.position;
             Physics.SyncTransforms();
+            SavePlayerDeathCount();
         }
 
         /// <summary>
@@ -25,6 +26,7 @@ namespace Assets.Scripts
         {
             gameObject.transform.position = infirmaryTransform.position;
             Physics.SyncTransforms();
+            SavePlayerDeathCount();
         }
 
         /// <summary>
@@ -34,6 +36,15 @@ namespace Assets.Scripts
         {
             gameObject.transform.position = solitaryTransform.position;
             Physics.SyncTransforms();
+            SavePlayerDeathCount();
+        }
+
+        private void SavePlayerDeathCount()
+        {
+            if (gameObject.CompareTag("Player"))
+            {
+                PlayerPrefs.SetInt("deathCount", PlayerPrefs.GetInt("deathCount") + 1);
+            }
         }
 
         /// <summary>

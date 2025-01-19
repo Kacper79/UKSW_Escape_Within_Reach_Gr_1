@@ -5432,6 +5432,7 @@ GameObject:
   - component: {fileID: 1232845327}
   - component: {fileID: 1232845329}
   - component: {fileID: 1232845328}
+  - component: {fileID: 1232845330}
   m_Layer: 0
   m_Name: GlobalGO
   m_TagString: Untagged
@@ -5701,6 +5702,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e18fb49aac19d4348b875c4a386ef843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1232845330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232845321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 120d070c01165d04ab2fa29c1cefbbba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalPlayTime: 0
+  apiUrl: https://devsolfeed2.ct8.pl/analityka.php
+  playerName: Player123
 --- !u!1 &1253625171
 GameObject:
   m_ObjectHideFlags: 0
@@ -12176,7 +12192,7 @@ PrefabInstance:
     - target: {fileID: 5231697402702201535, guid: 1db4cf996cdf7fb48a7a200f101aa0e9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 5231697402702201535, guid: 1db4cf996cdf7fb48a7a200f101aa0e9,
         type: 3}
@@ -12218,45 +12234,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7043678696505333513, guid: 1db4cf996cdf7fb48a7a200f101aa0e9,
-        type: 3}
-      propertyPath: enemy_controller
-      value: 
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4952310901141933222, guid: 1db4cf996cdf7fb48a7a200f101aa0e9, type: 3}
-    - {fileID: 7834247598969253469, guid: 1db4cf996cdf7fb48a7a200f101aa0e9, type: 3}
-    - {fileID: 7043678696505333513, guid: 1db4cf996cdf7fb48a7a200f101aa0e9, type: 3}
-    - {fileID: 4894448611054633428, guid: 1db4cf996cdf7fb48a7a200f101aa0e9, type: 3}
-    - {fileID: 4229880767515034223, guid: 1db4cf996cdf7fb48a7a200f101aa0e9, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4886803332063451141, guid: 1db4cf996cdf7fb48a7a200f101aa0e9,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2536597623547913519}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1db4cf996cdf7fb48a7a200f101aa0e9, type: 3}
---- !u!1 &2536597623547913518 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4886803332063451141, guid: 1db4cf996cdf7fb48a7a200f101aa0e9,
-    type: 3}
-  m_PrefabInstance: {fileID: 2536597623547913517}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2536597623547913519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2536597623547913518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f142327591f2a9340aeee73c976f994b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue_root: {fileID: 11400000, guid: 15c6c4fd94c0c0a42951e55de43c014d, type: 2}
-  npc_name: Skromny
 --- !u!114 &2642585745439274366
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -15782,6 +15764,7 @@ MonoBehaviour:
   - {fileID: -8738436348684546606, guid: 627d56eff12dc6746b8952f0e1c95c6e, type: 3}
   - {fileID: 5712676841752464046, guid: 2de280ee0d9b84748ae3d2d21efe2a30, type: 3}
   - {fileID: 816126940168905970, guid: 7aabfb35f7d3eea45901dd95459b25dc, type: 3}
+  gold_amount: 5000
   possiblePayoffDialogues: []
 --- !u!114 &7318492420233978455
 MonoBehaviour:

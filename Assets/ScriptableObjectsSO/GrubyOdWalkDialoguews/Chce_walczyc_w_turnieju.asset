@@ -26,3 +26,5 @@ MonoBehaviour:
   id_of_dialogue_option_to_go_back_to: 
   is_available: 1
   id: b100648026c8423084914450f3f01768
+  payoffAmount: 0
+  questNumber: 0

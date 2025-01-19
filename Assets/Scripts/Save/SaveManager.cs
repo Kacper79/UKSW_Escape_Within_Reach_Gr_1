@@ -1,3 +1,4 @@
+using Assets.Scripts;
 using Assets.Scripts.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -111,6 +112,8 @@ public class SaveManager : MonoBehaviour
         {
             saveable.Save(ref saveData);
         }
+
+        GameAnalytics.Instance.SendDataToServer();
 
         return saveData;
     }

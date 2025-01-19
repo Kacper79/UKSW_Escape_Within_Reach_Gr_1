@@ -21,6 +21,7 @@ public class DialogueNodeSO : ScriptableObject
 
     public string id = "";//Id of a dialogue
     public int payoffAmount; //cost of the payoff if this dialogue is a payoff
+    public int questNumber; //number of the completed quest if this dialogue completes quest
 
     public DialogueNodeSO()
     {
@@ -75,6 +76,7 @@ public class DialogueNodeSO : ScriptableObject
         StartFightingTournament,
         StartBlackJackGameForMoney,
         StartBlackJackGameForPickaxe,
+        CompleteQuest,
         MakePayoff
     }
 }

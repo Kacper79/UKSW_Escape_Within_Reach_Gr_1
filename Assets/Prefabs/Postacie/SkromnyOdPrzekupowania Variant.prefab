@@ -16,7 +16,7 @@ PrefabInstance:
     - target: {fileID: 5147959156884710568, guid: f78717661ff20014082f184f3a9be453,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 5147959156884710568, guid: f78717661ff20014082f184f3a9be453,
         type: 3}
@@ -63,8 +63,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkromnyOdPrzekupowania Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5427299358816021169, guid: f78717661ff20014082f184f3a9be453, type: 3}
+    - {fileID: 7157158974150133834, guid: f78717661ff20014082f184f3a9be453, type: 3}
+    - {fileID: 7938628920148816158, guid: f78717661ff20014082f184f3a9be453, type: 3}
+    - {fileID: 5478368988924995523, guid: f78717661ff20014082f184f3a9be453, type: 3}
+    - {fileID: 3843838362348594296, guid: f78717661ff20014082f184f3a9be453, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5492959124857912850, guid: f78717661ff20014082f184f3a9be453,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5969009602690633543}
   m_SourcePrefab: {fileID: 100100000, guid: f78717661ff20014082f184f3a9be453, type: 3}
+--- !u!1 &4886803332063451141 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5492959124857912850, guid: f78717661ff20014082f184f3a9be453,
+    type: 3}
+  m_PrefabInstance: {fileID: 1147151841703962135}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5969009602690633543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4886803332063451141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f142327591f2a9340aeee73c976f994b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue_root: {fileID: 11400000, guid: 15c6c4fd94c0c0a42951e55de43c014d, type: 2}
+  npc_name: Skromny

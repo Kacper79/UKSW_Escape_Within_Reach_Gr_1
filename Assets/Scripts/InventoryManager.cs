@@ -1,3 +1,4 @@
+using Assets.Scripts;
 using Assets.Scripts.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
@@ -43,7 +44,7 @@ public class InventoryManager : MonoBehaviour, ISaveable
     void Start()
     {
         SaveManager.Instance.saveablesGO.Add(this);
-        payoffsToCheck = possiblePayoffDialogues;
+        payoffsToCheck = new(possiblePayoffDialogues);
         CheckIfPayoffAvailable();
     }
 
@@ -84,6 +85,7 @@ public class InventoryManager : MonoBehaviour, ISaveable
     private void SpendGold(int value)
     {
         if(gold_amount - value >= 0) gold_amount -= value;
+        CheckIfPayoffAvailable();
     }
 
     private void CheckIfPayoffAvailable()
@@ -105,8 +107,11 @@ public class InventoryManager : MonoBehaviour, ISaveable
         {
             if (gold_amount >= dialogue.payoffAmount && dialogue.payoffAmount > 0)
             {
-                GlobalEvents.FireOnMakingGivenDialogueOptionAvailableOrUnavailable(this, new(dialogue.id, true));
-                payoffsToCheck.Remove(dialogue);
+                if(dialogue.questNumber == 0 || (dialogue.questNumber != 0 && !QuestManager.Instance.IsQuestCompleted(dialogue.questNumber)))
+                {
+                    GlobalEvents.FireOnMakingGivenDialogueOptionAvailableOrUnavailable(this, new(dialogue.id, true));
+                    payoffsToCheck.Remove(dialogue);
+                }
             }
         }
     }
@@ -206,6 +211,9 @@ public class InventoryManager : MonoBehaviour, ISaveable
             if (itemID != -1) saveData.inventoryPlotItems.Add(itemID);
         }
         //saveData.inventoryPlotItems = plot_picked_up_items;
+
+        GameAnalytics.Instance.ModifyStat("moneyCounter", gold_amount);
+        GameAnalytics.Instance.ModifyStat("plotItemsCount", plot_picked_up_items.Count);
     }
 
     /// <summary>

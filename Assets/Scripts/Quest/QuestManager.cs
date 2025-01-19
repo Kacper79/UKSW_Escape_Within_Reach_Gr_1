@@ -1,3 +1,4 @@
+using Assets.Scripts;
 using Assets.Scripts.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,10 @@ public class QuestManager : MonoBehaviour, ISaveable
     void Start()
     {
         SaveManager.Instance.saveablesGO.Add(this);
-        if(PlayerPrefs.GetInt("ContinueSave") == 0) DefaultInitializeQuests();
+        if (PlayerPrefs.GetInt("ContinueSave") == 0)
+        {
+            DefaultInitializeQuests();
+        }
     }
 
     /// <summary>
@@ -43,7 +47,7 @@ public class QuestManager : MonoBehaviour, ISaveable
     /// </summary>
     public void DefaultInitializeQuests()
     {
-        if(activeQuests.Count == 0) activeQuests = defaultQuestList;
+        if(activeQuests.Count == 0) activeQuests = new(defaultQuestList);
     }
 
     /// <summary>
@@ -83,6 +87,7 @@ public class QuestManager : MonoBehaviour, ISaveable
         if (quest == null) return;
 
         Debug.Log($"Quest Completed: {quest?.Description}");
+        PlayerPrefs.SetInt("mostRecentlyCompletedQuestID", questID);
         quest?.CompleteQuest();
         RemoveQuest((Quest)quest);
     }
@@ -119,6 +124,8 @@ public class QuestManager : MonoBehaviour, ISaveable
     public void Save(ref SaveData saveData)
     {
         saveData.playerActiveQuests = activeQuests.GetRange(0, activeQuests.Count);
+        GameAnalytics.Instance.ModifyStat("mostRecentlyCompletedQuestID", PlayerPrefs.GetInt("mostRecentlyCompletedQuestID"));
+        GameAnalytics.Instance.ModifyStat("gameProgress", System.Math.Round( (defaultQuestList.Count - activeQuests.Count) / (float)defaultQuestList.Count, 2));
     }
 
     /// <summary>
