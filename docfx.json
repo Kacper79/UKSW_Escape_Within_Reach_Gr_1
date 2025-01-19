@@ -1,0 +1,21 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": ["**/*.cs"],
+          "exclude": ["**/obj/**", "**/bin/**"]
+        }
+      ],
+      "dest": "api"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": ["**/*.cs"]
+      }
+    ],
+    "dest": "_site"
+  }
+}
