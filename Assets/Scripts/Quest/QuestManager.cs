@@ -137,4 +137,9 @@ public class QuestManager : MonoBehaviour, ISaveable
         activeQuests.Clear();
         activeQuests = saveData.playerActiveQuests;
     }
+
+    public List<Quest> GetDefaultQuestsList()
+    {
+        return defaultQuestList;
+    }
 }

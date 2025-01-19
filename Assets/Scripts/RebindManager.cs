@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -45,7 +46,7 @@ namespace Assets.Scripts
         public void ListenAndRebindControl(string actionName)
         {
             InputAction changedAction = player_input.FindAction(actionName);
-            if (changedAction != null)
+            if (changedAction == null)
             {
                 Debug.LogError("There is no such input action");
                 return;
@@ -54,6 +55,8 @@ namespace Assets.Scripts
                 string newBinding = ctx.path;
                 Debug.Log($"Changing input action {actionName} to {newBinding} using listening");
                 changedAction.ApplyBindingOverride(0, newBinding);
+
+                //onRebindComplete?.Invoke();
             });
         }
 
@@ -65,7 +68,7 @@ namespace Assets.Scripts
         public void RebindButton(string actionName, string newBinding)
         {
             InputAction changedAction = player_input.FindAction(actionName);
-            if (changedAction != null)
+            if (changedAction == null)
             {
                 Debug.LogError("There is no such input action");
                 return;

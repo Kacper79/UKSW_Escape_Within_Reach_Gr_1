@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quest_description_display: {fileID: 0}
+  quest_complition_icon: {fileID: 4053287740923241409}
   quest_description: 
 --- !u!1 &7282132138341138363
 GameObject:

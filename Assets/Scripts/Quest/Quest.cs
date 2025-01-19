@@ -35,4 +35,9 @@ public struct Quest
         OnQuestCompleted?.Invoke(this);  // Notify observers
         //if (additionalCallback) QuestManager.Instance.RemoveQuest(this);
     }
+
+    public string GetDescription()
+    {
+        return Description;
+    }
 }

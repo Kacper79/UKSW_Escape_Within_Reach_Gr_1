@@ -1,22 +1,38 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class BlackJackController : MonoBehaviour
 {
+    /// <summary>
+    /// Prefab karty, który jest instantiowany podczas gry.
+    /// </summary>
     [SerializeField] private GameObject card_prefab;
+
+    /// <summary>
+    /// Interfejs u¿ytkownika dla gry w BlackJack.
+    /// </summary>
     [SerializeField] private BlackJackUI black_jack_ui;
 
+    /// <summary>
+    /// Miejsce, do którego zostanie teleportowany gracz podczas rozpoczynania gry.
+    /// </summary>
     [SerializeField] private Transform place_to_tp_player_to_when_starting_game;
 
+    /// <summary>
+    /// Transformacja, do której bêd¹ dodawane karty gracza.
+    /// </summary>
     [SerializeField] private Transform players_hand_transform;
+
+    /// <summary>
+    /// Transformacja, do której bêd¹ dodawane karty przeciwnika.
+    /// </summary>
     [SerializeField] private Transform computers_hand_transform;
 
+    /// <summary>
+    /// Obiekt gracza.
+    /// </summary>
     private GameObject player_go;
 
     private List<Card> all_cards_list = new List<Card>();
@@ -47,11 +63,17 @@ public class BlackJackController : MonoBehaviour
     private const bool PLAYER_WON_ROUND = true;
     private const bool PLAYER_LOST_ROUND = false;
 
-
+    /// <summary>
+    /// Inicjalizuje komponenty i pobiera obiekt gracza.
+    /// </summary>
     private void Awake()
     {
         player_go = FindAnyObjectByType<PlayerInputController>().gameObject;
     }
+
+    /// <summary>
+    /// Inicjalizuje ustawienia przed rozpoczêciem gry, tworzy karty i ustawia nas³uchiwanie na zdarzenia globalne.
+    /// </summary>
     private void OnEnable()
     {
         card_spawn_position = this.transform.position;
@@ -64,8 +86,11 @@ public class BlackJackController : MonoBehaviour
         GlobalEvents.OnStartingBlackJackGameForMoney += EnableBlakjackUI;
 
         GlobalEvents.OnEndingBlackjackGame += DisableBlackjackUI;
-
     }
+
+    /// <summary>
+    /// Usuwa nas³uchiwanie na zdarzenia globalne po zakoñczeniu gry.
+    /// </summary>
     private void OnDisable()
     {
         GlobalEvents.OnStartingBlackJackGameForPickaxe -= StartBlackJackGameForPickaxe;
@@ -76,53 +101,62 @@ public class BlackJackController : MonoBehaviour
         GlobalEvents.OnEndingBlackjackGame -= DisableBlackjackUI;
     }
 
+    /// <summary>
+    /// Ukrywa interfejs gry BlackJack po jej zakoñczeniu.
+    /// </summary>
     private void DisableBlackjackUI(object sender, EventArgs e)
     {
         black_jack_ui.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// W³¹cza interfejs gry BlackJack podczas jej rozpoczêcia.
+    /// </summary>
     private void EnableBlakjackUI(object sender, System.EventArgs e)
     {
         black_jack_ui.gameObject.SetActive(true);
     }
 
-    private void DisableBlackjackUI()
-    {
-        black_jack_ui.gameObject.SetActive(false);
-    }
-
+    /// <summary>
+    /// Uruchamia grê BlackJack dla zadania zwi¹zanego z przedmiotem.
+    /// </summary>
     private void StartBlackJackGameForPickaxe(object sender, EventArgs e)
     {
         is_quest_game = true;
         Cursor.lockState = CursorLockMode.None;
 
         GlobalEvents.FireOnTimeStop(this);
-
         GlobalEvents.FireOnStartingTransition(this, new(0.3f));
         Invoke(nameof(TeleportPlayerToTable), 0.3f);
         StartGame();
     }
 
+    /// <summary>
+    /// Uruchamia grê BlackJack dla zak³adów pieniê¿nych.
+    /// </summary>
     private void StartBlackJackGameForMoney(object sender, EventArgs e)
     {
         is_quest_game = false;
         Cursor.lockState = CursorLockMode.None;
 
         GlobalEvents.FireOnTimeStop(this);
-
         GlobalEvents.FireOnStartingTransition(this, new(0.3f));
         Invoke(nameof(TeleportPlayerToTable), 0.3f);
     }
+
+    /// <summary>
+    /// Logika gry BlackJack. Rozpoczyna now¹ rundê, przetwarza tury gracza i przeciwnika.
+    /// </summary>
     IEnumerator BlackJackGame()
     {
         while (!(player_wins == 3 || player_loses == 3))
         {
             StartNewRound();
-            while(!is_round_over)
+            while (!is_round_over)
             {
                 if (is_players_turn)
                 {
-                    //playersturn
+                    // Ruch gracza
                     can_press_buttons = true;
                 }
                 else
@@ -143,20 +177,19 @@ public class BlackJackController : MonoBehaviour
             }
 
             DetermineTheWinnerOfTheRound();
-
             yield return new WaitForSeconds(2.5f);
-
             black_jack_ui.HideRoundWinner();
-
             ResetAfterRound();
         }
+
+        // Zakoñczenie gry
         GlobalEvents.FireOnEndingBlackjackGame(this);
         GlobalEvents.FireOnTimeStart(this);
         if (player_wins == 3 && is_quest_game)
         {
             QuestManager.Instance.MarkQuestCompleted(1);
         }
-        else if(player_wins == 3 && is_quest_game == false)
+        else if (player_wins == 3 && is_quest_game == false)
         {
             GlobalEvents.FireOnLosingMoneyInABlackjackGame(this, new(bid_money));
         }
@@ -173,6 +206,9 @@ public class BlackJackController : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Tworzy wszystkie karty w grze, instancjonuj¹c prefabrykaty kart i inicjalizuj¹c wartoœci dla ka¿dej karty.
+    /// </summary>
     private void CreateCards()
     {
         for (int i = 0; i <= 12; i++)
@@ -188,6 +224,9 @@ public class BlackJackController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Losuje kartê dla gracza, dodaje j¹ do rêki gracza i sprawdza, czy gracz przekroczy³ 21 punktów.
+    /// </summary>
     public void DrawPlayerCard()
     {
         Card drown_card = all_cards_list[UnityEngine.Random.Range(0, all_cards_list.Count)];
@@ -195,11 +234,11 @@ public class BlackJackController : MonoBehaviour
         players_cards.Add(drown_card);
         drown_card.card_graphic.ShowObverse();
         drown_card.transform.position = players_hand_transform.position;
-        drown_card.transform.position += new Vector3((players_cards.Count - 1)*DROWN_CARDS_OFFSET_X, 0f, 0f);
+        drown_card.transform.position += new Vector3((players_cards.Count - 1) * DROWN_CARDS_OFFSET_X, 0f, 0f);
 
         current_player_points = CountHandPoints(players_cards);
 
-        if(CountHandPoints(players_cards) > 21)
+        if (current_player_points > 21)
         {
             has_player_overdrown = true;
             is_round_over = true;
@@ -207,10 +246,13 @@ public class BlackJackController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Zlicza punkty na podstawie kart w rêce, uwzglêdniaj¹c specjalne zasady dla Asów.
+    /// </summary>
     private int CountHandPoints(List<Card> cards_list)
     {
         int points = 0;
-        List<Card> temp = new ();
+        List<Card> temp = new();
 
         foreach (Card card in cards_list)
         {
@@ -230,11 +272,11 @@ public class BlackJackController : MonoBehaviour
             }
         }
 
-        if(temp.Count == 0)
+        if (temp.Count == 0)
         {
             return points;
         }
-        else if(points + 11 + temp.Count - 1 > 21)
+        else if (points + 11 + temp.Count - 1 > 21)
         {
             points += temp.Count;
         }
@@ -246,27 +288,30 @@ public class BlackJackController : MonoBehaviour
         return points;
     }
 
+    /// <summary>
+    /// Okreœla zwyciêzcê rundy na podstawie punktów gracza i przeciwnika.
+    /// </summary>
     private void DetermineTheWinnerOfTheRound()
     {
         Debug.Log(CountHandPoints(players_cards));
         Debug.Log(CountHandPoints(opponents_cards));
 
-        if(has_player_overdrown)
+        if (has_player_overdrown)
         {
             player_loses++;
             black_jack_ui.ShowRoundWinner(PLAYER_LOST_ROUND);
         }
-        else if(CountHandPoints(opponents_cards) > 21)
+        else if (CountHandPoints(opponents_cards) > 21)
         {
             player_wins++;
             black_jack_ui.ShowRoundWinner(PLAYER_WON_ROUND);
         }
-        else if(CountHandPoints(players_cards) > CountHandPoints(opponents_cards))
+        else if (CountHandPoints(players_cards) > CountHandPoints(opponents_cards))
         {
             player_wins++;
             black_jack_ui.ShowRoundWinner(PLAYER_WON_ROUND);
         }
-        else if(CountHandPoints(players_cards) < CountHandPoints(opponents_cards))
+        else if (CountHandPoints(players_cards) < CountHandPoints(opponents_cards))
         {
             player_loses++;
             black_jack_ui.ShowRoundWinner(PLAYER_LOST_ROUND);
@@ -277,11 +322,14 @@ public class BlackJackController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Okreœla, jak komputer dobiera karty. Komputer dobiera karty, a¿ osi¹gnie co najmniej 17 punktów.
+    /// </summary>
     private void ComputersTurn()
     {
         int computer_points = CountHandPoints(opponents_cards);
 
-        if(computer_points < 17)
+        if (computer_points < 17)
         {
             DrawComputerCard();
         }
@@ -289,9 +337,11 @@ public class BlackJackController : MonoBehaviour
         {
             is_round_over = true;
         }
-
     }
 
+    /// <summary>
+    /// Losuje kartê dla komputera, dodaje j¹ do rêki i wyœwietla jej grafikê.
+    /// </summary>
     private void DrawComputerCard()
     {
         Card drown_card = all_cards_list[UnityEngine.Random.Range(0, all_cards_list.Count)];
@@ -308,8 +358,8 @@ public class BlackJackController : MonoBehaviour
         else
         {
             drown_card.card_graphic.ShowObverse();
-            
-            if(drown_card.GetValue() == 0)
+
+            if (drown_card.GetValue() == 0)
             {
                 current_opponent_points += 11;
             }
@@ -324,11 +374,17 @@ public class BlackJackController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Odkrywa pierwsz¹ kartê komputera, która by³a wczeœniej zakryta.
+    /// </summary>
     private void ShowHiddenCard()
     {
         opponents_cards[0].card_graphic.ShowObverse();
     }
 
+    /// <summary>
+    /// Resetuje stan gry po zakoñczeniu rundy, przygotowuj¹c siê do nowej.
+    /// </summary>
     private void ResetAfterRound()
     {
         is_hidden_card_shown = false;
@@ -342,14 +398,14 @@ public class BlackJackController : MonoBehaviour
         current_opponent_points = 0;
         current_player_points = 0;
 
-        foreach(Card card in players_cards)
+        foreach (Card card in players_cards)
         {
             all_cards_list.Add(card);
             card.transform.position = card_spawn_position;
             card.card_graphic.ShowReverse();
         }
 
-        foreach(Card card in opponents_cards)
+        foreach (Card card in opponents_cards)
         {
             all_cards_list.Add(card);
             card.transform.position = card_spawn_position;
@@ -360,9 +416,12 @@ public class BlackJackController : MonoBehaviour
         opponents_cards.Clear();
     }
 
+    /// <summary>
+    /// Rozpoczyna now¹ rundê, losuj¹c karty dla gracza i komputera.
+    /// </summary>
     private void StartNewRound()
     {
-        for(int i = 0; i < 2; i++)
+        for (int i = 0; i < 2; i++)
         {
             DrawPlayerCard();
             DrawComputerCard();
@@ -370,65 +429,107 @@ public class BlackJackController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Resetuje ca³¹ grê, ustalaj¹c wyniki wygranych i przegranych.
+    /// </summary>
     private void ResetGame()
     {
         player_wins = 0;
         player_loses = 0;
     }
 
+    /// <summary>
+    /// Uruchamia g³ówn¹ pêtlê gry Blackjack.
+    /// </summary>
     public void StartGame()
     {
         StartCoroutine(BlackJackGame());
     }
+
+    /// <summary>
+    /// Teleportuje gracza do miejsca, gdzie odbywa siê gra w Blackjacka.
+    /// </summary>
     private void TeleportPlayerToTable()
     {
         player_go.transform.position = place_to_tp_player_to_when_starting_game.position;
         Physics.SyncTransforms();
     }
+
+    /// <summary>
+    /// Zwraca, czy gracz mo¿e obecnie naciskaæ przyciski w grze.
+    /// </summary>
     public bool GetCanPressButtons()
     {
         return can_press_buttons;
     }
+
+    /// <summary>
+    /// Ustawia, czy gracz mo¿e naciskaæ przyciski.
+    /// </summary>
     public void SetCanPressButtons(bool b)
     {
         can_press_buttons = b;
     }
 
+    /// <summary>
+    /// Ustawia, czy to jest kolejka gracza.
+    /// </summary>
     public void SetIsPlayersTurn(bool b)
     {
         is_players_turn = b;
     }
 
+    /// <summary>
+    /// Zwraca liczbê wygranych gracza.
+    /// </summary>
     public int GetPlayerWins()
     {
         return player_wins;
     }
 
+    /// <summary>
+    /// Zwraca liczbê przegranych gracza.
+    /// </summary>
     public int GetPlayerLosses()
     {
         return player_loses;
     }
 
+    /// <summary>
+    /// Zwraca obecne punkty gracza.
+    /// </summary>
     public int GetCurrentPlayerPoints()
     {
         return current_player_points;
     }
 
+    /// <summary>
+    /// Zwraca obecne punkty komputera.
+    /// </summary>
     public int GetCurrentComputerPoints()
     {
         return current_opponent_points;
     }
 
+    /// <summary>
+    /// Ustawia wartoœæ zak³adu gracza.
+    /// </summary>
     public void SetBidMoney(int value)
     {
         bid_money = value;
     }
 
-    public bool GetIsROundDrew()
+    /// <summary>
+    /// Zwraca, czy runda zakoñczy³a siê remisem.
+    /// </summary>
+    public bool GetIsRoundDrew()
     {
         return is_round_drew;
     }
 
+    /// <summary>
+    /// Zwraca, czy gra jest czêœci¹ zadania.
+    /// </summary>
     public bool GetIsQuest()
     {
         return is_quest_game;

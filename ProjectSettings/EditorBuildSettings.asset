@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Kacper.unity
     guid: 4f2f42d6d2e41ff42af86c5c5832804d
+  - enabled: 0
+    path: Assets/Scenes/Janek.unity
+    guid: b67d9c1a89757e4478814d2a0653bde5
+  - enabled: 1
+    path: Assets/Scenes/Kacper2.unity
+    guid: af32526bfd44e6c439f2dd1a6100dabf
   m_configObjects: {}
