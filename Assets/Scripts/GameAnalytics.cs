@@ -45,7 +45,7 @@ namespace Assets.Scripts
         void Update()
         {
             // Zlicz czas gry
-            totalPlayTime += (Time.deltaTime); // / 3600.0f;
+            totalPlayTime += (Time.deltaTime * 0.0002778f);
         }
 
         public void ModifyStat(string key, object value)
@@ -57,11 +57,12 @@ namespace Assets.Scripts
                 stats.Add(key, value);
         }
 
-        public void ClearStatsOnFreshSave()
+        public void ClearStatsOnFreshSave(bool resetPlaytime)
         {
             //PlayerPrefs.SetFloat("TotalPlayTime", 0.0f);
             PlayerPrefs.SetInt("mostRecentlyCompletedQuestID", -1);
-            PlayerPrefs.SetInt("moneyCounter", 0);
+            PlayerPrefs.SetInt("deathCount", 0);
+            if(resetPlaytime) PlayerPrefs.SetFloat("TotalPlayTime", 0.0f);
         }
 
         /*void OnApplicationQuit()

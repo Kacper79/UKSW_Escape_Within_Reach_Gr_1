@@ -21,7 +21,7 @@ MonoBehaviour:
     response_audio_clip: {fileID: 8300000, guid: d37d0385ff9cef14f8fb59d4fa0e177c,
       type: 3}
     eventual_response_time_delay: 0
-  invoked_events_list: 060000000500000000000000
+  invoked_events_list: 050000000600000000000000
   options: []
   id_of_dialogue_option_to_go_back_to: 
   is_available: 1

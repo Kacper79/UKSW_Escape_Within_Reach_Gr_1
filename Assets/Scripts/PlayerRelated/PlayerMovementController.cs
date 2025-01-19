@@ -379,7 +379,7 @@ public class PlayerMovementController : MonoBehaviour
     private void HandleGravity()
     {
         player_character_controller.Move(new(0.000001f, y_velocity, 0.0f));
-        Debug.Log(y_velocity);
+        //Debug.Log(y_velocity);
         if (player_character_controller.isGrounded && y_velocity < 0.0f)
         {
             y_velocity = -0.01f;
@@ -387,7 +387,7 @@ public class PlayerMovementController : MonoBehaviour
         }
         else
         {
-            y_velocity += Time.deltaTime * gravity;
+            y_velocity += Time.deltaTime * Time.deltaTime * gravity;
         }
     }
 

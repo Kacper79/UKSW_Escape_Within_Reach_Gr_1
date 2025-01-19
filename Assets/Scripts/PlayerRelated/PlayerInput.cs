@@ -348,6 +348,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FlushAnalytics"",
+                    ""type"": ""Button"",
+                    ""id"": ""ed614bfb-5729-42a1-b1ee-c37f58d5590d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -416,6 +425,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""UseCigaretts"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""500a24e7-6e92-4998-9d21-2041ccb71a4e"",
+                    ""path"": ""<Keyboard>/f8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FlushAnalytics"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -474,6 +494,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_FunctionalPlayerInput_Pause = m_FunctionalPlayerInput.FindAction("Pause", throwIfNotFound: true);
         m_FunctionalPlayerInput_ThrowCoin = m_FunctionalPlayerInput.FindAction("ThrowCoin", throwIfNotFound: true);
         m_FunctionalPlayerInput_UseCigaretts = m_FunctionalPlayerInput.FindAction("UseCigaretts", throwIfNotFound: true);
+        m_FunctionalPlayerInput_FlushAnalytics = m_FunctionalPlayerInput.FindAction("FlushAnalytics", throwIfNotFound: true);
         // InPlayerAssetsUIPlayerInput
         m_InPlayerAssetsUIPlayerInput = asset.FindActionMap("InPlayerAssetsUIPlayerInput", throwIfNotFound: true);
         m_InPlayerAssetsUIPlayerInput_CloseWindow = m_InPlayerAssetsUIPlayerInput.FindAction("CloseWindow", throwIfNotFound: true);
@@ -738,6 +759,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_FunctionalPlayerInput_Pause;
     private readonly InputAction m_FunctionalPlayerInput_ThrowCoin;
     private readonly InputAction m_FunctionalPlayerInput_UseCigaretts;
+    private readonly InputAction m_FunctionalPlayerInput_FlushAnalytics;
     public struct FunctionalPlayerInputActions
     {
         private @PlayerInput m_Wrapper;
@@ -748,6 +770,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Pause => m_Wrapper.m_FunctionalPlayerInput_Pause;
         public InputAction @ThrowCoin => m_Wrapper.m_FunctionalPlayerInput_ThrowCoin;
         public InputAction @UseCigaretts => m_Wrapper.m_FunctionalPlayerInput_UseCigaretts;
+        public InputAction @FlushAnalytics => m_Wrapper.m_FunctionalPlayerInput_FlushAnalytics;
         public InputActionMap Get() { return m_Wrapper.m_FunctionalPlayerInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -775,6 +798,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @UseCigaretts.started += instance.OnUseCigaretts;
             @UseCigaretts.performed += instance.OnUseCigaretts;
             @UseCigaretts.canceled += instance.OnUseCigaretts;
+            @FlushAnalytics.started += instance.OnFlushAnalytics;
+            @FlushAnalytics.performed += instance.OnFlushAnalytics;
+            @FlushAnalytics.canceled += instance.OnFlushAnalytics;
         }
 
         private void UnregisterCallbacks(IFunctionalPlayerInputActions instance)
@@ -797,6 +823,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @UseCigaretts.started -= instance.OnUseCigaretts;
             @UseCigaretts.performed -= instance.OnUseCigaretts;
             @UseCigaretts.canceled -= instance.OnUseCigaretts;
+            @FlushAnalytics.started -= instance.OnFlushAnalytics;
+            @FlushAnalytics.performed -= instance.OnFlushAnalytics;
+            @FlushAnalytics.canceled -= instance.OnFlushAnalytics;
         }
 
         public void RemoveCallbacks(IFunctionalPlayerInputActions instance)
@@ -887,6 +916,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnThrowCoin(InputAction.CallbackContext context);
         void OnUseCigaretts(InputAction.CallbackContext context);
+        void OnFlushAnalytics(InputAction.CallbackContext context);
     }
     public interface IInPlayerAssetsUIPlayerInputActions
     {

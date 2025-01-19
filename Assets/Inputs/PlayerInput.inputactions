@@ -326,6 +326,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "FlushAnalytics",
+                    "type": "Button",
+                    "id": "ed614bfb-5729-42a1-b1ee-c37f58d5590d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -392,6 +401,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "UseCigaretts",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "500a24e7-6e92-4998-9d21-2041ccb71a4e",
+                    "path": "<Keyboard>/f8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FlushAnalytics",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

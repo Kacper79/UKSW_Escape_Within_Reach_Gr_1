@@ -43,7 +43,7 @@ namespace Assets.Scripts
         /// Rebinds given action to the new key binding supplied by listening to most recently pressed key
         /// </summary>
         /// <param name="actionName">the path containing the action map and the action name that is being rebinded </param>
-        public void ListenAndRebindControl(string actionName)
+        public void ListenAndRebindControl(string actionName, Action onRebindComplete)
         {
             InputAction changedAction = player_input.FindAction(actionName);
             if (changedAction == null)
@@ -56,7 +56,7 @@ namespace Assets.Scripts
                 Debug.Log($"Changing input action {actionName} to {newBinding} using listening");
                 changedAction.ApplyBindingOverride(0, newBinding);
 
-                //onRebindComplete?.Invoke();
+                onRebindComplete?.Invoke();
             });
         }
 

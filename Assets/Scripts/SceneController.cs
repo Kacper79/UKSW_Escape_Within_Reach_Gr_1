@@ -8,7 +8,7 @@ public class SceneController : MonoBehaviour
     /// <summary>
     /// Sta³e reprezentuj¹ce nazwy scen w grze.
     /// </summary>
-    public const string GAME_SCENE = "Kacper";
+    public const string GAME_SCENE = "Kacper2";
     public const string MAIN_MENU_SCENE = "MainMenuScene";
     public const string LOADING_SCENE = "LoadingScene";
 

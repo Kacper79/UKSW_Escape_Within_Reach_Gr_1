@@ -1,3 +1,4 @@
+using Assets.Scripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -36,6 +37,7 @@ public class FunctionalPlayerInputController : MonoBehaviour
         player_input.FunctionalPlayerInput.Pause.performed += PausePerformed;
         player_input.FunctionalPlayerInput.ThrowCoin.started += ThrowCoin;
         player_input.FunctionalPlayerInput.UseCigaretts.started += UseCigartetts;
+        player_input.FunctionalPlayerInput.FlushAnalytics.started += FlushAnalytics;
 
         // Nas³uchiwanie zdarzeñ otwierania i zamykania UI
         GlobalEvents.OnAnyUIOpen += DisableFunctionalPlayerInput;
@@ -56,6 +58,7 @@ public class FunctionalPlayerInputController : MonoBehaviour
         player_input.FunctionalPlayerInput.Pause.performed -= PausePerformed;
         player_input.FunctionalPlayerInput.ThrowCoin.started -= ThrowCoin;
         player_input.FunctionalPlayerInput.UseCigaretts.started -= UseCigartetts;
+        player_input.FunctionalPlayerInput.FlushAnalytics.started -= FlushAnalytics;
 
         // Anulowanie nas³uchiwania na zdarzenia UI
         GlobalEvents.OnAnyUIOpen -= DisableFunctionalPlayerInput;
@@ -134,5 +137,10 @@ public class FunctionalPlayerInputController : MonoBehaviour
     public void UseCigartetts(InputAction.CallbackContext ctx)
     {
         GlobalEvents.FireOnUseCigs(this);  // Wysy³a zdarzenie u¿ycia papierosów
+    }
+
+    public void FlushAnalytics(InputAction.CallbackContext ctx)
+    {
+        GameAnalytics.Instance.ClearStatsOnFreshSave(true);
     }
 }

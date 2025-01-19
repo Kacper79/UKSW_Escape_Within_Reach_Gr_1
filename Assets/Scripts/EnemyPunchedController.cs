@@ -24,6 +24,8 @@ public class EnemyPunchedController : MonoBehaviour, IAttackable
     /// </summary>
     [SerializeField] private bool is_quest_enemy;
 
+    [SerializeField] private GameObject objectToDestroy;
+
     /// <summary>
     /// Obs³uguje cios zadany przez gracza lub inny obiekt. Sprawdza, czy cios zosta³ zablokowany.
     /// Jeœli nie, zadaje obra¿enia, a nastêpnie sprawdza, czy wróg umar³.
@@ -87,10 +89,10 @@ public class EnemyPunchedController : MonoBehaviour, IAttackable
 
         if (is_quest_enemy)
         {
-            QuestManager.Instance.MarkQuestCompleted(7);
+            QuestManager.Instance.MarkQuestCompleted(6);
         }
 
-        Destroy(this.transform.parent.gameObject);
+        Destroy(objectToDestroy);
     }
 
     /// <summary>

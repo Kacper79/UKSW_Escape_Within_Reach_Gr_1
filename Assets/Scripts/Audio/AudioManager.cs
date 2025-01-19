@@ -35,7 +35,7 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Odtwarza jednorazowy efekt dŸwiêkowy.
+    /// Odtwarza jednorazowy efekt dzwiekowy.
     /// </summary>
     /// <param name="clip">AudioClip, który ma zostaæ odtworzony.</param>
     public void PlayGivenClip(AudioClip clip)
@@ -43,7 +43,7 @@ public class AudioManager : MonoBehaviour
         AudioSource audio_source = new GameObject("Audio Source").AddComponent<AudioSource>();
 
         audio_source.clip = clip;
-        audio_source.volume = 3.0f; // Domyœlna g³oœnoœæ (mo¿e byæ powi¹zana z ustawieniami u¿ytkownika)
+        audio_source.volume = Settings.GetAudioEffectsVolume(); // Domyslna glosnosc (moze byc powiazana z ustawieniami uzytkownika)
         audio_source.loop = false;
 
         Destroy(audio_source.gameObject, clip.length);
@@ -71,7 +71,7 @@ public class AudioManager : MonoBehaviour
         AudioSource audio_source = current_music_gameobject.AddComponent<AudioSource>();
 
         audio_source.clip = music;
-        audio_source.volume = 3.0f; // Domyœlna g³oœnoœæ muzyki (mo¿e byæ powi¹zana z ustawieniami u¿ytkownika)
+        audio_source.volume = Settings.GetMusicVolume(); // Domyœlna g³oœnoœæ muzyki (mo¿e byæ powi¹zana z ustawieniami u¿ytkownika)
         audio_source.loop = true;
 
         audio_source.Play();

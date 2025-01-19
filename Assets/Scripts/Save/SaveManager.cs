@@ -73,6 +73,7 @@ public class SaveManager : MonoBehaviour
         } else
         {
             DeleteSave();
+            GameAnalytics.Instance.ClearStatsOnFreshSave(false);
         }
     }
 

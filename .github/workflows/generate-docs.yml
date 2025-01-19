@@ -1,0 +1,38 @@
+name: Generate Documentation
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.x' # Wersja .NET, dostosuj do swojego projektu
+
+    - name: Install DocFX
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y mono-complete
+        wget https://github.com/dotnet/docfx/releases/download/v2.59.3/docfx.zip
+        unzip docfx.zip -d docfx
+
+    - name: Build documentation
+      run: |
+        mkdir _site
+        ./docfx/docfx build
+
+    - name: Upload documentation as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: documentation
+        path: _site

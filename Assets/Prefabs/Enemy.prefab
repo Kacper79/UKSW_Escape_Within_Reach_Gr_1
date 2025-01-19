@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85b073a8fd3287d49983e77afc32493c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  punchable_targets_detector: {fileID: 7338916548575725526}
   lightPunchDamage: 7
   heavyPunchDamage: 14
 --- !u!1 &653661238380107251
@@ -337,6 +336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy_controller: {fileID: 3914846090080188273}
   is_quest_enemy: 0
+  objectToDestroy: {fileID: 9212554465318734662}
 --- !u!136 &2814777686061824782
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -142,7 +142,7 @@ public class FightManager : MonoBehaviour
     public void EndTournament()
     {
         ring_collider.SetActive(false);
-        QuestManager.Instance.MarkQuestCompleted(8);
+        QuestManager.Instance.MarkQuestCompleted(0);
 
         GlobalEvents.FireOnStartingTransition(this, new(0.5f));
         Invoke(nameof(TeleportPlayerToPostinionBeforeStartingAFight), 0.3f);
