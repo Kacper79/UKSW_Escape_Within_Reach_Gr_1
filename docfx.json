@@ -7,13 +7,14 @@
           "exclude": ["**/obj/**", "**/bin/**"]
         }
       ],
-      "dest": "api"
+      "dest": "api",
+      "format": "yaml"
     }
   ],
   "build": {
     "content": [
       {
-        "files": ["Assets/Scripts/**/*.cs"]
+        "files": ["Assets/Scripts/**/*.cs", "api/**.yml", "api/**.md"]
       }
     ],
     "dest": "_site"
