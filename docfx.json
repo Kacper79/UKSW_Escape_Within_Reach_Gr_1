@@ -3,7 +3,7 @@
     {
       "src": [
         {
-          "files": ["**/*.cs"],
+          "files": ["Assets/Scripts/**/*.cs"],
           "exclude": ["**/obj/**", "**/bin/**"]
         }
       ],
@@ -13,7 +13,7 @@
   "build": {
     "content": [
       {
-        "files": ["**/*.cs"]
+        "files": ["Assets/Scripts/**/*.cs"]
       }
     ],
     "dest": "_site"
