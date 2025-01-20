@@ -250,7 +250,7 @@ public class PlayerMovementController : MonoBehaviour
         if (player_character_controller.isGrounded && can_move)
         {
             y_velocity = jump_force;
-            Debug.Log(y_velocity + " tried jumping");
+            //Debug.Log(y_velocity + " tried jumping");
         }
 
         did_jump_while_sprinted = is_sprinting;

@@ -27,6 +27,7 @@ public class SaveData
     //public bool isFinalQuestAvailable; 
     //Time of day
     public int timeInMinutes;
+    public int breakableWallItemsUsed;
 }
 
 /// <summary>

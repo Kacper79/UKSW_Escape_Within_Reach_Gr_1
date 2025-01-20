@@ -12,7 +12,7 @@ PrefabInstance:
         type: 3}
       propertyPath: icon
       value: 
-      objectReference: {fileID: 21300000, guid: 498245b1b615cbf4ea9a35a85b98ca9d,
+      objectReference: {fileID: 21300000, guid: 6f70e6cba93bde140b3bfe9c62fac9de,
         type: 3}
     - target: {fileID: -8738436348684546606, guid: 627d56eff12dc6746b8952f0e1c95c6e,
         type: 3}
@@ -37,7 +37,7 @@ PrefabInstance:
     - target: {fileID: -8738436348684546606, guid: 627d56eff12dc6746b8952f0e1c95c6e,
         type: 3}
       propertyPath: item_description
-      value: dynamicik
+      value: Sluzy do dobrych dymow
       objectReference: {fileID: 0}
     - target: {fileID: 2455722665956678146, guid: 627d56eff12dc6746b8952f0e1c95c6e,
         type: 3}
@@ -47,17 +47,17 @@ PrefabInstance:
     - target: {fileID: 4744418298075266307, guid: 627d56eff12dc6746b8952f0e1c95c6e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.26
+      value: 29.90699
       objectReference: {fileID: 0}
     - target: {fileID: 4744418298075266307, guid: 627d56eff12dc6746b8952f0e1c95c6e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.16
+      value: 0.95
       objectReference: {fileID: 0}
     - target: {fileID: 4744418298075266307, guid: 627d56eff12dc6746b8952f0e1c95c6e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.07
+      value: -18.580082
       objectReference: {fileID: 0}
     - target: {fileID: 4744418298075266307, guid: 627d56eff12dc6746b8952f0e1c95c6e,
         type: 3}

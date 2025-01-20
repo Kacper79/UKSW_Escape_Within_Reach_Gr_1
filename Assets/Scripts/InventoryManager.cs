@@ -45,7 +45,7 @@ public class InventoryManager : MonoBehaviour, ISaveable
     public Dictionary<string, int> item_amount = new();
     [SerializeField] private List<DialogueNodeSO> possiblePayoffDialogues;
     private List<DialogueNodeSO> payoffsToCheck = new();
-
+    public int GetPlotItemCount => plot_picked_up_items.Count;
 
     /// <summary>
     /// Inicjalizuje wartosci i subskrybuje zdarzenia.

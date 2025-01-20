@@ -115,7 +115,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 90217c8a66a592a499486d746b379801, type: 3}
   model: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   quest_id: 4
-  is_plot: 1
+  is_plot: 0
   is_interactable: 1
 --- !u!33 &7854652185073353802
 MeshFilter:
