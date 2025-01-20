@@ -6,28 +6,28 @@ using UnityEngine.InputSystem;
 
 
 /// <summary>
-/// Klasa odpowiedzialna za zarz¹dzanie interakcjami gracza z obiektami w grze.
-/// Obs³uguje detekcjê obiektów interakcji oraz wykonanie interakcji po naciœniêciu przycisku przez gracza.
+/// Klasa odpowiedzialna za zarzadzanie interakcjami gracza z obiektami w grze.
+/// Obsluguje detekcje obiektow interakcji oraz wykonanie interakcji po nacisnieciu przycisku przez gracza.
 /// </summary>
 public class PlayerInteractionController : MonoBehaviour
 {
     /// <summary>
-    /// Detektor obiektów interakcji w grze.
+    /// Detektor obiektow interakcji w grze.
     /// </summary>
     [SerializeField] private InteractableTargetsDetector interactable_targets_detector;
 
     /// <summary>
-    /// Komponent wejœcia gracza (PlayerInput).
+    /// Komponent wejscia gracza (PlayerInput).
     /// </summary>
     private PlayerInput player_input;
 
     /// <summary>
-    /// Flaga wskazuj¹ca, czy gracz mo¿e przeprowadzaæ interakcje.
+    /// Flaga wskazujaca, czy gracz moze przeprowadzaæ interakcje.
     /// </summary>
     private bool can_interact = true;
 
     /// <summary>
-    /// Aktualizacja logiki interakcji, sprawdzanie detektora obiektów.
+    /// Aktualizacja logiki interakcji, sprawdzanie detektora obiektow.
     /// </summary>
     private void Update()
     {
@@ -39,13 +39,13 @@ public class PlayerInteractionController : MonoBehaviour
     }
 
     /// <summary>
-    /// Subskrybuje zdarzenia wejœcia gracza.
+    /// Subskrybuje zdarzenia wejscia gracza.
     /// </summary>
     private void OnEnable()
     {
         player_input.InteractPlayerInput.Enable();
 
-        // Rejestracja metody obs³uguj¹cej interakcjê
+        // Rejestracja metody obs³ugujacej interakcje
         player_input.InteractPlayerInput.Interact.performed += InteractPerformed;
     }
 
@@ -56,27 +56,27 @@ public class PlayerInteractionController : MonoBehaviour
     {
         player_input.InteractPlayerInput.Disable();
 
-        // Usuniêcie metody obs³uguj¹cej interakcjê
+        // Usuniecie metody obs³ugujacej interakcje
         player_input.InteractPlayerInput.Interact.performed -= InteractPerformed;
     }
 
     /// <summary>
-    /// Wykonywanie interakcji, gdy gracz naciœnie odpowiedni przycisk.
+    /// Wykonywanie interakcji, gdy gracz nacisnie odpowiedni przycisk.
     /// </summary>
     private void InteractPerformed(InputAction.CallbackContext context)
     {
-        // Sprawdzenie, czy gracz mo¿e przeprowadzaæ interakcjê
+        // Sprawdzenie, czy gracz moze przeprowadzaæ interakcje
         if (can_interact)
         {
-            // Wywo³anie próby interakcji
+            // Wywolanie proby interakcji
             interactable_targets_detector.TryInteracting();
         }
     }
 
     /// <summary>
-    /// Ustawia obiekt wejœcia gracza.
+    /// Ustawia obiekt wejscia gracza.
     /// </summary>
-    /// <param name="input">Obiekt wejœcia gracza (PlayerInput).</param>
+    /// <param name="input">Obiekt wejscia gracza (PlayerInput).</param>
     public void SetPlayerInput(PlayerInput input)
     {
         player_input = input;

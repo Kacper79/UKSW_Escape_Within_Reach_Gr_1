@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Klasa odpowiedzialna za zarz¹dzanie interfejsem u¿ytkownika (UI) postêpu wydobycia.
+/// Klasa odpowiedzialna za zarzadzanie interfejsem uzytkownika (UI) postepu wydobycia.
 /// </summary>
 public class MiningProgressUI : MonoBehaviour
 {
     /// <summary>
-    /// Pasek postêpu, który reprezentuje postêp wydobycia.
+    /// Pasek postepu, ktory reprezentuje postep wydobycia.
     /// </summary>
     [SerializeField] private ProgressBar mining_progress_bar;
 
     /// <summary>
-    /// Inicjalizuje UI i ustawia jego pocz¹tkowy stan (wy³¹czony).
+    /// Inicjalizuje UI i ustawia jego poczatkowy stan (wylaczony).
     /// </summary>
     private void Start()
     {
@@ -21,7 +21,7 @@ public class MiningProgressUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Subskrybuje zdarzenie, które wy³¹cza UI, gdy nie patrzymy na interaktywny obiekt.
+    /// Subskrybuje zdarzenie, ktore wylacza UI, gdy nie patrzymy na interaktywny obiekt.
     /// </summary>
     private void OnEnable()
     {
@@ -29,7 +29,7 @@ public class MiningProgressUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Anuluje subskrypcjê zdarzenia przy wy³¹czeniu obiektu.
+    /// Anuluje subskrypcje zdarzenia przy wylaczeniu obiektu.
     /// </summary>
     private void OnDisable()
     {
@@ -37,7 +37,7 @@ public class MiningProgressUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Wy³¹cza UI wydobycia, gdy nie patrzymy na interaktywny obiekt.
+    /// Wylacza UI wydobycia, gdy nie patrzymy na interaktywny obiekt.
     /// </summary>
     private void DisableUI(object sender, System.EventArgs e)
     {
@@ -45,7 +45,7 @@ public class MiningProgressUI : MonoBehaviour
     }
 
     /// <summary>
-    /// W³¹cza UI postêpu wydobycia.
+    /// Wlacza UI postepu wydobycia.
     /// </summary>
     public void EnableUI()
     {
@@ -53,7 +53,7 @@ public class MiningProgressUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Wy³¹cza UI postêpu wydobycia.
+    /// Wylacza UI postepu wydobycia.
     /// </summary>
     public void DisableUI()
     {
@@ -61,10 +61,10 @@ public class MiningProgressUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Ustawia wartoœci paska postêpu na podstawie postêpu i maksymalnego postêpu.
+    /// Ustawia wartosci paska postepu na podstawie postepu i maksymalnego postepu.
     /// </summary>
-    /// <param name="progress">Aktualny postêp wydobycia.</param>
-    /// <param name="max_progress">Maksymalny postêp wydobycia.</param>
+    /// <param name="progress">Aktualny postep wydobycia.</param>
+    /// <param name="max_progress">Maksymalny postep wydobycia.</param>
     public void PassValuesToProgressbar(float progress, float max_progress)
     {
         mining_progress_bar.SetProgressBarValues(progress, max_progress);

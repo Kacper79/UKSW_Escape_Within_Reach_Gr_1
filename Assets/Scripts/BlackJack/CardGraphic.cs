@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Zarz¹dza grafik¹ karty, w tym jej awersem, rewersem i ikonami.
+/// Zarzadza grafika karty, w tym jej awersem, rewersem i ikonami.
 /// </summary>
 public class CardGraphic : MonoBehaviour
 {
@@ -22,7 +22,7 @@ public class CardGraphic : MonoBehaviour
     [SerializeField] private GameObject reverse;
 
     /// <summary>
-    /// Inicjalizuje grafikê karty na podstawie podanej figury i koloru.
+    /// Inicjalizuje grafike karty na podstawie podanej figury i koloru.
     /// </summary>
     /// <param name="figura">Numer figury karty.</param>
     /// <param name="kolor">Numer koloru karty.</param>
@@ -46,7 +46,7 @@ public class CardGraphic : MonoBehaviour
     }
 
     /// <summary>
-    /// Wyœwietla awers karty.
+    /// Wyswietla awers karty.
     /// </summary>
     public void ShowObverse()
     {
@@ -55,7 +55,7 @@ public class CardGraphic : MonoBehaviour
     }
 
     /// <summary>
-    /// Ukrywa grafikê karty.
+    /// Ukrywa grafike karty.
     /// </summary>
     public void TurnOffgraphic()
     {
@@ -64,7 +64,7 @@ public class CardGraphic : MonoBehaviour
     }
 
     /// <summary>
-    /// Wyœwietla rewers karty.
+    /// Wyswietla rewers karty.
     /// </summary>
     public void ShowReverse()
     {

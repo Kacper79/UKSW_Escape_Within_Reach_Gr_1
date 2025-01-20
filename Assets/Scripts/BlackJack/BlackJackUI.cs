@@ -1,12 +1,12 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Zarz¹dza interfejsem u¿ytkownika gry w Blackjacka.
-/// Obs³uguje przyciski, suwaki oraz wyœwietlanie wyników.
+/// Zarzadza interfejsem uzytkownika gry w Blackjacka.
+/// Obsluguje przyciski, suwaki oraz wyswietlanie wynikow.
 /// </summary>
 public class BlackJackUI : MonoBehaviour
 {
@@ -38,12 +38,12 @@ public class BlackJackUI : MonoBehaviour
     private const string PLAYER_LOSSES_TEXT = "Przegranych: ";
     private const string CURRENT_PLAYER_POINTS_TEXT = "Twoje Punkty: ";
     private const string CURRENT_COMPUTER_POINTS = "Punkty Dziada: ";
-    private const string PLAYER_WON_ROUND_TEXT = "Wygra³eœ rundê!";
-    private const string COMP_WON_ROUND_TEXT = "Dziad wygra³ rundê!";
+    private const string PLAYER_WON_ROUND_TEXT = "WygraÂ³eÅ“ runde!";
+    private const string COMP_WON_ROUND_TEXT = "Dziad wygral runde!";
     private const string ROUND_DREW = "Runda remisowa!";
 
     /// <summary>
-    /// Inicjalizuje UI i ustawia pocz¹tkowe wartoœci oraz eventy dla przycisków.
+    /// Inicjalizuje UI i ustawia poczatkowe wartosci oraz eventy dla przyciskow.
     /// </summary>
     private void Start()
     {
@@ -66,8 +66,8 @@ public class BlackJackUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Aktualizuje interfejs u¿ytkownika w ka¿dej klatce.
-    /// Ustawia interaktywnoœæ przycisków oraz aktualizuje wartoœci tekstowe.
+    /// Aktualizuje interfejs uzytkownika w kazdej klatce.
+    /// Ustawia interaktywnosc przyciskow oraz aktualizuje wartosci tekstowe.
     /// </summary>
     private void Update()
     {
@@ -97,7 +97,7 @@ public class BlackJackUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Wywo³ywane podczas zamykania UI, informuje system o jego zamkniêciu.
+    /// Wywolywane podczas zamykania UI, informuje system o jego zamknieciu.
     /// </summary>
     private void OnDisable()
     {
@@ -105,7 +105,7 @@ public class BlackJackUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Obs³uguje klikniêcie przycisku "Dobierz kartê".
+    /// Obsluguje klikniecie przycisku "Dobierz karte".
     /// </summary>
     private void OnDrawButtonClick()
     {
@@ -113,7 +113,7 @@ public class BlackJackUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Obs³uguje klikniêcie przycisku "Zostañ", koñczy turê gracza.
+    /// Obsluguje klikniecie przycisku "Zostan", konczy ture gracza.
     /// </summary>
     private void OnStayButtonClick()
     {
@@ -122,7 +122,7 @@ public class BlackJackUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Ustawia wartoœæ zak³adu na podstawie pozycji suwaka.
+    /// Ustawia wartosc zakladu na podstawie pozycji suwaka.
     /// </summary>
     private void SetBidGold(float value)
     {
@@ -130,7 +130,7 @@ public class BlackJackUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Obs³uguje klikniêcie przycisku "Rozpocznij grê".
+    /// Obsluguje klikniecie przycisku "Rozpocznij gre".
     /// </summary>
     private void OnStartGameButtonClick()
     {
@@ -140,9 +140,9 @@ public class BlackJackUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Wyœwietla zwyciêzcê rundy na ekranie.
+    /// Wyswietla zwyciezce rundy na ekranie.
     /// </summary>
-    /// <param name="did_player_win">Czy gracz wygra³ rundê?</param>
+    /// <param name="did_player_win">Czy gracz wygral runde</param>
     public void ShowRoundWinner(bool did_player_win)
     {
         round_winner.gameObject.SetActive(true);
@@ -162,7 +162,7 @@ public class BlackJackUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Ukrywa informacjê o zwyciêzcy rundy.
+    /// Ukrywa informacje o zwyciezcy rundy.
     /// </summary>
     public void HideRoundWinner()
     {

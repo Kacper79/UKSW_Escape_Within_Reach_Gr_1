@@ -4,24 +4,24 @@ using TMPro;
 using UnityEngine;
 
 /// <summary>
-/// Klasa odpowiedzialna za wyœwietlanie i zarz¹dzanie stron¹ znalezion¹ przez gracza.
+/// Klasa odpowiedzialna za wyswietlanie i zarzadzanie strona znaleziona przez gracza.
 /// </summary>
 public class FoundPageUI : MonoBehaviour
 {
     /// <summary>
-    /// Pole przechowuj¹ce referencje do komponentów TextMeshProUGUI dla tytu³u i treœci strony.
+    /// Pole przechowujace referencje do komponentow TextMeshProUGUI dla tytulu i treœci strony.
     /// </summary>
     [Header("Content references")]
     [SerializeField] private TextMeshProUGUI title_TMP;
     [SerializeField] private TextMeshProUGUI content_TMP;
 
     /// <summary>
-    /// Liczba naciœniêæ przycisku interakcji. S³u¿y do zarejestrowania naciœniêæ przycisku E oraz zniszczenia strony po interakcji.
+    /// Liczba nacisniec przycisku interakcji. Sluzy do zarejestrowania nacisniec przycisku E oraz zniszczenia strony po interakcji.
     /// </summary>
     private int times_interaction_button_was_pressed = 0;
 
     /// <summary>
-    /// Uruchamia zdarzenie informuj¹ce o otwarciu UI.
+    /// Uruchamia zdarzenie informujace o otwarciu UI.
     /// </summary>
     private void Start()
     {
@@ -29,7 +29,7 @@ public class FoundPageUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Sprawdza, czy gracz nacisn¹³ klawisz Escape w celu zamkniêcia strony.
+    /// Sprawdza, czy gracz nacisnal klawisz Escape w celu zamkniecia strony.
     /// </summary>
     private void Update()
     {
@@ -40,10 +40,10 @@ public class FoundPageUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Inicjalizuje stronê, ustawiaj¹c tytu³ i treœæ.
+    /// Inicjalizuje strone, ustawiajac tytul i tresc.
     /// </summary>
-    /// <param name="title">Tytu³ strony.</param>
-    /// <param name="content">Treœæ strony.</param>
+    /// <param name="title">Tytul strony.</param>
+    /// <param name="content">Tresc strony.</param>
     public void Init(string title, string content)
     {
         title_TMP.text = title;
@@ -51,7 +51,7 @@ public class FoundPageUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Zamyka stronê, wywo³uj¹c odpowiednie zdarzenia i niszcz¹c obiekt.
+    /// Zamyka strone, wywolujac odpowiednie zdarzenia i niszczac obiekt.
     /// </summary>
     private void CleanUpBeforeAndDestroy()
     {

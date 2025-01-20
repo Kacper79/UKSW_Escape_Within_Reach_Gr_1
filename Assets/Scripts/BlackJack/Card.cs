@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Reprezentuje pojedyncz¹ kartê w grze.
-/// Przechowuje wartoœci figury i koloru oraz zarz¹dza grafik¹ karty.
+/// Reprezentuje pojedyncza karte w grze.
+/// Przechowuje wartosci figury i koloru oraz zarzdza grafika karty.
 /// </summary>
 public class Card : MonoBehaviour
 {
@@ -14,10 +14,10 @@ public class Card : MonoBehaviour
     private int kolor;
 
     /// <summary>
-    /// Inicjalizuje wartoœci figury i koloru karty oraz ustawia grafikê.
+    /// Inicjalizuje wartosci figury i koloru karty oraz ustawia grafike.
     /// </summary>
-    /// <param name="figura_">Wartoœæ figury karty.</param>
-    /// <param name="kolor_">Wartoœæ koloru karty.</param>
+    /// <param name="figura_">Wartosc figury karty.</param>
+    /// <param name="kolor_">Wartosc koloru karty.</param>
     public void InitializeValues(int figura_, int kolor_)
     {
         figura = figura_;
@@ -26,7 +26,7 @@ public class Card : MonoBehaviour
     }
 
     /// <summary>
-    /// Resetuje transform karty do domyœlnej pozycji i rotacji.
+    /// Resetuje transform karty do domyslnej pozycji i rotacji.
     /// </summary>
     public void ZerowanieTranformu()
     {
@@ -43,7 +43,7 @@ public class Card : MonoBehaviour
     }
 
     /// <summary>
-    /// Zwraca wartoœæ figury karty.
+    /// Zwraca wartosc figury karty.
     /// </summary>
     public int GetValue()
     {
@@ -51,9 +51,9 @@ public class Card : MonoBehaviour
     }
 
     /// <summary>
-    /// Ustawia wartoœæ figury karty.
+    /// Ustawia wartosc figury karty.
     /// </summary>
-    /// <param name="i">Nowa wartoœæ figury.</param>
+    /// <param name="i">Nowa wartosc figury.</param>
     public void SetValue(int i)
     {
         figura = i;

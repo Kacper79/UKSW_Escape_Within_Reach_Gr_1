@@ -4,18 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Klasa odpowiedzialna za zarz¹dzanie wejœciem gracza i powi¹zanie komponentów wejœcia z ró¿nymi kontrolerami gracza.
-/// Obs³uguje w³¹czanie i wy³¹czanie kontrolerów w zale¿noœci od sytuacji w grze, np. w czasie dialogów czy podczas czytania strony.
+/// Klasa odpowiedzialna za zarzadzanie wejsciem gracza i powiazanie komponentow wejscia z roznymi kontrolerami gracza.
+/// Obsluguje wlaczanie i wylaczanie kontrolerow w zaleznosci od sytuacji w grze, np. w czasie dialogow czy podczas czytania strony.
 /// </summary>
 public class PlayerInputController : MonoBehaviour
 {
     /// <summary>
-    /// Obiekt przechowuj¹cy dane wejœcia gracza (PlayerInput).
+    /// Obiekt przechowujacy dane wejscia gracza (PlayerInput).
     /// </summary>
     [SerializeField] private PlayerInput player_input;
 
     /// <summary>
-    /// Inicjalizuje obiekt, ustawia odpowiednie referencje do kontrolerów gracza i zarz¹dza przypisaniem komponentu wejœcia.
+    /// Inicjalizuje obiekt, ustawia odpowiednie referencje do kontrolerow gracza i zarzadza przypisaniem komponentu wejscia.
     /// </summary>
     private void Awake()
     {
@@ -26,7 +26,7 @@ public class PlayerInputController : MonoBehaviour
         }
         player_input = GameObject.Find("RebindGO").GetComponent<RebindManager>().player_input;
 
-        // Ustawienie wejœcia dla ró¿nych kontrolerów gracza
+        // Ustawienie wejscia dla roznych kontrolerow gracza
         GetComponentInChildren<PlayerInteractionController>().SetPlayerInput(player_input);
         GetComponentInChildren<PlayerMovementController>().SetPlayerInput(player_input);
         GetComponentInChildren<PlayerAttackingController>().SetPlayerInput(player_input);
@@ -35,7 +35,7 @@ public class PlayerInputController : MonoBehaviour
     }
 
     /// <summary>
-    /// Subskrybuje zdarzenia globalne do w³¹czania i wy³¹czania kontrolerów podczas ró¿nych faz gry.
+    /// Subskrybuje zdarzenia globalne do wlaczania i wylaczania kontrolerow podczas roznych faz gry.
     /// </summary>
     private void OnEnable()
     {
@@ -59,7 +59,7 @@ public class PlayerInputController : MonoBehaviour
     }
 
     /// <summary>
-    /// W³¹cza wszystkie kontrolery gracza.
+    /// Wlacza wszystkie kontrolery gracza.
     /// </summary>
     private void EnableAllControllers(object sender, System.EventArgs e)
     {
@@ -67,7 +67,7 @@ public class PlayerInputController : MonoBehaviour
     }
 
     /// <summary>
-    /// Wy³¹cza wszystkie kontrolery gracza.
+    /// Wylacza wszystkie kontrolery gracza.
     /// </summary>
     private void DisableAllControllers(object sender, System.EventArgs e)
     {
@@ -75,7 +75,7 @@ public class PlayerInputController : MonoBehaviour
     }
 
     /// <summary>
-    /// Wy³¹cza wszystkie kontrolery gracza, takie jak ruch, atak i interakcje.
+    /// Wylacza wszystkie kontrolery gracza, takie jak ruch, atak i interakcje.
     /// </summary>
     private void DisableAllControllers()
     {
@@ -85,7 +85,7 @@ public class PlayerInputController : MonoBehaviour
     }
 
     /// <summary>
-    /// W³¹cza wszystkie kontrolery gracza, takie jak ruch, atak i interakcje.
+    /// Wlacza wszystkie kontrolery gracza, takie jak ruch, atak i interakcje.
     /// </summary>
     private void EnableAllControllers()
     {
@@ -95,7 +95,7 @@ public class PlayerInputController : MonoBehaviour
     }
 
     /// <summary>
-    /// Wy³¹cza kontroler ruchu.
+    /// Wylacza kontroler ruchu.
     /// </summary>
     private void DisableMovementController()
     {
@@ -103,7 +103,7 @@ public class PlayerInputController : MonoBehaviour
     }
 
     /// <summary>
-    /// W³¹cza kontroler ruchu.
+    /// Wlacza kontroler ruchu.
     /// </summary>
     private void EnableMovementController()
     {
@@ -111,7 +111,7 @@ public class PlayerInputController : MonoBehaviour
     }
 
     /// <summary>
-    /// Wy³¹cza kontroler ataku.
+    /// Wylacza kontroler ataku.
     /// </summary>
     private void DisableAttackingController()
     {
@@ -119,7 +119,7 @@ public class PlayerInputController : MonoBehaviour
     }
 
     /// <summary>
-    /// W³¹cza kontroler ataku.
+    /// Wlacza kontroler ataku.
     /// </summary>
     private void EnableAttackingController()
     {
@@ -127,7 +127,7 @@ public class PlayerInputController : MonoBehaviour
     }
 
     /// <summary>
-    /// Wy³¹cza kontroler interakcji.
+    /// Wylacza kontroler interakcji.
     /// </summary>
     private void DisableInteractionController()
     {
@@ -135,7 +135,7 @@ public class PlayerInputController : MonoBehaviour
     }
 
     /// <summary>
-    /// W³¹cza kontroler interakcji.
+    /// Wlacza kontroler interakcji.
     /// </summary>
     private void EnableInteractionController()
     {

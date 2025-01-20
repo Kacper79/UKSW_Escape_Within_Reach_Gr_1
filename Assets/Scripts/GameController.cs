@@ -12,26 +12,26 @@ public class GameController : MonoBehaviour
     /// </summary>
     private void OnEnable()
     {
-        // Subskrypcja do globalnych zdarzeñ (pauza, wznowienie)
+        // Subskrypcja do globalnych zdarzen (pauza, wznowienie)
         GlobalEvents.OnPauseGame += PauseGame;
         GlobalEvents.OnResumeGame += ResumeGame;
 
-        // Ustawienie czasu gry na normaln¹ prêdkoœæ (1.0f)
+        // Ustawienie czasu gry na normaln¹ predkosc (1.0f)
         Time.timeScale = 1.0f;
     }
 
     /// <summary>
-    /// Anuluje subskrypcjê zdarzeñ podczas dezaktywacji obiektu.
+    /// Anuluje subskrypcje zdarzen podczas dezaktywacji obiektu.
     /// </summary>
     private void OnDisable()
     {
-        // Anulowanie subskrypcji globalnych zdarzeñ
+        // Anulowanie subskrypcji globalnych zdarzen
         GlobalEvents.OnPauseGame -= PauseGame;
         GlobalEvents.OnResumeGame -= ResumeGame;
     }
 
     /// <summary>
-    /// Wstrzymuje grê (czas gry = 0).
+    /// Wstrzymuje gre (czas gry = 0).
     /// </summary>
     private void PauseGame(object sender, EventArgs e)
     {
@@ -39,7 +39,7 @@ public class GameController : MonoBehaviour
     }
 
     /// <summary>
-    /// Wznawia grê (czas gry = 1).
+    /// Wznawia gre (czas gry = 1).
     /// </summary>
     private void ResumeGame(object sender, EventArgs e)
     {

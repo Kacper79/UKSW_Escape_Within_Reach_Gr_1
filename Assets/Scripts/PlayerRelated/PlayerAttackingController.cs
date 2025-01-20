@@ -1,44 +1,39 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Interactions;
 
 /// <summary>
-/// Klasa odpowiedzialna za zarz¹dzanie akcjami ataków, blokowania i dashowania gracza.
-/// Obs³uguje wirtualne ataki lekkie i silne, a tak¿e mechanikê dashowania oraz blokowania.
+/// Klasa odpowiedzialna za zarzadzanie akcjami atakow, blokowania i dashowania gracza.
+/// Obsluguje wirtualne ataki lekkie i silne, a takze mechanike dashowania oraz blokowania.
 /// </summary>
 public class PlayerAttackingController : MonoBehaviour
 {
-    private const float MIN_TIME_BETWEEN_PUNCHES = 0.4f; // Minimalny czas miêdzy dwoma ciosami
+    private const float MIN_TIME_BETWEEN_PUNCHES = 0.4f; // Minimalny czas miedzy dwoma ciosami
     private const float LIGHT_PUNCH_CAST_TIME = 0.166f; // Czas trwania ciosu lekkiego
     private const float STRONG_PUNCH_CAST_TIME = 0.166f; // Czas trwania ciosu silnego
-    private const int LIGHT_PUNCH_DAMAGE = 7; // Obra¿enia za cios lekki
-    private const int STRONG_PUNCH_DAMAGE = 14; // Obra¿enia za cios silny
+    private const int LIGHT_PUNCH_DAMAGE = 7; // Obrazenia za cios lekki
+    private const int STRONG_PUNCH_DAMAGE = 14; // Obrazenia za cios silny
 
     private const float DASH_TIME = 0.1f; // Czas trwania dashowania
     private const float DASH_COOLDOWN = 0.1f; // Czas odnowienia dashowania
 
-    //[SerializeField] private PlayerAnimationController player_animation_controller; // Animacje gracza (do póŸniejszego u¿ycia)
-    [SerializeField] private PunchableTargetsDetector punchable_targets_detector; // Detektor celów do uderzenia
-    [SerializeField] private GameObject player_go; // Graj¹cy obiekt gracza
+    //[SerializeField] private PlayerAnimationController player_animation_controller; // Animacje gracza (do pozniejszego uzycia)
+    [SerializeField] private PunchableTargetsDetector punchable_targets_detector; // Detektor celow do uderzenia
+    [SerializeField] private GameObject player_go; // Grajacy obiekt gracza
     [SerializeField] private CharacterController player_character_controller; // Kontroler postaci
 
-    [SerializeField] private float dash_speed; // Prêdkoœæ dashowania
+    [SerializeField] private float dash_speed; // Predkosc dashowania
 
     private PlayerInput player_input;
 
     public bool is_blocking = false; // Czy gracz blokuje
-    private bool can_punch = true; // Czy gracz mo¿e wykonaæ cios
-    private bool can_dash = true; // Czy gracz mo¿e wykonaæ dash
+    private bool can_punch = true; // Czy gracz moze wykonac cios
+    private bool can_dash = true; // Czy gracz moze wykonac dash
 
     private float time_since_punched = 0.26f; // Czas od ostatniego ciosu
 
     /// <summary>
-    /// Sprawdza czas od ostatniego ciosu i wznawia mo¿liwoœæ uderzenia po odpowiednim czasie.
+    /// Sprawdza czas od ostatniego ciosu i wznawia mozliwosc uderzenia po odpowiednim czasie.
     /// </summary>
     private void Update()
     {
@@ -54,7 +49,7 @@ public class PlayerAttackingController : MonoBehaviour
     }
 
     /// <summary>
-    /// Rejestruje akcje wejœcia, umo¿liwiaj¹c atakowanie i blokowanie.
+    /// Rejestruje akcje wejscia, umozliwiajac atakowanie i blokowanie.
     /// </summary>
     private void OnEnable()
     {
@@ -69,7 +64,7 @@ public class PlayerAttackingController : MonoBehaviour
     }
 
     /// <summary>
-    /// Od³¹cza zdarzenia wejœciowe przy dezaktywacji.
+    /// Odlacza zdarzenia wejsciowe przy dezaktywacji.
     /// </summary>
     private void OnDisable()
     {
@@ -84,7 +79,7 @@ public class PlayerAttackingController : MonoBehaviour
     }
 
     /// <summary>
-    /// Reakcja na rozpoczêcie lekkiego ciosu. Mo¿e wywo³aæ animacjê (na póŸniej).
+    /// Reakcja na rozpoczecie lekkiego ciosu. Moze wywolac animacje (na pozniej).
     /// </summary>
     private void LightPunchStarted(InputAction.CallbackContext context)
     {
@@ -95,7 +90,7 @@ public class PlayerAttackingController : MonoBehaviour
     }
 
     /// <summary>
-    /// Wykonanie lekkiego ciosu. U¿ywa korutyny do sprawdzenia trafienia celu.
+    /// Wykonanie lekkiego ciosu. Uzywa korutyny do sprawdzenia trafienia celu.
     /// </summary>
     private void LightPunchPerformed(InputAction.CallbackContext context)
     {
@@ -109,7 +104,7 @@ public class PlayerAttackingController : MonoBehaviour
     }
 
     /// <summary>
-    /// Wykonanie silnego ciosu. U¿ywa korutyny do sprawdzenia trafienia celu.
+    /// Wykonanie silnego ciosu. Uzywa korutyny do sprawdzenia trafienia celu.
     /// </summary>
     private void StrongPunchPerformed(InputAction.CallbackContext context)
     {
@@ -124,7 +119,7 @@ public class PlayerAttackingController : MonoBehaviour
     }
 
     /// <summary>
-    /// Rozpoczêcie akcji dashowania. Gracz mo¿e dashowaæ tylko, jeœli spe³nia odpowiednie warunki.
+    /// Rozpoczecie akcji dashowania. Gracz moze dashowac tylko, jesli spelnia odpowiednie warunki.
     /// </summary>
     private void DashStarted(InputAction.CallbackContext context)
     {
@@ -142,7 +137,7 @@ public class PlayerAttackingController : MonoBehaviour
     }
 
     /// <summary>
-    /// Rozpoczêcie blokowania. Gracz zaczyna blokowaæ.
+    /// Rozpoczecie blokowania. Gracz zaczyna blokowanie.
     /// </summary>
     private void BlockStarted(InputAction.CallbackContext context)
     {
@@ -151,7 +146,7 @@ public class PlayerAttackingController : MonoBehaviour
     }
 
     /// <summary>
-    /// Zakoñczenie blokowania. Gracz przestaje blokowaæ.
+    /// Zakonczenie blokowania. Gracz przestaje blokowac.
     /// </summary>
     private void BlockCanceled(InputAction.CallbackContext context)
     {
@@ -160,7 +155,7 @@ public class PlayerAttackingController : MonoBehaviour
     }
 
     /// <summary>
-    /// Korutyna odpowiedzialna za sprawdzenie, czy gracz trafi³ w cel po wykonaniu ciosu.
+    /// Korutyna odpowiedzialna za sprawdzenie, czy gracz trafil w cel po wykonaniu ciosu.
     /// </summary>
     private IEnumerator TryHittingSomeone(int damage, float time)
     {
@@ -170,15 +165,15 @@ public class PlayerAttackingController : MonoBehaviour
     }
 
     /// <summary>
-    /// Sprawdza, czy gracz mo¿e wykonaæ dashowanie (np. czy posiada wystarczaj¹c¹ iloœæ staminy).
+    /// Sprawdza, czy gracz moze wykonac dashowanie (np. czy posiada wystarczajaca ilosc staminy).
     /// </summary>
     private bool IsAbleToDash()
     {
-        return true; // W przysz³oœci mo¿e zostaæ dodana mechanika wytrzyma³oœci.
+        return true; // W przyszlosci moze zostac dodana mechanika wytrzymalosci.
     }
 
     /// <summary>
-    /// Korutyna odpowiedzialna za wykonanie dashowania, przemieszczaj¹c gracza w wybranym kierunku.
+    /// Korutyna odpowiedzialna za wykonanie dashowania, przemieszczajac gracza w wybranym kierunku.
     /// </summary>
     private IEnumerator Dash(Vector3 move_dir)
     {
@@ -205,7 +200,7 @@ public class PlayerAttackingController : MonoBehaviour
     }
 
     /// <summary>
-    /// Ustawia referencjê do wejœcia gracza (PlayerInput).
+    /// Ustawia referencje do wejscia gracza (PlayerInput).
     /// </summary>
     public void SetPlayerInput(PlayerInput input)
     {

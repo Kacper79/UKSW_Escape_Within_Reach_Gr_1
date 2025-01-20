@@ -4,34 +4,34 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Klasa odpowiedzialna za zarz¹dzanie reakcj¹ wroga na ciosy, w tym blokowanie ciosów, 
-/// zadawanie obra¿eñ, oraz sprawdzanie, czy wróg zgin¹³.
+/// Klasa odpowiedzialna za zarzadzanie reakcja wroga na ciosy, w tym blokowanie ciosow, 
+/// zadawanie obrazen, oraz sprawdzanie, czy wrog zginal.
 /// </summary>
 public class EnemyPunchedController : MonoBehaviour, IAttackable
 {
     /// <summary>
-    /// Maksymalny k¹t (w stopniach), w jakim wróg mo¿e zablokowaæ cios z uniesion¹ gard¹.
+    /// Maksymalny kat (w stopniach), w jakim wrog moze zablokowac cios z uniesiona garda.
     /// </summary>
     private const float MAX_HIT_EULER_DEGREE_WITH_GUARD_UP = 45.0f;
 
     /// <summary>
-    /// Kontroler wroga, który zarz¹dza jego stanem zdrowia i blokowaniem ciosów.
+    /// Kontroler wroga, ktory zarzadza jego stanem zdrowia i blokowaniem ciosow.
     /// </summary>
     [SerializeField] private Enemy enemy_controller;
 
     /// <summary>
-    /// Okreœla, czy wróg jest czêœci¹ zadania (quest).
+    /// Okresla, czy wrog jest czescia zadania (quest).
     /// </summary>
     [SerializeField] private bool is_quest_enemy;
 
     [SerializeField] private GameObject objectToDestroy;
 
     /// <summary>
-    /// Obs³uguje cios zadany przez gracza lub inny obiekt. Sprawdza, czy cios zosta³ zablokowany.
-    /// Jeœli nie, zadaje obra¿enia, a nastêpnie sprawdza, czy wróg umar³.
+    /// Obsluguje cios zadany przez gracza lub inny obiekt. Sprawdza, czy cios zostal zablokowany.
+    /// Jesli nie, zadaje obrazenia, a nastepnie sprawdza, czy wrog umarl.
     /// </summary>
-    /// <param name="amount">Iloœæ zadanych obra¿eñ.</param>
-    /// <param name="damage_dealer_position">Pozycja Ÿród³a zadaj¹cego obra¿enia.</param>
+    /// <param name="amount">Ilosc zadanych obrazen.</param>
+    /// <param name="damage_dealer_position">Pozycja srodka zadajacego obrazenia.</param>
     void IAttackable.Punched(int amount, Vector3 damage_dealer_position)
     {
         if (!DidBlockPunch(damage_dealer_position))
@@ -48,35 +48,35 @@ public class EnemyPunchedController : MonoBehaviour, IAttackable
     }
 
     /// <summary>
-    /// Sprawdza, czy wróg ma uniesion¹ gardê.
+    /// Sprawdza, czy wrog ma uniesiona garde.
     /// </summary>
-    /// <returns>True, jeœli wróg blokuje ciosy, false w przeciwnym przypadku.</returns>
+    /// <returns>True, jesli wrog blokuje ciosy, false w przeciwnym przypadku.</returns>
     bool IAttackable.GetIsGuardUp()
     {
         return enemy_controller.GetBlockUp();
     }
 
     /// <summary>
-    /// Zadaje obra¿enia wrogowi.
+    /// Zadaje obrazenia wrogowi.
     /// </summary>
-    /// <param name="amount">Iloœæ obra¿eñ do zadania.</param>
+    /// <param name="amount">Ilosc obrazen do zadania.</param>
     void IAttackable.TakeDamage(int amount)
     {
         enemy_controller.TakeDamage(amount);
     }
 
     /// <summary>
-    /// Pobiera aktualn¹ iloœæ punktów zdrowia wroga.
+    /// Pobiera aktualna ilosc punktow zdrowia wroga.
     /// </summary>
-    /// <returns>Aktualna iloœæ punktów zdrowia wroga.</returns>
+    /// <returns>Aktualna ilosc punktow zdrowia wroga.</returns>
     int IAttackable.GetHp()
     {
         return enemy_controller.GetHp();
     }
 
     /// <summary>
-    /// Obs³uguje œmieræ wroga. Jeœli wróg jest czêœci¹ zadania, koñczy zadanie. 
-    /// Nastêpnie niszczy obiekt wroga.
+    /// Obsluguje smierc wroga. Jesli wrog jest czeœcia zadania, konczy zadanie. 
+    /// Nastepnie niszczy obiekt wroga.
     /// </summary>
     void IAttackable.Die()
     {
@@ -96,7 +96,7 @@ public class EnemyPunchedController : MonoBehaviour, IAttackable
     }
 
     /// <summary>
-    /// Sprawdza, czy wróg zgin¹³ na podstawie jego punktów zdrowia.
+    /// Sprawdza, czy wrog zginal na podstawie jego punktow zdrowia.
     /// </summary>
     private void CheckIfDead()
     {
@@ -107,11 +107,11 @@ public class EnemyPunchedController : MonoBehaviour, IAttackable
     }
 
     /// <summary>
-    /// Sprawdza, czy cios zosta³ zablokowany przez wroga. Blokada jest skuteczna tylko w okreœlonym k¹cie
-    /// (w stopniach) w zale¿noœci od kierunku, z którego nadchodzi cios.
+    /// Sprawdza, czy cios zostal zablokowany przez wroga. Blokada jest skuteczna tylko w okreslonym kacie
+    /// (w stopniach) w zaleznosci od kierunku, z ktorego nadchodzi cios.
     /// </summary>
-    /// <param name="damage_dealer_position">Pozycja, z której nadchodzi cios.</param>
-    /// <returns>True, jeœli cios zosta³ zablokowany, false w przeciwnym przypadku.</returns>
+    /// <param name="damage_dealer_position">Pozycja, z ktorej nadchodzi cios.</param>
+    /// <returns>True, jesli cios zostal zablokowany, false w przeciwnym przypadku.</returns>
     private bool DidBlockPunch(Vector3 damage_dealer_position)
     {
         return ((IAttackable)this).GetIsGuardUp() &&

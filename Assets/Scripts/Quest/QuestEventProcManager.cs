@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Klasa odpalaj¹ca ró¿ne eventy po skoñczonych danych questach
+/// Klasa odpalajaca rozne eventy po skonczonych danych questach
 /// </summary>
 public class QuestEventProcManager : MonoBehaviour
 {

@@ -4,17 +4,17 @@ using TMPro;
 using UnityEngine;
 
 /// <summary>
-/// Klasa odpowiedzialna za wyœwietlanie tekstu, który jest wypowiadany przez NPC w grze.
+/// Klasa odpowiedzialna za wyswietlanie tekstu, ktory jest wypowiadany przez NPC w grze.
 /// </summary>
 public class SpokenTextDisplayUI : MonoBehaviour
 {
     /// <summary>
-    /// Komponent TextMeshProUGUI do wyœwietlania tekstu wypowiadanego przez NPC.
+    /// Komponent TextMeshProUGUI do wyswietlania tekstu wypowiadanego przez NPC.
     /// </summary>
     [SerializeField] private TextMeshProUGUI spoken_text;
 
     /// <summary>
-    /// Inicjalizuje komponenty UI i ustawia je w stanie pocz¹tkowym (wszystkie komponenty s¹ wy³¹czone).
+    /// Inicjalizuje komponenty UI i ustawia je w stanie poczatkowym (wszystkie komponenty sa wylaczone).
     /// </summary>
     private void Awake()
     {
@@ -22,10 +22,10 @@ public class SpokenTextDisplayUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Wyœwietla tekst wypowiadany przez NPC na ekranie.
+    /// Wyswietla tekst wypowiadany przez NPC na ekranie.
     /// </summary>
     /// <param name="text">Tekst wypowiadany przez NPC.</param>
-    /// <param name="npc_name">Imiê NPC wypowiadaj¹cego tekst.</param>
+    /// <param name="npc_name">Imie NPC wypowiadajacego tekst.</param>
     public void DisplayText(string text, string npc_name)
     {
         EnableAllComponents();
@@ -33,7 +33,7 @@ public class SpokenTextDisplayUI : MonoBehaviour
     }
 
     /// <summary>
-    /// W³¹cza wszystkie komponenty wyœwietlania tekstu.
+    /// Wlacza wszystkie komponenty wyswietlania tekstu.
     /// </summary>
     private void EnableAllComponents()
     {
@@ -41,7 +41,7 @@ public class SpokenTextDisplayUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Wy³¹cza wszystkie komponenty wyœwietlania tekstu.
+    /// Wylacza wszystkie komponenty wyswietlania tekstu.
     /// </summary>
     public void DisableAllComponents()
     {

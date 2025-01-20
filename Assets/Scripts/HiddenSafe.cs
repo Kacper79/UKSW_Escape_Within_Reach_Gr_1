@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Klasa reprezentuj¹ca ukryty sejf, który gracz mo¿e otwieraæ i zamykaæ.
-/// Wymaga spe³nienia warunków interakcji, takich jak posiadanie klucza lub postêp w historii.
+/// Klasa reprezentujaca ukryty sejf, ktory gracz moze otwierac i zamykac.
+/// Wymaga spelnienia warunkow interakcji, takich jak posiadanie klucza lub postep w historii.
 /// </summary>
 public class HiddenSafe : MonoBehaviour, IInteractable
 {
@@ -14,7 +14,7 @@ public class HiddenSafe : MonoBehaviour, IInteractable
     private const float OPEN_AND_CLOSE_DOOR_TIME = 0.66f;
 
     /// <summary>
-    /// Wartoœæ przesuniêcia na osi Z podczas otwierania sejfu.
+    /// Wartosc przesuniecia na osi Z podczas otwierania sejfu.
     /// </summary>
     private const float Z_TRANSFORM_VALUE_FOR_OPENING = 3.08f;
 
@@ -24,7 +24,7 @@ public class HiddenSafe : MonoBehaviour, IInteractable
     private bool is_opened = false;
 
     /// <summary>
-    /// Czy sejf zosta³ ju¿ odblokowany (np. po spe³nieniu odpowiednich warunków).
+    /// Czy sejf zostal juz odblokowany (np. po spelnieniu odpowiednich warunkow).
     /// </summary>
     private bool is_already_unlocked = false;
 
@@ -34,7 +34,7 @@ public class HiddenSafe : MonoBehaviour, IInteractable
     private bool is_during_opening_animation = false;
 
     /// <summary>
-    /// Docelowa wartoœæ przesuniêcia na osi Z, do której sejf ma siê otwieraæ/zamykaæ.
+    /// Docelowa wartosc przesuniecia na osi Z, do ktorej sejf ma sie otwierac/zamykac.
     /// </summary>
     private float z_transform_value;
 
@@ -49,7 +49,7 @@ public class HiddenSafe : MonoBehaviour, IInteractable
 
     /// <summary>
     /// Metoda interakcji z sejfem (otwieranie/zamykanie).
-    /// Sprawdza, czy sejf mo¿na otworzyæ/zamkn¹æ, a nastêpnie uruchamia odpowiedni¹ animacjê.
+    /// Sprawdza, czy sejf mozna otworzyc/zamknac, a nastepnie uruchamia odpowiednia animacje.
     /// </summary>
     void IInteractable.Interact()
     {
@@ -62,7 +62,7 @@ public class HiddenSafe : MonoBehaviour, IInteractable
     }
 
     /// <summary>
-    /// Dodatkowa logika wykonywana, gdy gracz patrzy na sejf (obecnie brak dodatkowych dzia³añ).
+    /// Dodatkowa logika wykonywana, gdy gracz patrzy na sejf (obecnie brak dodatkowych dzialan).
     /// </summary>
     void IInteractable.AdditionalStuffWhenLookingAtInteractable()
     {
@@ -70,10 +70,10 @@ public class HiddenSafe : MonoBehaviour, IInteractable
     }
 
     /// <summary>
-    /// Wspó³rzêdna animacja otwierania lub zamykania sejfu.
-    /// Sejf p³ynnie przesuwa siê na osi Z przez okreœlony czas.
+    /// Wspolrzedna animacja otwierania lub zamykania sejfu.
+    /// Sejf plynnie przesuwa sie na osi Z przez okreslony czas.
     /// </summary>
-    /// <param name="target_z_value">Docelowa wartoœæ przesuniêcia na osi Z.</param>
+    /// <param name="target_z_value">Docelowa wartosc przesuniecia na osi Z.</param>
     private IEnumerator OpenOrCloseDoors(float target_z_value)
     {
         is_during_opening_animation = true;
@@ -85,7 +85,7 @@ public class HiddenSafe : MonoBehaviour, IInteractable
         {
             elapsed_time += Time.deltaTime;
 
-            // Obliczanie bie¿¹cej pozycji na osi Z za pomoc¹ interpolacji liniowej.
+            // Obliczanie biezacej pozycji na osi Z za pomoca interpolacji liniowej.
             float current_z_transform_value = Mathf.Lerp(start_z_value, target_z_value, elapsed_time / OPEN_AND_CLOSE_DOOR_TIME);
 
             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, current_z_transform_value);
@@ -93,32 +93,32 @@ public class HiddenSafe : MonoBehaviour, IInteractable
             yield return null;
         }
 
-        // Ustawienie ostatecznej pozycji, aby upewniæ siê, ¿e sejf znajduje siê dok³adnie w docelowej pozycji.
+        // Ustawienie ostatecznej pozycji, aby upewnic sie, ze sejf znajduje sie dokladnie w docelowej pozycji.
         transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, target_z_value);
 
         is_during_opening_animation = false;
     }
 
     /// <summary>
-    /// Sprawdza, czy sejf mo¿na otworzyæ/zamkn¹æ.
+    /// Sprawdza, czy sejf mozna otworzyc/zamknac.
     /// </summary>
-    /// <returns>True, jeœli sejf mo¿na otworzyæ/zamkn¹æ, false w przeciwnym wypadku.</returns>
+    /// <returns>True, jesli sejf mozna otworzyc/zamknac, false w przeciwnym wypadku.</returns>
     private bool CanInteract()
     {
-        // Sejf mo¿na otworzyæ, jeœli zosta³ ju¿ odblokowany i nie trwa animacja otwierania/zamykania.
+        // Sejf mozna otworzyc, jesli zostal juz odblokowany i nie trwa animacja otwierania/zamykania.
         if (is_already_unlocked && !is_during_opening_animation)
         {
             return true;
         }
 
-        // Warunek odblokowania sejfu (np. posiadanie klucza lub postêp fabularny).
-        if (true) // SprawdŸ, czy gracz spe³nia wymagania, np. posiada klucz.
+        // Warunek odblokowania sejfu (np. posiadanie klucza lub postep fabularny).
+        if (true) // Sprawdz, czy gracz spelnia wymagania, np. posiada klucz.
         {
             is_already_unlocked = true;
             return true;
         }
 
-        // Jeœli warunki nie s¹ spe³nione, sejf pozostaje zablokowany.
+        // Jesli warunki nie sa spelnione, sejf pozostaje zablokowany.
         return false;
     }
 }

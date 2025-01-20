@@ -8,72 +8,72 @@ public class MainMenuSettingsUI : MonoBehaviour
 {
     [Header("Buttons")]
     /// <summary>
-    /// Przycisk, który umo¿liwia powrót do g³ównego menu.
+    /// Przycisk, ktory umozliwia powrot do glownego menu.
     /// </summary>
     [SerializeField] private Button back_to_pause_menu_button;
 
     [Header("Scripts")]
     /// <summary>
-    /// Referencja do obiektu UI g³ównego menu.
+    /// Referencja do obiektu UI glownego menu.
     /// </summary>
     [SerializeField] private MainMenuUI main_menu_UI;
 
     [Header("Resolution dropdown")]
     /// <summary>
-    /// Dropdown do wyboru rozdzielczoœci ekranu.
+    /// Dropdown do wyboru rozdzielczosci ekranu.
     /// </summary>
     [SerializeField] private TMP_Dropdown resolution_dropdown;
 
     /// <summary>
-    /// Wyœwietlacz aktualnie wybranej rozdzielczoœci.
+    /// Wyswietlacz aktualnie wybranej rozdzielczosci.
     /// </summary>
     [SerializeField] private TextMeshProUGUI selected_resolution_option_text;
 
     [Header("Sliders")]
     /// <summary>
-    /// Suwak, który pozwala na ustawienie g³oœnoœci muzyki.
+    /// Suwak, ktory pozwala na ustawienie glosnosci muzyki.
     /// </summary>
     [SerializeField] private Slider music_volume_slider;
 
     /// <summary>
-    /// Suwak, który pozwala na ustawienie g³oœnoœci efektów dŸwiêkowych.
+    /// Suwak, ktory pozwala na ustawienie glosnosci efektow dzwiekowych.
     /// </summary>
     [SerializeField] private Slider audio_effects_volume_slider;
 
     /// <summary>
-    /// Suwak, który pozwala na ustawienie czu³oœci myszy.
+    /// Suwak, ktory pozwala na ustawienie czulosci myszy.
     /// </summary>
     [SerializeField] private Slider sensitivity_slider;
 
     [Header("Toggles")]
     /// <summary>
-    /// Prze³¹cznik, który pozwala na w³¹czenie lub wy³¹czenie trybu pe³noekranowego.
+    /// Przelacznik, ktory pozwala na wlaczenie lub wylaczenie trybu pelnoekranowego.
     /// </summary>
     [SerializeField] private Toggle fullscreen_toggle;
 
 
     /// <summary>
-    /// Inicjalizuje nas³uchiwanie na zmiany ustawieñ w interfejsie.
-    /// Ustawia pocz¹tkowe wartoœci suwaków, dropdownów oraz prze³¹czników.
+    /// Inicjalizuje nasluchiwanie na zmiany ustawien w interfejsie.
+    /// Ustawia poczatkowe wartosci suwakow, dropdownow oraz przelacznikow.
     /// </summary>
     void Start()
     {
-        // Nas³uchiwanie klikniêcia przycisku powrotu do g³ównego menu
+        // Nasluchiwanie klikniecia przycisku powrotu do glownego menu
         back_to_pause_menu_button.onClick.AddListener(OnBackToMainMenuButtonClick);
 
-        // Nas³uchiwanie zmiany wartoœci w dropdownie rozdzielczoœci
+        // Nasluchiwanie zmiany wartosci w dropdownie rozdzielczosci
         resolution_dropdown.onValueChanged.AddListener(OnDropdownValueChanged);
-        resolution_dropdown.value = Settings.GetResolutionIndex();  // Ustawienie pocz¹tkowej wartoœci rozdzielczoœci
+        resolution_dropdown.value = Settings.GetResolutionIndex();  // Ustawienie poczatkowej wartosci rozdzielczosci
 
-        // Nas³uchiwanie zmiany wartoœci suwaków
+        // Nasluchiwanie zmiany wartosci suwakow
         music_volume_slider.onValueChanged.AddListener(OnMusicVolumeChanged);
         audio_effects_volume_slider.onValueChanged.AddListener(OnAudioEffectsVolumeChanged);
 
-        // Ustawienie stanu prze³¹cznika fullscreen na podstawie aktualnego ustawienia
+        // Ustawienie stanu przelacznika fullscreen na podstawie aktualnego ustawienia
         fullscreen_toggle.isOn = Screen.fullScreen;
         fullscreen_toggle.onValueChanged.AddListener(SetFullscreen);
 
-        // Ustawienie wartoœci suwaka czu³oœci na podstawie ustawienia
+        // Ustawienie wartosci suwaka czulosci na podstawie ustawienia
         sensitivity_slider.minValue = 5f;
         sensitivity_slider.maxValue = 30f;
         sensitivity_slider.value = Settings.GetSensitivity();
@@ -81,68 +81,68 @@ public class MainMenuSettingsUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Ustawia czu³oœæ myszy na wartoœæ podan¹ przez suwak.
+    /// Ustawia czulosc myszy na wartosc podana przez suwak.
     /// </summary>
-    /// <param name="sens">Wartoœæ czu³oœci myszy.</param>
+    /// <param name="sens">Wartosc czulosci myszy.</param>
     private void SetSensitivity(float sens)
     {
         Settings.SetSensitivity(sens);
     }
 
     /// <summary>
-    /// Ustawia tryb pe³noekranowy (fullscreen) na podstawie stanu prze³¹cznika.
+    /// Ustawia tryb pelnoekranowy (fullscreen) na podstawie stanu przelacznika.
     /// </summary>
-    /// <param name="is_fullscreen">Czy tryb pe³noekranowy ma byæ w³¹czony?</param>
+    /// <param name="is_fullscreen">Czy tryb pelnoekranowy ma byc wlaczony?</param>
     private void SetFullscreen(bool is_fullscreen)
     {
         Screen.fullScreen = is_fullscreen;
     }
 
     /// <summary>
-    /// Zmienia g³oœnoœæ muzyki na podstawie wartoœci suwaka.
+    /// Zmienia glosnosc muzyki na podstawie wartosci suwaka.
     /// </summary>
-    /// <param name="value">Nowa wartoœæ g³oœnoœci muzyki.</param>
+    /// <param name="value">Nowa wartosc glosnosci muzyki.</param>
     private void OnMusicVolumeChanged(float value)
     {
         Settings.SetMusicVolume(value);
     }
 
     /// <summary>
-    /// Zmienia g³oœnoœæ efektów dŸwiêkowych na podstawie wartoœci suwaka.
+    /// Zmienia glosnosc efektow dzwiekowych na podstawie wartosci suwaka.
     /// </summary>
-    /// <param name="value">Nowa wartoœæ g³oœnoœci efektów dŸwiêkowych.</param>
+    /// <param name="value">Nowa wartosc glosnosci efektow dzwiekowych.</param>
     private void OnAudioEffectsVolumeChanged(float value)
     {
         Settings.SetAudioEffectsVolume(value);
     }
 
     /// <summary>
-    /// Obs³uguje klikniêcie przycisku powrotu do g³ównego menu, aktywuj¹c odpowiedni UI.
+    /// Obsluguje klikniecie przycisku powrotu do glownego menu, aktywujac odpowiedni UI.
     /// </summary>
     private void OnBackToMainMenuButtonClick()
     {
-        main_menu_UI.gameObject.SetActive(true);  // Aktywuje g³ówne menu
-        this.gameObject.SetActive(false);  // Dezaktywuje bie¿¹cy ekran ustawieñ
+        main_menu_UI.gameObject.SetActive(true);  // Aktywuje glowne menu
+        this.gameObject.SetActive(false);  // Dezaktywuje biezacy ekran ustawien
     }
 
     /// <summary>
-    /// Obs³uguje zmianê wybranej rozdzielczoœci z dropdowna.
-    /// Ustawia now¹ rozdzielczoœæ ekranu i aktualizuje wyœwietlany tekst.
+    /// Obsluguje zmianê wybranej rozdzielczosci z dropdowna.
+    /// Ustawia nowa rozdzielczosc ekranu i aktualizuje wyswietlany tekst.
     /// </summary>
-    /// <param name="index">Indeks wybranej rozdzielczoœci w dropdownie.</param>
+    /// <param name="index">Indeks wybranej rozdzielczosci w dropdownie.</param>
     private void OnDropdownValueChanged(int index)
     {
-        Settings.SetResolutionIndex(index);  // Ustawienie indeksu rozdzielczoœci
-        selected_resolution_option_text.text = resolution_dropdown.options[index].text;  // Wyœwietlanie wybranej opcji
-        Settings.SetResolutionParameters(selected_resolution_option_text.text);  // Ustawienie parametrów rozdzielczoœci
-        ChangeResolution();  // Zmiana rozdzielczoœci ekranu
+        Settings.SetResolutionIndex(index);  // Ustawienie indeksu rozdzielczosci
+        selected_resolution_option_text.text = resolution_dropdown.options[index].text;  // Wyswietlanie wybranej opcji
+        Settings.SetResolutionParameters(selected_resolution_option_text.text);  // Ustawienie parametrow rozdzielczosci
+        ChangeResolution();  // Zmiana rozdzielczosci ekranu
     }
 
     /// <summary>
-    /// Zmienia rozdzielczoœæ ekranu na podstawie ustawieñ.
+    /// Zmienia rozdzielczosc ekranu na podstawie ustawien.
     /// </summary>
     private void ChangeResolution()
     {
-        Screen.SetResolution(Settings.GetResolutionWidth(), Settings.GetResolutionHeight(), fullscreen_toggle.isOn);  // Ustawia now¹ rozdzielczoœæ
+        Screen.SetResolution(Settings.GetResolutionWidth(), Settings.GetResolutionHeight(), fullscreen_toggle.isOn);  // Ustawia nowa rozdzielczosc
     }
 }

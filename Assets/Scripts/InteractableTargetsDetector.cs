@@ -5,43 +5,43 @@ using UnityEditor;
 using UnityEngine;
 
 /// <summary>
-/// Klasa odpowiedzialna za wykrywanie obiektów interaktywnych w zasiêgu gracza,
-/// wyœwietlanie podpowiedzi interfejsu u¿ytkownika oraz obs³ugê interakcji.
+/// Klasa odpowiedzialna za wykrywanie obiektow interaktywnych w zasiegu gracza,
+/// wyswietlanie podpowiedzi interfejsu uzytkownika oraz obsluge interakcji.
 /// </summary>
 public class InteractableTargetsDetector : MonoBehaviour
 {
     /// <summary>
-    /// Maksymalny dystans, na którym mo¿na wykrywaæ obiekty interaktywne.
+    /// Maksymalny dystans, na ktorym mozna wykrywacobiekty interaktywne.
     /// </summary>
     private const float LOOK_FOR_INTERACTABLES_MAX_DISTANCE = 3.0f;
 
     /// <summary>
-    /// Czas po uruchomieniu, po którym rozpoczyna siê wyszukiwanie obiektów interaktywnych.
+    /// Czas po uruchomieniu, po ktorym rozpoczyna sie wyszukiwanie obiektow interaktywnych.
     /// </summary>
     private const float TIME_IN_SECONDS_AFTER_LOOKING_FOR_INTERACTABLES_START = 0.3f;
 
     /// <summary>
-    /// Czêstotliwoœæ w sekundach, z jak¹ powtarzane jest wyszukiwanie obiektów interaktywnych.
+    /// Czestotliwosc w sekundach, z jaka powtarzane jest wyszukiwanie obiektow interaktywnych.
     /// </summary>
     private const float LOOKING_FOR_INTERACTABLES_REPEAT_RATE_IN_SECONDS = 0.1f;
 
     /// <summary>
-    /// Punkt pocz¹tkowy raycastu wykrywaj¹cego obiekty interaktywne.
+    /// Punkt poczatkowy raycastu wykrywajacego obiekty interaktywne.
     /// </summary>
     [SerializeField] private Transform detector_raycast_origin;
 
     /// <summary>
-    /// Kierunek raycastu wykrywaj¹cego obiekty interaktywne.
+    /// Kierunek raycastu wykrywajacego obiekty interaktywne.
     /// </summary>
     [SerializeField] private Transform detector_raycast_direction;
 
     /// <summary>
-    /// UI odpowiedzialny za wyœwietlanie podpowiedzi do interakcji.
+    /// UI odpowiedzialny za wyswietlanie podpowiedzi do interakcji.
     /// </summary>
     [SerializeField] private InteractTooltipUI interact_tooltip_UI;
 
     /// <summary>
-    /// Pozycja pocz¹tkowa raycastu.
+    /// Pozycja poczatkowa raycastu.
     /// </summary>
     private Vector3 ray_origin;
 
@@ -51,7 +51,7 @@ public class InteractableTargetsDetector : MonoBehaviour
     private Vector3 ray_direction;
 
     /// <summary>
-    /// Subskrybuje odpowiednie zdarzenia globalne i uruchamia proces wyszukiwania interaktywnych obiektów.
+    /// Subskrybuje odpowiednie zdarzenia globalne i uruchamia proces wyszukiwania interaktywnych obiektow.
     /// </summary>
     private void OnEnable()
     {
@@ -70,7 +70,7 @@ public class InteractableTargetsDetector : MonoBehaviour
     }
 
     /// <summary>
-    /// Wyrejestrowuje zdarzenia globalne i zatrzymuje wyszukiwanie interaktywnych obiektów.
+    /// Wyrejestrowuje zdarzenia globalne i zatrzymuje wyszukiwanie interaktywnych obiektow.
     /// </summary>
     private void OnDisable()
     {
@@ -89,7 +89,7 @@ public class InteractableTargetsDetector : MonoBehaviour
     }
 
     /// <summary>
-    /// Zatrzymuje proces wyszukiwania interaktywnych obiektów po otrzymaniu odpowiedniego zdarzenia.
+    /// Zatrzymuje proces wyszukiwania interaktywnych obiektow po otrzymaniu odpowiedniego zdarzenia.
     /// </summary>
     private void StopLookingForInteractable(object sender, EventArgs e)
     {
@@ -97,7 +97,7 @@ public class InteractableTargetsDetector : MonoBehaviour
     }
 
     /// <summary>
-    /// Wznawia proces wyszukiwania interaktywnych obiektów po otrzymaniu odpowiedniego zdarzenia.
+    /// Wznawia proces wyszukiwania interaktywnych obiektow po otrzymaniu odpowiedniego zdarzenia.
     /// </summary>
     private void StartLookingForInteractable(object sender, EventArgs e)
     {
@@ -105,7 +105,7 @@ public class InteractableTargetsDetector : MonoBehaviour
     }
 
     /// <summary>
-    /// Wykonuje raycast w celu wykrycia obiektów interaktywnych i wyœwietlenia ich podpowiedzi UI.
+    /// Wykonuje raycast w celu wykrycia obiektow interaktywnych i wyswietlenia ich podpowiedzi UI.
     /// </summary>
     private void LookForInteractableToShowUITooltip()
     {
@@ -129,7 +129,7 @@ public class InteractableTargetsDetector : MonoBehaviour
     }
 
     /// <summary>
-    /// Próbuje wykonaæ interakcjê z najbli¿szym wykrytym obiektem interaktywnym.
+    /// Probuje wykonac interakcje z najblizszym wykrytym obiektem interaktywnym.
     /// </summary>
     public void TryInteracting()
     {

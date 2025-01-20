@@ -4,47 +4,47 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewDialoguesForEachCharacterSO", menuName = "Scriptable Objects/Dialogues")]
 /// <summary>
-/// Klasa reprezentuj�ca dane dialogowe dla ka�dego bohatera, zawieraj�ca tekst, odpowiedzi NPC i inne ustawienia.
+/// Klasa reprezentujaca dane dialogowe dla kazdego bohatera, zawierajaca tekst, odpowiedzi NPC i inne ustawienia.
 /// </summary>
 public class DialogueNodeSO : ScriptableObject
 {
     /// <summary>
-    /// Tekst g��wnego bohatera.
+    /// Tekst glownego bohatera.
     /// </summary>
     public string main_character_text = "";
 
     /// <summary>
-    /// Audio dla tekstu g��wnego bohatera.
+    /// Audio dla tekstu glownego bohatera.
     /// </summary>
     public AudioClip main_character_audio;
 
     /// <summary>
-    /// Czas op�nienia odpowiedzi NPC po wypowiedzi g��wnego bohatera.
+    /// Czas oponienia odpowiedzi NPC po wypowiedzi glownego bohatera.
     /// </summary>
     public float eventual_npc_response_time_delay = 0.0f;
 
     /// <summary>
-    /// Lista odpowiedzi NPC, poniewa� NPC mo�e m�wi� w kilku linijkach.
+    /// Lista odpowiedzi NPC, poniewaz NPC moze mowic w kilku linijkach.
     /// </summary>
     public List<NpcResponses> responses;
 
     /// <summary>
-    /// Lista wydarze� wywo�ywanych podczas dialogu.
+    /// Lista wydarzen wywolywanych podczas dialogu.
     /// </summary>
     public List<DialogueEvent> invoked_events_list = new();
 
     /// <summary>
-    /// Mo�liwe nast�pne opcje dialogowe.
+    /// Mozliwe nastepne opcje dialogowe.
     /// </summary>
     public List<DialogueNodeSO> options = new();
 
     /// <summary>
-    /// Identyfikator opcji dialogowej, do kt�rej mo�na wr�ci� po wybraniu tej opcji.
+    /// Identyfikator opcji dialogowej, do ktorej mozna wrocic po wybraniu tej opcji.
     /// </summary>
     public string id_of_dialogue_option_to_go_back_to;
 
     /// <summary>
-    /// Flaga okre�laj�ca, czy ten dialog jest dost�pny.
+    /// Flaga okreslajaca, czy ten dialog jest dostepny.
     /// </summary>
     public bool is_available = true;
 
@@ -63,10 +63,10 @@ public class DialogueNodeSO : ScriptableObject
     }
 
     /// <summary>
-    /// Zmienia warto�� dost�pno�ci dialogu w zale�no�ci od argument�w.
+    /// Zmienia wartosc dostepnosci dialogu w zaleznosci od argumentow.
     /// </summary>
-    /// <param name="sender">Obiekt wywo�uj�cy zdarzenie.</param>
-    /// <param name="args">Argumenty zawieraj�ce nowe ustawienie dost�pno�ci.</param>
+    /// <param name="sender">Obiekt wywolujacy zdarzenie.</param>
+    /// <param name="args">Argumenty zawierajace nowe ustawienie dostepnosci.</param>
     private void ChangeISAvailableValue(object sender, GlobalEvents.OnMakingGivenDialogueOptionAvailableOrUnavailableEventArgs args)
     {
         if (id == args.dialogue_id)
@@ -93,10 +93,10 @@ public class DialogueNodeSO : ScriptableObject
     }
 
     /// <summary>
-    /// Pr�buj zwr�ci� dost�pne opcje dialogowe dla danego ID.
+    /// Probuj zwrocic dostepne opcje dialogowe dla danego ID.
     /// </summary>
-    /// <param name="sender">Obiekt wywo�uj�cy zdarzenie.</param>
-    /// <param name="e">Argumenty zawieraj�ce poszukiwane ID.</param>
+    /// <param name="sender">Obiekt wywolujacy zdarzenie.</param>
+    /// <param name="e">Argumenty zawierajace poszukiwane ID.</param>
     private void TryReturningOptions(object sender, GlobalEvents.OnLookingForDialogueListWithGivenIDEventArgs e)
     {
         if (id == e.given_id)
@@ -108,7 +108,7 @@ public class DialogueNodeSO : ScriptableObject
 
     [System.Serializable]
     /// <summary>
-    /// Klasa reprezentuj�ca odpowiedzi NPC, z op�nieniem czasowym.
+    /// Klasa reprezentujaca odpowiedzi NPC, z opoznieniem czasowym.
     /// </summary>
     public class NpcResponses
     {
@@ -123,14 +123,14 @@ public class DialogueNodeSO : ScriptableObject
         public AudioClip response_audio_clip;
 
         /// <summary>
-        /// Czas op�nienia odpowiedzi NPC.
+        /// Czas oponienia odpowiedzi NPC.
         /// </summary>
         public float eventual_response_time_delay = 0.0f;
     }
 
     [System.Serializable]
     /// <summary>
-    /// Enums dla r�nych zdarze� wywo�ywanych podczas dialogu.
+    /// Enums dla roznych zdarzen wywolywanych podczas dialogu.
     /// </summary>
     public enum DialogueEvent
     {

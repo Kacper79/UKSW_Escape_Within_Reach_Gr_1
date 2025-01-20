@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Klasa odpowiedzialna za zarz¹dzanie opcjami dialogowymi w UI.
+/// Klasa odpowiedzialna za zarzadzanie opcjami dialogowymi w UI.
 /// </summary>
 public class DialogueOptionsUI : MonoBehaviour
 {
     /// <summary>
-    /// Sta³a identyfikuj¹ca dialog, który pyta o zgodê na grê o kilof.
+    /// Stala identyfikujaca dialog, ktory pyta o zgode na gre o kilof.
     /// </summary>
     private const string AGREEMENT_TO_PLAY_FOR_PICKAXE_DIALOGUE_ID = "d241bd3f97c2428e9ed357f48edebb04";
 
     /// <summary>
-    /// Sta³a okreœlaj¹ca wymagan¹ iloœæ z³ota, by zagraæ o kilof.
+    /// Stala okreslajaca wymagana ilosc zlota, by zagraæ o kilof.
     /// </summary>
     private const int GOLD_REQUIRED_TO_PLAY_FOR_PICKAXE = 500;
 
@@ -38,12 +38,12 @@ public class DialogueOptionsUI : MonoBehaviour
     [SerializeField] private DialogueOption option_4;
 
     /// <summary>
-    /// S³ownik, który przechowuje opcje dialogowe powi¹zane z numerami.
+    /// Slownik, ktory przechowuje opcje dialogowe powiazane z numerami.
     /// </summary>
     private Dictionary<int, DialogueOption> options_dict;
 
     /// <summary>
-    /// Inicjalizuje s³ownik opcji dialogowych i ukrywa wszystkie opcje.
+    /// Inicjalizuje slownik opcji dialogowych i ukrywa wszystkie opcje.
     /// </summary>
     private void Awake()
     {
@@ -52,9 +52,9 @@ public class DialogueOptionsUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Wyœwietla opcje dialogowe na podstawie listy dostêpnych opcji.
+    /// Wyswietla opcje dialogowe na podstawie listy dostepnych opcji.
     /// </summary>
-    /// <param name="options_list">Lista dostêpnych opcji dialogowych.</param>
+    /// <param name="options_list">Lista dostepnych opcji dialogowych.</param>
     public void DisplayOptions(List<DialogueNodeSO> options_list)
     {
         DisableAllOptions();
@@ -65,7 +65,7 @@ public class DialogueOptionsUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Inicjalizuje s³ownik opcji dialogowych z przypisaniem numerów do obiektów.
+    /// Inicjalizuje slownik opcji dialogowych z przypisaniem numerow do obiektow.
     /// </summary>
     private void InitializeOptionsDict()
     {
@@ -78,7 +78,7 @@ public class DialogueOptionsUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Umo¿liwia okreœlon¹ liczbê opcji dialogowych.
+    /// Umozliwia okreslona liczbe opcji dialogowych.
     /// </summary>
     /// <param name="amount">Liczba opcji do aktywowania.</param>
     private void EnableGivenNumberOfOptions(int amount)
@@ -101,9 +101,9 @@ public class DialogueOptionsUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Ustawia dane dla ka¿dej opcji dialogowej.
+    /// Ustawia dane dla kazdej opcji dialogowej.
     /// </summary>
-    /// <param name="options_list">Lista dostêpnych opcji dialogowych.</param>
+    /// <param name="options_list">Lista dostepnych opcji dialogowych.</param>
     private void SetDataInEachOption(List<DialogueNodeSO> options_list)
     {
         int i = 0;
@@ -126,10 +126,10 @@ public class DialogueOptionsUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Oblicza liczbê dostêpnych opcji dialogowych w danej liœcie.
+    /// Oblicza liczbe dostepnych opcji dialogowych w danej liœcie.
     /// </summary>
-    /// <param name="options_list">Lista dostêpnych opcji dialogowych.</param>
-    /// <returns>Liczba dostêpnych opcji dialogowych.</returns>
+    /// <param name="options_list">Lista dostepnych opcji dialogowych.</param>
+    /// <returns>Liczba dostepnych opcji dialogowych.</returns>
     private int CalculateAvailableDialogueOptions(List<DialogueNodeSO> options_list)
     {
         int i = 0;

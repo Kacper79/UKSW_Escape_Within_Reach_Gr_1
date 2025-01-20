@@ -39,6 +39,9 @@ namespace Assets.Scripts
             SavePlayerDeathCount();
         }
 
+        /// <summary>
+        /// Saves how many times has a player died
+        /// </summary>
         private void SavePlayerDeathCount()
         {
             if (gameObject.CompareTag("Player"))

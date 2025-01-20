@@ -3,32 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Klasa odpowiedzialna za zarz�dzanie statystykami wroga, w tym jego zdrowiem i blokowaniem obra�e�.
+/// Klasa odpowiedzialna za zarzadzanie statystykami wroga, w tym jego zdrowiem i blokowaniem obrazen.
 /// </summary>
 public class Enemy : MonoBehaviour
 {
     /// <summary>
-    /// Maksymalna ilo�� zdrowia wroga.
+    /// Maksymalna ilosc zdrowia wroga.
     /// </summary>
     private const int MAX_HP = 25;
 
     /// <summary>
-    /// Pasek zdrowia, kt�ry jest u�ywany do wizualizacji stanu zdrowia wroga.
+    /// Pasek zdrowia, ktory jest uzywany do wizualizacji stanu zdrowia wroga.
     /// </summary>
     [SerializeField] private EnemyHealthBar health_bar;
 
     /// <summary>
-    /// Aktualna ilo�� zdrowia wroga.
+    /// Aktualna ilosc zdrowia wroga.
     /// </summary>
     private int current_hp = MAX_HP;
 
     /// <summary>
-    /// Flaga informuj�ca, czy wr�g ma aktywowan� blokad�.
+    /// Flaga informujaca, czy wrog ma aktywowana blokade.
     /// </summary>
     private bool is_block_up = false;
 
     /// <summary>
-    /// Inicjalizuje wroga, uruchamiaj�c powtarzaj�c� si� zmian� warto�ci blokady.
+    /// Inicjalizuje wroga, uruchamiajac powtarzajace sie zmiane wartosci blokady.
     /// </summary>
     private void Start()
     {
@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
     }
 
     /// <summary>
-    /// Zmienia stan blokady wroga (blokada aktywuje si� i deaktywuje cyklicznie).
+    /// Zmienia stan blokady wroga (blokada aktywuje sie i deaktywuje cyklicznie).
     /// </summary>
     public void ChangeBlockValue()
     {
@@ -44,9 +44,9 @@ public class Enemy : MonoBehaviour
     }
 
     /// <summary>
-    /// Zmniejsza zdrowie wroga o okre�lon� ilo�� obra�e�.
+    /// Zmniejsza zdrowie wroga o okreslona ilosc obrazen.
     /// </summary>
-    /// <param name="amount">Ilo�� obra�e�, kt�re wr�g otrzymuje.</param>
+    /// <param name="amount">Ilosc obrazen, ktore wrog otrzymuje.</param>
     public void TakeDamage(int amount)
     {
         current_hp -= amount;
@@ -55,18 +55,18 @@ public class Enemy : MonoBehaviour
     }
 
     /// <summary>
-    /// Zwraca informacj�, czy wr�g ma aktywowan� blokad�.
+    /// Zwraca informacje, czy wrog ma aktywowana blokade.
     /// </summary>
-    /// <returns>True, je�li blokada jest aktywna, w przeciwnym razie false.</returns>
+    /// <returns>True, jesli blokada jest aktywna, w przeciwnym razie false.</returns>
     public bool GetBlockUp()
     {
         return is_block_up;
     }
 
     /// <summary>
-    /// Zwraca aktualn� ilo�� zdrowia wroga.
+    /// Zwraca aktualna ilosc zdrowia wroga.
     /// </summary>
-    /// <returns>Aktualna ilo�� zdrowia wroga.</returns>
+    /// <returns>Aktualna ilosc zdrowia wroga.</returns>
     public int GetHp()
     {
         return current_hp;

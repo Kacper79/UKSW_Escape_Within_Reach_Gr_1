@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Zarz¹dza dŸwiêkami i muzyk¹ w grze jako singleton.
+/// Zarzadza dzwiekami i muzyke w grze jako singleton.
 /// </summary>
 public class AudioManager : MonoBehaviour
 {
@@ -18,9 +18,9 @@ public class AudioManager : MonoBehaviour
     private GameObject current_music_gameobject;
 
     /// <summary>
-    /// Ustawia instancjê singletona AudioManager. 
-    /// Gwarantuje, ¿e istnieje tylko jedna instancja w grze. 
-    /// Obiekt nie jest niszczony podczas prze³adowania scen.
+    /// Ustawia instancje singletona AudioManager. 
+    /// Gwarantuje, ze istnieje tylko jedna instancja w grze. 
+    /// Obiekt nie jest niszczony podczas przeladowania scen.
     /// </summary>
     private void Awake()
     {
@@ -37,7 +37,7 @@ public class AudioManager : MonoBehaviour
     /// <summary>
     /// Odtwarza jednorazowy efekt dzwiekowy.
     /// </summary>
-    /// <param name="clip">AudioClip, który ma zostaæ odtworzony.</param>
+    /// <param name="clip">AudioClip, ktory ma zostaæ odtworzony.</param>
     public void PlayGivenClip(AudioClip clip)
     {
         AudioSource audio_source = new GameObject("Audio Source").AddComponent<AudioSource>();
@@ -60,9 +60,9 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Rozpoczyna odtwarzanie muzyki w pêtli, zastêpuj¹c wczeœniej odtwarzan¹ muzykê.
+    /// Rozpoczyna odtwarzanie muzyki w petli, zastepujac wczesniej odtwarzana muzyke.
     /// </summary>
-    /// <param name="music">AudioClip z muzyk¹ do odtworzenia.</param>
+    /// <param name="music">AudioClip z muzyka do odtworzenia.</param>
     public void PlayMusic(AudioClip music)
     {
         Destroy(current_music_gameobject);
@@ -71,7 +71,7 @@ public class AudioManager : MonoBehaviour
         AudioSource audio_source = current_music_gameobject.AddComponent<AudioSource>();
 
         audio_source.clip = music;
-        audio_source.volume = Settings.GetMusicVolume(); // Domyœlna g³oœnoœæ muzyki (mo¿e byæ powi¹zana z ustawieniami u¿ytkownika)
+        audio_source.volume = Settings.GetMusicVolume(); // Domyslna glosnosc muzyki (moze byc powiazana z ustawieniami uzytkownika)
         audio_source.loop = true;
 
         audio_source.Play();

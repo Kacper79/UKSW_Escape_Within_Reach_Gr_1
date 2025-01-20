@@ -10,12 +10,12 @@ using UnityEngine.InputSystem;
 public class PlayerMovementController : MonoBehaviour
 {
     /// <summary>
-    /// Maksymalny k¹t rotacji kamery w osi X.
+    /// Maksymalny kat rotacji kamery w osi X.
     /// </summary>
     private const float MAX_X_CAMERA_ROTATION = 89.0f;
 
     /// <summary>
-    /// Minimalny k¹t rotacji kamery w osi X.
+    /// Minimalny kat rotacji kamery w osi X.
     /// </summary>
     private const float MIN_X_CAMERA_ROTATION = -89.0f;
 
@@ -25,7 +25,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private CharacterController player_character_controller;
 
     /// <summary>
-    /// Obiekt trzymaj¹cy kamerê.
+    /// Obiekt trzymajacy kamere.
     /// </summary>
     [SerializeField] private GameObject camera_holder_go;
 
@@ -35,17 +35,17 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private GameObject player_go;
 
     /// <summary>
-    /// Obiekt wykrywaj¹cy cele interakcji.
+    /// Obiekt wykrywajacy cele interakcji.
     /// </summary>
     [SerializeField] private GameObject interactable_targets_detector;
 
     /// <summary>
-    /// Lista transformacji, które s³u¿¹ do detekcji wspinania siê.
+    /// Lista transformacji, ktore sluzy do detekcji wspinania sie.
     /// </summary>
     [SerializeField] private List<Transform> did_climb_raycast_transforms;
 
     /// <summary>
-    /// Prêdkoœci ruchu gracza w ró¿nych trybach (normalny, sprint, kucanie).
+    /// Predkosci ruchu gracza w roznych trybach (normalny, sprint, kucanie).
     /// </summary>
     [Header("Movement related variables")]
     [SerializeField] private float move_speed;
@@ -56,42 +56,42 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float climb_speed;
 
     /// <summary>
-    /// Obiekt wejœcia gracza (PlayerInput).
+    /// Obiekt wejscia gracza (PlayerInput).
     /// </summary>
     private PlayerInput player_input;
 
     /// <summary>
-    /// Flaga wskazuj¹ca, czy gracz biega.
+    /// Flaga wskazujaca, czy gracz biega.
     /// </summary>
     private bool is_sprinting = false;
 
     /// <summary>
-    /// Flaga wskazuj¹ca, czy gracz siê kuca.
+    /// Flaga wskazujaca, czy gracz sie kuca.
     /// </summary>
     private bool is_crouching = false;
 
     /// <summary>
-    /// Flaga wskazuj¹ca, czy gracz skoczy³ podczas sprintu.
+    /// Flaga wskazujaca, czy gracz skoczyl podczas sprintu.
     /// </summary>
     private bool did_jump_while_sprinted = false;
 
     /// <summary>
-    /// Flaga pozwalaj¹ca na poruszanie siê gracza.
+    /// Flaga pozwalajaca na poruszanie sie gracza.
     /// </summary>
     private bool can_move = true;
 
     /// <summary>
-    /// K¹t rotacji kamery w osi X.
+    /// Kat rotacji kamery w osi X.
     /// </summary>
     private float camera_x_rotation = 0.0f;
 
     /// <summary>
-    /// Prêdkoœæ spadania gracza.
+    /// Predkosc spadania gracza.
     /// </summary>
     private float y_velocity = 0.0f;
 
     /// <summary>
-    /// Warstwa wykorzystywana do wykrywania obiektów wspinaczkowych.
+    /// Warstwa wykorzystywana do wykrywania obiektow wspinaczkowych.
     /// </summary>
     private int climbable_layer;
 
@@ -103,7 +103,7 @@ public class PlayerMovementController : MonoBehaviour
     private float mouse_y;
 
     /// <summary>
-    /// Inicjalizacja komponentów gracza i warstwy wspinaczkowej.
+    /// Inicjalizacja komponentow gracza i warstwy wspinaczkowej.
     /// </summary>
     private void Awake()
     {
@@ -111,7 +111,7 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     /// <summary>
-    /// Obs³uguje aktualizacjê ruchu, grawitacji oraz rotacji kamery.
+    /// Obsluguje aktualizacje ruchu, grawitacji oraz rotacji kamery.
     /// </summary>
     private void Update()
     {
@@ -124,7 +124,7 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     /// <summary>
-    /// Subskrybuje zdarzenia zwi¹zane z wejœciem gracza.
+    /// Subskrybuje zdarzenia zwiazane z wejsciem gracza.
     /// </summary>
     private void OnEnable()
     {
@@ -176,7 +176,7 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     /// <summary>
-    /// Ustawia mo¿liwoœæ poruszania siê po zakoñczeniu gry w blackjacka.
+    /// Ustawia mozliwosc poruszania sie po zakonczeniu gry w blackjacka.
     /// </summary>
     private void SetCanMoveToTrue(object sender, EventArgs e)
     {
@@ -184,7 +184,7 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     /// <summary>
-    /// Ustawia rotacjê kamery na pocz¹tek gry w blackjacka.
+    /// Ustawia rotacje kamery na poczatek gry w blackjacka.
     /// </summary>
     private void SetcameraRotationOnStartingBlackjackGame(object sender, EventArgs e)
     {
@@ -193,7 +193,7 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     /// <summary>
-    /// Wy³¹cza wejœcie gracza do momentu zamkniêcia UI.
+    /// Wylacza wejscie gracza do momentu zamkniecia UI.
     /// </summary>
     private void DisableMovementPlayerInput(object sender, EventArgs e)
     {
@@ -201,7 +201,7 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     /// <summary>
-    /// W³¹cza wejœcie gracza po zamkniêciu UI.
+    /// Wlacza wejscie gracza po zamknieciu UI.
     /// </summary>
     private void EnableMovementPlayerInput(object sender, EventArgs e)
     {
@@ -217,7 +217,7 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     /// <summary>
-    /// Otwiera kursor, gdy UI jest zamkniête.
+    /// Otwiera kursor, gdy UI jest zamkniete.
     /// </summary>
     private void UnlockCursor(object sender, EventArgs e)
     {
@@ -225,7 +225,7 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     /// <summary>
-    /// Obs³uguje rozpoczêcie kucania.
+    /// Obsluguje rozpoczecie kucania.
     /// </summary>
     private void CrouchStarted(InputAction.CallbackContext context)
     {
@@ -234,7 +234,7 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     /// <summary>
-    /// Obs³uguje zakoñczenie kucania.
+    /// Obsluguje zakonczenie kucania.
     /// </summary>
     private void CrouchCanceled(InputAction.CallbackContext context)
     {
@@ -243,7 +243,7 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     /// <summary>
-    /// Obs³uguje rozpoczêcie skoku.
+    /// Obsluguje rozpoczecie skoku.
     /// </summary>
     private void JumpPerformed(InputAction.CallbackContext context)
     {
@@ -257,7 +257,7 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     /// <summary>
-    /// Obs³uguje rozpoczêcie sprintu.
+    /// Obsluguje rozpoczecie sprintu.
     /// </summary>
     private void SprintStarted(InputAction.CallbackContext context)
     {
@@ -265,7 +265,7 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     /// <summary>
-    /// Obs³uguje zakoñczenie sprintu.
+    /// Obsluguje zakonczenie sprintu.
     /// </summary>
     private void SprintCanceled(InputAction.CallbackContext context)
     {
@@ -273,7 +273,7 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     /// <summary>
-    /// Próbuje rozpocz¹æ wspinaczkê, jeœli gracz nacisn¹³ odpowiedni przycisk.
+    /// Probuje rozpoczac wspinaczke, jesli gracz nacisnal odpowiedni przycisk.
     /// </summary>
     public void TryClimbingUp()
     {
@@ -286,7 +286,7 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     /// <summary>
-    /// Procedura wspinaczki, która wykonuje ruch w górê, dopóki gracz nie trafi na powierzchniê.
+    /// Procedura wspinaczki, ktora wykonuje ruch w gore, dopoki gracz nie trafi na powierzchnie.
     /// </summary>
     private IEnumerator Climb()
     {
@@ -315,7 +315,7 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     /// <summary>
-    /// Sprawdza, czy którykolwiek detektor wspinaczki trafi³ na powierzchniê wspinaczkow¹.
+    /// Sprawdza, czy ktorykolwiek detektor wspinaczki trafil na powierzchnie wspinaczkowa.
     /// </summary>
     private bool DidAnyClimbDetectorsFindLandableObject()
     {
@@ -331,7 +331,7 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     /// <summary>
-    /// Obs³uguje ruch gracza na podstawie wciœniêtych klawiszy oraz stanu sprintu i kucania.
+    /// Obsluguje ruch gracza na podstawie wcisnietych klawiszy oraz stanu sprintu i kucania.
     /// </summary>
     private void HandleMovement()
     {
@@ -355,7 +355,7 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     /// <summary>
-    /// Obs³uguje rotacjê kamery w zale¿noœci od ruchów myszki.
+    /// Obsluguje rotacje kamery w zaleznosci od ruchow myszki.
     /// </summary>
     private void HandleCameraRotation()
     {
@@ -374,7 +374,7 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     /// <summary>
-    /// Obs³uguje grawitacjê, przyci¹gaj¹c gracza w dó³.
+    /// Obsluguje grawitacje, przyciagajac gracza w dol.
     /// </summary>
     private void HandleGravity()
     {
@@ -392,9 +392,9 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     /// <summary>
-    /// Ustawia obiekt wejœcia gracza.
+    /// Ustawia obiekt wejscia gracza.
     /// </summary>
-    /// <param name="input">Obiekt wejœcia gracza (PlayerInput).</param>
+    /// <param name="input">Obiekt wejscia gracza (PlayerInput).</param>
     public void SetPlayerInput(PlayerInput input)
     {
         player_input = input;

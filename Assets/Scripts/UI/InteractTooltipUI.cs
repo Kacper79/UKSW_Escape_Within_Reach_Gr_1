@@ -4,18 +4,18 @@ using TMPro;
 using UnityEngine;
 
 /// <summary>
-/// Klasa odpowiedzialna za wyœwietlanie i zarz¹dzanie tooltipem interakcji.
+/// Klasa odpowiedzialna za wyswietlanie i zarzadzanie tooltipem interakcji.
 /// </summary>
 public class InteractTooltipUI : MonoBehaviour
 {
     /// <summary>
-    /// Pole przechowuj¹ce komponent TextMeshProUGUI dla tekstu tooltipa.
+    /// Pole przechowujace komponent TextMeshProUGUI dla tekstu tooltipa.
     /// </summary>
     [SerializeField] private TextMeshProUGUI interaction_tooltip_tmp;
 
 
     /// <summary>
-    /// Subskrybuje zdarzenia potrzebne do zarz¹dzania UI tooltipem.
+    /// Subskrybuje zdarzenia potrzebne do zarzadzania UI tooltipem.
     /// </summary>
     private void OnEnable()
     {
@@ -36,7 +36,7 @@ public class InteractTooltipUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Anuluje subskrypcjê zdarzeñ przy wy³¹czeniu obiektu.
+    /// Anuluje subskrypcje zdarzen przy wylaczeniu obiektu.
     /// </summary>
     private void OnDisable()
     {
@@ -55,7 +55,7 @@ public class InteractTooltipUI : MonoBehaviour
     }
 
     /// <summary>
-    /// W³¹cza UI tooltipa, gdy nie patrzymy na interaktywny obiekt.
+    /// Wlacza UI tooltipa, gdy nie patrzymy na interaktywny obiekt.
     /// </summary>
     private void EnableSelf(object sender, System.EventArgs e)
     {
@@ -63,7 +63,7 @@ public class InteractTooltipUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Wy³¹cza UI tooltipa, gdy rozpoczniemy interakcjê z obiektem.
+    /// Wylacza UI tooltipa, gdy rozpoczniemy interakcje z obiektem.
     /// </summary>
     private void DisableSelf(object sender, System.EventArgs e)
     {
@@ -71,7 +71,7 @@ public class InteractTooltipUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Wy³¹cza UI tooltipa, gdy nie patrzymy na ¿aden interaktywny obiekt.
+    /// Wylacza UI tooltipa, gdy nie patrzymy na zaden interaktywny obiekt.
     /// </summary>
     private void OnNotLookingForAnythingInteractable(object sender, System.EventArgs e)
     {
@@ -79,7 +79,7 @@ public class InteractTooltipUI : MonoBehaviour
     }
 
     /// <summary>
-    /// W³¹cza UI tooltipa.
+    /// Wlacza UI tooltipa.
     /// </summary>
     private void EnableUI()
     {
@@ -87,7 +87,7 @@ public class InteractTooltipUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Wy³¹cza UI tooltipa.
+    /// Wylacza UI tooltipa.
     /// </summary>
     public void DisableUI()
     {
@@ -97,7 +97,7 @@ public class InteractTooltipUI : MonoBehaviour
     /// <summary>
     /// Ustawia tekst tooltipa.
     /// </summary>
-    /// <param name="tooltip_message">Tekst, który ma siê pojawiæ w tooltipie.</param>
+    /// <param name="tooltip_message">Tekst, ktory ma sie pojawiac w tooltipie.</param>
     public void SetTooltip(string tooltip_message)
     {
         EnableUI();

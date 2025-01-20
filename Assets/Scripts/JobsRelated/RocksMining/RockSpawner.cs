@@ -4,14 +4,14 @@ using UnityEngine;
 
 /// <summary>
 /// Klasa odpowiedzialna za generowanie kamieni w grze.
-/// Kamienie s¹ spawnowane po zniszczeniu poprzedniego kamienia przez gracza.
+/// Kamienie sa spawnowane po zniszczeniu poprzedniego kamienia przez gracza.
 /// </summary>
 public class RockSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject rock_prefab; // Prefab kamienia, który ma byæ generowany
+    [SerializeField] private GameObject rock_prefab; // Prefab kamienia, ktory ma byc generowany
 
     /// <summary>
-    /// Spawnuje kamieñ na pocz¹tku gry.
+    /// Spawnuje kamien na poczatku gry.
     /// </summary>
     private void Start()
     {
@@ -19,7 +19,7 @@ public class RockSpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// Subskrybuje zdarzenie zniszczenia kamienia, aby po zniszczeniu kolejnego kamienia spawnowaæ nowy.
+    /// Subskrybuje zdarzenie zniszczenia kamienia, aby po zniszczeniu kolejnego kamienia spawnowac nowy.
     /// </summary>
     private void OnEnable()
     {
@@ -27,7 +27,7 @@ public class RockSpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// Subskrypcja jest usuwana, gdy obiekt jest wy³¹czany.
+    /// Subskrypcja jest usuwana, gdy obiekt jest wylaczany.
     /// </summary>
     private void OnDisable()
     {
@@ -35,24 +35,24 @@ public class RockSpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// Metoda wywo³ywana, gdy gracz zniszczy kamieñ. Spawnuje nowy kamieñ po krótkim opóŸnieniu.
+    /// Metoda wywolywana, gdy gracz zniszczy kamien. Spawnuje nowy kamien po krotkim opoznieniu.
     /// </summary>
-    /// <param name="sender">Obiekt wysy³aj¹cy zdarzenie.</param>
+    /// <param name="sender">Obiekt wysylajacy zdarzenie.</param>
     /// <param name="e">Dodatkowe informacje o zdarzeniu.</param>
     private void OnPlayerDestroyingRock(object sender, System.EventArgs e)
     {
-        // OpóŸnia spawnowanie nowego kamienia o 1 sekundê
+        // Opoznia spawnowanie nowego kamienia o 1 sekunde
         Invoke(nameof(SpawnRock), 1.0f);
 
-        // Oznaczenie questu jako ukoñczonego, np. za zniszczenie kamienia
+        // Oznaczenie questu jako ukonczonego, np. za zniszczenie kamienia
         QuestManager.Instance.MarkQuestCompleted(10);
     }
 
     /// <summary>
-    /// Tworzy nowy kamieñ w miejscu spawnera.
+    /// Tworzy nowy kamien w miejscu spawnera.
     /// </summary>
     private void SpawnRock()
     {
-        Instantiate(rock_prefab, this.transform.position, Quaternion.identity); // Spawnuje kamieñ w lokalizacji spawnera
+        Instantiate(rock_prefab, this.transform.position, Quaternion.identity); // Spawnuje kamien w lokalizacji spawnera
     }
 }

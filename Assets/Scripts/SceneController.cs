@@ -6,34 +6,34 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
     /// <summary>
-    /// Sta³e reprezentuj¹ce nazwy scen w grze.
+    /// Stale reprezentujace nazwy scen w grze.
     /// </summary>
     public const string GAME_SCENE = "Kacper2";
     public const string MAIN_MENU_SCENE = "MainMenuScene";
     public const string LOADING_SCENE = "LoadingScene";
 
     /// <summary>
-    /// Przechowuje nazwê docelowej sceny.
+    /// Przechowuje nazwe docelowej sceny.
     /// </summary>
     private static string target_scene;
 
 
     /// <summary>
-    /// £aduje scenê gry przy u¿yciu sceny ³adowania jako poœrednika
+    /// Laduje scene gry przy uzyciu sceny ladowania jako posrednika
     /// </summary>
-    /// <param name="scene">Nazwa sceny do za³adowania</param>
+    /// <param name="scene">Nazwa sceny do zaladowania</param>
     public static void LoadScene(string scene)
     {
-        target_scene = scene;  // Ustawia scenê docelow¹
-        SceneManager.LoadScene(LOADING_SCENE);  // £aduje scenê ³adowania
+        target_scene = scene;  // Ustawia scene docelowa
+        SceneManager.LoadScene(LOADING_SCENE);  // Laduje scene ladowania
     }
 
     /// <summary>
-    /// Callback, który jest wywo³ywany po za³adowaniu sceny ³adowania.
-    /// Prze³adowuje docelow¹ scenê.
+    /// Callback, ktory jest wywolywany po zaladowaniu sceny ladowania.
+    /// Przeladowuje docelowa scene.
     /// </summary>
     public static void LoaderCallback()
     {
-        SceneManager.LoadScene(target_scene);  // £aduje docelow¹ scenê
+        SceneManager.LoadScene(target_scene);  // Laduje docelowa scene
     }
 }

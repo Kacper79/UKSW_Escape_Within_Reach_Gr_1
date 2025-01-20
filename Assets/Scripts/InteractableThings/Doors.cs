@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Klasa reprezentuj¹ca drzwi, które mog¹ byæ otwierane i zamykane przez gracza.
-/// Implementuje interfejs IInteractable, co pozwala na interakcjê z drzwiami.
+/// Klasa reprezentujaca drzwi, ktore moga byc otwierane i zamykane przez gracza.
+/// Implementuje interfejs IInteractable, co pozwala na interakcje z drzwiami.
 /// </summary>
 public class Doors : MonoBehaviour, IInteractable
 {
@@ -14,46 +14,46 @@ public class Doors : MonoBehaviour, IInteractable
     private const float OPEN_AND_CLOSE_DOOR_TIME = 0.25f;
 
     /// <summary>
-    /// Wiadomoœæ wyœwietlana w tooltipie, gdy drzwi s¹ otwarte.
+    /// Wiadomosc wyswietlana w tooltipie, gdy drzwi sa otwarte.
     /// </summary>
     private string interaction_tooltip_message_opened = "Press [E] to open doors";
 
     /// <summary>
-    /// Wiadomoœæ wyœwietlana w tooltipie, gdy drzwi s¹ zamkniête.
+    /// Wiadomosc wyswietlana w tooltipie, gdy drzwi sa zamkniete.
     /// </summary>
     private string interaction_tooltip_message_closed = "Press [E] to close doors";
 
     /// <summary>
-    /// Flaga wskazuj¹ca, czy drzwi s¹ obecnie otwarte.
+    /// Flaga wskazujaca, czy drzwi sa obecnie otwarte.
     /// </summary>
     private bool is_opened = false;
 
     /// <summary>
-    /// Flaga wskazuj¹ca, czy drzwi zosta³y ju¿ odblokowane.
+    /// Flaga wskazujaca, czy drzwi zostaly juz odblokowane.
     /// </summary>
     private bool is_already_unlocked = false;
 
     /// <summary>
-    /// Flaga wskazuj¹ca, czy aktualnie trwa animacja otwierania lub zamykania drzwi.
+    /// Flaga wskazujaca, czy aktualnie trwa animacja otwierania lub zamykania drzwi.
     /// </summary>
     private bool is_during_opening_animation = false;
 
     /// <summary>
-    /// Wartoœæ obrotu w stopniach u¿ywana przy otwieraniu drzwi.
+    /// Wartosc obrotu w stopniach uzywana przy otwieraniu drzwi.
     /// </summary>
     private float euler_degree_for_opening_doors;
 
     /// <summary>
-    /// Zwraca wiadomoœæ do wyœwietlenia w tooltipie na podstawie stanu drzwi (otwarte lub zamkniête).
+    /// Zwraca wiadomosc do wyswietlenia w tooltipie na podstawie stanu drzwi (otwarte lub zamkniete).
     /// </summary>
-    /// <returns>Tekst wiadomoœci tooltipa.</returns>
+    /// <returns>Tekst wiadomosci tooltipa.</returns>
     string IInteractable.GetInteractionTooltip()
     {
         return is_opened ? interaction_tooltip_message_closed : interaction_tooltip_message_opened;
     }
 
     /// <summary>
-    /// Obs³uguje interakcjê z drzwiami. Jeœli mo¿liwa jest interakcja, rozpoczyna animacjê otwierania lub zamykania drzwi.
+    /// Obsluguje interakcje z drzwiami. Jesli mozliwa jest interakcja, rozpoczyna animacje otwierania lub zamykania drzwi.
     /// </summary>
     void IInteractable.Interact()
     {
@@ -66,7 +66,7 @@ public class Doors : MonoBehaviour, IInteractable
     }
 
     /// <summary>
-    /// Dodatkowe dzia³ania podczas patrzenia na drzwi. Aktualnie nie zawiera ¿adnej logiki.
+    /// Dodatkowe dzialania podczas patrzenia na drzwi. Aktualnie nie zawiera ¿adnej logiki.
     /// </summary>
     void IInteractable.AdditionalStuffWhenLookingAtInteractable()
     {
@@ -74,10 +74,10 @@ public class Doors : MonoBehaviour, IInteractable
     }
 
     /// <summary>
-    /// Animuje otwieranie lub zamykanie drzwi do podanej wartoœci obrotu (w stopniach).
+    /// Animuje otwieranie lub zamykanie drzwi do podanej wartosci obrotu (w stopniach).
     /// </summary>
-    /// <param name="target_degree">Docelowy k¹t obrotu drzwi.</param>
-    /// <returns>Enumerator kontroluj¹cy przebieg animacji.</returns>
+    /// <param name="target_degree">Docelowy kat obrotu drzwi.</param>
+    /// <returns>Enumerator kontrolujacy przebieg animacji.</returns>
     private IEnumerator OpenOrCloseDoors(float target_degree)
     {
         is_during_opening_animation = true;
@@ -92,7 +92,7 @@ public class Doors : MonoBehaviour, IInteractable
 
         while (elapsed_time < OPEN_AND_CLOSE_DOOR_TIME)
         {
-            elapsed_time += Time.deltaTime; // Zwiêksz czas o czas miêdzy klatkami
+            elapsed_time += Time.deltaTime; // Zwieksz czas o czas miedzy klatkami
 
             float currentDegree = Mathf.Lerp(start_degree, target_degree, elapsed_time / OPEN_AND_CLOSE_DOOR_TIME);
 
@@ -107,10 +107,10 @@ public class Doors : MonoBehaviour, IInteractable
     }
 
     /// <summary>
-    /// Sprawdza, czy drzwi mog¹ byæ otwarte lub zamkniête. 
+    /// Sprawdza, czy drzwi moga byc otwarte lub zamkniete. 
     /// Ustalane jest to na podstawie stanu odblokowania i trwania animacji.
     /// </summary>
-    /// <returns>True, jeœli interakcja jest mo¿liwa; w przeciwnym razie false.</returns>
+    /// <returns>True, jesli interakcja jest mozliwa; w przeciwnym razie false.</returns>
     private bool CanInteract()
     {
         if (is_already_unlocked && !is_during_opening_animation)
@@ -118,7 +118,7 @@ public class Doors : MonoBehaviour, IInteractable
             return true;
         }
 
-        if (true) // Sprawdzenie warunków np. posiadania klucza lub postêpu fabularnego
+        if (true) // Sprawdzenie warunkow np. posiadania klucza lub postepu fabularnego
         {
             is_already_unlocked = true;
 

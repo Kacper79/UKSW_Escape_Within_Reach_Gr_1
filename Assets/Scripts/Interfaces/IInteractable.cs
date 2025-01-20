@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Interfejs dla obiektów, które mog¹ byæ interaktywne w grze.
-/// Zawiera metody, które umo¿liwiaj¹ interakcjê, wyœwietlanie podpowiedzi interakcji oraz dodatkowe akcje przy patrzeniu na obiekt.
+/// Interfejs dla obiektow, ktore moga byc interaktywne w grze.
+/// Zawiera metody, ktore umozliwiaja interakcje, wyswietlanie podpowiedzi interakcji oraz dodatkowe akcje przy patrzeniu na obiekt.
 /// </summary>
 public interface IInteractable
 {
@@ -16,12 +16,12 @@ public interface IInteractable
     /// <summary>
     /// Zwraca tekst podpowiedzi dla interakcji z obiektem.
     /// </summary>
-    /// <returns>Tekst do wyœwietlenia jako podpowiedŸ dla gracza (np. "Naciœnij [E], aby wykonaæ interakcjê").</returns>
+    /// <returns>Tekst do wyswietlenia jako podpowiedz dla gracza (np. "Naciœnij [E], aby wykonac interakcje").</returns>
     public string GetInteractionTooltip();
 
     /// <summary>
     /// Dodatkowe akcje wykonywane, gdy gracz patrzy na obiekt interakcyjny.
-    /// Mo¿e to obejmowaæ np. wyœwietlanie paska postêpu lub podœwietlanie obiektu.
+    /// Moze to obejmowac np. wyswietlanie paska postepu lub podswietlanie obiektu.
     /// </summary>
     public void AdditionalStuffWhenLookingAtInteractable();
 }

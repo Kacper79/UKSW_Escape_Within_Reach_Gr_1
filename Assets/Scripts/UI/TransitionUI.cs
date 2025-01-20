@@ -4,22 +4,22 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Klasa odpowiedzialna za zarz¹dzanie animacj¹ przejœæ UI, w tym wyœwietlanie czarnego t³a podczas zmiany scen.
+/// Klasa odpowiedzialna za zarzadzanie animacja przejsc UI, w tym wyswietlanie czarnego tla podczas zmiany scen.
 /// </summary>
 public class TransitionUI : MonoBehaviour
 {
     /// <summary>
-    /// Czas trwania animacji przejœcia.
+    /// Czas trwania animacji przejscia.
     /// </summary>
     private const float TRANSITION_TIME = 0.2f;
 
     /// <summary>
-    /// Obrazek czarnego t³a, który bêdzie stopniowo zape³nia³ ekran w trakcie przejœcia.
+    /// Obrazek czarnego tla, ktory bedzie stopniowo zapelniac ekran w trakcie przejscia.
     /// </summary>
     [SerializeField] private Image black_background_image;
 
     /// <summary>
-    /// Subskrybuje zdarzenie rozpoczêcia przejœcia, które jest wywo³ywane z innych czêœci gry.
+    /// Subskrybuje zdarzenie rozpoczecia przejscia, ktore jest wywolywane z innych czeœci gry.
     /// </summary>
     private void OnEnable()
     {
@@ -27,7 +27,7 @@ public class TransitionUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Anuluje subskrypcjê zdarzenia po wy³¹czeniu obiektu.
+    /// Anuluje subskrypcje zdarzenia po wylaczeniu obiektu.
     /// </summary>
     private void OnDisable()
     {
@@ -35,19 +35,19 @@ public class TransitionUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Rozpoczyna animacjê przejœcia, uruchamiaj¹c odpowiedni¹ coroutine.
+    /// Rozpoczyna animacje przejscia, uruchamiajac odpowiednia coroutine.
     /// </summary>
-    /// <param name="sender">Obiekt, który wywo³uje zdarzenie (globalne). </param>
-    /// <param name="args">Argumenty zawieraj¹ce czas po zakoñczeniu przejœcia, który jest wykorzystywany do oczekiwania przed zakoñczeniem animacji.</param>
+    /// <param name="sender">Obiekt, ktory wywoluje zdarzenie (globalne). </param>
+    /// <param name="args">Argumenty zawierajace czas po zakonczeniu przejscia, ktory jest wykorzystywany do oczekiwania przed zakonczeniem animacji.</param>
     private void StartTransition(object sender, GlobalEvents.OnStartingTransitionEventArgs args)
     {
         StartCoroutine(BeginTransition(args.time_after_the_transition_ends));
     }
 
     /// <summary>
-    /// Rozpoczyna animacjê przejœcia, stopniowo zmieniaj¹c przezroczystoœæ t³a.
+    /// Rozpoczyna animacje przejscia, stopniowo zmieniajac przezroczystosc tla.
     /// </summary>
-    /// <param name="wait_time_after_finishing">Czas oczekiwania po zakoñczeniu przejœcia, przed rozpoczêciem zakoñczenia animacji.</param>
+    /// <param name="wait_time_after_finishing">Czas oczekiwania po zakonczeniu przejscia, przed rozpoczeciem zakonczenia animacji.</param>
     private IEnumerator BeginTransition(float wait_time_after_finishing)
     {
         float t = 0.0f;
@@ -75,7 +75,7 @@ public class TransitionUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Koñczy animacjê przejœcia, stopniowo zmieniaj¹c przezroczystoœæ t³a w odwrotn¹ stronê.
+    /// Konczy animacje przejscia, stopniowo zmieniajac przezroczystosc tla w odwrotna strone.
     /// </summary>
     private IEnumerator EndTransition()
     {

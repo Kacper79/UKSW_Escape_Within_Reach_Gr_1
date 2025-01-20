@@ -4,52 +4,52 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Kontroler czasu gry, zarz�dzaj�cy up�ywem czasu oraz zdarzeniami powi�zanymi z cyklem dnia.
-/// Implementuje interfejs ISaveable, co umo�liwia zapis i wczytywanie stanu czasu.
+/// Kontroler czasu gry, zarzadzajacy uplywem czasu oraz zdarzeniami powiazanymi z cyklem dnia.
+/// Implementuje interfejs ISaveable, co umozliwia zapis i wczytywanie stanu czasu.
 /// </summary>
 public class TimeController : MonoBehaviour, ISaveable
 {
     /// <summary>
-    /// Czas rozpocz�cia dnia w minutach (godzina 8:00).
+    /// Czas rozpoczecia dnia w minutach (godzina 8:00).
     /// </summary>
     private const int DAY_START_TIME = 8 * 60;
 
     /// <summary>
-    /// Czas zako�czenia dnia w minutach (godzina 22:00).
+    /// Czas zakoeczenia dnia w minutach (godzina 22:00).
     /// </summary>
     private const int DAY_END_TIME = 22 * 60;
 
     /// <summary>
-    /// Cz�stotliwo�� przyrostu czasu w sekundach (dodawanie 1 minuty do zegara gry).
+    /// Czestotliwosc przyrostu czasu w sekundach (dodawanie 1 minuty do zegara gry).
     /// </summary>
     private const float FREQUENCY_OF_TIME_FLOW_IN_SECONDS = 1f;
 
     /// <summary>
-    /// Aktualny czas w minutach od pocz�tku dnia.
+    /// Aktualny czas w minutach od poczatku dnia.
     /// </summary>
     private int time_in_minutes;
 
     /// <summary>
-    /// Czas, jaki up�yn�� od ostatniego dodania minuty do zegara gry.
+    /// Czas, jaki uplynal od ostatniego dodania minuty do zegara gry.
     /// </summary>
     private float time_passed_since_last_added_minute = 0;
 
     /// <summary>
-    /// Flaga wskazuj�ca, czy czas gry jest zatrzymany.
+    /// Flaga wskazujaca, czy czas gry jest zatrzymany.
     /// </summary>
     private bool is_time_stopped;
 
     /// <summary>
-    /// Argumenty zdarzenia informuj�ce o zmianie czasu.
+    /// Argumenty zdarzenia informujace o zmianie czasu.
     /// </summary>
     private GlobalEvents.OnChangingTimeArgs on_changing_time_args;
 
     /// <summary>
-    /// Ustawia pocz�tkowy czas gry na czas rozpocz�cia dnia.
+    /// Ustawia poczatkowy czas gry na czas rozpoczecia dnia.
     /// </summary>
     private void Awake()
     {
-        time_in_minutes = DAY_START_TIME;
+        time_in_minutes = 21 * 60;
     }
 
     /// <summary>
@@ -62,7 +62,7 @@ public class TimeController : MonoBehaviour, ISaveable
     }
 
     /// <summary>
-    /// Wyrejestrowuje subskrypcje globalnych zdarze� uruchamiania i zatrzymywania czasu.
+    /// Wyrejestrowuje subskrypcje globalnych zdarzen uruchamiania i zatrzymywania czasu.
     /// </summary>
     private void OnDisable()
     {
@@ -71,7 +71,7 @@ public class TimeController : MonoBehaviour, ISaveable
     }
 
     /// <summary>
-    /// Inicjalizuje kontroler czasu i powiadamia o pocz�tkowym czasie gry.
+    /// Inicjalizuje kontroler czasu i powiadamia o poczatkowym czasie gry.
     /// </summary>
     private void Start()
     {
@@ -81,7 +81,7 @@ public class TimeController : MonoBehaviour, ISaveable
     }
 
     /// <summary>
-    /// Aktualizuje up�yw czasu gry w ka�dej klatce, o ile czas nie jest zatrzymany.
+    /// Aktualizuje uplyw czasu gry w kazdej klatce, o ile czas nie jest zatrzymany.
     /// </summary>
     private void Update()
     {
@@ -101,23 +101,23 @@ public class TimeController : MonoBehaviour, ISaveable
             if (IsDayEndTime())
             {
                 Debug.Log("End of day, killing prisoners not in cells");
-                // Je�li gracz nie jest w swoim pokoju, "zabij" gracza i przenie� go do pokoju.
+                // Jesli gracz nie jest w swoim pokoju, "zabij" gracza i przenies go do pokoju.
                 ResetDayTime();
             }
         }
     }
 
     /// <summary>
-    /// Sprawdza, czy czas osi�gn�� godzin� zako�czenia dnia.
+    /// Sprawdza, czy czas osiagnal godzine zakonczenia dnia.
     /// </summary>
-    /// <returns>True, je�li osi�gni�to koniec dnia; w przeciwnym razie false.</returns>
+    /// <returns>True, jesli osiegnieto koniec dnia; w przeciwnym razie false.</returns>
     private bool IsDayEndTime()
     {
         return time_in_minutes == DAY_END_TIME;
     }
 
     /// <summary>
-    /// Resetuje czas do pocz�tku dnia.
+    /// Resetuje czas do poczatku dnia.
     /// </summary>
     private void ResetDayTime()
     {
@@ -143,7 +143,7 @@ public class TimeController : MonoBehaviour, ISaveable
     }
 
     /// <summary>
-    /// Zatrzymuje up�yw czasu gry po otrzymaniu odpowiedniego zdarzenia globalnego.
+    /// Zatrzymuje uplyw czasu gry po otrzymaniu odpowiedniego zdarzenia globalnego.
     /// </summary>
     private void StopTime(object sender, System.EventArgs e)
     {
@@ -151,7 +151,7 @@ public class TimeController : MonoBehaviour, ISaveable
     }
 
     /// <summary>
-    /// Wznawia up�yw czasu gry po otrzymaniu odpowiedniego zdarzenia globalnego.
+    /// Wznawia uplyw czasu gry po otrzymaniu odpowiedniego zdarzenia globalnego.
     /// </summary>
     private void StartTime(object sender, System.EventArgs e)
     {

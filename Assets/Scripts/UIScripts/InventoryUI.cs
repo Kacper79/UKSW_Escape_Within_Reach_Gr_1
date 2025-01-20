@@ -11,41 +11,41 @@ public class InventoryUI : MonoBehaviour
 {
     [Header("Buttons")]
     /// <summary>
-    /// Przycisk strza³ki w prawo, u¿ywany do przechodzenia do kolejnych interfejsów u¿ytkownika.
+    /// Przycisk strzalki w prawo, uzywany do przechodzenia do kolejnych interfejsow uzytkownika.
     /// </summary>
     [SerializeField] private Button right_arrow_button;
 
     /// <summary>
-    /// Przycisk strza³ki w lewo, u¿ywany do przechodzenia do poprzednich interfejsów u¿ytkownika.
+    /// Przycisk strzalki w lewo, uzywany do przechodzenia do poprzednich interfejsow uzytkownika.
     /// </summary>
     [SerializeField] private Button left_arrow_button;
 
     [Header("Scripts")]
     /// <summary>
-    /// Referencja do g³ównego UI gracza, które zarz¹dza zasobami gracza.
+    /// Referencja do glownego UI gracza, ktore zarzadza zasobami gracza.
     /// </summary>
     [SerializeField] private PlayerAssetsUI player_assets_UI;
 
     [Header("Slots")]
     /// <summary>
-    /// Lista slotów przechowuj¹cych przedmioty zwi¹zane z fabu³¹, takie jak przedmioty do uprawy.
+    /// Lista slotow przechowujacych przedmioty zwiazane z fabuly, takie jak przedmioty do uprawy.
     /// </summary>
     [SerializeField] private List<Slot> plot_items_slots;
 
     /// <summary>
-    /// Lista slotów przechowuj¹cych inne przedmioty, które nie s¹ zwi¹zane z fabu³¹.
+    /// Lista slotow przechowujacych inne przedmioty, ktore nie sa zwiazane z fabuly.
     /// </summary>
     [SerializeField] private List<Slot> other_items_slots;
 
     [Header("OtherVisuals")]
     /// <summary>
-    /// Wyœwietlacz, który pokazuje iloœæ z³ota gracza.
+    /// Wyswietlacz, ktory pokazuje ilosc zlota gracza.
     /// </summary>
     [SerializeField] private TextMeshProUGUI gold_display;
 
 
     /// <summary>
-    /// Inicjalizuje nas³uchiwanie na klikniêcie przycisków strza³ek do nawigacji po UI.
+    /// Inicjalizuje nasluchiwanie na klikniecie przyciskow strzalek do nawigacji po UI.
     /// </summary>
     private void Start()
     {
@@ -54,19 +54,19 @@ public class InventoryUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Rejestruje subskrypcjê do zdarzenia otwarcia ekwipunku oraz wyœwietlania przedmiotów i z³ota.
+    /// Rejestruje subskrypcje do zdarzenia otwarcia ekwipunku oraz wyswietlania przedmiotow i zlota.
     /// </summary>
     private void OnEnable()
     {
         GlobalEvents.OnInventoryOpenCallBack += LoadItemsToSlots;
         GlobalEvents.OnInventoryOpenCallBack += DisplayGold;
 
-        // Wysy³a zdarzenie otwarcia ekwipunku
+        // Wysyla zdarzenie otwarcia ekwipunku
         GlobalEvents.FireOnInventoryOpen(this);
     }
 
     /// <summary>
-    /// Usuwa subskrypcjê do zdarzeñ zwi¹zanych z otwieraniem ekwipunku.
+    /// Usuwa subskrypcje do zdarzen zwiazanych z otwieraniem ekwipunku.
     /// </summary>
     private void OnDisable()
     {
@@ -75,26 +75,26 @@ public class InventoryUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Wyœwietla iloœæ z³ota w ekwipunku gracza w interfejsie u¿ytkownika.
+    /// Wyswietla ilosc zlota w ekwipunku gracza w interfejsie uzytkownika.
     /// </summary>
-    /// <param name="sender">Obiekt, który wys³a³ zdarzenie.</param>
-    /// <param name="e">Argumenty zdarzenia zawieraj¹ce informacje o iloœci z³ota.</param>
+    /// <param name="sender">Obiekt, ktory wysyla zdarzenie.</param>
+    /// <param name="e">Argumenty zdarzenia zawierajace informacje o ilosci zlota.</param>
     private void DisplayGold(object sender, GlobalEvents.OnInventoryOpenCallBackEventArgs e)
     {
-        gold_display.text = e.gold_amount.ToString();  // Ustawia tekst w UI na wartoœæ z³ota
+        gold_display.text = e.gold_amount.ToString();  // Ustawia tekst w UI na wartosc zlota
     }
 
     /// <summary>
-    /// £aduje przedmioty do odpowiednich slotów w ekwipunku, w zale¿noœci od typu przedmiotu.
+    /// Laduje przedmioty do odpowiednich slotow w ekwipunku, w zaleznosci od typu przedmiotu.
     /// </summary>
-    /// <param name="sender">Obiekt, który wys³a³ zdarzenie.</param>
-    /// <param name="e">Argumenty zdarzenia zawieraj¹ce listy przedmiotów i ich iloœæ.</param>
+    /// <param name="sender">Obiekt, ktory wysyla zdarzenie.</param>
+    /// <param name="e">Argumenty zdarzenia zawierajace listy przedmiotow i ich ilosc.</param>
     private void LoadItemsToSlots(object sender, GlobalEvents.OnInventoryOpenCallBackEventArgs e)
     {
         int plot_slot_to_fill = 0;
         int other_slot_to_fill = 0;
 
-        // £adowanie przedmiotów do slotów upraw
+        // ladowanie przedmiotow do slotow upraw
         foreach (Item item in e.plot_items_list)
         {
             plot_items_slots[plot_slot_to_fill].SetIsEmpty(false);
@@ -104,7 +104,7 @@ public class InventoryUI : MonoBehaviour
             plot_slot_to_fill++;
         }
 
-        // £adowanie innych przedmiotów do odpowiednich slotów
+        // ladowanie innych przedmiotow do odpowiednich slotow
         foreach (Item item in e.other_items_list)
         {
             other_items_slots[other_slot_to_fill].SetIsEmpty(false);
@@ -116,7 +116,7 @@ public class InventoryUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Obs³uguje klikniêcie przycisku strza³ki w prawo i otwiera interfejs dziennika zadañ.
+    /// Obsluguje klikniecie przycisku strzalki w prawo i otwiera interfejs dziennika zadan.
     /// </summary>
     private void OnRightArrowButtonClick()
     {
@@ -124,7 +124,7 @@ public class InventoryUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Obs³uguje klikniêcie przycisku strza³ki w lewo i otwiera interfejs osi¹gniêæ.
+    /// Obsluguje klikniecie przycisku strzalki w lewo i otwiera interfejs osiagniec.
     /// </summary>
     private void OnLeftArrowButtonClick()
     {

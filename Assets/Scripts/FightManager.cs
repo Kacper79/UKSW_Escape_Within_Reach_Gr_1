@@ -5,43 +5,43 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Klasa zarz¹dzaj¹ca walk¹ w turnieju. Obs³uguje rozpoczêcie turnieju, dodawanie wrogów,
-/// zarz¹dzanie stanem turnieju oraz zakoñczenie turnieju po pokonaniu wszystkich wrogów.
+/// Klasa zarzadzajaca walka w turnieju. Obsluguje rozpoczecie turnieju, dodawanie wrogow,
+/// zarzadzanie stanem turnieju oraz zakonczenie turnieju po pokonaniu wszystkich wrogow.
 /// </summary>
 public class FightManager : MonoBehaviour
 {
     /// <summary>
-    /// Liczba wrogów, których trzeba pokonaæ, aby wygraæ turniej.
+    /// Liczba wrogow, ktorych trzeba pokonac, aby wygrac turniej.
     /// </summary>
     private const int NUMBER_OF_ENEMY_TO_DEFEAT_TO_WIN_TOURNAMENT = 3;
 
     /// <summary>
-    /// K¹t rotacji gracza po zakoñczeniu walki.
+    /// Kat rotacji gracza po zakonczeniu walki.
     /// </summary>
     private const float Y_VALUE_OF_PLAYER_ROTATION_AFETR_ENDING_THE_FIGHT = 170.0f;
 
     /// <summary>
-    /// Collider pierœcienia, który aktywuje walkê.
+    /// Collider pierscienia, ktory aktywuje walke.
     /// </summary>
     [SerializeField] private GameObject ring_collider;
 
     /// <summary>
-    /// Prefab wroga, który zostanie zainstantiowany podczas walki.
+    /// Prefab wroga, ktory zostanie zainstantiowany podczas walki.
     /// </summary>
     [SerializeField] private GameObject enemy_prefab;
 
     /// <summary>
-    /// Miejsce, do którego zostanie przeniesiony gracz, gdy rozpocznie turniej.
+    /// Miejsce, do ktorego zostanie przeniesiony gracz, gdy rozpocznie turniej.
     /// </summary>
     [SerializeField] private Transform place_to_tp_player_to_when_starting_tournament;
 
     /// <summary>
-    /// Pocz¹tkowa pozycja wroga, w którym bêdzie siê znajdowa³ na pocz¹tku walki.
+    /// Poczatkowa pozycja wroga, w ktorym bedzie sie znajdowac na poczatku walki.
     /// </summary>
     [SerializeField] private Transform enemy_starting_position;
 
     /// <summary>
-    /// Liczba pokonanych wrogów w trakcie trwania turnieju.
+    /// Liczba pokonanych wrogow w trakcie trwania turnieju.
     /// </summary>
     private int defeated_enemy_in_tournament_so_far = 0;
 
@@ -56,12 +56,12 @@ public class FightManager : MonoBehaviour
     private GameObject enemy_go;
 
     /// <summary>
-    /// Pozycja gracza przed wejœciem do walki.
+    /// Pozycja gracza przed wejsciem do walki.
     /// </summary>
     private Vector3 player_position_before_entering_the_fight;
 
     /// <summary>
-    /// Inicjalizacja obiektów gracza w grze.
+    /// Inicjalizacja obiektow gracza w grze.
     /// </summary>
     private void Awake()
     {
@@ -69,7 +69,7 @@ public class FightManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Subskrypcja zdarzeñ zwi¹zanych z rozpoczêciem i zakoñczeniem turnieju.
+    /// Subskrypcja zdarzen zwiazanych z rozpoczeciem i zakonczeniem turnieju.
     /// </summary>
     private void OnEnable()
     {
@@ -79,7 +79,7 @@ public class FightManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Odpina subskrypcje zdarzeñ.
+    /// Odpina subskrypcje zdarzen.
     /// </summary>
     private void OnDisable()
     {
@@ -89,8 +89,8 @@ public class FightManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Zarz¹dza sytuacj¹ po pokonaniu wroga w turnieju. Jeœli gracz pokona³ ostatniego wroga,
-    /// koñczy turniej, w przeciwnym razie spawn'uje kolejnego wroga.
+    /// Zarzadza sytuacja po pokonaniu wroga w turnieju. Jesli gracz pokonal ostatniego wroga,
+    /// konczy turniej, w przeciwnym razie spawnuje kolejnego wroga.
     /// </summary>
     private void ManageWiningWithEnemyInTournament(object sender, System.EventArgs e)
     {
@@ -107,7 +107,7 @@ public class FightManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Rozpoczyna turniej walki, teleportuje gracza na ring i spawn'uje wroga.
+    /// Rozpoczyna turniej walki, teleportuje gracza na ring i spawnuje wroga.
     /// </summary>
     public void StartTournament(object sender, System.EventArgs e)
     {
@@ -123,8 +123,8 @@ public class FightManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Zdarzenie wywo³ywane, gdy gracz umiera w trakcie turnieju.
-    /// Zatrzymuje walkê i przenosi gracza na pocz¹tkow¹ pozycjê.
+    /// Zdarzenie wywolywane, gdy gracz umiera w trakcie turnieju.
+    /// Zatrzymuje walke i przenosi gracza na poczatkowa pozycje.
     /// </summary>
     public void PlayerDiedInTournament()
     {
@@ -137,7 +137,7 @@ public class FightManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Koñczy turniej po pokonaniu wszystkich wrogów. Zatrzymuje walkê i zwraca gracza do poprzedniej pozycji.
+    /// Konczy turniej po pokonaniu wszystkich wrogow. Zatrzymuje walke i zwraca gracza do poprzedniej pozycji.
     /// </summary>
     public void EndTournament()
     {
@@ -151,7 +151,7 @@ public class FightManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Teleportuje gracza na ring, gdzie rozpocznie walkê.
+    /// Teleportuje gracza na ring, gdzie rozpocznie walke.
     /// </summary>
     private void TeleportPlayerToRing()
     {
@@ -160,7 +160,7 @@ public class FightManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Teleportuje gracza do jego poprzedniej pozycji po zakoñczeniu walki.
+    /// Teleportuje gracza do jego poprzedniej pozycji po zakonczeniu walki.
     /// </summary>
     private void TeleportPlayerToPostinionBeforeStartingAFight()
     {
@@ -170,7 +170,7 @@ public class FightManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Spawn'uje wroga w miejscu wyznaczonym na pocz¹tek walki.
+    /// Spawnuje wroga w miejscu wyznaczonym na poczatek walki.
     /// </summary>
     private void SpawnEnemy()
     {

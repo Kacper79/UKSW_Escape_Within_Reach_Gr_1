@@ -4,18 +4,18 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
-/// Zarz¹dza systemem dialogów w grze.
-/// Obs³uguje wyœwietlanie opcji dialogowych, przetwarzanie wyborów gracza oraz odtwarzanie dŸwiêków i tekstów.
+/// Zarzadza systemem dialogow w grze.
+/// Obsluguje wyswietlanie opcji dialogowych, przetwarzanie wyborow gracza oraz odtwarzanie dzwiekow i tekstow.
 /// </summary>
 public class DialogueManager : MonoBehaviour
 {
     /// <summary>
-    /// OpóŸnienie pomiêdzy ka¿d¹ procedur¹ dialogow¹.
+    /// Opoznienie pomiedzy kazda procedura dialogowa.
     /// </summary>
     private const float DELAY_EPSILON_BETWEEN_EACH_DIALOGUE_PROC = 0.02f;
 
     /// <summary>
-    /// Nazwa g³ównego bohatera, wyœwietlana w dialogach.
+    /// Nazwa glownego bohatera, wyswietlana w dialogach.
     /// </summary>
     private const string MAIN_CHARACTER_NAME = "MAIN CHARACTER NAME";
 
@@ -25,7 +25,7 @@ public class DialogueManager : MonoBehaviour
     public static DialogueManager Instance { get; private set; }
 
     /// <summary>
-    /// Korzeñ aktualnie odtwarzanego dialogu.
+    /// Korzen aktualnie odtwarzanego dialogu.
     /// </summary>
     private DialogueNodeSO current_dialogue_root;
 
@@ -35,22 +35,22 @@ public class DialogueManager : MonoBehaviour
     private List<DialogueNodeSO> current_dialogue_list = new();
 
     /// <summary>
-    /// Interfejs wyœwietlania opcji dialogowych.
+    /// Interfejs wyswietlania opcji dialogowych.
     /// </summary>
     private DialogueOptionsUI dialogue_options_ui;
 
     /// <summary>
-    /// Interfejs wyœwietlania tekstu dialogowego.
+    /// Interfejs wyswietlania tekstu dialogowego.
     /// </summary>
     private SpokenTextDisplayUI spoken_text_display_ui;
 
     /// <summary>
-    /// Nazwa NPC, z którym aktualnie rozmawiamy.
+    /// Nazwa NPC, z ktorym aktualnie rozmawiamy.
     /// </summary>
     private string current_npc_name;
 
     /// <summary>
-    /// Inicjalizuje singleton oraz wyszukuje elementy UI zwi¹zane z dialogiem.
+    /// Inicjalizuje singleton oraz wyszukuje elementy UI zwiazane z dialogiem.
     /// </summary>
     private void Awake()
     {
@@ -70,7 +70,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Subskrybuje globalne zdarzenia wymagane do obs³ugi dialogów.
+    /// Subskrybuje globalne zdarzenia wymagane do obslugi dialogow.
     /// </summary>
     private void OnEnable()
     {
@@ -79,7 +79,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Wyrejestrowuje globalne zdarzenia wymagane do obs³ugi dialogów.
+    /// Wyrejestrowuje globalne zdarzenia wymagane do obslugi dialogow.
     /// </summary>
     private void OnDisable()
     {
@@ -88,10 +88,10 @@ public class DialogueManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Rozpoczyna dialog z danym korzeniem dialogowym i nazw¹ NPC.
+    /// Rozpoczyna dialog z danym korzeniem dialogowym i nazwa NPC.
     /// </summary>
-    /// <param name="dialogue_root">Korzeñ dialogu do odtworzenia.</param>
-    /// <param name="npc_name">Nazwa NPC, z którym rozmawiamy.</param>
+    /// <param name="dialogue_root">Korzen dialogu do odtworzenia.</param>
+    /// <param name="npc_name">Nazwa NPC, z ktorym rozmawiamy.</param>
     public void StartDialogue(DialogueNodeSO dialogue_root, string npc_name)
     {
         Cursor.lockState = CursorLockMode.None;
@@ -109,10 +109,10 @@ public class DialogueManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Obs³uguje powrót do okreœlonych opcji dialogowych.
+    /// Obsluguje powrot do okreslonych opcji dialogowych.
     /// </summary>
-    /// <param name="sender">Obiekt wywo³uj¹cy zdarzenie.</param>
-    /// <param name="e">Argumenty zdarzenia zawieraj¹ce listê opcji dialogowych.</param>
+    /// <param name="sender">Obiekt wywolujacy zdarzenie.</param>
+    /// <param name="e">Argumenty zdarzenia zawierajace liste opcji dialogowych.</param>
     private void GoBackToCertainDialogueOptionsCallbacked(object sender, GlobalEvents.CallbackForOnLookingForDialogueListWithGivenIDEventArgs e)
     {
         current_dialogue_list = e.list_of_options;
@@ -120,10 +120,10 @@ public class DialogueManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Obs³uguje wybór konkretnej opcji dialogowej przez gracza.
+    /// Obsluguje wybor konkretnej opcji dialogowej przez gracza.
     /// </summary>
-    /// <param name="sender">Obiekt wywo³uj¹cy zdarzenie.</param>
-    /// <param name="e">Argumenty zdarzenia zawieraj¹ce ID wybranej opcji dialogowej.</param>
+    /// <param name="sender">Obiekt wywolujacy zdarzenie.</param>
+    /// <param name="e">Argumenty zdarzenia zawierajace ID wybranej opcji dialogowej.</param>
     private void ChosenGivenOption(object sender, GlobalEvents.OnChoosingCertainDialogueOptionEventArgs e)
     {
         DialogueNodeSO choosen_option = GetChoosenOptionBasedOnId(e.choosen_option_id);
@@ -134,7 +134,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Wyœwietla dialog na ekranie, odtwarzaj¹c odpowiedni dŸwiêk i tekst.
+    /// Wyswietla dialog na ekranie, odtwarzajac odpowiedni dzwiek i tekst.
     /// </summary>
     /// <param name="choosen_option">Wybrana opcja dialogowa.</param>
     private IEnumerator DisplayDialogueOnScreen(DialogueNodeSO choosen_option)
@@ -156,7 +156,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Obs³uguje dzia³ania po zakoñczeniu dialogu przez NPC.
+    /// Obsluguje dzialania po zakonczeniu dialogu przez NPC.
     /// </summary>
     /// <param name="choosen_option">Opcja dialogowa wybrana przez gracza.</param>
     private void StuffToBeDoneAfterNpcFinishes(DialogueNodeSO choosen_option)
@@ -171,7 +171,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Wywo³uje odpowiednie zdarzenia na podstawie wybranej opcji dialogowej.
+    /// Wywoluje odpowiednie zdarzenia na podstawie wybranej opcji dialogowej.
     /// </summary>
     /// <param name="option">Wybrana opcja dialogowa.</param>
     private void InvokeEventsOnChoosingCertainOptions(DialogueNodeSO option)
@@ -215,10 +215,10 @@ public class DialogueManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Zwraca opcjê dialogow¹ na podstawie jej ID.
+    /// Zwraca opcje dialogowa na podstawie jej ID.
     /// </summary>
     /// <param name="id">ID opcji dialogowej.</param>
-    /// <returns>Opcja dialogowa odpowiadaj¹ca podanemu ID lub null, jeœli nie znaleziono.</returns>
+    /// <returns>Opcja dialogowa odpowiadajaca podanemu ID lub null, jesli nie znaleziono.</returns>
     private DialogueNodeSO GetChoosenOptionBasedOnId(string id)
     {
         foreach (DialogueNodeSO option in current_dialogue_list)

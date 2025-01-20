@@ -3,28 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Klasa reprezentuj¹ca obiekt, z którym mo¿na rozmawiaæ.
-/// Implementuje interfejs IInteractable, co pozwala na interakcjê z NPC.
+/// Klasa reprezentujaca obiekt, z ktorym mozna rozmawiac.
+/// Implementuje interfejs IInteractable, co pozwala na interakcje z NPC.
 /// </summary>
 public class Talkable : MonoBehaviour, IInteractable
 {
     /// <summary>
-    /// Wiadomoœæ wyœwietlana w tooltipie podczas patrzenia na obiekt.
+    /// Wiadomosc wyswietlana w tooltipie podczas patrzenia na obiekt.
     /// </summary>
     private string INTERACTION_TOOLTIP = "Press [E] to talk";
 
     /// <summary>
-    /// G³ówny wêze³ dialogu, który jest powi¹zany z tym NPC.
+    /// Glowny wezel dialogu, ktory jest powiazany z tym NPC.
     /// </summary>
     [SerializeField] private DialogueNodeSO dialogue_root;
 
     /// <summary>
-    /// Nazwa NPC, z którym mo¿na rozmawiaæ.
+    /// Nazwa NPC, z ktorym mozna rozmawiac.
     /// </summary>
     [SerializeField] private string npc_name;
 
     /// <summary>
-    /// Dodatkowe dzia³ania wykonywane podczas patrzenia na obiekt. 
+    /// Dodatkowe dzialania wykonywane podczas patrzenia na obiekt. 
     /// Aktualnie brak implementacji.
     /// </summary>
     public void AdditionalStuffWhenLookingAtInteractable()
@@ -33,17 +33,17 @@ public class Talkable : MonoBehaviour, IInteractable
     }
 
     /// <summary>
-    /// Zwraca wiadomoœæ tooltipa do wyœwietlenia podczas patrzenia na obiekt.
-    /// Uwzglêdnia nazwê NPC.
+    /// Zwraca wiadomosc tooltipa do wyswietlenia podczas patrzenia na obiekt.
+    /// Uwzglednia nazwe NPC.
     /// </summary>
-    /// <returns>Tekst tooltipa z nazw¹ NPC.</returns>
+    /// <returns>Tekst tooltipa z nazwe NPC.</returns>
     public string GetInteractionTooltip()
     {
         return INTERACTION_TOOLTIP + " to " + npc_name;
     }
 
     /// <summary>
-    /// Rozpoczyna interakcjê z NPC, uruchamiaj¹c dialog za pomoc¹ DialogueManager.
+    /// Rozpoczyna interakcje z NPC, uruchamiajac dialog za pomoca DialogueManager.
     /// </summary>
     public void Interact()
     {

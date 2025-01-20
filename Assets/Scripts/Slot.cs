@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    private const string ITEM_QUANTITY_TEXT = "iloœæ: ";
+    private const string ITEM_QUANTITY_TEXT = "ilosc: ";
 
     [Header("Texts")]
     [SerializeField] private TextMeshProUGUI item_description_display;
@@ -17,15 +17,15 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] private Image item_icon_description_display;
     [SerializeField] private Image item_icon_slot_display;
 
-    // Flaga wskazuj¹ca, czy slot jest pusty
+    // Flaga wskazujaca, czy slot jest pusty
     private bool is_empty = true;
     // Opis przedmiotu w slocie
     private string item_description = "";
-    // Iloœæ przedmiotów w slocie
+    // Ilosc przedmiotow w slocie
     private int item_quantity = 0;
 
     /// <summary>
-    /// Inicjalizuje pocz¹tkowy stan slotu (ukrywa informacje o przedmiocie).
+    /// Inicjalizuje poczatkowy stan slotu (ukrywa informacje o przedmiocie).
     /// </summary>
     private void OnEnable()
     {
@@ -35,7 +35,7 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
 
     /// <summary>
-    /// Resetuje informacje o przedmiocie, jeœli slot nie jest pusty.
+    /// Resetuje informacje o przedmiocie, jesli slot nie jest pusty.
     /// </summary>
     public void OnDisable()
     {
@@ -51,7 +51,7 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
 
     /// <summary>
-    /// Obs³uguje zdarzenie, gdy wskaŸnik myszki wchodzi na slot. Wyœwietla informacje o przedmiocie.
+    /// Obsluguje zdarzenie, gdy wskaznik myszki wchodzi na slot. Wyswietla informacje o przedmiocie.
     /// </summary>
     /// <param name="eventData">Dane zdarzenia.</param>
     public void OnPointerEnter(PointerEventData eventData)
@@ -68,7 +68,7 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
 
     /// <summary>
-    /// Obs³uguje zdarzenie, gdy wskaŸnik myszki wychodzi z slotu. Ukrywa informacje o przedmiocie.
+    /// Obsluguje zdarzenie, gdy wskaznik myszki wychodzi z slotu. Ukrywa informacje o przedmiocie.
     /// </summary>
     /// <param name="eventData">Dane zdarzenia.</param>
     public void OnPointerExit(PointerEventData eventData)
@@ -85,7 +85,7 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
 
     /// <summary>
-    /// Ustawia ikonê przedmiotu w slocie.
+    /// Ustawia ikone przedmiotu w slocie.
     /// </summary>
     /// <param name="icon">Ikona przedmiotu.</param>
     public void SetIcon(Sprite icon)
@@ -115,7 +115,7 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     /// <summary>
     /// Sprawdza, czy slot jest pusty.
     /// </summary>
-    /// <returns>True, jeœli slot jest pusty; w przeciwnym razie false.</returns>
+    /// <returns>True, jesli slot jest pusty; w przeciwnym razie false.</returns>
     public bool GetIsEmpty()
     {
         return is_empty;
@@ -124,16 +124,16 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     /// <summary>
     /// Ustawia, czy slot jest pusty.
     /// </summary>
-    /// <param name="b">True, jeœli slot ma byæ pusty, false jeœli nie.</param>
+    /// <param name="b">True, jesli slot ma byc pusty, false jesli nie.</param>
     public void SetIsEmpty(bool b)
     {
         is_empty = b;
     }
 
     /// <summary>
-    /// Ustawia iloœæ przedmiotów w slocie.
+    /// Ustawia ilosc przedmiotow w slocie.
     /// </summary>
-    /// <param name="quantity">Iloœæ przedmiotów.</param>
+    /// <param name="quantity">Ilosc przedmiotow.</param>
     public void SetItemQuantity(int quantity)
     {
         item_quantity = quantity;

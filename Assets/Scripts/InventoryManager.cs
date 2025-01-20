@@ -8,39 +8,39 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour, ISaveable
 {
     /// <summary>
-    /// Maksymalna liczba innych przedmiotów, które mogą znajdować się w ekwipunku.
+    /// Maksymalna liczba innych przedmiotow, ktore moga znajdowac sie w ekwipunku.
     /// </summary>
     private const int MAX_OTHER_ITEMS = 4;
 
     /// <summary>
-    /// Maksymalna liczba przedmiotów fabularnych, które mogą znajdować się w ekwipunku.
+    /// Maksymalna liczba przedmiotow fabularnych, ktore moga znajdowac sie w ekwipunku.
     /// </summary>
     private const int MAX_PLOT_ITEMS = 4;
     private const int BREAKING_ROCK_GAIN = 500;
 
     /// <summary>
-    /// Lista wszystkich dostępnych przedmiotów, które mogą być podniesione przez gracza.
+    /// Lista wszystkich dostepnych przedmiotow, ktore moga byc podniesione przez gracza.
     /// </summary>
     [SerializeField] private List<Item> allPosibleObjects;
 
     /// <summary>
-    /// Lista przedmiotów fabularnych, które zostały podniesione przez gracza.
+    /// Lista przedmiotow fabularnych, ktore zostaly podniesione przez gracza.
     /// </summary>
     private List<Item> plot_picked_up_items = new List<Item>();
 
     /// <summary>
-    /// Lista innych przedmiotów, które zostały podniesione przez gracza.
+    /// Lista innych przedmiotow, ktore zostaly podniesione przez gracza.
     /// </summary>
     private List<Item> other_picked_up_items = new List<Item>();
 
     /// <summary>
-    /// Początkowa ilość złota, którą posiada gracz.
+    /// Poczatkowa ilosc zlota, ktora posiada gracz.
     /// </summary>
     [SerializeField] private int gold_amount = 5000;
 
     /// <summary>
-    /// Słownik przechowujący ilość poszczególnych przedmiotów w ekwipunku gracza.
-    /// Kluczem jest nazwa przedmiotu, a wartością jego ilość.
+    /// Slownik przechowujacy ilosc poszczegolnych przedmiotow w ekwipunku gracza.
+    /// Kluczem jest nazwa przedmiotu, a wartoscia jego ilosc.
     /// </summary>
     public Dictionary<string, int> item_amount = new();
     [SerializeField] private List<DialogueNodeSO> possiblePayoffDialogues;
@@ -48,13 +48,13 @@ public class InventoryManager : MonoBehaviour, ISaveable
 
 
     /// <summary>
-    /// Inicjalizuje wartości i subskrybuje zdarzenia.
+    /// Inicjalizuje wartosci i subskrybuje zdarzenia.
     /// </summary>
     private void OnEnable()
     {
-        gold_amount = 1000;  // Ustawienie początkowej ilości złota
+        gold_amount = 1000;  // Ustawienie poczatkowej ilosci zlota
 
-        // Subskrypcja na różne zdarzenia globalne
+        // Subskrypcja na rożne zdarzenia globalne
         GlobalEvents.OnPickUpItem += PickUpItem;
         GlobalEvents.OnInventoryOpen += OnInventoryOpenCallBack;
         GlobalEvents.OnPayoff += OnPayoffCallback;
@@ -63,7 +63,7 @@ public class InventoryManager : MonoBehaviour, ISaveable
     }
 
     /// <summary>
-    /// Anuluje subskrypcję zdarzeń przy wyłączeniu obiektu.
+    /// Anuluje subskrypcje zdarzen przy wylaczeniu obiektu.
     /// </summary>
     private void OnDisable()
     {
@@ -75,7 +75,7 @@ public class InventoryManager : MonoBehaviour, ISaveable
     }
 
     /// <summary>
-    /// Rejestruje menedżera w systemie zapisywania przy starcie gry.
+    /// Rejestruje menedzera w systemie zapisywania przy starcie gry.
     /// </summary>
     void Start()
     {
@@ -85,11 +85,11 @@ public class InventoryManager : MonoBehaviour, ISaveable
     }
 
     /// <summary>
-    /// Wywoływane przy otwarciu ekwipunku - przekazuje dane do innych systemów.
+    /// Wywolywane przy otwarciu ekwipunku - przekazuje dane do innych systemow.
     /// </summary>
     private void OnInventoryOpenCallBack(object sender, System.EventArgs e)
     {
-        // Tworzy obiekt z danymi o ekwipunku i wywołuje zdarzenie otwarcia ekwipunku
+        // Tworzy obiekt z danymi o ekwipunku i wywoluje zdarzenie otwarcia ekwipunku
         GlobalEvents.OnInventoryOpenCallBackEventArgs args = new(plot_picked_up_items, other_picked_up_items, item_amount, gold_amount);
         GlobalEvents.FireOnInventoryOpenCallBack(this, args);
     }
@@ -100,12 +100,12 @@ public class InventoryManager : MonoBehaviour, ISaveable
     }
 
     /// <summary>
-    /// Zmienia ilość złota po wygranej lub przegranej w blackjacku.
+    /// Zmienia ilosc zlota po wygranej lub przegranej w blackjacku.
     /// </summary>
     private void ChangeGoldAmount(object sender, GlobalEvents.OnLosingOrWinningMoneyInABlackjackGameEventArgs args)
     {
-        AddGold(args.value);  // Dodaje lub odejmuje złoto
-        Debug.Log(gold_amount);  // Wyświetla nową ilość złota w logach
+        AddGold(args.value);  // Dodaje lub odejmuje zloto
+        Debug.Log(gold_amount);  // Wyswietla nowa ilosc zlota w logach
     }
 
     private void OnPayoffCallback(object sender, GlobalEvents.OnPayoffEventArgs args)
@@ -120,7 +120,7 @@ public class InventoryManager : MonoBehaviour, ISaveable
     }
 
     /// <summary>
-    /// Dodaje złoto do aktualnej ilości.
+    /// Dodaje zloto do aktualnej ilosci.
     /// </summary>
     private void AddGold(int value)
     {
@@ -129,7 +129,7 @@ public class InventoryManager : MonoBehaviour, ISaveable
     }
 
     /// <summary>
-    /// Wydaje złoto, zmniejszając jego ilość.
+    /// Wydaje zloto, zmniejszajac jego ilosc.
     /// </summary>
     private void SpendGold(int value)
     {
@@ -166,17 +166,17 @@ public class InventoryManager : MonoBehaviour, ISaveable
     }
 
     /// <summary>
-    /// Obsługuje podniesienie przedmiotu - dodaje go do ekwipunku.
+    /// Obsluguje podniesienie przedmiotu - dodaje go do ekwipunku.
     /// </summary>
     private void PickUpItem(object sender, GlobalEvents.OnPickUpItemEventArgs e)
     {
         // Sprawdza, czy przedmiot jest przedmiotem fabularnym, czy innym
         if (!e.item.GetIsPlot())
         {
-            // Sprawdza, czy ekwipunek na inne przedmioty nie jest pełny
+            // Sprawdza, czy ekwipunek na inne przedmioty nie jest pelny
             if (other_picked_up_items.Count < MAX_OTHER_ITEMS)
             {
-                // Sprawdza, czy przedmiot już istnieje w ekwipunku, jeśli nie dodaje go
+                // Sprawdza, czy przedmiot już istnieje w ekwipunku, jesli nie dodaje go
                 if (!item_amount.ContainsKey(e.item.GetItemName()))
                 {
                     item_amount.Add(e.item.GetItemName(), 1);
@@ -186,17 +186,17 @@ public class InventoryManager : MonoBehaviour, ISaveable
                 {
                     item_amount[e.item.GetItemName()]++;
                 }
-                e.item.gameObject.SetActive(false);  // Dezaktywuje obiekt przedmiotu w świecie gry
-                Debug.Log(item_amount[e.item.GetItemName()]);  // Wyświetla ilość przedmiotu w logach
+                e.item.gameObject.SetActive(false);  // Dezaktywuje obiekt przedmiotu w swiecie gry
+                Debug.Log(item_amount[e.item.GetItemName()]);  // Wyswietla ilosc przedmiotu w logach
             }
             else
             {
-                Debug.Log("Inventory is full");  // Ekwipunek jest pełny
+                Debug.Log("Inventory is full");  // Ekwipunek jest pelny
             }
         }
         else
         {
-            // Obsługuje przypadek, gdy przedmiot jest fabularny
+            // Obsluguje przypadek, gdy przedmiot jest fabularny
             if (plot_picked_up_items.Count < MAX_PLOT_ITEMS)
             {
                 if (!item_amount.ContainsKey(e.item.GetItemName()))
@@ -213,13 +213,13 @@ public class InventoryManager : MonoBehaviour, ISaveable
             }
             else
             {
-                Debug.Log("Inventory is full");  // Ekwipunek fabularny jest pełny
+                Debug.Log("Inventory is full");  // Ekwipunek fabularny jest pelny
             }
         }
     }
 
     /// <summary>
-    /// Usuwa użyty przedmiot z ekwipunku.
+    /// Usuwa uzyty przedmiot z ekwipunku.
     /// </summary>
     public bool RemoveUsedItem(Item item_to_use)
     {
@@ -244,7 +244,7 @@ public class InventoryManager : MonoBehaviour, ISaveable
         }
         else
         {
-            item_amount[item_to_use.GetItemName()]--;  // Zmniejsza ilość przedmiotu
+            item_amount[item_to_use.GetItemName()]--;  // Zmniejsza ilosc przedmiotu
         }
         return true;
     }
@@ -255,7 +255,7 @@ public class InventoryManager : MonoBehaviour, ISaveable
     /// <param name="saveData">Mutable save data struct to save data to</param>
     public void Save(ref SaveData saveData)
     {
-        // Zapisuje ilość złota, ilość przedmiotów oraz listy przedmiotów w ekwipunku
+        // Zapisuje ilosc zlota, ilosc przedmiotow oraz listy przedmiotow w ekwipunku
         saveData.inventoryGoldAmount = gold_amount;
         saveData.inventoryItemAmount = new(item_amount);
         saveData.inventoryOtherItems = new();
@@ -285,14 +285,14 @@ public class InventoryManager : MonoBehaviour, ISaveable
         gold_amount = saveData.inventoryGoldAmount;
         item_amount = saveData.inventoryItemAmount;
 
-        // Ładowanie innych przedmiotów
+        // Ładowanie innych przedmiotow
         foreach (int itemID in saveData.inventoryOtherItems)
         {
             Item item = allPosibleObjects[itemID];
             if (itemID >= 0 && itemID < allPosibleObjects.Count) other_picked_up_items.Add(item);
         }
 
-        // Ładowanie przedmiotów fabularnych
+        // ladowanie przedmiotow fabularnych
         foreach (int itemID in saveData.inventoryPlotItems)
         {
             Item item = allPosibleObjects[itemID];
@@ -301,7 +301,7 @@ public class InventoryManager : MonoBehaviour, ISaveable
     }
 
     /// <summary>
-    /// Zwraca ilość złota w ekwipunku.
+    /// Zwraca ilosc zlota w ekwipunku.
     /// </summary>
     public int GetGoldAmount()
     {

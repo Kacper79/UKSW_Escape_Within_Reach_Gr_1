@@ -7,6 +7,9 @@ using UnityEngine.Networking;
 
 namespace Assets.Scripts
 {
+    /// <summary>
+    /// Ta klasa zajmuje sie analityka
+    /// </summary>
     public class GameAnalytics : MonoBehaviour
     {
         void Awake()
@@ -27,7 +30,7 @@ namespace Assets.Scripts
             // Wczytaj czas gry z zapisanych danych
             totalPlayTime = PlayerPrefs.GetFloat("TotalPlayTime", 0f);
 
-            // Sprawdzenie argumentów uruchomienia
+            // Sprawdzenie argumentow uruchomienia
             string[] args = System.Environment.GetCommandLineArgs();
 
             for (int i = 0; i < args.Length; i++)
@@ -48,15 +51,26 @@ namespace Assets.Scripts
             totalPlayTime += (Time.deltaTime * 0.0002778f);
         }
 
+        /// <summary>
+        /// Statystyki sa przechowywane w slowniku gdzie nazwa
+        /// statystyki jest kojarzona z jej wartoscia. Modyfikuje
+        /// wartosc statystyki lub tworzy nowa jezeli nie istnieje
+        /// </summary>
+        /// <param name="key">Nazwa statystyki</param>
+        /// <param name="value">Wartosc statystyki</param>
         public void ModifyStat(string key, object value)
         {
-            // Dodaj lub aktualizuj statystykę
+            // Dodaj lub aktualizuj statystyke
             if (stats.ContainsKey(key))
                 stats[key] = value;
             else
                 stats.Add(key, value);
         }
 
+        /// <summary>
+        /// Czysci wszystkie statystyki dla testu
+        /// </summary>
+        /// <param name="resetPlaytime"></param>
         public void ClearStatsOnFreshSave(bool resetPlaytime)
         {
             //PlayerPrefs.SetFloat("TotalPlayTime", 0.0f);
@@ -67,17 +81,19 @@ namespace Assets.Scripts
 
         /*void OnApplicationQuit()
         {
-            // Wyślij dane do serwera
+            // Wyslij dane do serwera
             SendDataToServer();
         }*/
 
+        /// <summary>
+        /// Funkcja ktora zbiera wszystkie statystyki i tworzy sformatowane cialo JSON
+        /// </summary>
         public void SendDataToServer()
         {
             // Zapisz czas gry w PlayerPrefs
             PlayerPrefs.SetFloat("TotalPlayTime", totalPlayTime);
 
-            // Przygotuj dane do wysłania jako obiekt
-            // Przygotuj dane do wysłania w formacie JSON jako string
+            // Przygotuj dane do wyslania w formacie JSON jako string
             string jsonData = $@"
             {{
                 ""nazwa_gracza"": ""{playerName}"",
@@ -89,13 +105,17 @@ namespace Assets.Scripts
                 ""postep_fabuly"": {stats["gameProgress"]}
             }}";
 
-            // Serializuj obiekt bezpośrednio do JSON
-            //string jsonData = JsonUtility.ToJson(postData);
             Debug.Log($"Final JSON Data: {jsonData}");
-            // Wyślij żądanie POST
+            // Wyslij żadanie POST
             StartCoroutine(SendPostRequest(apiUrl, jsonData));
         }
 
+        /// <summary>
+        /// Ta korotyna sluzy do wysylania analityki na serwer
+        /// </summary>
+        /// <param name="url">URL serwera php ktory kontaktuje sie z baza danych</param>
+        /// <param name="json">sformatowane cialo zadania wyslania statystyk</param>
+        /// <returns></returns>
         private IEnumerator SendPostRequest(string url, string json)
         {
             using (UnityWebRequest request = new UnityWebRequest(url, "POST"))
@@ -121,13 +141,27 @@ namespace Assets.Scripts
                 yield return new WaitForSecondsRealtime(1.0f);
             }
         }
-
+        /// <summary>
+        /// Publiczny dostep do singletona analityki
+        /// </summary>
         public static GameAnalytics Instance { get; private set; }
-        [SerializeField] private float totalPlayTime = 0f; // Całkowity czas gry w sekundach
+        /// <summary>
+        /// Obecny czas grania
+        /// </summary>
+        [SerializeField] private float totalPlayTime = 0f; // Calkowity czas gry w sekundach
+        /// <summary>
+        /// Statystyki jakie sa wysylane do bazy danych
+        /// </summary>
         private Dictionary<string, object> stats = new();
 
+        /// <summary>
+        /// URL serwera php wysylajacego zapytania do bazy danych
+        /// </summary>
         [Header("API Settings")]
         public string apiUrl = "https://yourserver.com/saveStats.php"; // Adres API
+        /// <summary>
+        /// Nazwa gracza jaka sie identyfikuje
+        /// </summary>
         public string playerName = "Player123"; // Unikalny identyfikator gracza
     }
 }

@@ -6,27 +6,27 @@ using UnityEngine;
 public class BlackJackController : MonoBehaviour
 {
     /// <summary>
-    /// Prefab karty, który jest instantiowany podczas gry.
+    /// Prefab karty, ktory jest instantiowany podczas gry.
     /// </summary>
     [SerializeField] private GameObject card_prefab;
 
     /// <summary>
-    /// Interfejs u¿ytkownika dla gry w BlackJack.
+    /// Interfejs uzytkownika dla gry w BlackJack.
     /// </summary>
     [SerializeField] private BlackJackUI black_jack_ui;
 
     /// <summary>
-    /// Miejsce, do którego zostanie teleportowany gracz podczas rozpoczynania gry.
+    /// Miejsce, do ktorego zostanie teleportowany gracz podczas rozpoczynania gry.
     /// </summary>
     [SerializeField] private Transform place_to_tp_player_to_when_starting_game;
 
     /// <summary>
-    /// Transformacja, do której bêd¹ dodawane karty gracza.
+    /// Transformacja, do ktorej beda dodawane karty gracza.
     /// </summary>
     [SerializeField] private Transform players_hand_transform;
 
     /// <summary>
-    /// Transformacja, do której bêd¹ dodawane karty przeciwnika.
+    /// Transformacja, do ktorej beda dodawane karty przeciwnika.
     /// </summary>
     [SerializeField] private Transform computers_hand_transform;
 
@@ -72,7 +72,7 @@ public class BlackJackController : MonoBehaviour
     }
 
     /// <summary>
-    /// Inicjalizuje ustawienia przed rozpoczêciem gry, tworzy karty i ustawia nas³uchiwanie na zdarzenia globalne.
+    /// Inicjalizuje ustawienia przed rozpoczeciem gry, tworzy karty i ustawia nasluchiwanie na zdarzenia globalne.
     /// </summary>
     private void OnEnable()
     {
@@ -89,7 +89,7 @@ public class BlackJackController : MonoBehaviour
     }
 
     /// <summary>
-    /// Usuwa nas³uchiwanie na zdarzenia globalne po zakoñczeniu gry.
+    /// Usuwa nasluchiwanie na zdarzenia globalne po zakonczeniu gry.
     /// </summary>
     private void OnDisable()
     {
@@ -102,7 +102,7 @@ public class BlackJackController : MonoBehaviour
     }
 
     /// <summary>
-    /// Ukrywa interfejs gry BlackJack po jej zakoñczeniu.
+    /// Ukrywa interfejs gry BlackJack po jej zakonczeniu.
     /// </summary>
     private void DisableBlackjackUI(object sender, EventArgs e)
     {
@@ -110,7 +110,7 @@ public class BlackJackController : MonoBehaviour
     }
 
     /// <summary>
-    /// W³¹cza interfejs gry BlackJack podczas jej rozpoczêcia.
+    /// Wlacza interfejs gry BlackJack podczas jej rozpoczecia.
     /// </summary>
     private void EnableBlakjackUI(object sender, System.EventArgs e)
     {
@@ -118,7 +118,7 @@ public class BlackJackController : MonoBehaviour
     }
 
     /// <summary>
-    /// Uruchamia grê BlackJack dla zadania zwi¹zanego z przedmiotem.
+    /// Uruchamia gre BlackJack dla zadania zwiazanego z przedmiotem.
     /// </summary>
     private void StartBlackJackGameForPickaxe(object sender, EventArgs e)
     {
@@ -132,7 +132,7 @@ public class BlackJackController : MonoBehaviour
     }
 
     /// <summary>
-    /// Uruchamia grê BlackJack dla zak³adów pieniê¿nych.
+    /// Uruchamia gre BlackJack dla zakladow pieniznnych.
     /// </summary>
     private void StartBlackJackGameForMoney(object sender, EventArgs e)
     {
@@ -145,7 +145,7 @@ public class BlackJackController : MonoBehaviour
     }
 
     /// <summary>
-    /// Logika gry BlackJack. Rozpoczyna now¹ rundê, przetwarza tury gracza i przeciwnika.
+    /// Logika gry BlackJack. Rozpoczyna nowa runde, przetwarza tury gracza i przeciwnika.
     /// </summary>
     IEnumerator BlackJackGame()
     {
@@ -182,7 +182,7 @@ public class BlackJackController : MonoBehaviour
             ResetAfterRound();
         }
 
-        // Zakoñczenie gry
+        // Zakonczenie gry
         GlobalEvents.FireOnEndingBlackjackGame(this);
         GlobalEvents.FireOnTimeStart(this);
         if (player_wins == 3 && is_quest_game)
@@ -207,7 +207,7 @@ public class BlackJackController : MonoBehaviour
 
 
     /// <summary>
-    /// Tworzy wszystkie karty w grze, instancjonuj¹c prefabrykaty kart i inicjalizuj¹c wartoœci dla ka¿dej karty.
+    /// Tworzy wszystkie karty w grze, instancjonujac prefabrykaty kart i inicjalizujac wartosci dla kazdej karty.
     /// </summary>
     private void CreateCards()
     {
@@ -225,7 +225,7 @@ public class BlackJackController : MonoBehaviour
     }
 
     /// <summary>
-    /// Losuje kartê dla gracza, dodaje j¹ do rêki gracza i sprawdza, czy gracz przekroczy³ 21 punktów.
+    /// Losuje karte dla gracza, dodaje ja do reki gracza i sprawdza, czy gracz przekroczyl 21 punktow.
     /// </summary>
     public void DrawPlayerCard()
     {
@@ -247,7 +247,7 @@ public class BlackJackController : MonoBehaviour
     }
 
     /// <summary>
-    /// Zlicza punkty na podstawie kart w rêce, uwzglêdniaj¹c specjalne zasady dla Asów.
+    /// Zlicza punkty na podstawie kart w rece, uwzgledniajac specjalne zasady dla Asow.
     /// </summary>
     private int CountHandPoints(List<Card> cards_list)
     {
@@ -289,7 +289,7 @@ public class BlackJackController : MonoBehaviour
     }
 
     /// <summary>
-    /// Okreœla zwyciêzcê rundy na podstawie punktów gracza i przeciwnika.
+    /// Okresla zwyciezce rundy na podstawie punktow gracza i przeciwnika.
     /// </summary>
     private void DetermineTheWinnerOfTheRound()
     {
@@ -323,7 +323,7 @@ public class BlackJackController : MonoBehaviour
     }
 
     /// <summary>
-    /// Okreœla, jak komputer dobiera karty. Komputer dobiera karty, a¿ osi¹gnie co najmniej 17 punktów.
+    /// Okresla, jak komputer dobiera karty. Komputer dobiera karty, az osiagnie co najmniej 17 punktow.
     /// </summary>
     private void ComputersTurn()
     {
@@ -340,7 +340,7 @@ public class BlackJackController : MonoBehaviour
     }
 
     /// <summary>
-    /// Losuje kartê dla komputera, dodaje j¹ do rêki i wyœwietla jej grafikê.
+    /// Losuje karte dla komputera, dodaje ja do reki i wyswietla jej grafike.
     /// </summary>
     private void DrawComputerCard()
     {
@@ -375,7 +375,7 @@ public class BlackJackController : MonoBehaviour
     }
 
     /// <summary>
-    /// Odkrywa pierwsz¹ kartê komputera, która by³a wczeœniej zakryta.
+    /// Odkrywa pierwsza karte komputera, ktora byla wczesniej zakryta.
     /// </summary>
     private void ShowHiddenCard()
     {
@@ -383,7 +383,7 @@ public class BlackJackController : MonoBehaviour
     }
 
     /// <summary>
-    /// Resetuje stan gry po zakoñczeniu rundy, przygotowuj¹c siê do nowej.
+    /// Resetuje stan gry po zakonczeniu rundy, przygotowujac sie do nowej.
     /// </summary>
     private void ResetAfterRound()
     {
@@ -417,7 +417,7 @@ public class BlackJackController : MonoBehaviour
     }
 
     /// <summary>
-    /// Rozpoczyna now¹ rundê, losuj¹c karty dla gracza i komputera.
+    /// Rozpoczyna nowa runde, losujac karty dla gracza i komputera.
     /// </summary>
     private void StartNewRound()
     {
@@ -430,7 +430,7 @@ public class BlackJackController : MonoBehaviour
     }
 
     /// <summary>
-    /// Resetuje ca³¹ grê, ustalaj¹c wyniki wygranych i przegranych.
+    /// Resetuje cala gre, ustalajac wyniki wygranych i przegranych.
     /// </summary>
     private void ResetGame()
     {
@@ -439,7 +439,7 @@ public class BlackJackController : MonoBehaviour
     }
 
     /// <summary>
-    /// Uruchamia g³ówn¹ pêtlê gry Blackjack.
+    /// Uruchamia glowna petle gry Blackjack.
     /// </summary>
     public void StartGame()
     {
@@ -447,7 +447,7 @@ public class BlackJackController : MonoBehaviour
     }
 
     /// <summary>
-    /// Teleportuje gracza do miejsca, gdzie odbywa siê gra w Blackjacka.
+    /// Teleportuje gracza do miejsca, gdzie odbywa sie gra w Blackjacka.
     /// </summary>
     private void TeleportPlayerToTable()
     {
@@ -456,7 +456,7 @@ public class BlackJackController : MonoBehaviour
     }
 
     /// <summary>
-    /// Zwraca, czy gracz mo¿e obecnie naciskaæ przyciski w grze.
+    /// Zwraca, czy gracz moze obecnie naciskac przyciski w grze.
     /// </summary>
     public bool GetCanPressButtons()
     {
@@ -464,7 +464,7 @@ public class BlackJackController : MonoBehaviour
     }
 
     /// <summary>
-    /// Ustawia, czy gracz mo¿e naciskaæ przyciski.
+    /// Ustawia, czy gracz moze naciskac przyciski.
     /// </summary>
     public void SetCanPressButtons(bool b)
     {
@@ -480,7 +480,7 @@ public class BlackJackController : MonoBehaviour
     }
 
     /// <summary>
-    /// Zwraca liczbê wygranych gracza.
+    /// Zwraca liczbe wygranych gracza.
     /// </summary>
     public int GetPlayerWins()
     {
@@ -488,7 +488,7 @@ public class BlackJackController : MonoBehaviour
     }
 
     /// <summary>
-    /// Zwraca liczbê przegranych gracza.
+    /// Zwraca liczbe przegranych gracza.
     /// </summary>
     public int GetPlayerLosses()
     {
@@ -512,7 +512,7 @@ public class BlackJackController : MonoBehaviour
     }
 
     /// <summary>
-    /// Ustawia wartoœæ zak³adu gracza.
+    /// Ustawia wartosc zakladu gracza.
     /// </summary>
     public void SetBidMoney(int value)
     {
@@ -520,7 +520,7 @@ public class BlackJackController : MonoBehaviour
     }
 
     /// <summary>
-    /// Zwraca, czy runda zakoñczy³a siê remisem.
+    /// Zwraca, czy runda zakonczyla sie remisem.
     /// </summary>
     public bool GetIsRoundDrew()
     {
@@ -528,7 +528,7 @@ public class BlackJackController : MonoBehaviour
     }
 
     /// <summary>
-    /// Zwraca, czy gra jest czêœci¹ zadania.
+    /// Zwraca, czy gra jest czescia zadania.
     /// </summary>
     public bool GetIsQuest()
     {

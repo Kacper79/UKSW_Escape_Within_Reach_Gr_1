@@ -6,37 +6,37 @@ using UnityEngine;
 public static class Settings
 {
     /// <summary>
-    /// Indeks ustawionej rozdzielczoœci w liœcie dostêpnych rozdzielczoœci.
+    /// Indeks ustawionej rozdzielczosci w liœcie dostepnych rozdzielczosci.
     /// </summary>
     private static int resolution_index;
 
     /// <summary>
-    /// Szerokoœæ ustawionej rozdzielczoœci.
+    /// Szerokosc ustawionej rozdzielczosci.
     /// </summary>
     private static int resolution_width;
 
     /// <summary>
-    /// Wysokoœæ ustawionej rozdzielczoœci.
+    /// Wysokosc ustawionej rozdzielczosci.
     /// </summary>
     private static int resolution_height;
 
     /// <summary>
-    /// Ustawienia g³oœnoœci muzyki.
+    /// Ustawienia glosnosci muzyki.
     /// </summary>
     private static float music_volume;
 
     /// <summary>
-    /// Ustawienia g³oœnoœci efektów dŸwiêkowych.
-    /// </summary>
+    /// Ustawienia glosnosci efektow dzwiekowych.
+    /// </summary>wysokosc
     private static float audio_effects_volume;
 
     /// <summary>
-    /// Ustawienie czu³oœci myszy.
+    /// Ustawienie czulosci myszy.
     /// </summary>
     private static float mouse_sensitivity;
 
     /// <summary>
-    /// Statyczny konstruktor klasy, ustawia domyœlne wartoœci ustawieñ.
+    /// Statyczny konstruktor klasy, ustawia domyslne wartosci ustawien.
     /// </summary>
     static Settings()
     {
@@ -52,104 +52,104 @@ public static class Settings
 
 
     /// <summary>
-    /// Ustawia parametry rozdzielczoœci na podstawie tekstu z dropdowna.
+    /// Ustawia parametry rozdzielczosci na podstawie tekstu z dropdowna.
     /// </summary>
-    /// <param name="dropdown_resolution_text">Tekst rozdzielczoœci w formacie "width x height"</param>
+    /// <param name="dropdown_resolution_text">Tekst rozdzielczosci w formacie "width x height"</param>
     public static void SetResolutionParameters(string dropdown_resolution_text)
     {
         dropdown_resolution_text = dropdown_resolution_text.Replace(" ", ""); // Usuwa spacje
 
-        string[] resolution_parts = dropdown_resolution_text.Split('x'); // Dzieli tekst na szerokoœæ i wysokoœæ
+        string[] resolution_parts = dropdown_resolution_text.Split('x'); // Dzieli tekst na szerokosc i wysokosc
 
-        resolution_width = int.Parse(resolution_parts[0]); // Ustawia szerokoœæ
-        resolution_height = int.Parse(resolution_parts[1]); // Ustawia wysokoœæ
+        resolution_width = int.Parse(resolution_parts[0]); // Ustawia szerokosc
+        resolution_height = int.Parse(resolution_parts[1]); // Ustawia wysokosc
     }
 
     /// <summary>
-    /// Ustawia indeks rozdzielczoœci
+    /// Ustawia indeks rozdzielczosci
     /// </summary>
-    /// <param name="index">Indeks rozdzielczoœci w systemie</param>
+    /// <param name="index">Indeks rozdzielczosci w systemie</param>
     public static void SetResolutionIndex(int index)
     {
         resolution_index = index;
     }
 
     /// <summary>
-    /// Zwraca indeks aktualnej rozdzielczoœci
+    /// Zwraca indeks aktualnej rozdzielczosci
     /// </summary>
-    /// <returns>Indeks rozdzielczoœci</returns>
+    /// <returns>Indeks rozdzielczosci</returns>
     public static int GetResolutionIndex()
     {
         return resolution_index;
     }
 
     /// <summary>
-    /// Zwraca szerokoœæ aktualnej rozdzielczoœci
+    /// Zwraca szerokosc aktualnej rozdzielczosci
     /// </summary>
-    /// <returns>Szerokoœæ rozdzielczoœci</returns>
+    /// <returns>Szerokosc rozdzielczosci</returns>
     public static int GetResolutionWidth()
     {
         return resolution_width;
     }
 
     /// <summary>
-    /// Zwraca wysokoœæ aktualnej rozdzielczoœci
+    /// Zwraca wysokosc aktualnej rozdzielczosci
     /// </summary>
-    /// <returns>Wysokoœæ rozdzielczoœci</returns>
+    /// <returns>Wysokosc rozdzielczosci</returns>
     public static int GetResolutionHeight()
     {
         return resolution_height;
     }
 
     /// <summary>
-    /// Ustawia g³oœnoœæ muzyki
+    /// Ustawia glosnosc muzyki
     /// </summary>
-    /// <param name="value">Poziom g³oœnoœci (0 do 1)</param>
+    /// <param name="value">Poziom glosnosci (0 do 1)</param>
     public static void SetMusicVolume(float value)
     {
         music_volume = value;
     }
 
     /// <summary>
-    /// Zwraca aktualn¹ g³oœnoœæ muzyki
+    /// Zwraca aktualna glosnosc muzyki
     /// </summary>
-    /// <returns>G³oœnoœæ muzyki</returns>
+    /// <returns>G³oœnosc muzyki</returns>
     public static float GetMusicVolume()
     {
         return music_volume;
     }
 
     /// <summary>
-    /// Ustawia g³oœnoœæ efektów dŸwiêkowych
+    /// Ustawia glosnosc efektow dzwiekowych
     /// </summary>
-    /// <param name="value">Poziom g³oœnoœci efektów (0 do 1)</param>
+    /// <param name="value">Poziom glosnosci efektow (0 do 1)</param>
     public static void SetAudioEffectsVolume(float value)
     {
         audio_effects_volume = value;
     }
 
     /// <summary>
-    /// Zwraca aktualn¹ g³oœnoœæ efektów dŸwiêkowych
+    /// Zwraca aktualna glosnosc efektow dzwiekowych
     /// </summary>
-    /// <returns>G³oœnoœæ efektów dŸwiêkowych</returns>
+    /// <returns>G³oœnosc efektow dzwiekowych</returns>
     public static float GetAudioEffectsVolume()
     {
         return audio_effects_volume;
     }
 
     /// <summary>
-    /// Ustawia czu³oœæ myszy
+    /// Ustawia czulosc myszy
     /// </summary>
-    /// <param name="sens">Nowa czu³oœæ myszy</param>
+    /// <param name="sens">Nowa czulosc myszy</param>
     public static void SetSensitivity(float sens)
     {
         mouse_sensitivity = sens;
     }
 
     /// <summary>
-    /// Zwraca aktualn¹ czu³oœæ myszy
+    /// Zwraca aktualna czulosc myszy
     /// </summary>
-    /// <returns>Czu³oœæ myszy</returns>
+    /// <returns>Czulosc myszy</returns>
     public static float GetSensitivity()
     {
         return mouse_sensitivity;

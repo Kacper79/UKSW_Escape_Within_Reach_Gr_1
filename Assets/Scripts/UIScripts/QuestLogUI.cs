@@ -5,18 +5,18 @@ using UnityEngine.UI;
 
 public class QuestLogUI : MonoBehaviour
 {
-    [SerializeField] private Button left_arrow_button;  // Przycisk nawigacji (lewa strza³ka)
+    [SerializeField] private Button left_arrow_button;  // Przycisk nawigacji (lewa strzalka)
 
-    [SerializeField] private PlayerAssetsUI player_assets_UI;  // Odwo³anie do UI gracza
-    [SerializeField] private QuestManager quest_manager;  // Mened¿er misji, zarz¹dza postêpem
+    [SerializeField] private PlayerAssetsUI player_assets_UI;  // Odwolanie do UI gracza
+    [SerializeField] private QuestManager quest_manager;  // Menedzer misji, zarzadza postepem
 
-    [SerializeField] private Sprite quest_completed_icon;  // Ikona ukoñczonej misji
-    [SerializeField] private Sprite quest_uncompleted_icon;  // Ikona nieukoñczonej misji
+    [SerializeField] private Sprite quest_completed_icon;  // Ikona ukonczonej misji
+    [SerializeField] private Sprite quest_uncompleted_icon;  // Ikona nieukonczonej misji
 
-    [SerializeField] private List<QuestUI> quests;  // Lista elementów UI dla misji
+    [SerializeField] private List<QuestUI> quests;  // Lista elementow UI dla misji
 
     /// <summary>
-    /// Dodaje nas³uchiwanie na przycisk lewej strza³ki, który otworzy ekran ekwipunku.
+    /// Dodaje nasluchiwanie na przycisk lewej strzalki, ktory otworzy ekran ekwipunku.
     /// </summary>
     private void Start()
     {
@@ -24,28 +24,28 @@ public class QuestLogUI : MonoBehaviour
     }
 
     /// <summary>
-    /// £aduje listê misji z mened¿era, wyœwietla opis i ikony ukoñczenia misji w UI.
+    /// Laduje liste misji z menedzera, wyswietla opis i ikony ukonczenia misji w UI.
     /// </summary>
     private void OnEnable()
     {
-        List<Quest> quest_list = QuestManager.Instance.GetDefaultQuestsList();  // Pobiera listê domyœlnych misji
+        List<Quest> quest_list = QuestManager.Instance.GetDefaultQuestsList();  // Pobiera liste domyœlnych misji
 
         for (int i = 0; i < quests.Count; i++)
         {
             quests[i].SetQuestHeader(quest_list[i].GetDescription());  // Ustawia opis misji w UI
-            if (quest_manager.IsQuestCompleted(i))  // Sprawdza, czy misja jest ukoñczona
+            if (quest_manager.IsQuestCompleted(i))  // Sprawdza, czy misja jest ukonczona
             {
-                quests[i].SetComplitionIcon(quest_completed_icon);  // Ustawia ikonê ukoñczonej misji
+                quests[i].SetComplitionIcon(quest_completed_icon);  // Ustawia ikone ukonczonej misji
             }
             else
             {
-                quests[i].SetComplitionIcon(quest_uncompleted_icon);  // Ustawia ikonê nieukoñczonej misji
+                quests[i].SetComplitionIcon(quest_uncompleted_icon);  // Ustawia ikone nieukonczonej misji
             }
         }
     }
 
     /// <summary>
-    /// Zmienia ekran UI na ekran ekwipunku po klikniêciu przycisku strza³ki.
+    /// Zmienia ekran UI na ekran ekwipunku po kliknieciu przycisku strzalki.
     /// </summary>
     private void OnRightArrowButtonClick()
     {
