@@ -466,6 +466,34 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""QuickTimeEventPlayerInput"",
+            ""id"": ""b34fd6e4-e934-448f-937e-c5d4cef92171"",
+            ""actions"": [
+                {
+                    ""name"": ""QuickTimeEventAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""c9e7778f-c590-4d97-a7a9-60ae1514c4d7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""96d0b563-1648-41c6-8cf0-ae09939e81ae"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QuickTimeEventAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -498,6 +526,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         // InPlayerAssetsUIPlayerInput
         m_InPlayerAssetsUIPlayerInput = asset.FindActionMap("InPlayerAssetsUIPlayerInput", throwIfNotFound: true);
         m_InPlayerAssetsUIPlayerInput_CloseWindow = m_InPlayerAssetsUIPlayerInput.FindAction("CloseWindow", throwIfNotFound: true);
+        // QuickTimeEventPlayerInput
+        m_QuickTimeEventPlayerInput = asset.FindActionMap("QuickTimeEventPlayerInput", throwIfNotFound: true);
+        m_QuickTimeEventPlayerInput_QuickTimeEventAction = m_QuickTimeEventPlayerInput.FindAction("QuickTimeEventAction", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -889,6 +920,52 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
     }
     public InPlayerAssetsUIPlayerInputActions @InPlayerAssetsUIPlayerInput => new InPlayerAssetsUIPlayerInputActions(this);
+
+    // QuickTimeEventPlayerInput
+    private readonly InputActionMap m_QuickTimeEventPlayerInput;
+    private List<IQuickTimeEventPlayerInputActions> m_QuickTimeEventPlayerInputActionsCallbackInterfaces = new List<IQuickTimeEventPlayerInputActions>();
+    private readonly InputAction m_QuickTimeEventPlayerInput_QuickTimeEventAction;
+    public struct QuickTimeEventPlayerInputActions
+    {
+        private @PlayerInput m_Wrapper;
+        public QuickTimeEventPlayerInputActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @QuickTimeEventAction => m_Wrapper.m_QuickTimeEventPlayerInput_QuickTimeEventAction;
+        public InputActionMap Get() { return m_Wrapper.m_QuickTimeEventPlayerInput; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(QuickTimeEventPlayerInputActions set) { return set.Get(); }
+        public void AddCallbacks(IQuickTimeEventPlayerInputActions instance)
+        {
+            if (instance == null || m_Wrapper.m_QuickTimeEventPlayerInputActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_QuickTimeEventPlayerInputActionsCallbackInterfaces.Add(instance);
+            @QuickTimeEventAction.started += instance.OnQuickTimeEventAction;
+            @QuickTimeEventAction.performed += instance.OnQuickTimeEventAction;
+            @QuickTimeEventAction.canceled += instance.OnQuickTimeEventAction;
+        }
+
+        private void UnregisterCallbacks(IQuickTimeEventPlayerInputActions instance)
+        {
+            @QuickTimeEventAction.started -= instance.OnQuickTimeEventAction;
+            @QuickTimeEventAction.performed -= instance.OnQuickTimeEventAction;
+            @QuickTimeEventAction.canceled -= instance.OnQuickTimeEventAction;
+        }
+
+        public void RemoveCallbacks(IQuickTimeEventPlayerInputActions instance)
+        {
+            if (m_Wrapper.m_QuickTimeEventPlayerInputActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IQuickTimeEventPlayerInputActions instance)
+        {
+            foreach (var item in m_Wrapper.m_QuickTimeEventPlayerInputActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_QuickTimeEventPlayerInputActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public QuickTimeEventPlayerInputActions @QuickTimeEventPlayerInput => new QuickTimeEventPlayerInputActions(this);
     public interface IMovementPlayerInputActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -921,5 +998,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     public interface IInPlayerAssetsUIPlayerInputActions
     {
         void OnCloseWindow(InputAction.CallbackContext context);
+    }
+    public interface IQuickTimeEventPlayerInputActions
+    {
+        void OnQuickTimeEventAction(InputAction.CallbackContext context);
     }
 }

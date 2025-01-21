@@ -165,4 +165,9 @@ public class Item : MonoBehaviour, IInteractable
     {
         is_interactable = b;  // Zmienia stan interaktywnosci przedmiotu
     }
+
+    public bool GetIsInteractable()
+    {
+        return is_interactable;
+    }
 }

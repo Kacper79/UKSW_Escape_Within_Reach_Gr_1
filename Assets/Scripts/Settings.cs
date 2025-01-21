@@ -44,7 +44,7 @@ public static class Settings
         resolution_width = 1920;
         resolution_height = 1080;
 
-        music_volume = 1f;
+        music_volume = 0f;
         audio_effects_volume = 1f;
 
         mouse_sensitivity = 10f;
