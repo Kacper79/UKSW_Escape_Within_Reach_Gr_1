@@ -108,6 +108,7 @@ public static class Settings
     public static void SetMusicVolume(float value)
     {
         music_volume = value;
+        AudioManager.Instance.ChangeMusicVolume(value);
     }
 
     /// <summary>

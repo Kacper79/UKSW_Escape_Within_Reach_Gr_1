@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Kacper2.unity
     guid: af32526bfd44e6c439f2dd1a6100dabf
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 7dc3b4c951acef7449537fa1e33fd323
   m_configObjects: {}

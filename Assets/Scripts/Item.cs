@@ -103,7 +103,7 @@ public class Item : MonoBehaviour, IInteractable
             PickUpItem();  // Podnosi przedmiot
 
             // Jesli przedmiot jest fabularny, oznaczamy quest za ukonczony
-            if (is_plot)
+            if (is_plot || quest_id == 3)
             {
                 QuestManager.Instance.MarkQuestCompleted(quest_id);  // Zakonczenie questa
             }

@@ -81,9 +81,9 @@ public class EnemyPunchedController : MonoBehaviour, IAttackable
     void IAttackable.Die()
     {
         Debug.Log("Dies");
-        GlobalEvents.FireOnBeatingEnemyInATournament(this);
-        if (transform.parent.GetComponentInChildren<FightNPC>() != null)
+        if (transform.parent != null && transform.parent.GetComponentInChildren<FightNPC>() != null)
         {
+            GlobalEvents.FireOnBeatingEnemyInATournament(this);
             transform.parent.GetComponentInChildren<FightNPC>().EndFight();
         }
 

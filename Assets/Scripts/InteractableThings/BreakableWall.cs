@@ -26,6 +26,7 @@ namespace Assets.Scripts.InteractableThings
             {
                 QuestManager.Instance.MarkQuestCompleted(8);
                 Destroy(gameObject);
+                Destroy(another_wall_to_destroy);
             }
         }
 
@@ -49,5 +50,6 @@ namespace Assets.Scripts.InteractableThings
         [SerializeField] private InventoryManager playerInventory;
         private int plotItemsUsed;
         public int plotItemsCountToEscape = 4;
+        public GameObject another_wall_to_destroy;
     }
 }
