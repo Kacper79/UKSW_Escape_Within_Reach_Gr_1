@@ -444,6 +444,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "QuickTimeEventPlayerInput",
+            "id": "b34fd6e4-e934-448f-937e-c5d4cef92171",
+            "actions": [
+                {
+                    "name": "QuickTimeEventAction",
+                    "type": "Button",
+                    "id": "c9e7778f-c590-4d97-a7a9-60ae1514c4d7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "96d0b563-1648-41c6-8cf0-ae09939e81ae",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuickTimeEventAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

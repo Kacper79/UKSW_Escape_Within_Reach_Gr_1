@@ -142,6 +142,18 @@ public class InteractableTargetsDetector : MonoBehaviour
         {
             if (hit.collider != null && hit.collider.TryGetComponent<IInteractable>(out IInteractable interactable))
             {
+                if(hit.collider.GetComponent<Item>() != null)
+                {
+                    if(hit.collider.GetComponent<Item>().GetIsInteractable())
+                    {
+                        interactable.Interact();
+                        return;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
                 interactable.Interact();
 
                 return;

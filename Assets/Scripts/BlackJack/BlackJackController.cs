@@ -30,6 +30,8 @@ public class BlackJackController : MonoBehaviour
     /// </summary>
     [SerializeField] private Transform computers_hand_transform;
 
+    [SerializeField] private Item pickaxe;
+
     /// <summary>
     /// Obiekt gracza.
     /// </summary>
@@ -185,9 +187,10 @@ public class BlackJackController : MonoBehaviour
         // Zakonczenie gry
         GlobalEvents.FireOnEndingBlackjackGame(this);
         GlobalEvents.FireOnTimeStart(this);
+
         if (player_wins == 3 && is_quest_game)
         {
-            QuestManager.Instance.MarkQuestCompleted(1);
+            pickaxe.SetIsInteractable(true);
         }
         else if (player_wins == 3 && is_quest_game == false)
         {
@@ -293,9 +296,6 @@ public class BlackJackController : MonoBehaviour
     /// </summary>
     private void DetermineTheWinnerOfTheRound()
     {
-        Debug.Log(CountHandPoints(players_cards));
-        Debug.Log(CountHandPoints(opponents_cards));
-
         if (has_player_overdrown)
         {
             player_loses++;
@@ -319,6 +319,7 @@ public class BlackJackController : MonoBehaviour
         else
         {
             is_round_drew = true;
+            black_jack_ui.ShowRoundWinner(true);
         }
     }
 

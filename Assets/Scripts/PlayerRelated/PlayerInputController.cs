@@ -32,8 +32,9 @@ public class PlayerInputController : MonoBehaviour
         GetComponentInChildren<PlayerAttackingController>().SetPlayerInput(player_input);
         GetComponentInChildren<FunctionalPlayerInputController>().SetPlayerInput(player_input);
         GetComponentInChildren<InPlayerAssetsUIPlayerInputController>().SetPlayerInput(player_input);
-    }
+        GetComponentInChildren<QTEManager>().SetPlayerInput(player_input);
 
+    }
     /// <summary>
     /// Subskrybuje zdarzenia globalne do wlaczania i wylaczania kontrolerow podczas roznych faz gry.
     /// </summary>
