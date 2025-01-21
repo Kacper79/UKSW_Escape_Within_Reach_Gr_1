@@ -17,6 +17,8 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     private GameObject current_music_gameobject;
 
+    [SerializeField] private AudioClip music;
+
     /// <summary>
     /// Ustawia instancje singletona AudioManager. 
     /// Gwarantuje, ze istnieje tylko jedna instancja w grze. 
@@ -32,6 +34,7 @@ public class AudioManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        AudioManager.Instance.PlayMusic(music);
     }
 
     /// <summary>
@@ -87,5 +90,10 @@ public class AudioManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(time);
         PlayMusic(music);
+    }
+
+    public void ChangeMusicVolume(float value)
+    {
+        current_music_gameobject.GetComponent<AudioSource>().volume = value;
     }
 }

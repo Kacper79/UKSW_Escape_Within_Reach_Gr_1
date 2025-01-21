@@ -8,7 +8,6 @@ public class QuestLogUI : MonoBehaviour
     [SerializeField] private Button left_arrow_button;  // Przycisk nawigacji (lewa strzalka)
 
     [SerializeField] private PlayerAssetsUI player_assets_UI;  // Odwolanie do UI gracza
-    [SerializeField] private QuestManager quest_manager;  // Menedzer misji, zarzadza postepem
 
     [SerializeField] private Sprite quest_completed_icon;  // Ikona ukonczonej misji
     [SerializeField] private Sprite quest_uncompleted_icon;  // Ikona nieukonczonej misji
@@ -29,11 +28,12 @@ public class QuestLogUI : MonoBehaviour
     private void OnEnable()
     {
         List<Quest> quest_list = QuestManager.Instance.GetDefaultQuestsList();  // Pobiera liste domyœlnych misji
+        List<Quest> active_quest_list = QuestManager.Instance.GetActiveQuests;
 
         for (int i = 0; i < quests.Count; i++)
         {
             quests[i].SetQuestHeader(quest_list[i].GetDescription());  // Ustawia opis misji w UI
-            if (quest_manager.IsQuestCompleted(i))  // Sprawdza, czy misja jest ukonczona
+            if (!active_quest_list.Contains(quest_list[i]))  // Sprawdza, czy misja jest ukonczona
             {
                 quests[i].SetComplitionIcon(quest_completed_icon);  // Ustawia ikone ukonczonej misji
             }

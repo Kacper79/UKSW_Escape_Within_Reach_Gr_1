@@ -11,6 +11,7 @@ public class SceneController : MonoBehaviour
     public const string GAME_SCENE = "Kacper2";
     public const string MAIN_MENU_SCENE = "MainMenuScene";
     public const string LOADING_SCENE = "LoadingScene";
+    public const string GAME_OVER_SCENE = "GameOver";
 
     /// <summary>
     /// Przechowuje nazwe docelowej sceny.
