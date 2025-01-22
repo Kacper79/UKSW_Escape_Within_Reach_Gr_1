@@ -330,7 +330,7 @@ public class BlackJackController : MonoBehaviour
     {
         int computer_points = CountHandPoints(opponents_cards);
 
-        if (computer_points < 17)
+        if (computer_points < 13)
         {
             DrawComputerCard();
         }

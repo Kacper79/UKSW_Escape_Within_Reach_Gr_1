@@ -44,3 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9307871604fe9f04d8f66fb943751fe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allPosibleObjects:
+  - {fileID: 5712676841752464046, guid: 2de280ee0d9b84748ae3d2d21efe2a30, type: 3}
+  - {fileID: 816126940168905970, guid: 7aabfb35f7d3eea45901dd95459b25dc, type: 3}
+  - {fileID: 2266465678963330937, guid: 3f52c018134410a4e89c607a279ad940, type: 3}
+  - {fileID: 3923496257225288831, guid: 9ed972005403f994fa4d4e5bb885510c, type: 3}
+  - {fileID: 3072594411707102815, guid: 692af17b3215fa24e9ae3aac6cd1a7a1, type: 3}
+  - {fileID: 8515577567913899314, guid: 0df047f4620792d46bcb46da1d1a53a1, type: 3}
+  - {fileID: 5836371297734438874, guid: 63d2a1211596e4544822bdef2b411c52, type: 3}
+  - {fileID: 8513662863502688781, guid: 38d4ad39c6a225b4db58f79d6a2c7280, type: 3}
+  gold_amount: 5000
+  possiblePayoffDialogues:
+  - {fileID: 11400000, guid: 63e20b0d32d3cd04386ce8b49853fc10, type: 2}

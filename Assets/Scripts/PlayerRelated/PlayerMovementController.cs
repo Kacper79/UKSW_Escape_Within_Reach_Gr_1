@@ -387,7 +387,7 @@ public class PlayerMovementController : MonoBehaviour
         }
         else
         {
-            y_velocity += Time.deltaTime * Time.deltaTime * gravity;
+            y_velocity += Time.deltaTime * gravity;
         }
     }
 

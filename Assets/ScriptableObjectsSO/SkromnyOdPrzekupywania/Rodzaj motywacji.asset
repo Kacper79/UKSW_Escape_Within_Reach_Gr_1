@@ -18,7 +18,7 @@ MonoBehaviour:
   eventual_npc_response_time_delay: 0
   responses:
   - response: "Ja jestem skromn\u0105 osob\u0105 wiec tylko 2000$"
-    response_audio_clip: {fileID: 8300000, guid: d37d0385ff9cef14f8fb59d4fa0e177c,
+    response_audio_clip: {fileID: 8300000, guid: 4730099dfa700f741b13fdfd26c88c5b,
       type: 3}
     eventual_response_time_delay: 0
   invoked_events_list: 
@@ -29,3 +29,4 @@ MonoBehaviour:
   is_available: 1
   id: 87b6ad168a8f40438839e8b97878b966
   payoffAmount: 0
+  questNumber: 0

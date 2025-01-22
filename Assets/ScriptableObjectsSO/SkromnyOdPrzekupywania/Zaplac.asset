@@ -18,7 +18,7 @@ MonoBehaviour:
   eventual_npc_response_time_delay: 0
   responses:
   - response: Ciesz sie ze jestem takim skromnym przyjacielem
-    response_audio_clip: {fileID: 8300000, guid: d37d0385ff9cef14f8fb59d4fa0e177c,
+    response_audio_clip: {fileID: 8300000, guid: bb0e44150763ab440a98d84e883cfad1,
       type: 3}
     eventual_response_time_delay: 0
   invoked_events_list: 050000000600000000000000

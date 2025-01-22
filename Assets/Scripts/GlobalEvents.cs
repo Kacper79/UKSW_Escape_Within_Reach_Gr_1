@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public static class GlobalEvents
 {
-    public static event EventHandler OnDestroingRock;
+    public static event EventHandler<OnDestroyingRockArgs> OnDestroingRock;
     public static event EventHandler OnNotLookingOnInteractable;
     public static event EventHandler<OnChangingTimeArgs> OnChangingTime;
     public static event EventHandler OnReadingPage;
@@ -103,6 +103,17 @@ public static class GlobalEvents
             value = v;
         }
     }
+
+    public class OnDestroyingRockArgs : EventArgs
+    {
+        public int uuid;
+
+        public OnDestroyingRockArgs(int uuid)
+        {
+            this.uuid = uuid;
+        }
+    }
+
     public class OnMakingGivenItemInteractableEventArgs : EventArgs
     {
         public string name;
@@ -202,9 +213,9 @@ public static class GlobalEvents
         OnEndingBlackjackGame?.Invoke(sender, EventArgs.Empty);
     }
 
-    public static void FireOnDestroingRock(object sender)
+    public static void FireOnDestroingRock(object sender, OnDestroyingRockArgs args)
     {
-        OnDestroingRock?.Invoke(sender, EventArgs.Empty);
+        OnDestroingRock?.Invoke(sender, args);
     }
 
     public static void FireOnNotLookingOnInteractable(object sender)

@@ -16,6 +16,7 @@ public class RockToMine : MonoBehaviour, IInteractable
     private string interaction_tooltip_message = "Press [E] to mine"; // Wiadomosc, ktora pojawia sie przy interakcji
 
     private int hp = MAX_HP; // Aktualne HP kamienia
+    public int rock_instance;
 
     /// <summary>
     /// Inicjalizacja obiektu. Znajduje UI postepu wydobycia.
@@ -83,11 +84,8 @@ public class RockToMine : MonoBehaviour, IInteractable
         if (hp <= 0)
         {
             Debug.Log(GOLD_FOR_COMPLETING + " gold for this rock"); // Debugowanie informacji o zlocie
-            // TODO: Dodanie zlota do zasobow gracza
-
-            Destroy(this.gameObject); // Niszczy obiekt kamienia
-
-            GlobalEvents.FireOnDestroingRock(this); // Informuje o zniszczeniu kamienia (jesli sa zdefiniowane odpowiednie zdarzenia globalne)
+            GlobalEvents.FireOnDestroingRock(this, new(rock_instance));
+            Destroy(gameObject);
         }
     }
 }

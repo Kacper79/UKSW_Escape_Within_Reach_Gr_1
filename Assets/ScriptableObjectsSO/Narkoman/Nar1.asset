@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee51363ce2771ed419f20611b721b794, type: 3}
+  m_Name: Nar1
+  m_EditorClassIdentifier: 
+  main_character_text: Mam taki proszek, d-dobrej jakosci, jednego tak skrecilo
+  main_character_audio: {fileID: 8300000, guid: ac09959fa1a1e40498644ed8a532ca35,
+    type: 3}
+  eventual_npc_response_time_delay: 0
+  responses: []
+  invoked_events_list: 00000000
+  options: []
+  id_of_dialogue_option_to_go_back_to: 
+  is_available: 1
+  id: e5fa6a3813fc48e89416fbbe71dacfbe
+  payoffAmount: 0
+  questNumber: 0

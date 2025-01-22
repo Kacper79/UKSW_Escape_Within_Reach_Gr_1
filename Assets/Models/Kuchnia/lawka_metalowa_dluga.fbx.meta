@@ -3,7 +3,17 @@ guid: 9713ff0e6e017ac43808e472bce4ad2d
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal
+    second: {fileID: 2100000, guid: ae346e470b7ce654fbb8fd15c32ffeb3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sruba
+    second: {fileID: 2100000, guid: 8325952912cc08e4bb4ef3293a554049, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

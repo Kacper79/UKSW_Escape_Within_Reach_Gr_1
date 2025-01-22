@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee51363ce2771ed419f20611b721b794, type: 3}
+  m_Name: Hej ty
+  m_EditorClassIdentifier: 
+  main_character_text: Hej, ty
+  main_character_audio: {fileID: 8300000, guid: d37d0385ff9cef14f8fb59d4fa0e177c,
+    type: 3}
+  eventual_npc_response_time_delay: 0
+  responses:
+  - response: Czego
+    response_audio_clip: {fileID: 8300000, guid: 4c04180fe81c0834cb73c727a862bb0c,
+      type: 3}
+    eventual_response_time_delay: 0
+  invoked_events_list: 
+  options:
+  - {fileID: 11400000, guid: 9d1beb9acda033449912803f8dc762fa, type: 2}
+  - {fileID: 11400000, guid: 65681f1d7cdab60488c5945bc1fce639, type: 2}
+  - {fileID: 11400000, guid: c7f99af3cb6c9a042aa646b06ba4473e, type: 2}
+  id_of_dialogue_option_to_go_back_to: 
+  is_available: 1
+  id: 224f08168a96488fa1c96599502cbe52
+  payoffAmount: 0
+  questNumber: 0

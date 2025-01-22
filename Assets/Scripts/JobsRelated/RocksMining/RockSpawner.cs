@@ -39,9 +39,10 @@ public class RockSpawner : MonoBehaviour
     /// </summary>
     /// <param name="sender">Obiekt wysylajacy zdarzenie.</param>
     /// <param name="e">Dodatkowe informacje o zdarzeniu.</param>
-    private void OnPlayerDestroyingRock(object sender, System.EventArgs e)
+    private void OnPlayerDestroyingRock(object sender, GlobalEvents.OnDestroyingRockArgs e)
     {
         // Opoznia spawnowanie nowego kamienia o 1 sekunde
+        if(e.uuid != GetInstanceID()) return;
         Invoke(nameof(SpawnRock), 1.0f);
 
         // Oznaczenie questu jako ukonczonego, np. za zniszczenie kamienia
@@ -53,6 +54,7 @@ public class RockSpawner : MonoBehaviour
     /// </summary>
     private void SpawnRock()
     {
-        Instantiate(rock_prefab, this.transform.position, Quaternion.identity); // Spawnuje kamien w lokalizacji spawnera
+        GameObject rock = Instantiate(rock_prefab, this.transform.position, Quaternion.identity); // Spawnuje kamien w lokalizacji spawnera
+        rock.GetComponent<RockToMine>().rock_instance = GetInstanceID();
     }
 }

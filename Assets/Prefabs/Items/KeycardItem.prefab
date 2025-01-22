@@ -112,7 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item_name: Keycard
   item_description: This item is used to access restriced areas
-  icon: {fileID: 21300000, guid: 90217c8a66a592a499486d746b379801, type: 3}
+  icon: {fileID: 21300000, guid: 2c47013784f2e2e4faf7737879e786cb, type: 3}
   model: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   quest_id: 4
   is_plot: 0

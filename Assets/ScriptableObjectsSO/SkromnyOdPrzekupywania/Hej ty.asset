@@ -18,7 +18,7 @@ MonoBehaviour:
   eventual_npc_response_time_delay: 0.5
   responses:
   - response: Jasne, ale potrzebuje dodatkowej motywacji
-    response_audio_clip: {fileID: 8300000, guid: d37d0385ff9cef14f8fb59d4fa0e177c,
+    response_audio_clip: {fileID: 8300000, guid: 96b15302ab63ffb478104ca423e8644e,
       type: 3}
     eventual_response_time_delay: 0.5
   invoked_events_list: 
@@ -29,3 +29,4 @@ MonoBehaviour:
   is_available: 1
   id: 31dc312ed821419e86bd180318543bb6
   payoffAmount: 0
+  questNumber: 0

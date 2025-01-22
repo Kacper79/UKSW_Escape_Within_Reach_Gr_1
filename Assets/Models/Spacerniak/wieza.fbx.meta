@@ -3,7 +3,42 @@ guid: 4d1b961e51ba74f4a98a1a719e00515f
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: belki
+    second: {fileID: 2100000, guid: 3cedc2f4b97504f4cb688df307a8fded, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dach
+    second: {fileID: 2100000, guid: 76394a574d3f3d548be13316992b5228, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: deski
+    second: {fileID: 2100000, guid: 11abaf67edba7d2459c9c965fdaec64e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: drewniana_podloga
+    second: {fileID: 2100000, guid: ce019cf21abbacc46abcb56380bb944c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: drzwi
+    second: {fileID: 2100000, guid: 5532d06427e7def47aaf61dc6c3e9fad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: okna
+    second: {fileID: 2100000, guid: 5dd11054d113b5f48a5c7c497b9a66ad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: stal
+    second: {fileID: 2100000, guid: 01a4dcb100352294b8e7da2882345b2b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
