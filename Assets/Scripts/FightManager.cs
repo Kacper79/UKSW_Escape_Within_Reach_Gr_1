@@ -148,6 +148,7 @@ public class FightManager : MonoBehaviour
         Invoke(nameof(TeleportPlayerToPostinionBeforeStartingAFight), 0.3f);
 
         FindAnyObjectByType<PlayerAttackAbsorber>().SetIsInFightTournament(false);
+        player_go.GetComponentInChildren<InventoryManager>().PickUpItem(this, new(player_go.GetComponentInChildren<InventoryManager>().allPosibleObjects[7]));
     }
 
     /// <summary>

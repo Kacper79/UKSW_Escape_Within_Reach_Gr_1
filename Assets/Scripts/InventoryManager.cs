@@ -21,7 +21,7 @@ public class InventoryManager : MonoBehaviour, ISaveable
     /// <summary>
     /// Lista wszystkich dostepnych przedmiotow, ktore moga byc podniesione przez gracza.
     /// </summary>
-    [SerializeField] private List<Item> allPosibleObjects;
+    [SerializeField] public List<Item> allPosibleObjects;
 
     /// <summary>
     /// Lista przedmiotow fabularnych, ktore zostaly podniesione przez gracza.
@@ -168,7 +168,7 @@ public class InventoryManager : MonoBehaviour, ISaveable
     /// <summary>
     /// Obsluguje podniesienie przedmiotu - dodaje go do ekwipunku.
     /// </summary>
-    private void PickUpItem(object sender, GlobalEvents.OnPickUpItemEventArgs e)
+    public void PickUpItem(object sender, GlobalEvents.OnPickUpItemEventArgs e)
     {
         // Sprawdza, czy przedmiot jest przedmiotem fabularnym, czy innym
         if (!e.item.GetIsPlot())

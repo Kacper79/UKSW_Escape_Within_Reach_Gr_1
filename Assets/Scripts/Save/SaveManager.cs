@@ -80,7 +80,7 @@ public class SaveManager : MonoBehaviour
     /// <summary>
     /// This callback is being used to save game's state on quiting the game
     /// </summary>
-    private void ProcessGameSave()
+    public void ProcessGameSave()
     {
         SaveGame(GatherObjectsForSave());
         saveablesGO.Clear();

@@ -77,6 +77,7 @@ public class PauseMenuUI : MonoBehaviour
     /// </summary>
     private void OnBackToMainMenuButtonClick()
     {
+        SaveManager.Instance.ProcessGameSave();
         SceneController.LoadScene(SceneController.MAIN_MENU_SCENE);  // ladowanie sceny menu glownego
     }
 }
